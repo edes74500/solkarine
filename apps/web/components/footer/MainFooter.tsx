@@ -1,0 +1,92 @@
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import Link from "next/link";
+import { FaDiscord, FaInstagram, FaPuzzlePiece, FaTiktok, FaTwitter, FaYoutube } from "react-icons/fa";
+
+export function MainFooter() {
+  return (
+    <footer className="border-t border-border">
+      <div className="mx-auto flex items-center justify-between py-6 w-full">
+        <div className="flex items-center space-x-4">
+          <Link href="/" className="font-bold text-xl font-mono pr-5">
+            Solkarine
+          </Link>
+        </div>
+        <div className="flex items-center space-x-6">
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link href="https://discord.com" className="hover:opacity-80 transition-opacity">
+                  <FaDiscord className="h-5 w-5" />
+                  <span className="sr-only">Discord</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Discord</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link href="https://instagram.com" className="hover:opacity-80 transition-opacity">
+                  <FaInstagram className="h-5 w-5" />
+                  <span className="sr-only">Instagram</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Instagram</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link href="https://puzzle.com" className="hover:opacity-80 transition-opacity">
+                  <FaPuzzlePiece className="h-5 w-5" />
+                  <span className="sr-only">Puzzle</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Puzzle</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link href="https://twitter.com" className="hover:opacity-80 transition-opacity">
+                  <FaTwitter className="h-5 w-5" />
+                  <span className="sr-only">Twitter</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>Twitter</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link href="https://youtube.com" className="hover:opacity-80 transition-opacity">
+                  <FaYoutube className="h-5 w-5" />
+                  <span className="sr-only">YouTube</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>YouTube</p>
+              </TooltipContent>
+            </Tooltip>
+
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Link href="https://tiktok.com" className="hover:opacity-80 transition-opacity">
+                  <FaTiktok className="h-5 w-5" />
+                  <span className="sr-only">TikTok</span>
+                </Link>
+              </TooltipTrigger>
+              <TooltipContent>
+                <p>TikTok</p>
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
+        </div>
+      </div>
+    </footer>
+  );
+}

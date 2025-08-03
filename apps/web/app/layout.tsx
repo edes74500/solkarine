@@ -1,4 +1,6 @@
+import { MainFooter } from "@/components/footer/MainFooter";
 import { Navbar } from "@/components/navbar/Navbar";
+import { ThemeProviderClient } from "@/components/theme/ThemeProvider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
@@ -25,9 +27,15 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable} antialiased`}>
-        <Navbar />
-        {children}
+      <head></head>
+      <body className={`${geistMono.className} antialiased bg-background`}>
+        <ThemeProviderClient>
+          <main className="flex flex-col min-h-screen max-w-[1050px] mx-auto p-5 ">
+            <Navbar />
+            <div className="flex-1 my-10">{children}</div>
+            <MainFooter />
+          </main>
+        </ThemeProviderClient>
       </body>
     </html>
   );

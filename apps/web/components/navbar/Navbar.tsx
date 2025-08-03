@@ -1,8 +1,28 @@
 "use client";
 
 import { cn } from "@/lib/utils";
+// import {
+//   Button,
+//   NavigationMenu,
+//   NavigationMenuContent,
+//   NavigationMenuItem,
+//   NavigationMenuLink,
+//   NavigationMenuList,
+//   NavigationMenuTrigger,
+//   navigationMenuTriggerStyle,
+//   Popover,
+//   PopoverContent,
+//   PopoverTrigger,
+//   Separator,
+//   Sheet,
+//   SheetContent,
+//   SheetDescription,
+//   SheetHeader,
+//   SheetTitle,
+//   SheetTrigger,
+// } from "@repo/ui";
+import { Button } from "@/components/ui/button";
 import {
-  Button,
   NavigationMenu,
   NavigationMenuContent,
   NavigationMenuItem,
@@ -10,17 +30,10 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-  Popover,
-  PopoverContent,
-  PopoverTrigger,
-  Separator,
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@repo/ui";
+} from "@/components/ui/navigation-menu";
+import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
+import { Separator } from "@/components/ui/separator";
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
 import { Menu, Settings } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -30,21 +43,28 @@ export function Navbar() {
   const pathname = usePathname();
 
   return (
-    <nav className="top-0 left-0 right-0 z-50 font-mono mb-10 w-full">
+    <nav className="z-50 font-mono mb-10 w-full bg-navbar px-5 rounded-full">
       <div className="mx-auto  flex items-center justify-between h-16 w-full ">
         <div className="flex items-center space-x-4 w-full">
           {/* Logo */}
           <Link href="/" className="font-bold text-xl font-mono pr-5">
-            JD.
+            Solkarine
           </Link>
+        </div>
+        <div className="flex items-center space-x-4 w-full justify-end">
+          {/* Logo */}
+          {/* <Link href="/" className="font-bold text-xl font-mono pr-5">
+            Solkarine
+          </Link> */}
+
           {/* Desktop Links */}
           <div className="hidden md:flex items-center space-x-4">
             <NavigationMenu viewport={false}>
               <NavigationMenuList className="flex items-baseline space-x-4">
                 {[
-                  { href: "/", label: "Accueil" },
-                  { href: "/projects", label: "Mes projets" },
-                  { href: "/blog", label: "Blog" },
+                  // { href: "/", label: "Accueil" },
+                  // { href: "/projects", label: "Mes projets" },
+                  // { href: "/blog", label: "Blog" },
                 ].map(({ href, label }) => {
                   const isActive = pathname === href;
                   return (
@@ -58,14 +78,49 @@ export function Navbar() {
                     </NavigationMenuItem>
                   );
                 })}
+
                 <NavigationMenuItem>
-                  <NavigationMenuTrigger onMouseEnter={() => console.log("Mouse entered")}>Plus</NavigationMenuTrigger>
+                  <NavigationMenuTrigger onMouseEnter={() => console.log("Mouse entered")}>
+                    Interface
+                  </NavigationMenuTrigger>
                   <NavigationMenuContent className="animate-in slide-in-from-bottom-60 duration-100 ease-in-out">
                     <ul className="grid w-[200px] gap-2 p-2">
                       {[
-                        { href: "/about", label: "À propos" },
-                        { href: "/contact", label: "Contact" },
-                        { href: "/resume", label: "CV" },
+                        { href: "/about", label: "Addons" },
+                        { href: "/contact", label: "Weak Auras" },
+                        // { href: "/resume", label: "Résumé" },
+                      ].map(({ href, label }) => {
+                        const isActive = pathname === href;
+                        return (
+                          <li key={href}>
+                            <NavigationMenuLink asChild>
+                              <Link
+                                href={href}
+                                className={cn(
+                                  "block px-3 py-2 text-sm rounded-md",
+                                  isActive && "bg-accent/50 text-accent-foreground",
+                                )}
+                              >
+                                {label}
+                              </Link>
+                            </NavigationMenuLink>
+                          </li>
+                        );
+                      })}
+                    </ul>
+                  </NavigationMenuContent>
+                </NavigationMenuItem>
+
+                <NavigationMenuItem>
+                  <NavigationMenuTrigger onMouseEnter={() => console.log("Mouse entered")}>
+                    Mythic +
+                  </NavigationMenuTrigger>
+                  <NavigationMenuContent className="animate-in slide-in-from-bottom-60 duration-100 ease-in-out">
+                    <ul className="grid w-[200px] gap-2 p-2">
+                      {[
+                        { href: "/about", label: "Tips" },
+                        { href: "/contact", label: "Routes" },
+                        { href: "/talents", label: "Talents" },
                       ].map(({ href, label }) => {
                         const isActive = pathname === href;
                         return (
