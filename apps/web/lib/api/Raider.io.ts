@@ -1,5 +1,5 @@
 // lib/raider.ts
-import { Character } from "@/components/RaiderIoCard";
+import { Character } from "@/app/components/characters/RaiderIoCard";
 
 const BASE = process.env.RAIDER_IO_BASE_URL || "https://raider.io/api/v1";
 const FIELDS = ["mythic_plus_best_runs"].join(",");

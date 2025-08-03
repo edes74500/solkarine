@@ -1,0 +1,1250 @@
+{
+  "seasons": [
+    {
+      "slug": "season-tww-3",
+      "name": "TWW Season 3",
+      "blizzard_season_id": 15,
+      "is_main_season": true,
+      "short_name": "TWW3",
+      "seasonal_affix": null,
+      "starts": {
+        "us": "2025-08-12T23:59:59Z",
+        "eu": "2025-08-13T23:59:59Z",
+        "tw": "2025-08-13T23:59:59Z",
+        "kr": "2025-08-13T23:59:59Z",
+        "cn": "2025-08-13T23:59:59Z"
+      },
+      "ends": {
+        "us": "2030-01-01T00:00:00Z",
+        "eu": "2030-01-01T00:00:00Z",
+        "tw": "2030-01-01T00:00:00Z",
+        "kr": "2030-01-01T00:00:00Z",
+        "cn": "2030-01-01T00:00:00Z"
+      },
+      "dungeons": [
+        {
+          "id": 15093,
+          "challenge_mode_id": 503,
+          "slug": "arakara-city-of-echoes",
+          "name": "Ara-Kara, City of Echoes",
+          "short_name": "ARAK",
+          "keystone_timer_seconds": 1800,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_arak-ara.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/arakara-city-of-echoes.jpg"
+        },
+        {
+          "id": 16104,
+          "challenge_mode_id": 542,
+          "slug": "ecodome-aldani",
+          "name": "Eco-Dome Al'dani",
+          "short_name": "EDA",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_112_achievement_dungeon_ecodome.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/ecodome-aldani.jpg"
+        },
+        {
+          "id": 12831,
+          "challenge_mode_id": 378,
+          "slug": "halls-of-atonement",
+          "name": "Halls of Atonement",
+          "short_name": "HOA",
+          "keystone_timer_seconds": 1920,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_hallsofattonement.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/halls-of-atonement.jpg"
+        },
+        {
+          "id": 15452,
+          "challenge_mode_id": 525,
+          "slug": "operation-floodgate",
+          "name": "Operation: Floodgate",
+          "short_name": "FLOOD",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_waterworks.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/operation-floodgate.jpg"
+        },
+        {
+          "id": 14954,
+          "challenge_mode_id": 499,
+          "slug": "priory-of-the-sacred-flame",
+          "name": "Priory of the Sacred Flame",
+          "short_name": "PSF",
+          "keystone_timer_seconds": 1950,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_prioryofthesacredflame.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/priory-of-the-sacred-flame.jpg"
+        },
+        {
+          "id": 1000001,
+          "challenge_mode_id": 392,
+          "slug": "tazavesh-soleahs-gambit",
+          "name": "Tazavesh: So'leah's Gambit",
+          "short_name": "GMBT",
+          "keystone_timer_seconds": 1800,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_theotherside_dealergexa.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/tazavesh-soleahs-gambit.jpg"
+        },
+        {
+          "id": 1000000,
+          "challenge_mode_id": 391,
+          "slug": "tazavesh-streets-of-wonder",
+          "name": "Tazavesh: Streets of Wonder",
+          "short_name": "STRT",
+          "keystone_timer_seconds": 2340,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_brokerdungeon.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/tazavesh-streets-of-wonder.jpg"
+        },
+        {
+          "id": 14971,
+          "challenge_mode_id": 505,
+          "slug": "the-dawnbreaker",
+          "name": "The Dawnbreaker",
+          "short_name": "DAWN",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_dawnbreaker.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-dawnbreaker.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "season-tww-3-ptr",
+      "name": "TWW Season 3 • PTR",
+      "blizzard_season_id": 15,
+      "is_main_season": false,
+      "short_name": "TWW3PTR",
+      "seasonal_affix": null,
+      "starts": {
+        "us": "2025-06-17T15:00:00Z",
+        "eu": "2025-06-18T04:00:00Z",
+        "tw": "2025-06-18T23:00:00Z",
+        "kr": "2025-06-18T23:00:00Z",
+        "cn": "2025-06-18T23:00:00Z"
+      },
+      "ends": {
+        "us": "2025-08-12T23:59:59Z",
+        "eu": "2025-08-13T23:59:59Z",
+        "tw": "2025-08-13T23:59:59Z",
+        "kr": "2025-08-13T23:59:59Z",
+        "cn": "2025-08-13T23:59:59Z"
+      },
+      "dungeons": [
+        {
+          "id": 15093,
+          "challenge_mode_id": 503,
+          "slug": "arakara-city-of-echoes",
+          "name": "Ara-Kara, City of Echoes",
+          "short_name": "ARAK",
+          "keystone_timer_seconds": 1800,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_arak-ara.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/arakara-city-of-echoes.jpg"
+        },
+        {
+          "id": 16104,
+          "challenge_mode_id": 542,
+          "slug": "ecodome-aldani",
+          "name": "Eco-Dome Al'dani",
+          "short_name": "EDA",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_112_achievement_dungeon_ecodome.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/ecodome-aldani.jpg"
+        },
+        {
+          "id": 12831,
+          "challenge_mode_id": 378,
+          "slug": "halls-of-atonement",
+          "name": "Halls of Atonement",
+          "short_name": "HOA",
+          "keystone_timer_seconds": 1920,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_hallsofattonement.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/halls-of-atonement.jpg"
+        },
+        {
+          "id": 15452,
+          "challenge_mode_id": 525,
+          "slug": "operation-floodgate",
+          "name": "Operation: Floodgate",
+          "short_name": "FLOOD",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_waterworks.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/operation-floodgate.jpg"
+        },
+        {
+          "id": 14954,
+          "challenge_mode_id": 499,
+          "slug": "priory-of-the-sacred-flame",
+          "name": "Priory of the Sacred Flame",
+          "short_name": "PSF",
+          "keystone_timer_seconds": 1950,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_prioryofthesacredflame.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/priory-of-the-sacred-flame.jpg"
+        },
+        {
+          "id": 1000001,
+          "challenge_mode_id": 392,
+          "slug": "tazavesh-soleahs-gambit",
+          "name": "Tazavesh: So'leah's Gambit",
+          "short_name": "GMBT",
+          "keystone_timer_seconds": 1800,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_theotherside_dealergexa.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/tazavesh-soleahs-gambit.jpg"
+        },
+        {
+          "id": 1000000,
+          "challenge_mode_id": 391,
+          "slug": "tazavesh-streets-of-wonder",
+          "name": "Tazavesh: Streets of Wonder",
+          "short_name": "STRT",
+          "keystone_timer_seconds": 2340,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_brokerdungeon.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/tazavesh-streets-of-wonder.jpg"
+        },
+        {
+          "id": 14971,
+          "challenge_mode_id": 505,
+          "slug": "the-dawnbreaker",
+          "name": "The Dawnbreaker",
+          "short_name": "DAWN",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_dawnbreaker.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-dawnbreaker.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "season-tww-2",
+      "name": "TWW Season 2",
+      "blizzard_season_id": 14,
+      "is_main_season": true,
+      "short_name": "TWW2",
+      "seasonal_affix": null,
+      "starts": {
+        "us": "2025-03-04T15:00:00Z",
+        "eu": "2025-03-05T04:00:00Z",
+        "tw": "2025-03-05T23:00:00Z",
+        "kr": "2025-03-05T23:00:00Z",
+        "cn": "2025-03-05T23:00:00Z"
+      },
+      "ends": {
+        "us": "2025-08-12T23:59:59Z",
+        "eu": "2025-08-13T23:59:59Z",
+        "tw": "2025-08-13T23:59:59Z",
+        "kr": "2025-08-13T23:59:59Z",
+        "cn": "2025-08-13T23:59:59Z"
+      },
+      "dungeons": [
+        {
+          "id": 15103,
+          "challenge_mode_id": 506,
+          "slug": "cinderbrew-meadery",
+          "name": "Cinderbrew Meadery",
+          "short_name": "BREW",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_cinderbrewmeadery.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/cinderbrew-meadery.jpg"
+        },
+        {
+          "id": 14882,
+          "challenge_mode_id": 504,
+          "slug": "darkflame-cleft",
+          "name": "Darkflame Cleft",
+          "short_name": "DFC",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_darkflamecleft.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/darkflame-cleft.jpg"
+        },
+        {
+          "id": 800002,
+          "challenge_mode_id": 370,
+          "slug": "operation-mechagon-workshop",
+          "name": "Mechagon Workshop",
+          "short_name": "WORK",
+          "keystone_timer_seconds": 1920,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_mechagon.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion7/base/operation-mechagon-workshop.jpg"
+        },
+        {
+          "id": 15452,
+          "challenge_mode_id": 525,
+          "slug": "operation-floodgate",
+          "name": "Operation: Floodgate",
+          "short_name": "FLOOD",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_waterworks.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/operation-floodgate.jpg"
+        },
+        {
+          "id": 14954,
+          "challenge_mode_id": 499,
+          "slug": "priory-of-the-sacred-flame",
+          "name": "Priory of the Sacred Flame",
+          "short_name": "PSF",
+          "keystone_timer_seconds": 1950,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_prioryofthesacredflame.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/priory-of-the-sacred-flame.jpg"
+        },
+        {
+          "id": 8064,
+          "challenge_mode_id": 247,
+          "slug": "the-motherlode",
+          "name": "The MOTHERLODE!!",
+          "short_name": "ML",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_kezan.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion7/base/the-motherlode.jpg"
+        },
+        {
+          "id": 14938,
+          "challenge_mode_id": 500,
+          "slug": "the-rookery",
+          "name": "The Rookery",
+          "short_name": "ROOK",
+          "keystone_timer_seconds": 1740,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_rookery.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-rookery.jpg"
+        },
+        {
+          "id": 12841,
+          "challenge_mode_id": 382,
+          "slug": "theater-of-pain",
+          "name": "Theater of Pain",
+          "short_name": "TOP",
+          "keystone_timer_seconds": 2040,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_theatreofpain.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/theater-of-pain.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "season-tww-2-ptr",
+      "name": "TWW Season 2 • PTR",
+      "blizzard_season_id": 14,
+      "is_main_season": false,
+      "short_name": "TWW2PTR",
+      "seasonal_affix": null,
+      "starts": {
+        "us": "2025-01-07T15:00:00Z",
+        "eu": "2025-01-08T04:00:00Z",
+        "tw": "2025-01-08T23:00:00Z",
+        "kr": "2025-01-08T23:00:00Z",
+        "cn": "2025-01-08T23:00:00Z"
+      },
+      "ends": {
+        "us": "2025-03-04T15:00:00Z",
+        "eu": "2025-03-05T04:00:00Z",
+        "tw": "2025-03-05T23:00:00Z",
+        "kr": "2025-03-05T23:00:00Z",
+        "cn": "2025-03-05T23:00:00Z"
+      },
+      "dungeons": [
+        {
+          "id": 15103,
+          "challenge_mode_id": 506,
+          "slug": "cinderbrew-meadery",
+          "name": "Cinderbrew Meadery",
+          "short_name": "BREW",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_cinderbrewmeadery.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/cinderbrew-meadery.jpg"
+        },
+        {
+          "id": 14882,
+          "challenge_mode_id": 504,
+          "slug": "darkflame-cleft",
+          "name": "Darkflame Cleft",
+          "short_name": "DFC",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_darkflamecleft.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/darkflame-cleft.jpg"
+        },
+        {
+          "id": 800002,
+          "challenge_mode_id": 370,
+          "slug": "operation-mechagon-workshop",
+          "name": "Mechagon Workshop",
+          "short_name": "WORK",
+          "keystone_timer_seconds": 1920,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_mechagon.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion7/base/operation-mechagon-workshop.jpg"
+        },
+        {
+          "id": 15452,
+          "challenge_mode_id": 525,
+          "slug": "operation-floodgate",
+          "name": "Operation: Floodgate",
+          "short_name": "FLOOD",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_waterworks.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/operation-floodgate.jpg"
+        },
+        {
+          "id": 14954,
+          "challenge_mode_id": 499,
+          "slug": "priory-of-the-sacred-flame",
+          "name": "Priory of the Sacred Flame",
+          "short_name": "PSF",
+          "keystone_timer_seconds": 1950,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_prioryofthesacredflame.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/priory-of-the-sacred-flame.jpg"
+        },
+        {
+          "id": 8064,
+          "challenge_mode_id": 247,
+          "slug": "the-motherlode",
+          "name": "The MOTHERLODE!!",
+          "short_name": "ML",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_kezan.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion7/base/the-motherlode.jpg"
+        },
+        {
+          "id": 14938,
+          "challenge_mode_id": 500,
+          "slug": "the-rookery",
+          "name": "The Rookery",
+          "short_name": "ROOK",
+          "keystone_timer_seconds": 1740,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_rookery.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-rookery.jpg"
+        },
+        {
+          "id": 12841,
+          "challenge_mode_id": 382,
+          "slug": "theater-of-pain",
+          "name": "Theater of Pain",
+          "short_name": "TOP",
+          "keystone_timer_seconds": 2040,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_theatreofpain.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/theater-of-pain.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "season-tww-2-break-the-meta",
+      "name": "TWW Season 2 • Break the Meta",
+      "blizzard_season_id": 14,
+      "is_main_season": false,
+      "short_name": "BTM TWW2",
+      "seasonal_affix": null,
+      "starts": {
+        "us": "2025-06-24T15:00:00Z",
+        "eu": "2025-06-25T04:00:00Z",
+        "tw": "2025-06-25T23:00:00Z",
+        "kr": "2025-06-25T23:00:00Z",
+        "cn": "2025-06-25T23:00:00Z"
+      },
+      "ends": {
+        "us": "2025-07-01T15:00:00Z",
+        "eu": "2025-07-02T04:00:00Z",
+        "tw": "2025-07-02T23:00:00Z",
+        "kr": "2025-07-02T23:00:00Z",
+        "cn": "2025-07-02T23:00:00Z"
+      },
+      "dungeons": [
+        {
+          "id": 15103,
+          "challenge_mode_id": 506,
+          "slug": "cinderbrew-meadery",
+          "name": "Cinderbrew Meadery",
+          "short_name": "BREW",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_cinderbrewmeadery.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/cinderbrew-meadery.jpg"
+        },
+        {
+          "id": 14882,
+          "challenge_mode_id": 504,
+          "slug": "darkflame-cleft",
+          "name": "Darkflame Cleft",
+          "short_name": "DFC",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_darkflamecleft.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/darkflame-cleft.jpg"
+        },
+        {
+          "id": 800002,
+          "challenge_mode_id": 370,
+          "slug": "operation-mechagon-workshop",
+          "name": "Mechagon Workshop",
+          "short_name": "WORK",
+          "keystone_timer_seconds": 1920,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_mechagon.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion7/base/operation-mechagon-workshop.jpg"
+        },
+        {
+          "id": 15452,
+          "challenge_mode_id": 525,
+          "slug": "operation-floodgate",
+          "name": "Operation: Floodgate",
+          "short_name": "FLOOD",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_waterworks.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/operation-floodgate.jpg"
+        },
+        {
+          "id": 14954,
+          "challenge_mode_id": 499,
+          "slug": "priory-of-the-sacred-flame",
+          "name": "Priory of the Sacred Flame",
+          "short_name": "PSF",
+          "keystone_timer_seconds": 1950,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_prioryofthesacredflame.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/priory-of-the-sacred-flame.jpg"
+        },
+        {
+          "id": 8064,
+          "challenge_mode_id": 247,
+          "slug": "the-motherlode",
+          "name": "The MOTHERLODE!!",
+          "short_name": "ML",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_kezan.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion7/base/the-motherlode.jpg"
+        },
+        {
+          "id": 14938,
+          "challenge_mode_id": 500,
+          "slug": "the-rookery",
+          "name": "The Rookery",
+          "short_name": "ROOK",
+          "keystone_timer_seconds": 1740,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_rookery.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-rookery.jpg"
+        },
+        {
+          "id": 12841,
+          "challenge_mode_id": 382,
+          "slug": "theater-of-pain",
+          "name": "Theater of Pain",
+          "short_name": "TOP",
+          "keystone_timer_seconds": 2040,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_theatreofpain.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/theater-of-pain.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "season-tww-2-meta-vs-meta",
+      "name": "TWW Season 2 • Meta Vs Meta",
+      "blizzard_season_id": 14,
+      "is_main_season": false,
+      "short_name": "MVM TWW2",
+      "seasonal_affix": null,
+      "starts": {
+        "us": "2025-06-24T15:00:00Z",
+        "eu": "2025-06-25T04:00:00Z",
+        "tw": "2025-06-25T23:00:00Z",
+        "kr": "2025-06-25T23:00:00Z",
+        "cn": "2025-06-25T23:00:00Z"
+      },
+      "ends": {
+        "us": "2025-07-01T15:00:00Z",
+        "eu": "2025-07-02T04:00:00Z",
+        "tw": "2025-07-02T23:00:00Z",
+        "kr": "2025-07-02T23:00:00Z",
+        "cn": "2025-07-02T23:00:00Z"
+      },
+      "dungeons": [
+        {
+          "id": 15103,
+          "challenge_mode_id": 506,
+          "slug": "cinderbrew-meadery",
+          "name": "Cinderbrew Meadery",
+          "short_name": "BREW",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_cinderbrewmeadery.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/cinderbrew-meadery.jpg"
+        },
+        {
+          "id": 14882,
+          "challenge_mode_id": 504,
+          "slug": "darkflame-cleft",
+          "name": "Darkflame Cleft",
+          "short_name": "DFC",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_darkflamecleft.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/darkflame-cleft.jpg"
+        },
+        {
+          "id": 800002,
+          "challenge_mode_id": 370,
+          "slug": "operation-mechagon-workshop",
+          "name": "Mechagon Workshop",
+          "short_name": "WORK",
+          "keystone_timer_seconds": 1920,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_mechagon.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion7/base/operation-mechagon-workshop.jpg"
+        },
+        {
+          "id": 15452,
+          "challenge_mode_id": 525,
+          "slug": "operation-floodgate",
+          "name": "Operation: Floodgate",
+          "short_name": "FLOOD",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_waterworks.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/operation-floodgate.jpg"
+        },
+        {
+          "id": 14954,
+          "challenge_mode_id": 499,
+          "slug": "priory-of-the-sacred-flame",
+          "name": "Priory of the Sacred Flame",
+          "short_name": "PSF",
+          "keystone_timer_seconds": 1950,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_prioryofthesacredflame.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/priory-of-the-sacred-flame.jpg"
+        },
+        {
+          "id": 8064,
+          "challenge_mode_id": 247,
+          "slug": "the-motherlode",
+          "name": "The MOTHERLODE!!",
+          "short_name": "ML",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_kezan.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion7/base/the-motherlode.jpg"
+        },
+        {
+          "id": 14938,
+          "challenge_mode_id": 500,
+          "slug": "the-rookery",
+          "name": "The Rookery",
+          "short_name": "ROOK",
+          "keystone_timer_seconds": 1740,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_rookery.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-rookery.jpg"
+        },
+        {
+          "id": 12841,
+          "challenge_mode_id": 382,
+          "slug": "theater-of-pain",
+          "name": "Theater of Pain",
+          "short_name": "TOP",
+          "keystone_timer_seconds": 2040,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_theatreofpain.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/theater-of-pain.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "season-tww-2-post",
+      "name": "TWW Season 2 • Post",
+      "blizzard_season_id": 13,
+      "is_main_season": true,
+      "short_name": "TWW2 (Post)",
+      "seasonal_affix": null,
+      "starts": {
+        "us": "2025-08-05T15:00:00Z",
+        "eu": "2025-08-06T04:00:00Z",
+        "tw": "2025-08-06T23:00:00Z",
+        "kr": "2025-08-06T23:00:00Z",
+        "cn": "2025-08-06T23:00:00Z"
+      },
+      "ends": {
+        "us": "2025-08-12T23:59:59Z",
+        "eu": "2025-08-13T23:59:59Z",
+        "tw": "2025-08-13T23:59:59Z",
+        "kr": "2025-08-13T23:59:59Z",
+        "cn": "2025-08-13T23:59:59Z"
+      },
+      "dungeons": [
+        {
+          "id": 15103,
+          "challenge_mode_id": 506,
+          "slug": "cinderbrew-meadery",
+          "name": "Cinderbrew Meadery",
+          "short_name": "BREW",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_cinderbrewmeadery.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/cinderbrew-meadery.jpg"
+        },
+        {
+          "id": 14882,
+          "challenge_mode_id": 504,
+          "slug": "darkflame-cleft",
+          "name": "Darkflame Cleft",
+          "short_name": "DFC",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_darkflamecleft.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/darkflame-cleft.jpg"
+        },
+        {
+          "id": 800002,
+          "challenge_mode_id": 370,
+          "slug": "operation-mechagon-workshop",
+          "name": "Mechagon Workshop",
+          "short_name": "WORK",
+          "keystone_timer_seconds": 1920,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_boss_mechagon.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion7/base/operation-mechagon-workshop.jpg"
+        },
+        {
+          "id": 15452,
+          "challenge_mode_id": 525,
+          "slug": "operation-floodgate",
+          "name": "Operation: Floodgate",
+          "short_name": "FLOOD",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_waterworks.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/operation-floodgate.jpg"
+        },
+        {
+          "id": 14954,
+          "challenge_mode_id": 499,
+          "slug": "priory-of-the-sacred-flame",
+          "name": "Priory of the Sacred Flame",
+          "short_name": "PSF",
+          "keystone_timer_seconds": 1950,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_prioryofthesacredflame.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/priory-of-the-sacred-flame.jpg"
+        },
+        {
+          "id": 8064,
+          "challenge_mode_id": 247,
+          "slug": "the-motherlode",
+          "name": "The MOTHERLODE!!",
+          "short_name": "ML",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_kezan.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion7/base/the-motherlode.jpg"
+        },
+        {
+          "id": 14938,
+          "challenge_mode_id": 500,
+          "slug": "the-rookery",
+          "name": "The Rookery",
+          "short_name": "ROOK",
+          "keystone_timer_seconds": 1740,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_rookery.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-rookery.jpg"
+        },
+        {
+          "id": 12841,
+          "challenge_mode_id": 382,
+          "slug": "theater-of-pain",
+          "name": "Theater of Pain",
+          "short_name": "TOP",
+          "keystone_timer_seconds": 2040,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_theatreofpain.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/theater-of-pain.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "season-tww-1",
+      "name": "TWW Season 1",
+      "blizzard_season_id": 13,
+      "is_main_season": true,
+      "short_name": "TWW1",
+      "seasonal_affix": null,
+      "starts": {
+        "us": "2024-09-17T15:00:00Z",
+        "eu": "2024-09-18T04:00:00Z",
+        "tw": "2024-09-18T23:00:00Z",
+        "kr": "2024-09-18T23:00:00Z",
+        "cn": "2024-09-18T23:00:00Z"
+      },
+      "ends": {
+        "us": "2025-02-25T15:00:00Z",
+        "eu": "2025-02-26T04:00:00Z",
+        "tw": "2025-02-26T23:00:00Z",
+        "kr": "2025-02-26T23:00:00Z",
+        "cn": "2025-02-26T23:00:00Z"
+      },
+      "dungeons": [
+        {
+          "id": 15093,
+          "challenge_mode_id": 503,
+          "slug": "arakara-city-of-echoes",
+          "name": "Ara-Kara, City of Echoes",
+          "short_name": "ARAK",
+          "keystone_timer_seconds": 1800,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_arak-ara.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/arakara-city-of-echoes.jpg"
+        },
+        {
+          "id": 14979,
+          "challenge_mode_id": 502,
+          "slug": "city-of-threads",
+          "name": "City of Threads",
+          "short_name": "COT",
+          "keystone_timer_seconds": 2100,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_cityofthreads.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/city-of-threads.jpg"
+        },
+        {
+          "id": 4950,
+          "challenge_mode_id": 507,
+          "slug": "grim-batol",
+          "name": "Grim Batol",
+          "short_name": "GB",
+          "keystone_timer_seconds": 2040,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_grimbatol.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion3/base/grim-batol.jpg"
+        },
+        {
+          "id": 13334,
+          "challenge_mode_id": 375,
+          "slug": "mists-of-tirna-scithe",
+          "name": "Mists of Tirna Scithe",
+          "short_name": "MISTS",
+          "keystone_timer_seconds": 1800,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_mistsoftirnascithe.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/mists-of-tirna-scithe.jpg"
+        },
+        {
+          "id": 9354,
+          "challenge_mode_id": 353,
+          "slug": "siege-of-boralus",
+          "name": "Siege of Boralus",
+          "short_name": "SIEGE",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_siegeofboralus.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion7/base/siege-of-boralus.jpg"
+        },
+        {
+          "id": 14971,
+          "challenge_mode_id": 505,
+          "slug": "the-dawnbreaker",
+          "name": "The Dawnbreaker",
+          "short_name": "DAWN",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_dawnbreaker.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-dawnbreaker.jpg"
+        },
+        {
+          "id": 12916,
+          "challenge_mode_id": 376,
+          "slug": "the-necrotic-wake",
+          "name": "The Necrotic Wake",
+          "short_name": "NW",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_theneroticwake.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/the-necrotic-wake.jpg"
+        },
+        {
+          "id": 14883,
+          "challenge_mode_id": 501,
+          "slug": "the-stonevault",
+          "name": "The Stonevault",
+          "short_name": "SV",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_stonevault.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-stonevault.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "season-tww-1-post",
+      "name": "TWW Season 1 • Post",
+      "blizzard_season_id": 13,
+      "is_main_season": true,
+      "short_name": "TWW1 (Post)",
+      "seasonal_affix": null,
+      "starts": {
+        "us": "2025-02-25T15:00:00Z",
+        "eu": "2025-02-26T04:00:00Z",
+        "tw": "2025-02-26T23:00:00Z",
+        "kr": "2025-02-26T23:00:00Z",
+        "cn": "2025-02-26T23:00:00Z"
+      },
+      "ends": {
+        "us": "2025-03-04T15:00:00Z",
+        "eu": "2025-03-05T04:00:00Z",
+        "tw": "2025-03-05T23:00:00Z",
+        "kr": "2025-03-05T23:00:00Z",
+        "cn": "2025-03-05T23:00:00Z"
+      },
+      "dungeons": [
+        {
+          "id": 15093,
+          "challenge_mode_id": 503,
+          "slug": "arakara-city-of-echoes",
+          "name": "Ara-Kara, City of Echoes",
+          "short_name": "ARAK",
+          "keystone_timer_seconds": 1800,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_arak-ara.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/arakara-city-of-echoes.jpg"
+        },
+        {
+          "id": 14979,
+          "challenge_mode_id": 502,
+          "slug": "city-of-threads",
+          "name": "City of Threads",
+          "short_name": "COT",
+          "keystone_timer_seconds": 2100,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_cityofthreads.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/city-of-threads.jpg"
+        },
+        {
+          "id": 4950,
+          "challenge_mode_id": 507,
+          "slug": "grim-batol",
+          "name": "Grim Batol",
+          "short_name": "GB",
+          "keystone_timer_seconds": 2040,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_grimbatol.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion3/base/grim-batol.jpg"
+        },
+        {
+          "id": 13334,
+          "challenge_mode_id": 375,
+          "slug": "mists-of-tirna-scithe",
+          "name": "Mists of Tirna Scithe",
+          "short_name": "MISTS",
+          "keystone_timer_seconds": 1800,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_mistsoftirnascithe.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/mists-of-tirna-scithe.jpg"
+        },
+        {
+          "id": 9354,
+          "challenge_mode_id": 353,
+          "slug": "siege-of-boralus",
+          "name": "Siege of Boralus",
+          "short_name": "SIEGE",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_siegeofboralus.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion7/base/siege-of-boralus.jpg"
+        },
+        {
+          "id": 14971,
+          "challenge_mode_id": 505,
+          "slug": "the-dawnbreaker",
+          "name": "The Dawnbreaker",
+          "short_name": "DAWN",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_dawnbreaker.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-dawnbreaker.jpg"
+        },
+        {
+          "id": 12916,
+          "challenge_mode_id": 376,
+          "slug": "the-necrotic-wake",
+          "name": "The Necrotic Wake",
+          "short_name": "NW",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_theneroticwake.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/the-necrotic-wake.jpg"
+        },
+        {
+          "id": 14883,
+          "challenge_mode_id": 501,
+          "slug": "the-stonevault",
+          "name": "The Stonevault",
+          "short_name": "SV",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_stonevault.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-stonevault.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "season-tww-1-break-the-meta",
+      "name": "TWW Season 1 • Break the Meta",
+      "blizzard_season_id": 13,
+      "is_main_season": false,
+      "short_name": "BTM TWW1",
+      "seasonal_affix": null,
+      "starts": {
+        "us": "2024-12-10T15:00:00Z",
+        "eu": "2024-12-11T04:00:00Z",
+        "tw": "2024-12-11T23:00:00Z",
+        "kr": "2024-12-11T23:00:00Z",
+        "cn": "2024-12-11T23:00:00Z"
+      },
+      "ends": {
+        "us": "2024-12-17T15:00:00Z",
+        "eu": "2024-12-18T04:00:00Z",
+        "tw": "2024-12-18T23:00:00Z",
+        "kr": "2024-12-18T23:00:00Z",
+        "cn": "2024-12-18T23:00:00Z"
+      },
+      "dungeons": [
+        {
+          "id": 15093,
+          "challenge_mode_id": 503,
+          "slug": "arakara-city-of-echoes",
+          "name": "Ara-Kara, City of Echoes",
+          "short_name": "ARAK",
+          "keystone_timer_seconds": 1800,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_arak-ara.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/arakara-city-of-echoes.jpg"
+        },
+        {
+          "id": 14979,
+          "challenge_mode_id": 502,
+          "slug": "city-of-threads",
+          "name": "City of Threads",
+          "short_name": "COT",
+          "keystone_timer_seconds": 2100,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_cityofthreads.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/city-of-threads.jpg"
+        },
+        {
+          "id": 4950,
+          "challenge_mode_id": 507,
+          "slug": "grim-batol",
+          "name": "Grim Batol",
+          "short_name": "GB",
+          "keystone_timer_seconds": 2040,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_grimbatol.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion3/base/grim-batol.jpg"
+        },
+        {
+          "id": 13334,
+          "challenge_mode_id": 375,
+          "slug": "mists-of-tirna-scithe",
+          "name": "Mists of Tirna Scithe",
+          "short_name": "MISTS",
+          "keystone_timer_seconds": 1800,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_mistsoftirnascithe.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/mists-of-tirna-scithe.jpg"
+        },
+        {
+          "id": 9354,
+          "challenge_mode_id": 353,
+          "slug": "siege-of-boralus",
+          "name": "Siege of Boralus",
+          "short_name": "SIEGE",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_siegeofboralus.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion7/base/siege-of-boralus.jpg"
+        },
+        {
+          "id": 14971,
+          "challenge_mode_id": 505,
+          "slug": "the-dawnbreaker",
+          "name": "The Dawnbreaker",
+          "short_name": "DAWN",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_dawnbreaker.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-dawnbreaker.jpg"
+        },
+        {
+          "id": 12916,
+          "challenge_mode_id": 376,
+          "slug": "the-necrotic-wake",
+          "name": "The Necrotic Wake",
+          "short_name": "NW",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_theneroticwake.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/the-necrotic-wake.jpg"
+        },
+        {
+          "id": 14883,
+          "challenge_mode_id": 501,
+          "slug": "the-stonevault",
+          "name": "The Stonevault",
+          "short_name": "SV",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_stonevault.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-stonevault.jpg"
+        }
+      ]
+    },
+    {
+      "slug": "season-tww-1-beta",
+      "name": "TWW Season 1 • Beta",
+      "blizzard_season_id": 13,
+      "is_main_season": false,
+      "short_name": "TWW1BETA",
+      "seasonal_affix": null,
+      "starts": {
+        "us": "2024-06-12T15:00:00Z",
+        "eu": "2024-06-13T04:00:00Z",
+        "tw": "2024-06-13T23:00:00Z",
+        "kr": "2024-06-13T23:00:00Z",
+        "cn": "2024-06-13T23:00:00Z"
+      },
+      "ends": {
+        "us": "2024-08-22T22:00:00Z",
+        "eu": "2024-08-22T22:00:00Z",
+        "tw": "2024-08-22T22:00:00Z",
+        "kr": "2024-08-22T22:00:00Z",
+        "cn": "2024-08-22T22:00:00Z"
+      },
+      "dungeons": [
+        {
+          "id": 15093,
+          "challenge_mode_id": 503,
+          "slug": "arakara-city-of-echoes",
+          "name": "Ara-Kara, City of Echoes",
+          "short_name": "ARAK",
+          "keystone_timer_seconds": 1800,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_arak-ara.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/arakara-city-of-echoes.jpg"
+        },
+        {
+          "id": 14979,
+          "challenge_mode_id": 502,
+          "slug": "city-of-threads",
+          "name": "City of Threads",
+          "short_name": "COT",
+          "keystone_timer_seconds": 2100,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_cityofthreads.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/city-of-threads.jpg"
+        },
+        {
+          "id": 4950,
+          "challenge_mode_id": 507,
+          "slug": "grim-batol",
+          "name": "Grim Batol",
+          "short_name": "GB",
+          "keystone_timer_seconds": 2040,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_grimbatol.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion3/base/grim-batol.jpg"
+        },
+        {
+          "id": 13334,
+          "challenge_mode_id": 375,
+          "slug": "mists-of-tirna-scithe",
+          "name": "Mists of Tirna Scithe",
+          "short_name": "MISTS",
+          "keystone_timer_seconds": 1800,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_mistsoftirnascithe.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/mists-of-tirna-scithe.jpg"
+        },
+        {
+          "id": 9354,
+          "challenge_mode_id": 353,
+          "slug": "siege-of-boralus",
+          "name": "Siege of Boralus",
+          "short_name": "SIEGE",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_siegeofboralus.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion7/base/siege-of-boralus.jpg"
+        },
+        {
+          "id": 14971,
+          "challenge_mode_id": 505,
+          "slug": "the-dawnbreaker",
+          "name": "The Dawnbreaker",
+          "short_name": "DAWN",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_dawnbreaker.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-dawnbreaker.jpg"
+        },
+        {
+          "id": 12916,
+          "challenge_mode_id": 376,
+          "slug": "the-necrotic-wake",
+          "name": "The Necrotic Wake",
+          "short_name": "NW",
+          "keystone_timer_seconds": 1860,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/achievement_dungeon_theneroticwake.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion8/base/the-necrotic-wake.jpg"
+        },
+        {
+          "id": 14883,
+          "challenge_mode_id": 501,
+          "slug": "the-stonevault",
+          "name": "The Stonevault",
+          "short_name": "SV",
+          "keystone_timer_seconds": 1980,
+          "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_stonevault.jpg",
+          "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-stonevault.jpg"
+        }
+      ]
+    }
+  ],
+  "dungeons": [
+    {
+      "id": 15093,
+      "challenge_mode_id": 503,
+      "slug": "arakara-city-of-echoes",
+      "name": "Ara-Kara, City of Echoes",
+      "short_name": "ARAK",
+      "keystone_timer_seconds": 1800,
+      "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_arak-ara.jpg",
+      "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/arakara-city-of-echoes.jpg"
+    },
+    {
+      "id": 15103,
+      "challenge_mode_id": 506,
+      "slug": "cinderbrew-meadery",
+      "name": "Cinderbrew Meadery",
+      "short_name": "BREW",
+      "keystone_timer_seconds": 1980,
+      "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_cinderbrewmeadery.jpg",
+      "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/cinderbrew-meadery.jpg"
+    },
+    {
+      "id": 14979,
+      "challenge_mode_id": 502,
+      "slug": "city-of-threads",
+      "name": "City of Threads",
+      "short_name": "COT",
+      "keystone_timer_seconds": 2100,
+      "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_cityofthreads.jpg",
+      "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/city-of-threads.jpg"
+    },
+    {
+      "id": 14882,
+      "challenge_mode_id": 504,
+      "slug": "darkflame-cleft",
+      "name": "Darkflame Cleft",
+      "short_name": "DFC",
+      "keystone_timer_seconds": 1860,
+      "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_darkflamecleft.jpg",
+      "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/darkflame-cleft.jpg"
+    },
+    {
+      "id": 16104,
+      "challenge_mode_id": 542,
+      "slug": "ecodome-aldani",
+      "name": "Eco-Dome Al'dani",
+      "short_name": "EDA",
+      "keystone_timer_seconds": 1860,
+      "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_112_achievement_dungeon_ecodome.jpg",
+      "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/ecodome-aldani.jpg"
+    },
+    {
+      "id": 15452,
+      "challenge_mode_id": 525,
+      "slug": "operation-floodgate",
+      "name": "Operation: Floodgate",
+      "short_name": "FLOOD",
+      "keystone_timer_seconds": 1980,
+      "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_waterworks.jpg",
+      "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/operation-floodgate.jpg"
+    },
+    {
+      "id": 14954,
+      "challenge_mode_id": 499,
+      "slug": "priory-of-the-sacred-flame",
+      "name": "Priory of the Sacred Flame",
+      "short_name": "PSF",
+      "keystone_timer_seconds": 1950,
+      "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_prioryofthesacredflame.jpg",
+      "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/priory-of-the-sacred-flame.jpg"
+    },
+    {
+      "id": 14971,
+      "challenge_mode_id": 505,
+      "slug": "the-dawnbreaker",
+      "name": "The Dawnbreaker",
+      "short_name": "DAWN",
+      "keystone_timer_seconds": 1860,
+      "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_dawnbreaker.jpg",
+      "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-dawnbreaker.jpg"
+    },
+    {
+      "id": 14938,
+      "challenge_mode_id": 500,
+      "slug": "the-rookery",
+      "name": "The Rookery",
+      "short_name": "ROOK",
+      "keystone_timer_seconds": 1740,
+      "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_rookery.jpg",
+      "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-rookery.jpg"
+    },
+    {
+      "id": 14883,
+      "challenge_mode_id": 501,
+      "slug": "the-stonevault",
+      "name": "The Stonevault",
+      "short_name": "SV",
+      "keystone_timer_seconds": 1980,
+      "icon_url": "https://cdn.raiderio.net/images/wow/icons/large/inv_achievement_dungeon_stonevault.jpg",
+      "background_image_url": "https://cdn.raiderio.net/images/dungeons/expansion10/base/the-stonevault.jpg"
+    }
+  ]
+}

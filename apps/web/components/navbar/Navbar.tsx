@@ -41,9 +41,16 @@ import { ThemeSwapper } from "./ThemeSwapper";
 
 export function Navbar() {
   const pathname = usePathname();
+  // Vérifier si le chemin actuel contient "admin"
+  const isAdminPage = pathname.includes("admin");
+
+  // Si c'est une page admin, ne pas afficher la navbar
+  if (isAdminPage) {
+    return null;
+  }
 
   return (
-    <nav className="z-50 font-mono mb-10 w-full bg-navbar px-5 rounded-full">
+    <nav className="z-50 font-mono mb-10 w-full bg-navbar px-5 rounded-full max-w-[1080px] mx-auto">
       <div className="mx-auto  flex items-center justify-between h-16 w-full ">
         <div className="flex items-center space-x-4 w-full">
           {/* Logo */}
@@ -86,8 +93,8 @@ export function Navbar() {
                   <NavigationMenuContent className="animate-in slide-in-from-bottom-60 duration-100 ease-in-out">
                     <ul className="grid w-[200px] gap-2 p-2">
                       {[
-                        { href: "/about", label: "Addons" },
-                        { href: "/contact", label: "Weak Auras" },
+                        { href: "/interface/addons", label: "Addons" },
+                        { href: "/interface/weak-auras", label: "Weak Auras" },
                         // { href: "/resume", label: "Résumé" },
                       ].map(({ href, label }) => {
                         const isActive = pathname === href;
@@ -118,9 +125,9 @@ export function Navbar() {
                   <NavigationMenuContent className="animate-in slide-in-from-bottom-60 duration-100 ease-in-out">
                     <ul className="grid w-[200px] gap-2 p-2">
                       {[
-                        { href: "/about", label: "Tips" },
-                        { href: "/contact", label: "Routes" },
-                        { href: "/talents", label: "Talents" },
+                        { href: "/mythic-plus/tips", label: "Tips" },
+                        { href: "/mythic-plus/routes", label: "Routes" },
+                        { href: "/mythic-plus/talents", label: "Talents" },
                       ].map(({ href, label }) => {
                         const isActive = pathname === href;
                         return (

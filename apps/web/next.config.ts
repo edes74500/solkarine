@@ -16,6 +16,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "cdn.raiderio.net",
       },
+      {
+        protocol: "https",
+        hostname: "wow.zamimg.com",
+      },
     ],
   },
 };

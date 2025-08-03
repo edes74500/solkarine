@@ -2,8 +2,10 @@
 
 "use client";
 
+import { getClassColor } from "@/data/classColor";
 import Image from "next/image";
 import React from "react";
+import RaiderIoColor from "./RaiderIoColor";
 
 export interface Affix {
   id: number;
@@ -32,6 +34,36 @@ export interface MythicRun {
   affixes: Affix[];
   url: string;
 }
+export interface MythicPlusScore {
+  all: number;
+  dps: number;
+  healer: number;
+  tank: number;
+  spec_0: number;
+  spec_1: number;
+  spec_2: number;
+  spec_3: number;
+}
+
+export interface MythicPlusSeasonScore {
+  scores: MythicPlusScore;
+  season: string;
+  segments: {
+    all: object;
+    dps: object;
+    healer: object;
+    tank: object;
+    spec_0: object;
+    spec_1: object;
+    spec_2: object;
+    spec_3: object;
+  };
+}
+
+export interface MythicPlusScoresBySeason {
+  // current: MythicPlusScore;
+  [key: string]: MythicPlusSeasonScore;
+}
 
 export interface Character {
   name: string;
@@ -49,6 +81,7 @@ export interface Character {
   profile_url: string;
   profile_banner: string;
   mythic_plus_best_runs: MythicRun[];
+  mythic_plus_scores_by_season: MythicPlusScoresBySeason;
 }
 
 interface Props {
@@ -68,7 +101,7 @@ const RaiderIoCard: React.FC<Props> = ({ data }) => {
     return `${minutes}:${seconds.toString().padStart(2, "0")}`;
   };
   return (
-    <div className="border rounded-lg p-6 shadow-md bg-card">
+    <div className="">
       <div className="flex items-center gap-4 mb-4">
         {data.thumbnail_url && (
           <div className="relative w-16 h-16 rounded-full overflow-hidden border-2 border-primary/50 aspect-square shrink-0">
@@ -82,16 +115,28 @@ const RaiderIoCard: React.FC<Props> = ({ data }) => {
           </div>
         )}
         <div>
-          <h2 className="text-xl font-bold line-clamp-1">{data.name}</h2>
-          <p className="text-muted-foreground text-sm line-clamp-2">
+          <h2 className="text-xl font-bold line-clamp-1">
+            <a
+              href={data.profile_url}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="hover:underline"
+              style={{ color: getClassColor(data.class) }}
+            >
+              {data.name}
+            </a>
+          </h2>
+          <p className="text-sm line-clamp-2">
             {data.active_spec_name} {data.class} - {data.realm} ({data.region.toUpperCase()})
           </p>
         </div>
       </div>
 
       <div className="bg-secondary/10 p-3 rounded-md mb-4">
-        <p className="text-sm text-muted-foreground">Score Mythic+ total</p>
-        <p className="text-xl font-bold">{totalScore.toFixed(1)}</p>
+        <p className="text-sm ">Score Mythic+ total</p>
+        <RaiderIoColor score={totalScore}>
+          <p className="text-xl font-bold">{totalScore.toFixed(1)}</p>
+        </RaiderIoColor>
       </div>
 
       {/* <h3 className="text-lg font-semibold mb-2">Meilleurs runs Mythic+</h3> */}
@@ -118,23 +163,13 @@ const RaiderIoCard: React.FC<Props> = ({ data }) => {
                     run.num_keystone_upgrades > 0 ? "bg-green-500/80 text-white" : "bg-orange-500/80 text-white"
                   }`}
                 >
-                  +{run.mythic_level}
+                  {run.mythic_level}
+                  <sup className="text-[7px] ml-0.5">{Array(run.num_keystone_upgrades).fill("⭐").join("")}</sup>
                 </span>
               </div>
             </div>
           </div>
         ))}
-      </div>
-
-      <div className="mt-4 text-right">
-        <a
-          href={data.profile_url}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-sm text-primary hover:underline"
-        >
-          Voir le profil complet sur Raider.io
-        </a>
       </div>
     </div>
   );

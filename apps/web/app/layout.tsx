@@ -3,6 +3,7 @@ import { Navbar } from "@/components/navbar/Navbar";
 import { ThemeProviderClient } from "@/components/theme/ThemeProvider";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -79,10 +80,15 @@ export default function RootLayout({
       <head></head>
       <body className={`${geistMono.className} antialiased bg-background-secondary`}>
         <ThemeProviderClient>
-          <main className="flex flex-col min-h-screen max-w-[1050px] mx-auto p-5 bg-background-secondary">
+          <main className="flex flex-col min-h-screen bg-background-secondary">
+            {/* <ContentWidthWrapper> */}
             <Navbar />
-            <div className="flex-1 my-10">{children}</div>
+            {/* </ContentWidthWrapper> */}
+            <Toaster position="bottom-center" />
+            <div className="grow">{children}</div>
+            {/* <ContentWidthWrapper> */}
             <MainFooter />
+            {/* </ContentWidthWrapper> */}
           </main>
         </ThemeProviderClient>
       </body>

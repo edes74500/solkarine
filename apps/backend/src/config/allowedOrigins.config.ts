@@ -1,0 +1,27 @@
+const allowedOrigins = [
+  "http://localhost:3000",
+  "http://localhost:5000",
+  "http://localhost:3001",
+  "https://nextanim-web.vercel.app",
+  "nextanim-3w3e6nng5-edes74500s-projects.vercel.app",
+  "https://nextanim-3w3e6nng5-edes74500s-projects.vercel.app",
+  "nextanim-web-git-main-edes74500s-projects.vercel.app",
+  "https://nextanim-web-git-main-edes74500s-projects.vercel.app",
+  "https://nextanim-web-git-main-edes74500s-projects.vercel.app",
+  "https://www.facebook.com",
+  "https://www.google.com",
+  "https://www.nextanim.fr",
+  "https://nextanim.fr",
+  "https://cdn.nextanim.fr",
+  "https://www.cdn.nextanim.fr",
+  "https://api.nextanim.fr",
+  "https://www.api.nextanim.fr",
+  "https://messagerie.nextanim.fr",
+  "wss://messagerie.nextanim.fr",
+  "https://www.messagerie.nextanim.fr",
+  "wss://www.messagerie.nextanim.fr",
+  "https://admin.nextanim.fr",
+  "https://www.admin.nextanim.fr",
+];
+
+export default allowedOrigins;

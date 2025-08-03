@@ -1,0 +1,18 @@
+{
+  "extends": ["@repo/typescript-config/nodejs.json"],
+  "compilerOptions": {
+    "outDir": "dist", // Répertoire de sortie
+    "rootDir": "src", // Répertoire source
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "types": ["jest", "node"],
+    "baseUrl": ".",
+    "paths": {
+      "@repo/utils": ["./src"]
+    },
+    "typeRoots": ["../../node_modules/@types", "./node_modules/@types"]
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist"]
+}

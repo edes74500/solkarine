@@ -1,15 +1,29 @@
+"use client";
+
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { FaDiscord, FaInstagram, FaPuzzlePiece, FaTiktok, FaTwitter, FaYoutube } from "react-icons/fa";
 
 export function MainFooter() {
+  const pathname = usePathname();
+  const isAdminPage = pathname.includes("admin");
+
+  if (isAdminPage) {
+    return null;
+  }
+
   return (
-    <footer className="border-t border-border">
+    <footer className="border-t border-border max-w-[1080px] mx-auto w-full">
       <div className="mx-auto flex items-center justify-between py-6 w-full">
         <div className="flex items-center space-x-4">
           <Link href="/" className="font-bold text-xl font-mono pr-5">
             Solkarine
           </Link>
+        </div>
+
+        <div>
+          <Link href="/admin/dashboard">Admin</Link>
         </div>
         <div className="flex items-center space-x-6">
           <TooltipProvider>

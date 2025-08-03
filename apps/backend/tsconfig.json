@@ -1,0 +1,68 @@
+{
+  "compilerOptions": {
+    /* Cible JavaScript généré (ES2019 pour Async/Await natif) */
+    "target": "ES2019",
+
+    /* Module output (CommonJS pour Node.js) */
+    "module": "CommonJS",
+
+    /* Où mettre les .js compilés */
+    "outDir": "dist",
+
+    /* Où se trouvent les sources .ts */
+    "rootDir": "src",
+
+    /* Générer les fichiers de déclaration (.d.ts) pour le typage externe */
+    "declaration": true,
+
+    /* Générer les sourcemaps pour le debug */
+    "sourceMap": true,
+
+    /*
+     * Mode de compilation incrémentale :
+     * conserve un fichier .tsbuildinfo pour accélérer les recompilations
+     */
+    "incremental": true,
+    "tsBuildInfoFile": "dist/.tsbuildinfo",
+
+    /*
+     * Résolution des modules comme Node.js (cherche dans node_modules, suit package.json)
+     */
+    "moduleResolution": "node",
+
+    /* Permet d’importer du JSON via import foo from './foo.json' */
+    "resolveJsonModule": true,
+
+    /* Autoriser les importations de modules CommonJS avec default import */
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+
+    /*
+     * Active toutes les vérifications strictes :
+     * noImplicitAny, strictNullChecks, strictFunctionTypes, etc.
+     */
+    "strict": true,
+
+    /* Empêche l’inclusion de définitions de types trop larges */
+    "skipLibCheck": true,
+
+    /* Forcer la casse cohérente dans les importations */
+    "forceConsistentCasingInFileNames": true,
+
+    /* Support des décorateurs (utile si vous utilisez des frameworks ou DI) */
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+
+    /* Définir les types globaux disponibles (node pour l’API Node.js) */
+    "types": ["node"]
+
+    /* Génération de code ES2015 pour imports dynamiques si besoin */
+    //"target": "ES2019", déjà défini ci-dessus
+  },
+
+  /* Inclure tous les fichiers TypeScript sous src/ */
+  "include": ["src/**/*"],
+
+  /* Exclure les sorties et dossiers inutiles */
+  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+}

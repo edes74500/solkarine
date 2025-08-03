@@ -1,0 +1,88 @@
+import { Button } from "@/components/ui/button";
+import { ChevronRightIcon } from "lucide-react";
+import Image from "next/image";
+import Link from "next/link";
+import { FaDiscord, FaYoutube } from "react-icons/fa";
+
+export default function GuidesSection() {
+  const guides = [
+    {
+      title: "Guides Mythic+",
+      description: "Découvrez mes stratégies et conseils pour réussir vos donjons mythiques.",
+      image: "/img/mythicplus.webp",
+      alt: "Mythic+",
+      link: "/mythic-plus",
+      linkText: "Voir les guides",
+    },
+    {
+      title: "Addons & WeakAuras",
+      description: "Optimisez votre interface avec mes configurations personnalisées.",
+      image: "/img/interface.jpg",
+      alt: "Addons & WeakAuras",
+      link: "/interface",
+      linkText: "Télécharger",
+    },
+    {
+      title: "Communauté",
+      description: "Rejoignez une communauté passionnée et bienveillante de joueurs.",
+      image: "/img/community.jpg",
+      alt: "Communauté",
+      buttons: [
+        { icon: <FaDiscord className="mr-2 h-4 w-4" />, text: "Discord" },
+        { icon: <FaYoutube className="mr-2 h-4 w-4" />, text: "YouTube" },
+      ],
+    },
+  ];
+
+  return (
+    <section className="flex flex-col gap-6 my-20">
+      <h2 className="text-2xl font-bold">Mes guides</h2>
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {guides.map((item, index) => (
+          <div
+            key={index}
+            className="group relative overflow-hidden rounded-lg border bg-card/20 transition-all hover:shadow-xl shadow-sm"
+          >
+            <div className="absolute inset-0 z-0">
+              <Image
+                src={item.image}
+                alt={item.alt}
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-105 opacity-50"
+                quality={90}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-card/20 to-transparent"></div>
+            </div>
+            <div className="relative z-10 p-6 flex flex-col h-full">
+              <h2 className="text-xl font-bold mb-3">{item.title}</h2>
+              <p className="text-foreground/80 mb-4 flex-grow backdrop-blur-sm bg-background/30 p-2 rounded-md shadow-sm">
+                {item.description}
+              </p>
+              {item.link ? (
+                <Button asChild variant="link" className="p-0 justify-start group">
+                  <Link href={item.link} className="flex items-center">
+                    {item.linkText}
+                    <ChevronRightIcon className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
+                </Button>
+              ) : (
+                <div className="flex flex-wrap gap-3">
+                  {item.buttons?.map((button, buttonIndex) => (
+                    <Button
+                      key={buttonIndex}
+                      variant="outline"
+                      size="sm"
+                      className="flex items-center bg-background/80 backdrop-blur-sm hover:bg-background/60 transition-colors"
+                    >
+                      {button.icon} {button.text}
+                    </Button>
+                  ))}
+                </div>
+              )}
+            </div>
+          </div>
+        ))}
+      </div>
+    </section>
+  );
+}

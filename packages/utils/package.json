@@ -1,0 +1,38 @@
+{
+  "name": "@repo/utils",
+  "version": "0.1.0",
+  "private": true,
+  "main": "./dist/index.js",
+  "module": "./dist/index.mjs",
+  "types": "./dist/index.d.ts",
+  "sideEffects": false,
+  "license": "MIT",
+  "files": [
+    "dist/**"
+  ],
+  "scripts": {
+    "build": "tsup src/index.ts --format cjs,esm --dts",
+    "dev": "tsup src/index.ts --format cjs,esm --watch --dts",
+    "watch": "tsup src/index.ts --format cjs,esm --watch --dts",
+    "lint": "eslint \"src/**/*.ts\"",
+    "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist"
+  },
+  "dependencies": {
+    "node-html-parser": "^7.0.1",
+    "bcryptjs": "^2.4.3",
+    "sanitize-html": "^2.15.0",
+    "@repo/constants": "workspace:*"
+  },
+  "devDependencies": {
+    "@repo/types": "workspace:*",
+    "@repo/typescript-config": "workspace:*",
+    "@types/node": "^22.10.2",
+    "@types/jest": "^29.5.14",
+    "tsup": "^8.4.0",
+    "typescript": "^5.7.2",
+    "@types/bcryptjs": "^2.4.6"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}
