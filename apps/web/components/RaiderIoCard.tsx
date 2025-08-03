@@ -52,12 +52,14 @@ export interface Character {
 }
 
 interface Props {
-  data: Character;
+  data: Character | null;
 }
 
 const RaiderIoCard: React.FC<Props> = ({ data }) => {
+  if (!data) return null;
+
   // Calculer le score total (somme des scores des runs)
-  const totalScore = data.mythic_plus_best_runs?.reduce((sum, run) => sum + run.score, 0) || 0;
+  const totalScore = data?.mythic_plus_best_runs?.reduce((sum, run) => sum + run.score, 0) || 0;
 
   // Formater le temps en minutes:secondes
   const formatTime = (ms: number) => {

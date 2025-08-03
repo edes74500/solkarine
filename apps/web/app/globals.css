@@ -9,6 +9,8 @@
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
   --color-navbar: var(--navbar);
+  --color-background-secondary: var(--background-secondary);
+  --color-background-tertiary: var(--background-tertiary);
   --color-sidebar-ring: var(--sidebar-ring);
   --color-sidebar-border: var(--sidebar-border);
   --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
@@ -47,8 +49,10 @@
 :root {
   --radius: 0.625rem;
   --background: oklch(0.985 0 0);
+  --background-secondary: oklch(0.9 0.05 20);
+  --background-tertiary: oklch(1 0.05 20);
   --foreground: oklch(0.145 0 0);
-  --navbar: #fad9d9;
+  --navbar: oklch(0.9 0.05 20);
   --card: oklch(1 0 0);
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -82,8 +86,10 @@
 
 .dark {
   --background: oklch(0.145 0 0);
+  --background-secondary: oklch(0.205 0 0);
+  --background-tertiary: oklch(0.269 0 0);
   --foreground: oklch(0.985 0 0);
-  --navbar: #fad9d9;
+  --navbar: oklch(0.205 0 0);
   --card: oklch(0.205 0 0);
   --card-foreground: oklch(0.985 0 0);
   --popover: oklch(0.205 0 0);

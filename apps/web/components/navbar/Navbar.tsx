@@ -47,7 +47,7 @@ export function Navbar() {
       <div className="mx-auto  flex items-center justify-between h-16 w-full ">
         <div className="flex items-center space-x-4 w-full">
           {/* Logo */}
-          <Link href="/" className="font-bold text-xl font-mono pr-5">
+          <Link href="/" className="font-bold text-3xl font-mono pr-5">
             Solkarine
           </Link>
         </div>
@@ -142,23 +142,22 @@ export function Navbar() {
                     </ul>
                   </NavigationMenuContent>
                 </NavigationMenuItem>
+                {/* Right icons (desktop) */}
+                <div className="hidden md:flex items-center space-x-2">
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <Button variant="ghost" size="icon">
+                        <Settings className="h-5 w-5" />
+                      </Button>
+                    </PopoverTrigger>
+                    <PopoverContent className="w-48 p-2 flex flex-col gap-2 text-sm">
+                      <ThemeSwapper />
+                    </PopoverContent>
+                  </Popover>
+                </div>
               </NavigationMenuList>
             </NavigationMenu>
           </div>
-        </div>
-
-        {/* Right icons (desktop) */}
-        <div className="hidden md:flex items-center space-x-2">
-          <Popover>
-            <PopoverTrigger asChild>
-              <Button variant="ghost" size="icon">
-                <Settings className="h-5 w-5" />
-              </Button>
-            </PopoverTrigger>
-            <PopoverContent className="w-48 p-2 flex flex-col gap-2 text-sm">
-              <ThemeSwapper />
-            </PopoverContent>
-          </Popover>
         </div>
 
         {/* Mobile Hamburger */}

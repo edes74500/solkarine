@@ -2,6 +2,7 @@ import RaiderIoCard from "@/components/RaiderIoCard";
 import TwitchEmbedLib from "@/components/twitch/TwitchEmbed";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import { fetchRaiderCharacter } from "@/lib/api/Raider.io";
 import { ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
@@ -43,7 +44,7 @@ export default async function Home() {
 
           {/* description */}
           <div className="flex-1 space-y-4">
-            <h1 className="text-4xl font-bold">Solkarine</h1>
+            <h1 className="text-4xl font-bold">Hello there!</h1>
             <p className="text-muted-foreground">
               Bienvenue sur mon site officiel ! Je partage ma passion pour World of Warcraft à travers mes streams,
               guides et conseils pour les joueurs de tous niveaux.
@@ -100,28 +101,30 @@ export default async function Home() {
       </section>
       <Separator />
 
-      <section className="flex flex-col md:flex-row  gap-8 items-center w-full min-h-[50vh]">
-        <div className="w-full md:w-2/3">
-          <TwitchEmbedLib />
-        </div>
-        <div className="bg-secondary/20 p-6 rounded-lg">
-          <h2 className="text-2xl font-bold mb-4">Planning des streams</h2>
-          <div className=" md:grid-cols-4 gap-4 flex flex-col">
-            <div className="bg-background p-3 rounded border text-center">
-              <p className="font-bold">Lundi</p>
-              <p className="text-sm text-muted-foreground">20h - 23h</p>
-            </div>
-            <div className="bg-background p-3 rounded border text-center">
-              <p className="font-bold">Mercredi</p>
-              <p className="text-sm text-muted-foreground">20h - 23h</p>
-            </div>
-            <div className="bg-background p-3 rounded border text-center">
-              <p className="font-bold">Vendredi</p>
-              <p className="text-sm text-muted-foreground">20h - 23h</p>
-            </div>
-            <div className="bg-background p-3 rounded border text-center">
-              <p className="font-bold">Dimanche</p>
-              <p className="text-sm text-muted-foreground">14h - 18h</p>
+      <section className="gap-8 items-center w-full min-h-[50vh] mx-auto items-center justify-center flex flex-col">
+        <h2 className="text-2xl font-bold mb-4">Retrouvez-moi sur Twitch !</h2>
+        <div className="flex flex-col md:flex-row gap-10 items-center w-full">
+          <div className="w-full grow">
+            <TwitchEmbedLib />
+          </div>
+          <div className="bg-secondary/20 p-6 rounded-lg">
+            <div className=" md:grid-cols-4 gap-4 flex flex-col">
+              <div className="bg-background p-3 rounded border text-center">
+                <p className="font-bold">Lundi</p>
+                <p className="text-sm text-muted-foreground">20h - 23h</p>
+              </div>
+              <div className="bg-background p-3 rounded border text-center">
+                <p className="font-bold">Mercredi</p>
+                <p className="text-sm text-muted-foreground">20h - 23h</p>
+              </div>
+              <div className="bg-background p-3 rounded border text-center">
+                <p className="font-bold">Vendredi</p>
+                <p className="text-sm text-muted-foreground">20h - 23h</p>
+              </div>
+              <div className="bg-background p-3 rounded border text-center">
+                <p className="font-bold">Dimanche</p>
+                <p className="text-sm text-muted-foreground">14h - 18h</p>
+              </div>
             </div>
           </div>
         </div>
@@ -130,84 +133,205 @@ export default async function Home() {
       <Separator />
 
       {/* Content Section */}
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {[
-          {
-            title: "Guides Mythic+",
-            description: "Découvrez mes stratégies et conseils pour réussir vos donjons mythiques.",
-            image: "/img/mythicplus.webp",
-            alt: "Mythic+",
-            link: "/mythic-plus",
-            linkText: "Voir les guides",
-          },
-          {
-            title: "Addons & WeakAuras",
-            description: "Optimisez votre interface avec mes configurations personnalisées.",
-            image: "/img/interface.jpg",
-            alt: "Addons & WeakAuras",
-            link: "/interface",
-            linkText: "Télécharger",
-          },
-          {
-            title: "Communauté",
-            description: "Rejoignez une communauté passionnée et bienveillante de joueurs.",
-            image: "/img/community.jpg",
-            alt: "Communauté",
-            buttons: [
-              { icon: <FaDiscord className="mr-2 h-4 w-4" />, text: "Discord" },
-              { icon: <FaYoutube className="mr-2 h-4 w-4" />, text: "YouTube" },
-            ],
-          },
-        ].map((item, index) => (
-          <div
-            key={index}
-            className="group relative overflow-hidden rounded-lg border bg-card/20 transition-all hover:shadow-xl"
-          >
-            <div className="absolute inset-0 z-0">
-              <Image
-                src={item.image}
-                alt={item.alt}
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105 opacity-20"
-                quality={90}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-card/20 to-transparent"></div>
+      <section className="flex flex-col gap-6 my-20">
+        <h2 className="text-2xl font-bold">Mes guides</h2>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+          {[
+            {
+              title: "Guides Mythic+",
+              description: "Découvrez mes stratégies et conseils pour réussir vos donjons mythiques.",
+              image: "/img/mythicplus.webp",
+              alt: "Mythic+",
+              link: "/mythic-plus",
+              linkText: "Voir les guides",
+            },
+            {
+              title: "Addons & WeakAuras",
+              description: "Optimisez votre interface avec mes configurations personnalisées.",
+              image: "/img/interface.jpg",
+              alt: "Addons & WeakAuras",
+              link: "/interface",
+              linkText: "Télécharger",
+            },
+            {
+              title: "Communauté",
+              description: "Rejoignez une communauté passionnée et bienveillante de joueurs.",
+              image: "/img/community.jpg",
+              alt: "Communauté",
+              buttons: [
+                { icon: <FaDiscord className="mr-2 h-4 w-4" />, text: "Discord" },
+                { icon: <FaYoutube className="mr-2 h-4 w-4" />, text: "YouTube" },
+              ],
+            },
+          ].map((item, index) => (
+            <div
+              key={index}
+              className="group relative overflow-hidden rounded-lg border bg-card/20 transition-all hover:shadow-xl shadow-sm"
+            >
+              <div className="absolute inset-0 z-0">
+                <Image
+                  src={item.image}
+                  alt={item.alt}
+                  fill
+                  className="object-cover transition-transform duration-300 group-hover:scale-105 opacity-50"
+                  quality={90}
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-card/20 to-transparent"></div>
+              </div>
+              <div className="relative z-10 p-6 flex flex-col h-full">
+                <h2 className="text-xl font-bold mb-3">{item.title}</h2>
+                <p className="text-foreground/80 mb-4 flex-grow backdrop-blur-sm bg-background/30 p-2 rounded-md shadow-sm">
+                  {item.description}
+                </p>
+                {item.link ? (
+                  <Button asChild variant="link" className="p-0 justify-start group">
+                    <Link href={item.link} className="flex items-center">
+                      {item.linkText}
+                      <ChevronRightIcon className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    </Link>
+                  </Button>
+                ) : (
+                  <div className="flex flex-wrap gap-3">
+                    {item.buttons?.map((button, buttonIndex) => (
+                      <Button
+                        key={buttonIndex}
+                        variant="outline"
+                        size="sm"
+                        className="flex items-center bg-background/80 backdrop-blur-sm hover:bg-background/60 transition-colors"
+                      >
+                        {button.icon} {button.text}
+                      </Button>
+                    ))}
+                  </div>
+                )}
+              </div>
             </div>
-            <div className="relative z-10 p-6 flex flex-col h-full">
-              <h2 className="text-xl font-bold mb-3">{item.title}</h2>
-              <p className="text-muted-foreground mb-4 flex-grow">{item.description}</p>
-              {item.link ? (
-                <Button asChild variant="link" className="p-0 justify-start group">
-                  <Link href={item.link} className="flex items-center">
-                    {item.linkText}
-                    <ChevronRightIcon className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
-                </Button>
-              ) : (
-                <div className="flex flex-wrap gap-3">
-                  {item.buttons?.map((button, buttonIndex) => (
-                    <Button
-                      key={buttonIndex}
-                      variant="outline"
-                      size="sm"
-                      className="flex items-center bg-background/80 backdrop-blur-sm hover:bg-background/60 transition-colors"
-                    >
-                      {button.icon} {button.text}
-                    </Button>
-                  ))}
-                </div>
-              )}
-            </div>
-          </div>
-        ))}
+          ))}
+        </div>
       </section>
 
       <Separator />
 
-      <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        <Suspense fallback={<div>Loading...</div>}>
-          <RaiderIoCard data={character} />
-        </Suspense>
+      <section className="flex flex-col gap-6 my-20">
+        <h2 className="text-2xl font-bold">Mes personnages</h2>
+
+        <div className="flex flex-col md:flex-row gap-4">
+          <div className="w-full flex flex-col gap-4">
+            <p className="text-muted-foreground">Voici les personnages que je joue actuellement.</p>
+          </div>
+
+          <div className="w-full">
+            <Suspense fallback={<div>Loading...</div>}>
+              <Tabs orientation="vertical" defaultValue="solkarine" className="w-full flex flex-row items-start gap-4">
+                <TabsList className="shrink-0 grid grid-cols-1 gap-1 p-0 bg-background h-fit">
+                  <TabsTrigger
+                    value="solkarine"
+                    className="border border-b-[3px] border-transparent data-[state=active]:border-primary rounded-none justify-start px-3 py-1.5 flex items-center gap-2"
+                  >
+                    {character?.thumbnail_url && (
+                      <div className="relative w-6 h-6 rounded-full overflow-hidden shrink-0">
+                        <Image
+                          src={character.thumbnail_url}
+                          alt={character.name}
+                          width={24}
+                          height={24}
+                          className="object-cover"
+                        />
+                      </div>
+                    )}
+                    <div className="flex flex-col">
+                      <span className="text-sm">Solkârîne</span>
+                      <span className="text-xs text-muted-foreground">{character?.class}</span>
+                      <span className="text-xs text-muted-foreground">
+                        {character?.mythic_plus_best_runs?.reduce((sum, run) => sum + run.score, 0).toFixed(1) || "0"}
+                      </span>
+                    </div>
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="alt1"
+                    className="border border-b-[3px] border-transparent data-[state=active]:border-primary rounded-none justify-start px-3 py-1.5 flex items-center gap-2"
+                  >
+                    <div className="relative w-6 h-6 rounded-full overflow-hidden bg-muted flex items-center justify-center">
+                      <span className="text-xs">Alt</span>
+                    </div>
+                    <span>Alt 1</span>
+                    <span className="text-xs text-muted-foreground ml-1">0</span>
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="alt2"
+                    className="border border-b-[3px] border-transparent data-[state=active]:border-primary rounded-none justify-start px-3 py-1.5 flex items-center gap-2"
+                  >
+                    <div className="relative w-6 h-6 rounded-full overflow-hidden bg-muted flex items-center justify-center">
+                      <span className="text-xs">Alt</span>
+                    </div>
+                    <span>Alt 2</span>
+                    <span className="text-xs text-muted-foreground ml-1">0</span>
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="alt3"
+                    className="border border-b-[3px] border-transparent data-[state=active]:border-primary rounded-none justify-start px-3 py-1.5 flex items-center gap-2"
+                  >
+                    <div className="relative w-6 h-6 rounded-full overflow-hidden bg-muted flex items-center justify-center">
+                      <span className="text-xs">Alt</span>
+                    </div>
+                    <span>Alt 3</span>
+                    <span className="text-xs text-muted-foreground ml-1">0</span>
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="alt4"
+                    className="border border-b-[3px] border-transparent data-[state=active]:border-primary rounded-none justify-start px-3 py-1.5 flex items-center gap-2"
+                  >
+                    <div className="relative w-6 h-6 rounded-full overflow-hidden bg-muted flex items-center justify-center">
+                      <span className="text-xs">Alt</span>
+                    </div>
+                    <span>Alt 4</span>
+                    <span className="text-xs text-muted-foreground ml-1">0</span>
+                  </TabsTrigger>
+                  <TabsTrigger
+                    value="alt5"
+                    className="border border-b-[3px] border-transparent data-[state=active]:border-primary rounded-none justify-start px-3 py-1.5 flex items-center gap-2"
+                  >
+                    <div className="relative w-6 h-6 rounded-full overflow-hidden bg-muted flex items-center justify-center">
+                      <span className="text-xs">Alt</span>
+                    </div>
+                    <span>Alt 5</span>
+                    <span className="text-xs text-muted-foreground ml-1">0</span>
+                  </TabsTrigger>
+                </TabsList>
+                <div className="flex-1 border rounded-md">
+                  <TabsContent value="solkarine" className="p-2">
+                    <RaiderIoCard data={character} />
+                  </TabsContent>
+                  <TabsContent value="alt1" className="p-2">
+                    <div className="p-4 border rounded-lg bg-card/50">
+                      <p className="text-center text-muted-foreground">Personnage non disponible</p>
+                    </div>
+                  </TabsContent>
+                  <TabsContent value="alt2" className="p-2">
+                    <div className="p-4 border rounded-lg bg-card/50">
+                      <p className="text-center text-muted-foreground">Personnage non disponible</p>
+                    </div>
+                  </TabsContent>
+                  <TabsContent value="alt3" className="p-2">
+                    <div className="p-4 border rounded-lg bg-card/50">
+                      <p className="text-center text-muted-foreground">Personnage non disponible</p>
+                    </div>
+                  </TabsContent>
+                  <TabsContent value="alt4" className="p-2">
+                    <div className="p-4 border rounded-lg bg-card/50">
+                      <p className="text-center text-muted-foreground">Personnage non disponible</p>
+                    </div>
+                  </TabsContent>
+                  <TabsContent value="alt5" className="p-2">
+                    <div className="p-4 border rounded-lg bg-card/50">
+                      <p className="text-center text-muted-foreground">Personnage non disponible</p>
+                    </div>
+                  </TabsContent>
+                </div>
+              </Tabs>
+            </Suspense>
+          </div>
+        </div>
       </section>
 
       {/* Schedule Section */}
