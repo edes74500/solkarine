@@ -15,7 +15,7 @@
     "outDir": "dist",
 
     /* Où se trouvent les sources .ts */
-    "rootDir": "src",
+    "rootDir": ".",
 
     /* Générer les fichiers de déclaration (.d.ts) pour le typage externe */
     "declaration": true,
@@ -59,15 +59,15 @@
     "emitDecoratorMetadata": true,
 
     /* Définir les types globaux disponibles (node pour l’API Node.js) */
-    "types": ["node"]
+    "types": ["node", "jest"]
 
     /* Génération de code ES2015 pour imports dynamiques si besoin */
     //"target": "ES2019", déjà défini ci-dessus
   },
 
   /* Inclure tous les fichiers TypeScript sous src/ */
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "__tests__/**/*", "**/*.test.ts", "**/*.spec.ts"],
 
   /* Exclure les sorties et dossiers inutiles */
-  "exclude": ["node_modules", "dist", "**/*.test.ts"]
+  "exclude": ["node_modules", "dist"]
 }

@@ -12,16 +12,10 @@ export default function DungeonList() {
   // const [error, setError] = useState<string | null>(null);
   const { data: dungeons, isLoading, error } = useGetDungeonsQuery();
 
-  const handleDelete = (id: string) => {
-    // Simulation de suppression
-    // setDungeons((prev) => prev.filter((dungeon) => dungeon.id !== id));
-    toast.success("Donjon supprimé");
-  };
-
   const handleEdit = (dungeon: DungeonClient) => {
-    // Redirection vers la page d'édition ou ouverture d'un modal
+    // Simulation d'édition - ici vous pourrez connecter Redux plus tard
     console.log("Édition du donjon:", dungeon);
-    toast.success(`Édition du donjon ${dungeon.name}`);
+    toast.success(`Donjon ${dungeon.name} modifié avec succès`);
   };
 
   if (isLoading) {
@@ -57,7 +51,7 @@ export default function DungeonList() {
           style={{ gridTemplateColumns: "repeat(auto-fit, minmax(300px, max-content))" }}
         >
           {dungeons?.data?.map((dungeon) => (
-            <DungeonCard key={dungeon.id} dungeon={dungeon} onEdit={handleEdit} onDelete={handleDelete} />
+            <DungeonCard key={dungeon.id} dungeon={dungeon} onEdit={handleEdit} />
           ))}
         </div>
       )}

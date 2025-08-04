@@ -1,4 +1,4 @@
-import { DungeonClient } from "@repo/types";
+import { DungeonClient, EditDungeonForm } from "@repo/types";
 import { apiSlice } from "./config/apiSlice";
 
 export const dungeonsApiSlice = apiSlice.injectEndpoints({
@@ -7,7 +7,15 @@ export const dungeonsApiSlice = apiSlice.injectEndpoints({
       query: () => "/dungeon",
       providesTags: ["Dungeons"],
     }),
+    editDungeon: builder.mutation<{ status: boolean }, { id: string; dungeon: EditDungeonForm }>({
+      query: ({ id, dungeon }) => ({
+        url: `/dungeon/${id}`,
+        method: "PUT",
+        body: dungeon,
+      }),
+      invalidatesTags: ["Dungeons"],
+    }),
   }),
 });
 
-export const { useGetDungeonsQuery } = dungeonsApiSlice;
+export const { useGetDungeonsQuery, useEditDungeonMutation } = dungeonsApiSlice;

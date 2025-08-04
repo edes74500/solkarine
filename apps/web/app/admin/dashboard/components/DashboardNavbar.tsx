@@ -14,16 +14,18 @@ interface NavItemProps {
   href: string;
   isActive?: boolean;
   isCollapsed: boolean;
+  className?: string;
 }
 
-function NavItem({ icon, title, href, isActive, isCollapsed }: NavItemProps) {
+function NavItem({ icon, title, href, isActive, isCollapsed, className }: NavItemProps) {
   const buttonContent = (
     <Button
       variant="ghost"
       className={cn(
         "w-full justify-start gap-2 px-3",
-        isActive ? "bg-foreground text-background hover:bg-foreground/80 hover:text-background" : "hover:bg-muted/50",
+        isActive ? "bg-foreground text-background hover:!bg-foreground/80 hover:text-background" : "!hover:bg-muted/50",
         isCollapsed ? "h-12 px-3" : "h-10 px-3",
+        className,
       )}
     >
       {icon}
@@ -86,6 +88,13 @@ export default function DashboardNavbar() {
           title="Donjons"
           href="/admin/dashboard/dungeons"
           isActive={pathname === "/admin/dashboard/dungeons"}
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
+          icon={<BarChart3 size={20} />}
+          title="Personnages"
+          href="/admin/dashboard/characters"
+          isActive={pathname === "/admin/dashboard/characters"}
           isCollapsed={isCollapsed}
         />
         <NavItem

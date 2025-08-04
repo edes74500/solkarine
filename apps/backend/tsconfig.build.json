@@ -1,0 +1,11 @@
+// tsconfig.build.json
+{
+  "extends": "./tsconfig.json", // si tu as un tsconfig de base
+  "compilerOptions": {
+    "rootDir": "src",
+    "outDir": "dist"
+    // ...tes autres opts
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules", "dist", "__tests__", "**/*.spec.ts", "**/*.test.ts"]
+}

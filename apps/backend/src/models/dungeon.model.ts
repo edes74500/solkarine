@@ -1,14 +1,30 @@
-import { DungeonClient } from "@repo/types";
-import { model, Schema } from "mongoose";
+import { DungeonDb } from "@repo/types";
+import mongoose, { model, Schema } from "mongoose";
+import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
-const dungeonSchema = new Schema<DungeonClient>({
-  challenge_mode_id: { type: Number, required: true },
-  slug: { type: String, required: true },
-  name: { type: String, required: true },
-  short_name: { type: String, required: true },
-  keystone_timer_seconds: { type: Number, required: true },
-  icon_url: { type: String, required: true },
-  background_image_url: { type: String, required: true },
+const dungeonSchema = new Schema<DungeonDb>(
+  {
+    challenge_mode_id: { type: Number, required: true },
+    slug: { type: String, required: true },
+    name: { type: String, required: true },
+    short_name: { type: String, required: true },
+    keystone_timer_seconds: { type: Number, required: true },
+    icon_url: { type: String, required: true },
+    background_image_url: { type: String, required: true },
+  },
+  {
+    timestamps: true,
+    versionKey: false,
+    toJSON: { virtuals: true },
+    toObject: { virtuals: true },
+    id: false,
+  },
+);
+
+dungeonSchema.plugin(mongooseLeanVirtuals);
+
+dungeonSchema.virtual("id").get(function (this: mongoose.Document & { _id: mongoose.Types.ObjectId }) {
+  return this._id.toHexString();
 });
 
-export const Dungeon = model<DungeonClient>("Dungeon", dungeonSchema);
+export const Dungeon = model<DungeonDb>("Dungeon", dungeonSchema);
