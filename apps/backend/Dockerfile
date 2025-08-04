@@ -22,8 +22,8 @@ RUN pnpm install --frozen-lockfile
 COPY . .
 
 # 1.6 Compiler le backend (ou tout le repo si tu préfères)
-WORKDIR /repo/apps/backend
-RUN pnpm run build
+WORKDIR /repo
+RUN pnpm --filter backend run build
 # ou, pour ne builder que backend :
 # RUN pnpm --filter backend run build
 
@@ -59,9 +59,9 @@ RUN pnpm install --prod --frozen-lockfile --filter backend
 # 2.6 Variables d’environnement pour Puppeteer
 ENV PUPPETEER_EXECUTABLE_PATH=/usr/bin/chromium-browser \
     PUPPETEER_SKIP_CHROMIUM_DOWNLOAD=true \
-    PORT=3000
+    PORT=5000
 
-EXPOSE 3000
+EXPOSE 5000
 
 # 2.7 Démarrage de l’app
 CMD ["node", "dist/index.js"]
