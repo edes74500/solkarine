@@ -1,24 +1,22 @@
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import * as cheerio from "cheerio";
+import chromium from "chrome-aws-lambda";
 import { Express, Request, Response } from "express";
-import puppeteer from "puppeteer";
+import puppeteer from "puppeteer-core";
 
 // Interfaces TypeScript
 interface OGTags {
   [key: string]: string;
 }
-
 interface TwitterTags {
   [key: string]: string;
 }
-
 interface BasicMeta {
   title: string;
   description: string;
   favicon: string;
   ogImageUrl: string;
 }
-
 interface ScrapingResult {
   url: string;
   openGraph: OGTags;
@@ -26,155 +24,102 @@ interface ScrapingResult {
   basic: BasicMeta;
   timestamp: string;
 }
-
 interface OGScraperQuery {
   url?: string;
+  puppeteer?: string;
 }
 
-// Fonction pour scraper avec Puppeteer (pour contenu dynamique)
+// Scraping avec Puppeteer (puppeteer-core + chrome-aws-lambda)
 async function scrapeOGTagsWithPuppeteer(url: string): Promise<ScrapingResult> {
   let browser;
   try {
     console.log(`Fetching with Puppeteer: ${url}`);
-
     browser = await puppeteer.launch({
-      headless: true,
-      args: ["--no-sandbox", "--disable-setuid-sandbox", "--disable-dev-shm-usage"],
+      args: chromium.args,
+      executablePath: await chromium.executablePath,
+      headless: chromium.headless,
     });
-
     const page = await browser.newPage();
-
-    // Définir un User-Agent réaliste
     await page.setUserAgent(
-      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 " +
+        "(KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
     );
-
-    // Naviguer vers la page et attendre le chargement
     await page.goto(url, {
-      waitUntil: ["networkidle0", "domcontentloaded"],
-      timeout: 30000,
+      waitUntil: "domcontentloaded",
+      timeout: 60000,
     });
-
-    // Attendre un peu plus pour les métadonnées dynamiques
-    await new Promise((resolve) => setTimeout(resolve, 2000));
-
-    // Extraire les données
-    const result = await page.evaluate((originalUrl) => {
-      const ogTags: { [key: string]: string } = {};
-      const twitterTags: { [key: string]: string } = {};
-
-      // Extraire les balises OG
-      document.querySelectorAll('meta[property^="og:"]').forEach((element) => {
-        const property = element.getAttribute("property");
-        const content = element.getAttribute("content");
-        if (property && content) {
-          const key = property.replace("og:", "");
-          ogTags[key] = content;
-        }
+    // Extraction directe dans le contexte de la page
+    const result = await page.evaluate((origUrl) => {
+      const og: Record<string, string> = {};
+      document.querySelectorAll('meta[property^="og:"]').forEach((el) => {
+        const p = el.getAttribute("property");
+        const c = el.getAttribute("content");
+        if (p && c) og[p.replace("og:", "")] = c;
       });
-
-      // Extraire les balises Twitter
-      document.querySelectorAll('meta[name^="twitter:"]').forEach((element) => {
-        const name = element.getAttribute("name");
-        const content = element.getAttribute("content");
-        if (name && content) {
-          const key = name.replace("twitter:", "");
-          twitterTags[key] = content;
-        }
+      const tw: Record<string, string> = {};
+      document.querySelectorAll('meta[name^="twitter:"]').forEach((el) => {
+        const n = el.getAttribute("name");
+        const c = el.getAttribute("content");
+        if (n && c) tw[n.replace("twitter:", "")] = c;
       });
-
-      // Métadonnées de base
-      // titre
-      const titleElement = document.querySelector("title");
-      const title = titleElement?.textContent;
-
-      // description (standard)
-      const descriptionElement = document.querySelector('meta[name="description"]');
-      const description = descriptionElement?.getAttribute("content");
-
-      // favicon
-      const faviconElement = document.querySelector('link[rel="icon"], link[rel="shortcut icon"]');
-      const faviconUrl = faviconElement?.getAttribute("href");
-
-      // **image de preview via Open Graph**
-      const ogImageEl = document.querySelector('meta[name="og:image"]');
-      const ogImageUrl = ogImageEl?.getAttribute("content") || null;
-
-      // **fallback Twitter Card**
-      //   const twitterImageElement = document.querySelector('meta[name="twitter:image"]');
-      //   const twitterImageUrl = twitterImageElement?.getAttribute("content");
-
-      const basicMeta = {
-        title: title || "",
-        description: description || "",
-        favicon: faviconUrl || "",
-        ogImageUrl: ogImageUrl || "",
-      };
-
+      const title = document.querySelector("title")?.textContent || "";
+      const desc = document.querySelector('meta[name="description"]')?.getAttribute("content") || "";
+      const favicon = document.querySelector('link[rel="icon"], link[rel="shortcut icon"]')?.getAttribute("href") || "";
+      const ogImg = document.querySelector('meta[name="og:image"]')?.getAttribute("content") || "";
       return {
-        url: originalUrl,
-        openGraph: ogTags,
-        twitter: twitterTags,
-        basic: basicMeta,
+        url: origUrl,
+        openGraph: og,
+        twitter: tw,
+        basic: {
+          title,
+          description: desc,
+          favicon,
+          ogImageUrl: ogImg,
+        },
         timestamp: new Date().toISOString(),
       };
     }, url);
-
     return result;
-  } catch (error: any) {
-    console.error("Erreur lors du scraping avec Puppeteer:", error.message);
-    throw new Error(`Impossible de scraper ${url} avec Puppeteer: ${error.message}`);
+  } catch (err: any) {
+    console.error("Erreur Puppeteer:", err.message);
+    throw new Error(`Impossible de scraper ${url} avec Puppeteer: ${err.message}`);
   } finally {
-    if (browser) {
-      await browser.close();
-    }
+    if (browser) await browser.close();
   }
 }
 
-// Fonction de fallback avec axios (plus rapide)
+// Scraping rapide avec Axios + Cheerio
 async function scrapeOGTagsWithAxios(url: string): Promise<ScrapingResult> {
   try {
-    // Configuration des headers pour éviter les blocages
     const config: AxiosRequestConfig = {
       headers: {
         "User-Agent":
-          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
-        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
-        "Accept-Language": "en-US,en;q=0.5",
-        "Accept-Encoding": "gzip, deflate",
-        Connection: "keep-alive",
-        "Upgrade-Insecure-Requests": "1",
+          "Mozilla/5.0 (Windows NT 10.0; Win64; x64) " +
+          "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36",
+        Accept: "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
       },
       timeout: 10000,
       maxRedirects: 5,
     };
-
     console.log(`Fetching with Axios: ${url}`);
-    const response: AxiosResponse<string> = await axios.get(url, config);
+    const resp: AxiosResponse<string> = await axios.get(url, config);
+    const $ = cheerio.load(resp.data);
 
-    const $: cheerio.CheerioAPI = cheerio.load(response.data);
-
-    const ogTags: OGTags = {};
-    $('meta[property^="og:"]').each((i: number, element: any) => {
-      const property = $(element).attr("property");
-      const content = $(element).attr("content");
-      if (property && content) {
-        const key = property.replace("og:", "");
-        ogTags[key] = content;
-      }
+    const og: OGTags = {};
+    $('meta[property^="og:"]').each((_, el) => {
+      const p = $(el).attr("property");
+      const c = $(el).attr("content");
+      if (p && c) og[p.replace("og:", "")] = c;
     });
 
-    const twitterTags: TwitterTags = {};
-    $('meta[name^="twitter:"]').each((i: number, element: any) => {
-      const name = $(element).attr("name");
-      const content = $(element).attr("content");
-      if (name && content) {
-        const key = name.replace("twitter:", "");
-        twitterTags[key] = content;
-      }
+    const tw: TwitterTags = {};
+    $('meta[name^="twitter:"]').each((_, el) => {
+      const n = $(el).attr("name");
+      const c = $(el).attr("content");
+      if (n && c) tw[n.replace("twitter:", "")] = c;
     });
 
-    const basicMeta: BasicMeta = {
+    const basic: BasicMeta = {
       title: $("title").text() || "",
       description: $('meta[name="description"]').attr("content") || "",
       favicon: $('link[rel="icon"]').attr("href") || $('link[rel="shortcut icon"]').attr("href") || "",
@@ -182,78 +127,57 @@ async function scrapeOGTagsWithAxios(url: string): Promise<ScrapingResult> {
     };
 
     return {
-      url: url,
-      openGraph: ogTags,
-      twitter: twitterTags,
-      basic: basicMeta,
+      url,
+      openGraph: og,
+      twitter: tw,
+      basic,
       timestamp: new Date().toISOString(),
     };
-  } catch (error: any) {
-    console.error("Erreur lors du scraping avec Axios:", error.message);
-    throw new Error(`Impossible de scraper ${url} avec Axios: ${error.message}`);
+  } catch (err: any) {
+    console.error("Erreur Axios:", err.message);
+    throw new Error(`Impossible de scraper ${url} avec Axios: ${err.message}`);
   }
 }
 
-// Fonction principale qui essaie d'abord Axios puis Puppeteer
+// Fonction principale : Axios ➔ Puppeteer si besoin
 async function scrapeOGTags(url: string, forcePuppeteer: boolean = false): Promise<ScrapingResult> {
   if (forcePuppeteer) {
     return scrapeOGTagsWithPuppeteer(url);
   }
-
   try {
-    // Essayer d'abord avec Axios (plus rapide)
-    const result = await scrapeOGTagsWithAxios(url);
-
-    // Si aucune balise OG trouvée, essayer avec Puppeteer
-    if (Object.keys(result.openGraph).length === 0 && Object.keys(result.twitter).length === 0) {
-      console.log("Aucune balise OG trouvée avec Axios, tentative avec Puppeteer...");
-      return await scrapeOGTagsWithPuppeteer(url);
+    const res = await scrapeOGTagsWithAxios(url);
+    if (Object.keys(res.openGraph).length === 0 && Object.keys(res.twitter).length === 0) {
+      console.log("Pas de OG tags avec Axios, utilisation de Puppeteer");
+      return scrapeOGTagsWithPuppeteer(url);
     }
-
-    return result;
-  } catch (axiosError) {
-    console.log("Échec avec Axios, tentative avec Puppeteer...");
-    return await scrapeOGTagsWithPuppeteer(url);
+    return res;
+  } catch {
+    console.log("Fallback Puppeteer après erreur Axios");
+    return scrapeOGTagsWithPuppeteer(url);
   }
 }
 
-// Fonction pour utiliser avec Express
+// Route Express à brancher dans votre app
 function createOGScraperRoute(app: Express): void {
-  app.get(
-    "/api/og-scraper",
-    async (req: Request<{}, any, any, OGScraperQuery & { puppeteer?: string }>, res: Response) => {
-      try {
-        const { url, puppeteer: forcePuppeteer } = req.query;
-
-        if (!url) {
-          return res.status(400).json({
-            error: "URL manquante. Utilisez ?url=https://example.com&puppeteer=true pour forcer Puppeteer",
-          });
-        }
-
-        // Valider l'URL
-        try {
-          new URL(url);
-        } catch {
-          return res.status(400).json({
-            error: "URL invalide",
-          });
-        }
-
-        const result: ScrapingResult = await scrapeOGTags(url, forcePuppeteer === "true");
-        res.json(result);
-      } catch (error: any) {
-        res.status(500).json({
-          error: error.message,
-        });
-      }
-    },
-  );
+  app.get("/api/og-scraper", async (req: Request<{}, any, any, OGScraperQuery>, res: Response) => {
+    const { url, puppeteer: pFlag } = req.query;
+    if (!url) {
+      return res.status(400).json({ error: "URL manquante." });
+    }
+    try {
+      new URL(url);
+    } catch {
+      return res.status(400).json({ error: "URL invalide." });
+    }
+    try {
+      const data = await scrapeOGTags(url, pFlag === "true");
+      res.json(data);
+    } catch (err: any) {
+      res.status(500).json({ error: err.message });
+    }
+  });
 }
 
-// Exemple d'utilisation directe
-
-// Export pour utilisation en tant que module
 export {
   BasicMeta,
   createOGScraperRoute,
