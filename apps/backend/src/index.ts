@@ -37,10 +37,13 @@ async function main() {
   // --- Connexion à MongoDB ---
   await dbConnexion.connect();
   console.log("Connexion à MongoDB réussie");
+  // helper to auto-catch errors on async handlers
+  const wrapAsync = (fn: any) => (req: any, res: any, next: any) => Promise.resolve(fn(req, res, next)).catch(next);
+
   app.get("/", (req, res) => {
     res.send("Hello World");
   });
-  app.use("/api/v1", router);
+  app.use("/api/v1", wrapAsync(router));
 
   app.use(errorHandler);
 
