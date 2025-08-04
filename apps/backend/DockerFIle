@@ -1,0 +1,20 @@
+# apps/backend/Dockerfile
+FROM node:20-bullseye
+
+# 1) Installer Chromium et ses dépendances
+RUN apt-get update && \
+    apt-get install -y chromium
+
+# 2) Copier le reste du code
+WORKDIR /usr/src/app
+COPY . .
+
+# 3) Installer les dépendances et builder
+RUN pnpm install --frozen-lockfile
+RUN pnpm dlx turbo run build --filter=backend
+
+# 4) Exposer le port (ajustez si besoin)
+EXPOSE 5000
+
+# 5) Lancer votre binaire
+CMD ["node", "dist/index.js"]
