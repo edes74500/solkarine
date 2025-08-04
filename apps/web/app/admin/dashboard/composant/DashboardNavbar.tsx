@@ -83,9 +83,9 @@ export default function DashboardNavbar() {
         />
         <NavItem
           icon={<BarChart3 size={20} />}
-          title="Annonces"
-          href="/dashboard/stats"
-          isActive={pathname === "/dashboard/stats"}
+          title="Changer de saison"
+          href="/admin/dashboard/change-season"
+          isActive={pathname === "/admin/dashboard/change-season"}
           isCollapsed={isCollapsed}
         />
         <NavItem

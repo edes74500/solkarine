@@ -50,7 +50,7 @@ export function Navbar() {
   }
 
   return (
-    <nav className="z-50 font-mono mb-10 w-full bg-navbar px-5 rounded-full max-w-[1080px] mx-auto">
+    <nav className="z-50 font-mono mb-10 w-full bg-navbar px-5 rounded-full max-w-[1080px] mx-auto mx-5 mt-10">
       <div className="mx-auto  flex items-center justify-between h-16 w-full ">
         <div className="flex items-center space-x-4 w-full">
           {/* Logo */}

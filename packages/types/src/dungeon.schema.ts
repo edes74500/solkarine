@@ -4,6 +4,7 @@ export const dungeonDbSchema = z.object({
   _id: z.string(),
   slug: z.string(),
   name: z.string(),
+  challenge_mode_id: z.number(),
   short_name: z.string(),
   keystone_timer_seconds: z.number(),
   icon_url: z.string(),
