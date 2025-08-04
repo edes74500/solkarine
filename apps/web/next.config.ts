@@ -20,6 +20,14 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "wow.zamimg.com",
       },
+      {
+        protocol: "https",
+        hostname: "media.wago.io",
+      },
+      {
+        protocol: "https",
+        hostname: "wago.io",
+      },
     ],
   },
 };

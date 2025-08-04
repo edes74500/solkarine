@@ -119,6 +119,20 @@ export default function DashboardNavbar() {
           isCollapsed={isCollapsed}
         />
         <NavItem
+          icon={<BarChart3 size={20} />}
+          title="Addons"
+          href="/admin/dashboard/addons"
+          isActive={pathname === "/admin/dashboard/addons"}
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
+          icon={<BarChart3 size={20} />}
+          title="WeakAuras"
+          href="/admin/dashboard/weak-auras"
+          isActive={pathname === "/admin/dashboard/weak-auras"}
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
           icon={<HelpCircle size={20} />}
           title="Aide"
           href="/admin/dashboard/help"

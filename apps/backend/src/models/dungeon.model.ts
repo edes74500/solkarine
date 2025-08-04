@@ -17,7 +17,6 @@ const dungeonSchema = new Schema<DungeonDb>(
     versionKey: false,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
-    id: false,
   },
 );
 
