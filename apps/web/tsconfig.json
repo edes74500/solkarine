@@ -20,7 +20,7 @@
     ],
     "paths": {
       "@/*": ["./*"],
-      "@repo/types": ["../../packages/types/dist"]
+      "@repo/*": ["../../packages/*"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", ".next/types/**/*.ts"],
