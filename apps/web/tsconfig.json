@@ -20,6 +20,8 @@
     ],
     "paths": {
       "@/*": ["./*"],
+      "@repo/types": ["../../packages/types/dist"],
+      "@repo/ui": ["../../packages/ui/dist"],
       "@repo/*": ["../../packages/*"]
     }
   },
