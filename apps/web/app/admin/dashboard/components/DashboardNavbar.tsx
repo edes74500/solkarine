@@ -55,7 +55,7 @@ export default function DashboardNavbar() {
   return (
     <div
       className={cn(
-        "flex flex-col h-screen bg-card border-r transition-all duration-300",
+        "flex flex-col h-screen bg-card border-r transition-all duration-300 sticky top-0",
         isCollapsed ? "w-16" : "w-64",
       )}
     >
@@ -70,15 +70,22 @@ export default function DashboardNavbar() {
         <NavItem
           icon={<LayoutDashboard size={20} />}
           title="Tableau de bord"
-          href="/dashboard"
-          isActive={pathname === "/dashboard"}
+          href="/admin/dashboard"
+          isActive={pathname === "/admin/dashboard"}
           isCollapsed={isCollapsed}
         />
         <NavItem
           icon={<Users size={20} />}
           title="Utilisateurs"
-          href="/dashboard/users"
-          isActive={pathname === "/dashboard/users"}
+          href="/admin/dashboard/users"
+          isActive={pathname === "/admin/dashboard/users"}
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
+          icon={<BarChart3 size={20} />}
+          title="Donjons"
+          href="/admin/dashboard/dungeons"
+          isActive={pathname === "/admin/dashboard/dungeons"}
           isCollapsed={isCollapsed}
         />
         <NavItem
@@ -91,22 +98,22 @@ export default function DashboardNavbar() {
         <NavItem
           icon={<Settings size={20} />}
           title="Profils"
-          href="/dashboard/settings"
-          isActive={pathname === "/dashboard/settings"}
+          href="/admin/dashboard/settings"
+          isActive={pathname === "/admin/dashboard/settings"}
           isCollapsed={isCollapsed}
         />
         <NavItem
           icon={<BarChart3 size={20} />}
           title="Statistiques"
-          href="/dashboard/stats"
-          isActive={pathname === "/dashboard/stats"}
+          href="/admin/dashboard/stats"
+          isActive={pathname === "/admin/dashboard/stats"}
           isCollapsed={isCollapsed}
         />
         <NavItem
           icon={<HelpCircle size={20} />}
           title="Aide"
-          href="/dashboard/help"
-          isActive={pathname === "/dashboard/help"}
+          href="/admin/dashboard/help"
+          isActive={pathname === "/admin/dashboard/help"}
           isCollapsed={isCollapsed}
         />
       </div>

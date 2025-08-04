@@ -1,5 +1,10 @@
 {
   "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["./src/*"]
+      // "@repo/types": ["../../packages/types/src/index.ts"]
+    },
     /* Cible JavaScript généré (ES2019 pour Async/Await natif) */
     "target": "ES2019",
 

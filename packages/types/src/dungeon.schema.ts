@@ -13,6 +13,12 @@ export const dungeonDbSchema = z.object({
   updatedAt: z.date().optional(),
 });
 
+export const createDungeonDbSchema = dungeonDbSchema.omit({
+  _id: true,
+  createdAt: true,
+  updatedAt: true,
+});
+
 export const dungeonSchema = z.object({
   id: z.number(),
   challenge_mode_id: z.number(),
@@ -38,6 +44,11 @@ export const dungeonClientSchema = dungeonApiSchema
     _id: true,
   });
 
+export const createDungeonApiSchema = dungeonApiSchema.omit({
+  id: true,
+});
+
+export type CreateDungeonDb = z.infer<typeof createDungeonDbSchema>;
 export type DungeonDb = z.infer<typeof dungeonDbSchema>;
 export type DungeonApi = z.infer<typeof dungeonApiSchema>;
 export type DungeonClient = z.infer<typeof dungeonClientSchema>;

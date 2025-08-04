@@ -8,12 +8,14 @@ import corsOptions from "./config/cors.config";
 import { dbConnexion } from "./config/dbConnexion.config";
 import { errorHandler } from "./middlewares/errorHandler.middleware";
 import { routeLogger } from "./middlewares/routeLogger.middleware";
+import router from "./routes";
 
 dotenv.config({ quiet: true });
 applyTimestampToLogs();
 
 async function main() {
   const app = express();
+  app.use(routeLogger);
 
   // --- Redirection HTTP ➡ HTTPS en production ---
   if (process.env.NODE_ENV === "production") {
@@ -31,16 +33,20 @@ async function main() {
   app.use(express.urlencoded({ extended: true }));
   app.use(cookieParser());
   app.use(express.json());
-  app.use(routeLogger);
 
   // --- Connexion à MongoDB ---
   await dbConnexion.connect();
+  console.log("Connexion à MongoDB réussie");
+  app.get("/", (req, res) => {
+    res.send("Hello World");
+  });
+  app.use("/api/v1", router);
 
   app.use(errorHandler);
 
   // --- Démarrage du serveur ---
-  app.listen(process.env.PORT || 3000, () => {
-    console.info(`🚀 Serveur démarré sur le port ${process.env.PORT || 3000}`);
+  app.listen(process.env.PORT || 5000, () => {
+    console.info(`🚀 Serveur démarré sur le port ${process.env.PORT || 5000}`);
   });
 }
 
