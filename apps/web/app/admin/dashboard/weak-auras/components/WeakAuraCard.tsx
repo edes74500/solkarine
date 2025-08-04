@@ -2,9 +2,11 @@
 
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
+import { useDeleteWeakAuraMutation } from "@/redux/api/weakAuras.apiSlice";
 import { Trash2 } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
+import { toast } from "sonner";
 
 interface WeakAura {
   id: string;
@@ -21,10 +23,17 @@ interface WeakAuraCardProps {
 }
 
 export function WeakAuraCard({ weakAura, onDelete }: WeakAuraCardProps) {
-  const handleDelete = () => {
+  const [deleteWeakAura] = useDeleteWeakAuraMutation();
+  const handleDelete = async () => {
     console.log(`Suppression de la WeakAura: ${weakAura.id} - ${weakAura.title}`);
-    if (onDelete) {
-      onDelete(weakAura.id);
+    try {
+      await deleteWeakAura({ id: weakAura.id });
+      if (onDelete) {
+        onDelete(weakAura.id);
+      }
+    } catch (error) {
+      console.error("Erreur lors de la suppression de la WeakAura:", error);
+      toast.error("Erreur lors de la suppression de la WeakAura");
     }
   };
 

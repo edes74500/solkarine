@@ -1,4 +1,4 @@
-import { addWeakAura, getAllWeakAura } from "@/services/weakaura.service";
+import { addWeakAura, deleteWeakAura, getAllWeakAura } from "@/services/weakaura.service";
 import { scrapeOGTags } from "@/utils/ogBaliseScrapper";
 import { Request, Response } from "express";
 
@@ -32,4 +32,10 @@ export const createWeakAura = async (req: Request, res: Response) => {
 export const getAllWeakAuraController = async (req: Request, res: Response) => {
   const weakAura = await getAllWeakAura();
   res.json(weakAura);
+};
+
+export const deleteWeakAuraController = async (req: Request, res: Response) => {
+  const { id } = req.params;
+  const success = await deleteWeakAura(id);
+  res.json({ success: success });
 };

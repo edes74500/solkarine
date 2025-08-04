@@ -14,7 +14,14 @@ export const weakAurasApi = apiSlice.injectEndpoints({
       query: () => "/weak-aura",
       providesTags: ["WeakAuras"],
     }),
+    deleteWeakAura: builder.mutation<any, { id: string }>({
+      query: (data: { id: string }) => ({
+        url: `/weak-aura/${data.id}`,
+        method: "DELETE",
+      }),
+      invalidatesTags: ["WeakAuras"],
+    }),
   }),
 });
 
-export const { useAddWeakAuraMutation, useGetAllWeakAurasQuery } = weakAurasApi;
+export const { useAddWeakAuraMutation, useGetAllWeakAurasQuery, useDeleteWeakAuraMutation } = weakAurasApi;

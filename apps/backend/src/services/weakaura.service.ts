@@ -42,3 +42,8 @@ export const getWeakAuraById = async (id: string) => {
   const weakAura = await WeakAura.findById(id);
   return weakAura;
 };
+
+export const deleteWeakAura = async (id: string) => {
+  const success = await WeakAura.findByIdAndDelete(id);
+  return success;
+};
