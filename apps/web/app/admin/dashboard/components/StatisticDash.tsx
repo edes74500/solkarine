@@ -38,7 +38,7 @@ export function StatisticDash() {
               className="text-center p-4 bg-background rounded-lg cursor-pointer"
               onClick={() => router.push("/admin/dashboard/weak-auras")}
             >
-              <div className="text-2xl font-bold text-primary">{weakAuraCount?.data}</div>
+              <div className="text-2xl font-bold text-primary">{weakAuraCount?.data || 0}</div>
               <div className="text-sm text-muted-foreground">WeakAuras disponibles</div>
             </div>
           </div>

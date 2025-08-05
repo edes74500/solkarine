@@ -1,3 +1,4 @@
+import { revalidateFetch } from "@/services/nextJsCache.service";
 import {
   addWeakAura,
   deleteWeakAura,
@@ -38,9 +39,12 @@ export const getWeakAuraScrapperController = async (req: Request, res: Response)
 export const createWeakAuraController = async (req: Request, res: Response) => {
   const data = createWeakAuraSchema.parse(req.body);
   const success = await addWeakAura(data);
+  //* revalidate nextjs cache
+  await revalidateFetch("weakaura-getAllWeakAura");
   res.json({ success: success });
 };
 
+// GET ALL WEAK AURAS
 export const getAllWeakAuraController = async (req: Request, res: Response) => {
   const weakAura = await getAllWeakAura();
   res.json({ success: true, data: weakAura });
@@ -49,6 +53,8 @@ export const getAllWeakAuraController = async (req: Request, res: Response) => {
 export const deleteWeakAuraController = async (req: Request, res: Response) => {
   const { id } = req.params;
   const success = await deleteWeakAura(id);
+  //* revalidate nextjs cache
+  await revalidateFetch("weakaura-getAllWeakAura");
   res.json({ success: success });
 };
 
@@ -56,6 +62,8 @@ export const updateWeakAuraController = async (req: Request, res: Response) => {
   const { id } = req.params;
   const data = editWeakAuraSchema.parse(req.body);
   const success = await updateWeakAura(id, data);
+  //* revalidate nextjs cache
+  await revalidateFetch("weakaura-getAllWeakAura");
   res.json({ success: success });
 };
 
