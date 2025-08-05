@@ -4,8 +4,8 @@ import DungeonList from "./components/DungeonList";
 
 export default function Dungeons() {
   return (
-    <div className="flex flex-col gap-4">
-      <h1 className="text-2xl font-bold">Gestion des donjons</h1>
+    <section className="dashboard-section">
+      <h1>Gestion des donjons</h1>
       <Alert>
         <InfoIcon className="h-4 w-4" />
         <AlertTitle>Information</AlertTitle>
@@ -16,6 +16,6 @@ export default function Dungeons() {
       </Alert>
       {/* <EditDungeon /> */}
       <DungeonList />
-    </div>
+    </section>
   );
 }

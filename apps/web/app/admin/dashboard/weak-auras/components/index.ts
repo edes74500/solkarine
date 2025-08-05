@@ -1,4 +1,4 @@
-export { AddWeakAuraForm } from "./AddWeakAuraForm";
+export { AddWeakAuraDialog } from "./AddWeakAuraDialog";
 export { ErrorCard } from "./ErrorCard";
 export { InfoAlert } from "./InfoAlert";
 export { LoadingSpinner } from "./LoadingSpinner";

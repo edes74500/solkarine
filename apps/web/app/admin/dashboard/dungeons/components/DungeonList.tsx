@@ -3,7 +3,7 @@
 import { Button } from "@/components/ui/button";
 import { useGetDungeonsQuery } from "@/redux/api/dungeons.apiSlice";
 import { DungeonClient } from "@repo/types";
-import { toast } from "react-hot-toast";
+import { toast } from "sonner";
 import DungeonCard from "./DungeonCard";
 
 export default function DungeonList() {

@@ -16,23 +16,23 @@ applyTimestampToLogs();
 async function main() {
   const app = express();
   app.use(routeLogger);
+  app.use(cors(corsOptions));
 
   // --- Redirection HTTP ➡ HTTPS en production ---
-  if (process.env.NODE_ENV === "production") {
-    app.use((req, res, next) => {
-      if (!req.secure && req.headers["x-forwarded-proto"] !== "https") {
-        return res.redirect("https://" + req.headers.host + req.url);
-      }
-      next();
-    });
-  }
+  // if (process.env.NODE_ENV === "production") {
+  //   app.use((req, res, next) => {
+  //     if (!req.secure && req.headers["x-forwarded-proto"] !== "https") {
+  //       return res.redirect("https://" + req.headers.host + req.url);
+  //     }
+  //     next();
+  //   });
+  // }
 
   // --- Middlewares globaux ---
   app.use(helmet());
   app.use(express.urlencoded({ extended: true }));
   app.use(cookieParser());
   app.use(express.json());
-  app.use(cors(corsOptions));
 
   // --- Connexion à MongoDB ---
   await dbConnexion.connect();

@@ -1,0 +1,25 @@
+FROM node:22-alpine
+
+RUN apk add --no-cache python3 make g++ git
+RUN corepack enable && corepack prepare pnpm@latest --activate
+
+WORKDIR /repo
+
+# Copier les fichiers de configuration du workspace
+COPY pnpm-workspace.yaml package.json pnpm-lock.yaml ./
+COPY turbo.json ./
+
+# Copier la structure complète pour pnpm
+COPY packages packages
+COPY apps apps
+
+# Installer toutes les dépendances avec pnpm
+ENV NODE_ENV=development
+RUN pnpm install --frozen-lockfile
+
+# Exposer le port
+EXPOSE 5000
+
+# Rester dans le workspace root pour turbo
+WORKDIR /repo
+CMD ["pnpm", "turbo", "dev", "--filter=backend"]

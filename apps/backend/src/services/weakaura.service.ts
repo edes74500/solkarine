@@ -1,7 +1,7 @@
 import { WeakAura } from "@/models/weakAura.model";
-import { ScrapingResult } from "@/utils/ogBaliseScrapper";
+import { CreateWeakAuraForm, EditWeakAuraForm } from "@repo/types";
 
-export const addWeakAura = async (data: ScrapingResult, info?: string): Promise<boolean> => {
+export const addWeakAura = async (data: CreateWeakAuraForm): Promise<boolean> => {
   // Vérifier si une WeakAura avec cette URL existe déjà
   const existingWeakAura = await WeakAura.findOne({ url: data.url });
 
@@ -10,10 +10,12 @@ export const addWeakAura = async (data: ScrapingResult, info?: string): Promise<
     const updatedWeakAura = await WeakAura.findByIdAndUpdate(
       existingWeakAura._id,
       {
-        title: data.basic.title,
-        description: data.basic.description,
-        image: data.basic.ogImageUrl,
-        info: info,
+        title: data.title,
+        description: data.description,
+        image: data.image,
+        info: data.info,
+        url: data.url,
+        tags: data.tags,
       },
       { new: true },
     );
@@ -22,11 +24,12 @@ export const addWeakAura = async (data: ScrapingResult, info?: string): Promise<
   } else {
     // Créer une nouvelle WeakAura
     const newWeakAura = await WeakAura.create({
-      title: data.basic.title,
-      description: data.basic.description,
-      image: data.basic.ogImageUrl,
+      title: data.title,
+      description: data.description,
+      image: data.image,
       url: data.url,
-      info: info,
+      info: data.info,
+      tags: data.tags,
     });
     const success = newWeakAura !== null;
     return success;
@@ -45,5 +48,10 @@ export const getWeakAuraById = async (id: string) => {
 
 export const deleteWeakAura = async (id: string) => {
   const success = await WeakAura.findByIdAndDelete(id);
+  return success;
+};
+
+export const updateWeakAura = async (id: string, data: EditWeakAuraForm) => {
+  const success = await WeakAura.findByIdAndUpdate(id, data);
   return success;
 };

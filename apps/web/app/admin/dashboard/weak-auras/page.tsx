@@ -2,7 +2,7 @@
 
 import { useGetAllWeakAurasQuery } from "@/redux/api/weakAuras.apiSlice";
 import { useState } from "react";
-import { AddWeakAuraForm, ErrorCard, InfoAlert, LoadingSpinner, SuccessCard, WeakAuraList } from "./components";
+import { AddWeakAuraDialog, ErrorCard, InfoAlert, LoadingSpinner, WeakAuraList } from "./components";
 
 export default function WeakAurasPage() {
   const [successData, setSuccessData] = useState<any>(null);
@@ -19,20 +19,21 @@ export default function WeakAurasPage() {
   };
 
   return (
-    <div className="p-4 space-y-6">
-      <h1 className="text-3xl font-bold mb-4">WeakAuras</h1>
+    <section className="p-4 space-y-10">
+      <div className="flex justify-between items-center">
+        <h1 className="text-3xl font-bold">WeakAuras</h1>
+      </div>
 
       <InfoAlert />
+      <AddWeakAuraDialog onSuccess={handleAddSuccess} />
 
-      <AddWeakAuraForm onSuccess={handleAddSuccess} />
-
-      {successData && <SuccessCard data={successData} />}
+      {/* {successData && <SuccessCard data={successData} />} */}
 
       {isLoadingWeakAuras && <LoadingSpinner />}
 
       {errorWeakAuras && <ErrorCard message="Erreur lors du chargement des WeakAuras" />}
 
-      {weakAuras && <WeakAuraList weakAuras={weakAuras} onDelete={handleDeleteWeakAura} />}
-    </div>
+      {weakAuras && <WeakAuraList weakAuras={weakAuras.data} onDelete={handleDeleteWeakAura} />}
+    </section>
   );
 }

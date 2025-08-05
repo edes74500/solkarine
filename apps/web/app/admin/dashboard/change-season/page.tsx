@@ -56,8 +56,8 @@ export default function ChangeSeason() {
 
   return (
     <>
-      <section className="flex flex-col gap-4 p-4">
-        <h1 className="text-2xl font-bold">Changer de saison</h1>
+      <section className="dashboard-section">
+        <h1>Changer de saison</h1>
         <WarningAlert />
         <ExpansionSelector
           currentExpansion={currentExpansions}

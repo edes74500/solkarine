@@ -27,8 +27,9 @@ export default function AddonPage() {
   };
 
   return (
-    <div>
+    <section className="dashboard-section">
+      <h1>Gestion des addons</h1>
       <button onClick={fetchCurseForgeAddons}>Fetch Addons</button>
-    </div>
+    </section>
   );
 }

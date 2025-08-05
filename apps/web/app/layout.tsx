@@ -1,11 +1,11 @@
 import { MainFooter } from "@/components/footer/MainFooter";
 import { Navbar } from "@/components/navbar/Navbar";
 import { ThemeProviderClient } from "@/components/theme/ThemeProvider";
+import { Toaster } from "@/components/ui/sonner";
 import { StoreProvider } from "@/redux/StoreProvider";
 import "@repo/ui/styles/globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Toaster } from "react-hot-toast";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -86,8 +86,10 @@ export default function RootLayout({
               {/* <ContentWidthWrapper> */}
               <Navbar />
               {/* </ContentWidthWrapper> */}
-              <Toaster position="bottom-center" />
-              <div className="grow">{children}</div>
+              <div className="grow">
+                <Toaster position="bottom-center" />
+                {children}
+              </div>
               {/* <ContentWidthWrapper> */}
               <MainFooter />
               {/* </ContentWidthWrapper> */}

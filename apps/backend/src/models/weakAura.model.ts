@@ -1,13 +1,15 @@
+import { WeakAuraDB } from "@repo/types";
 import mongoose, { Schema, model } from "mongoose";
 import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
-const weakAuraSchema = new Schema(
+const weakAuraSchema = new Schema<WeakAuraDB>(
   {
     title: { type: String, required: true },
     description: { type: String, required: true },
     image: { type: String, required: true },
     info: { type: String },
     url: { type: String, required: true },
+    tags: { type: [String], required: true },
   },
   {
     timestamps: true,
@@ -24,4 +26,4 @@ weakAuraSchema.virtual("id").get(function (this: mongoose.Document & { _id: mong
 
 weakAuraSchema.index({ url: 1 }, { unique: true });
 
-export const WeakAura = model("WeakAura", weakAuraSchema);
+export const WeakAura = model<WeakAuraDB>("WeakAura", weakAuraSchema);

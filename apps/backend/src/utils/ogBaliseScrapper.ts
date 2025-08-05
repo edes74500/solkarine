@@ -1,35 +1,8 @@
+import { BasicMeta, OGScraperQuery, OGTags, ScrapingResult, TwitterTags } from "@repo/types";
 import axios, { AxiosRequestConfig, AxiosResponse } from "axios";
 import * as cheerio from "cheerio";
 import { Express, Request, Response } from "express";
 import puppeteer from "puppeteer";
-
-// Interfaces TypeScript
-interface OGTags {
-  [key: string]: string;
-}
-
-interface TwitterTags {
-  [key: string]: string;
-}
-
-interface BasicMeta {
-  title: string;
-  description: string;
-  favicon: string;
-  ogImageUrl: string;
-}
-
-interface ScrapingResult {
-  url: string;
-  openGraph: OGTags;
-  twitter: TwitterTags;
-  basic: BasicMeta;
-  timestamp: string;
-}
-
-interface OGScraperQuery {
-  url?: string;
-}
 
 // Fonction pour scraper avec Puppeteer (pour contenu dynamique)
 async function scrapeOGTagsWithPuppeteer(url: string): Promise<ScrapingResult> {

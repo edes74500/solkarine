@@ -9,6 +9,8 @@ interface WeakAura {
   description: string;
   image: string;
   url: string;
+  info?: string;
+  tags?: string[];
 }
 
 interface WeakAuraListProps {
