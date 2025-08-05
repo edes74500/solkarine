@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Season } from "@repo/types";
+import { Button } from "@repo/ui/components/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@repo/ui/components/card";
 import Image from "next/image";
 
 interface SeasonCardProps {
@@ -41,13 +41,7 @@ export function SeasonCard({ season, onSelect }: SeasonCardProps) {
           {season.dungeons.slice(0, 8).map((dungeon) => (
             <div key={dungeon.id} className="flex items-center gap-2">
               <div className="relative w-6 h-6 overflow-hidden rounded-sm">
-                <Image
-                  src={dungeon.icon_url}
-                  alt={dungeon.name}
-                  width={24}
-                  height={24}
-                  className="object-cover"
-                />
+                <Image src={dungeon.icon_url} alt={dungeon.name} width={24} height={24} className="object-cover" />
               </div>
               <span className="text-xs truncate">{dungeon.short_name}</span>
             </div>
@@ -64,4 +58,4 @@ export function SeasonCard({ season, onSelect }: SeasonCardProps) {
       </CardFooter>
     </Card>
   );
-} 
+}

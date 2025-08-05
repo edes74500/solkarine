@@ -2,10 +2,10 @@ import { MainFooter } from "@/components/footer/MainFooter";
 import { Navbar } from "@/components/navbar/Navbar";
 import { ThemeProviderClient } from "@/components/theme/ThemeProvider";
 import { StoreProvider } from "@/redux/StoreProvider";
+import "@repo/ui/styles/globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Toaster } from "react-hot-toast";
-import "./globals.css";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

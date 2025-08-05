@@ -6,20 +6,19 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@/components/ui/input";
 import { useEditDungeonMutation } from "@/redux/api/dungeons.apiSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { DungeonClient, EditDungeonForm } from "@repo/types";
+import { DungeonClient, EditDungeonForm, editDungeonSchema } from "@repo/types";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
-import { z } from "zod";
 
-const dungeonFormSchema = z.object({
-  slug: z.string().min(1, "Le slug est requis"),
-  name: z.string().min(1, "Le nom est requis"),
-  short_name: z.string().min(1, "Le nom court est requis"),
-  keystone_timer_seconds: z.coerce.number().min(1, "Le timer est requis"),
-  icon_url: z.string().url("L'URL de l'icône doit être valide"),
-  background_image_url: z.string().url("L'URL de l'image de fond doit être valide"),
-});
+// const dungeonFormSchema = z.object({
+//   slug: z.string().min(1, "Le slug est requis"),
+//   name: z.string().min(1, "Le nom est requis"),
+//   short_name: z.string().min(1, "Le nom court est requis"),
+//   keystone_timer_seconds: z.coerce.number().min(1, "Le timer est requis"),
+//   icon_url: z.string().url("L'URL de l'icône doit être valide"),
+//   background_image_url: z.string().url("L'URL de l'image de fond doit être valide"),
+// });
 
 interface EditDungeonProps {
   dungeon: DungeonClient;
@@ -32,7 +31,7 @@ export default function EditDungeon({ dungeon, onEdit }: EditDungeonProps) {
   const [editDungeon] = useEditDungeonMutation();
 
   const form = useForm<EditDungeonForm>({
-    resolver: zodResolver(dungeonFormSchema),
+    resolver: zodResolver(editDungeonSchema),
     defaultValues: {
       slug: dungeon.slug,
       name: dungeon.name,

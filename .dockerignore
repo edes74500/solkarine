@@ -1,0 +1,12 @@
+# On refuse les dossiers de modules et builds lourds
+node_modules
+**/node_modules
+dist
+**/dist
+*.log
+
+# Git, cache, éditeur…
+.git
+.vscode
+.idea
+.DS_Store

@@ -1,19 +1,15 @@
 {
   "extends": ["@repo/typescript-config/nodejs.json"],
   "compilerOptions": {
-    "outDir": "dist", // Répertoire de sortie
-    "rootDir": "src", // Répertoire source
-    // "strict": true,
-    // "esModuleInterop": true,
-    // "skipLibCheck": true,
+    "outDir": "dist",
+    "rootDir": "src",
     "module": "ESNext",
     "target": "ES2020",
     "moduleResolution": "Bundler",
     "declaration": true,
     "baseUrl": ".",
     "paths": {
-      "@repo/types": ["./src"],
-      "@repo/*": ["../../packages/*"]
+      "@repo/types": ["./src"]
     }
   },
   "include": ["src/**/*"],
