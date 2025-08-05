@@ -1,20 +1,11 @@
 "use client";
 
 import { Card, CardContent } from "@/components/ui/card";
+import { WeakAuraClient } from "@repo/types";
 import { WeakAuraCard } from "./WeakAuraCard";
 
-interface WeakAura {
-  id: string;
-  title: string;
-  description: string;
-  image: string;
-  url: string;
-  info?: string;
-  tags?: string[];
-}
-
 interface WeakAuraListProps {
-  weakAuras: WeakAura[];
+  weakAuras: WeakAuraClient[];
   onDelete?: (id: string) => void;
 }
 
@@ -34,13 +25,9 @@ export function WeakAuraList({ weakAuras, onDelete }: WeakAuraListProps) {
       <h2 className="text-2xl font-semibold">WeakAuras</h2>
       <div className="grid grid-cols-1 gap-4">
         {weakAuras.map((weakAura) => (
-          <WeakAuraCard
-            key={weakAura.id}
-            weakAura={weakAura}
-            onDelete={onDelete}
-          />
+          <WeakAuraCard key={weakAura.id} weakAura={weakAura} onDelete={onDelete} />
         ))}
       </div>
     </div>
   );
-} 
+}
