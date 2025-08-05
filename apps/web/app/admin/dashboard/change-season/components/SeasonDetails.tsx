@@ -25,7 +25,7 @@ export function SeasonDetails({ season, onClose, onConfirm, isLoading }: SeasonD
   };
 
   return (
-    <section className="flex flex-col gap-4 p-4">
+    <section className="flex flex-col gap-4">
       <Card>
         <CardHeader>
           <div className="flex justify-between items-center">
@@ -51,8 +51,7 @@ export function SeasonDetails({ season, onClose, onConfirm, isLoading }: SeasonD
                   <span className="font-medium">Nom court:</span> {season.short_name}
                 </li>
                 <li>
-                  <span className="font-medium">Saison principale:</span>{" "}
-                  {season.is_main_season ? "Oui" : "Non"}
+                  <span className="font-medium">Saison principale:</span> {season.is_main_season ? "Oui" : "Non"}
                 </li>
                 <li>
                   <span className="font-medium">Affix saisonnier:</span> {season.seasonal_affix || "Aucun"}
@@ -133,4 +132,4 @@ export function SeasonDetails({ season, onClose, onConfirm, isLoading }: SeasonD
       </Card>
     </section>
   );
-} 
+}

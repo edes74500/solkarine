@@ -65,28 +65,28 @@ export default function ChangeSeason() {
           onFetchData={handleFetchData}
           isLoading={isLoading}
         />
+
+        {staticData && <SeasonList seasons={staticData} onSelectSeason={handleSelectSeason} />}
+
+        {selectedSeason && (
+          <div ref={selectedRef}>
+            <SeasonDetails
+              season={selectedSeason}
+              onClose={() => setSelectedSeason(null)}
+              onConfirm={() => setShowConfirmation(true)}
+              isLoading={isPosting}
+            />
+          </div>
+        )}
+
+        <ChangeSeasonDialog
+          isOpen={showConfirmation}
+          onClose={() => setShowConfirmation(false)}
+          onConfirm={handlePostChangeSeason}
+          selectedSeason={selectedSeason}
+          isLoading={isPosting}
+        />
       </section>
-
-      {staticData && <SeasonList seasons={staticData} onSelectSeason={handleSelectSeason} />}
-
-      {selectedSeason && (
-        <div ref={selectedRef}>
-          <SeasonDetails
-            season={selectedSeason}
-            onClose={() => setSelectedSeason(null)}
-            onConfirm={() => setShowConfirmation(true)}
-            isLoading={isPosting}
-          />
-        </div>
-      )}
-
-      <ChangeSeasonDialog
-        isOpen={showConfirmation}
-        onClose={() => setShowConfirmation(false)}
-        onConfirm={handlePostChangeSeason}
-        selectedSeason={selectedSeason}
-        isLoading={isPosting}
-      />
     </>
   );
 }

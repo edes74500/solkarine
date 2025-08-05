@@ -10,7 +10,7 @@ interface SeasonListProps {
 
 export function SeasonList({ seasons, onSelectSeason }: SeasonListProps) {
   return (
-    <section className="flex flex-col gap-4 p-4">
+    <section className="flex flex-col gap-4">
       <h2 className="text-2xl font-bold">Saisons disponibles</h2>
       <div className="flex flex-wrap gap-4">
         {seasons.map((season: Season) => (
@@ -19,4 +19,4 @@ export function SeasonList({ seasons, onSelectSeason }: SeasonListProps) {
       </div>
     </section>
   );
-} 
+}
