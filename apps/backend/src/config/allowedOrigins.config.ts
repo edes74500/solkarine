@@ -2,6 +2,7 @@ const allowedOrigins = [
   "http://localhost:3000",
   "http://localhost:5000",
   "http://localhost:3001",
+  "http://127.0.0.1:3000",
   "https://solkarine.jdapp.dev",
   "https://www.solkarine.jdapp.dev",
   "https://api.solkarine.jdapp.dev",

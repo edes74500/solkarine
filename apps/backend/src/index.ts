@@ -28,11 +28,11 @@ async function main() {
   }
 
   // --- Middlewares globaux ---
-  app.use(cors(corsOptions));
   app.use(helmet());
   app.use(express.urlencoded({ extended: true }));
   app.use(cookieParser());
   app.use(express.json());
+  app.use(cors(corsOptions));
 
   // --- Connexion à MongoDB ---
   await dbConnexion.connect();
