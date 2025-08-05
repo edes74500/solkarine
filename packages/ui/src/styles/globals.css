@@ -141,6 +141,6 @@
     @apply text-lg font-bold;
   }
   .dashboard-section {
-    @apply p-4 space-y-10;
+    @apply p-4 space-y-10 max-w-7xl mx-auto;
   }
 }

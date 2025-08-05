@@ -37,6 +37,10 @@ export const weakAurasApi = apiSlice.injectEndpoints({
       }),
       invalidatesTags: ["WeakAuras"],
     }),
+    getWeakAuraCount: builder.query<{ success: boolean; data: number }, void>({
+      query: () => "/weak-aura/count",
+      providesTags: ["WeakAuras"],
+    }),
   }),
 });
 
@@ -46,4 +50,5 @@ export const {
   useDeleteWeakAuraMutation,
   useGetWeakAuraScrapperMutation,
   useUpdateWeakAuraMutation,
+  useGetWeakAuraCountQuery,
 } = weakAurasApi;

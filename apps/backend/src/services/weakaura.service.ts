@@ -55,3 +55,8 @@ export const updateWeakAura = async (id: string, data: EditWeakAuraForm) => {
   const success = await WeakAura.findByIdAndUpdate(id, data);
   return success;
 };
+
+export const getWeakAuraCount = async () => {
+  const count = await WeakAura.countDocuments();
+  return count;
+};

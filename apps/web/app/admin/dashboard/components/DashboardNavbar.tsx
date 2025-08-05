@@ -4,7 +4,18 @@ import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
-import { BarChart3, ExternalLink, HelpCircle, LayoutDashboard, Menu, Users, X } from "lucide-react";
+import {
+  ExternalLink,
+  HelpCircle,
+  LayoutDashboard,
+  Menu,
+  Package,
+  Settings,
+  Shield,
+  Users,
+  X,
+  Zap,
+} from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -80,14 +91,14 @@ export default function DashboardNavbar() {
         <Separator className="my-2" />
 
         <NavItem
-          icon={<BarChart3 size={20} />}
+          icon={<Shield size={20} />}
           title="Donjons"
           href="/admin/dashboard/dungeons"
           isActive={pathname === "/admin/dashboard/dungeons"}
           isCollapsed={isCollapsed}
         />
         <NavItem
-          icon={<BarChart3 size={20} />}
+          icon={<Users size={20} />}
           title="Personnages"
           href="/admin/dashboard/characters"
           isActive={pathname === "/admin/dashboard/characters"}
@@ -109,14 +120,14 @@ export default function DashboardNavbar() {
           isCollapsed={isCollapsed}
         /> */}
         <NavItem
-          icon={<BarChart3 size={20} />}
+          icon={<Package size={20} />}
           title="Addons"
           href="/admin/dashboard/addons"
           isActive={pathname === "/admin/dashboard/addons"}
           isCollapsed={isCollapsed}
         />
         <NavItem
-          icon={<BarChart3 size={20} />}
+          icon={<Zap size={20} />}
           title="WeakAuras"
           href="/admin/dashboard/weak-auras"
           isActive={pathname === "/admin/dashboard/weak-auras"}
@@ -126,8 +137,8 @@ export default function DashboardNavbar() {
         <NavItem
           icon={<Users size={20} />}
           title="Utilisateurs"
-          href="/admin/dashboard/users"
-          isActive={pathname === "/admin/dashboard/users"}
+          href="/admin/dashboard/users-management"
+          isActive={pathname === "/admin/dashboard/users-management"}
           isCollapsed={isCollapsed}
         />
         <NavItem
@@ -139,7 +150,7 @@ export default function DashboardNavbar() {
         />
         <Separator className="my-2" />
         <NavItem
-          icon={<BarChart3 size={20} />}
+          icon={<Settings size={20} />}
           title="Changer de saison"
           href="/admin/dashboard/change-season"
           isActive={pathname === "/admin/dashboard/change-season"}

@@ -1,4 +1,10 @@
-import { addWeakAura, deleteWeakAura, getAllWeakAura, updateWeakAura } from "@/services/weakaura.service";
+import {
+  addWeakAura,
+  deleteWeakAura,
+  getAllWeakAura,
+  getWeakAuraCount,
+  updateWeakAura,
+} from "@/services/weakaura.service";
 import { scrapeOGTags } from "@/utils/ogBaliseScrapper";
 import { createWeakAuraSchema, editWeakAuraSchema } from "@repo/types";
 import { Request, Response } from "express";
@@ -51,4 +57,9 @@ export const updateWeakAuraController = async (req: Request, res: Response) => {
   const data = editWeakAuraSchema.parse(req.body);
   const success = await updateWeakAura(id, data);
   res.json({ success: success });
+};
+
+export const getWeakAuraCountController = async (req: Request, res: Response) => {
+  const count = await getWeakAuraCount();
+  res.json({ success: true, data: count });
 };

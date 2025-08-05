@@ -19,7 +19,7 @@ export default function WeakAurasPage() {
   };
 
   return (
-    <section className="p-4 space-y-10">
+    <section className="dashboard-section">
       <div className="flex justify-between items-center">
         <h1 className="text-3xl font-bold">WeakAuras</h1>
       </div>

@@ -60,7 +60,7 @@ export function WeakAuraCard({ weakAura, onDelete }: WeakAuraCardProps) {
       </div>
 
       <div className="flex flex-col md:flex-row">
-        <div className="relative h-48 md:h-auto md:w-1/3">
+        <div className="relative h-48 md:h-auto md:w-1/3 rounded-l-lg overflow-hidden">
           <Image
             src={weakAura.image.includes("media.wago.io") ? weakAura.image : "/img/fallbackWA.png"}
             alt={weakAura.title}
@@ -73,7 +73,7 @@ export function WeakAuraCard({ weakAura, onDelete }: WeakAuraCardProps) {
           />
           <div className="absolute bottom-2 right-2 z-10 flex flex-col gap-1">
             <Badge variant="default" className="text-xs">
-              Il y a {formatDistanceToNow(new Date(weakAura.createdAt), { locale: fr, addSuffix: false })}
+              Il y a {formatDistanceToNow(new Date(weakAura.updatedAt), { locale: fr, addSuffix: false })}
             </Badge>
           </div>
         </div>

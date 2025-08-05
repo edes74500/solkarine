@@ -24,9 +24,12 @@ export function WeakAuraList({ weakAuras, onDelete }: WeakAuraListProps) {
     <div className="space-y-4">
       <h2 className="text-2xl font-semibold">WeakAuras</h2>
       <div className="grid grid-cols-1 gap-4">
-        {weakAuras.map((weakAura) => (
-          <WeakAuraCard key={weakAura.id} weakAura={weakAura} onDelete={onDelete} />
-        ))}
+        {weakAuras
+          .slice()
+          .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
+          .map((weakAura) => (
+            <WeakAuraCard key={weakAura.id} weakAura={weakAura} onDelete={onDelete} />
+          ))}
       </div>
     </div>
   );
