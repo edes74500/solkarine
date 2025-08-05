@@ -58,26 +58,6 @@ export function EditWeakAuraDialog({ weakAura, onSuccess }: EditWeakAuraDialogPr
 
   const selectedTags = watch("tags") || [];
 
-  // Fonction factice pour simuler l'appel API
-  const fakeEditWeakAura = async (data: EditWeakAuraForm): Promise<any> => {
-    return new Promise((resolve) => {
-      setTimeout(() => {
-        console.log("Données d'édition:", data);
-        resolve({
-          data: {
-            success: true,
-            message: "WeakAura modifiée avec succès",
-            data: {
-              ...weakAura,
-              ...data,
-              updatedAt: new Date().toISOString(),
-            },
-          },
-        });
-      }, 1000);
-    });
-  };
-
   const onSubmit = async (data: EditWeakAuraForm) => {
     setIsEditing(true);
     try {

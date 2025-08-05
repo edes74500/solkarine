@@ -254,7 +254,7 @@ export function AddWeakAuraDialog({ onSuccess }: AddWeakAuraDialogProps) {
                         <Badge
                           key={tag}
                           variant={selectedTags?.includes(tag) ? "default" : "outline"}
-                          className="cursor-pointer hover:bg-primary/80"
+                          className="cursor-pointer hover:bg-primary/20"
                           onClick={() => toggleTag(tag)}
                         >
                           {tag}
