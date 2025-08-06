@@ -1,12 +1,14 @@
 "use client";
 
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { useGetAddonCountQuery } from "@/redux/api/addon.apiSlice";
 import { useGetWeakAuraCountQuery } from "@/redux/api/weakAuras.apiSlice";
 import { BarChart3 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
 export function StatisticDash() {
   const { data: weakAuraCount } = useGetWeakAuraCountQuery();
+  const { data: addonCount } = useGetAddonCountQuery();
   const router = useRouter();
 
   return (
@@ -31,7 +33,7 @@ export function StatisticDash() {
               className="text-center p-4 bg-background rounded-lg cursor-pointer"
               onClick={() => router.push("/admin/dashboard/addons")}
             >
-              <div className="text-2xl font-bold text-primary">0</div>
+              <div className="text-2xl font-bold text-primary">{addonCount?.data || 0}</div>
               <div className="text-sm text-muted-foreground">Addons disponibles</div>
             </div>
             <div

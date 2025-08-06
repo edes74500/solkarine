@@ -1,15 +1,19 @@
 import { Button } from "@/components/ui/button";
+import { frontendImageLink } from "@repo/constants";
 import { ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { FaDiscord, FaYoutube } from "react-icons/fa";
 
 export default function GuidesSection() {
+  const mythicplusImage = frontendImageLink.mythicplus;
+  const interfaceImage = frontendImageLink.interface;
+  const communityImage = frontendImageLink.community;
   const guides = [
     {
       title: "Guides Mythic+",
       description: "Découvrez mes stratégies et conseils pour réussir vos donjons mythiques.",
-      image: "/img/mythicplus.webp",
+      image: mythicplusImage,
       alt: "Mythic+",
       link: "/mythic-plus",
       linkText: "Voir les guides",
@@ -17,15 +21,15 @@ export default function GuidesSection() {
     {
       title: "Addons & WeakAuras",
       description: "Optimisez votre interface avec mes configurations personnalisées.",
-      image: "/img/interface.jpg",
+      image: interfaceImage,
       alt: "Addons & WeakAuras",
       link: "/interface",
-      linkText: "Télécharger",
+      linkText: "Decouvrir mes outils",
     },
     {
       title: "Communauté",
       description: "Rejoignez une communauté passionnée et bienveillante de joueurs.",
-      image: "/img/community.jpg",
+      image: communityImage,
       alt: "Communauté",
       buttons: [
         { icon: <FaDiscord className="mr-2 h-4 w-4" />, text: "Discord" },
@@ -39,9 +43,10 @@ export default function GuidesSection() {
       <h2 className="text-2xl font-bold">Mes guides</h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
         {guides.map((item, index) => (
-          <div
+          <Link
             key={index}
             className="group relative overflow-hidden rounded-lg border bg-card/20 transition-all hover:shadow-xl shadow-sm"
+            href={item.link || "/"}
           >
             <div className="absolute inset-0 z-0">
               <Image
@@ -60,10 +65,10 @@ export default function GuidesSection() {
               </p>
               {item.link ? (
                 <Button asChild variant="link" className="p-0 justify-start group">
-                  <Link href={item.link} className="flex items-center">
+                  <div className="flex items-center">
                     {item.linkText}
                     <ChevronRightIcon className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                  </Link>
+                  </div>
                 </Button>
               ) : (
                 <div className="flex flex-wrap gap-3">
@@ -80,7 +85,7 @@ export default function GuidesSection() {
                 </div>
               )}
             </div>
-          </div>
+          </Link>
         ))}
       </div>
     </section>

@@ -1,5 +1,6 @@
 "use client";
 
+import { ThemeSwapper } from "@/components/navbar/ThemeSwapper";
 import { Button } from "@/components/ui/button";
 import { Separator } from "@/components/ui/separator";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
@@ -9,6 +10,7 @@ import {
   HelpCircle,
   LayoutDashboard,
   Menu,
+  Monitor,
   Package,
   Settings,
   Shield,
@@ -133,6 +135,13 @@ export default function DashboardNavbar() {
           isActive={pathname === "/admin/dashboard/weak-auras"}
           isCollapsed={isCollapsed}
         />
+        <NavItem
+          icon={<Monitor size={20} />}
+          title="Profils d'addons"
+          href="/admin/dashboard/addons-profiles"
+          isActive={pathname === "/admin/dashboard/addons-profiles"}
+          isCollapsed={isCollapsed}
+        />
         <Separator className="my-2" />
         <NavItem
           icon={<Users size={20} />}
@@ -159,6 +168,8 @@ export default function DashboardNavbar() {
       </div>
       <footer className="border-t border-border py-4 mt-auto">
         <div className="px-4">
+          <ThemeSwapper />
+          <Separator className="my-2" />
           <Link
             href="/"
             className="flex items-center gap-2 text-sm font-medium hover:text-primary transition-colors p-2 rounded-md hover:bg-accent"

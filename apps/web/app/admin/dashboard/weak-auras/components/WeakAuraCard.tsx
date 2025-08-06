@@ -5,6 +5,7 @@ import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { useDeleteWeakAuraMutation } from "@/redux/api/weakAuras.apiSlice";
+import { frontendImageLink } from "@repo/constants";
 import { WeakAuraClient } from "@repo/types/dist";
 import { formatDistanceToNow } from "date-fns";
 import { fr } from "date-fns/locale";
@@ -44,6 +45,8 @@ export function WeakAuraCard({ weakAura, onDelete }: WeakAuraCardProps) {
     // Ici vous pourriez rafraîchir la liste ou mettre à jour l'état local
   };
 
+  const fallbackImage = frontendImageLink.fallbackWA;
+
   return (
     <Card className="max-w-2xl !p-0 relative">
       {/* Bouton de suppression en haut à droite */}
@@ -62,7 +65,7 @@ export function WeakAuraCard({ weakAura, onDelete }: WeakAuraCardProps) {
       <div className="flex flex-col md:flex-row">
         <div className="relative h-48 md:h-auto md:w-1/3 rounded-l-lg overflow-hidden">
           <Image
-            src={weakAura.image.includes("media.wago.io") ? weakAura.image : "/img/fallbackWA.png"}
+            src={weakAura.image.includes("media.wago.io") ? weakAura.image : fallbackImage}
             alt={weakAura.title}
             fill
             className="object-cover"

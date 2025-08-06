@@ -3,6 +3,7 @@ import { Navbar } from "@/components/navbar/Navbar";
 import { ThemeProviderClient } from "@/components/theme/ThemeProvider";
 import { Toaster } from "@/components/ui/sonner";
 import { StoreProvider } from "@/redux/StoreProvider";
+import { frontendImageLink } from "@repo/constants";
 import "@repo/ui/styles/globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
@@ -32,9 +33,9 @@ export const metadata: Metadata = {
     type: "website",
     images: [
       {
-        url: "/img/solka.avif",
-        width: 630,
-        height: 630,
+        url: frontendImageLink.solkarine,
+        width: 200,
+        height: 200,
         alt: "Solkarine",
       },
     ],
@@ -45,16 +46,16 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Solkarine",
     description: "Joueuse de WoW et streameuse sur Twitch. Je vous partage mes aventures dans le jeu.",
-    images: ["/img/solka.avif"],
+    images: [frontendImageLink.solkarine],
     creator: "@solkarine",
   },
 
   // Balises Discord Embed
   other: {
-    "discord:image": "/img/solka.avif",
+    "discord:image": frontendImageLink.solkarine,
     "discord:image:alt": "Solkarine - Joueuse de WoW et streameuse",
-    "discord:image:width": "630",
-    "discord:image:height": "630",
+    "discord:image:width": "200",
+    "discord:image:height": "200",
   },
 
   // Métadonnées supplémentaires

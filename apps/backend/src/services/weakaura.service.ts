@@ -1,5 +1,5 @@
 import { WeakAura } from "@/models/weakAura.model";
-import { CreateWeakAuraForm, EditWeakAuraForm } from "@repo/types";
+import { CreateWeakAuraForm, EditWeakAuraForm, WeakAuraDB } from "@repo/types";
 
 export const addWeakAura = async (data: CreateWeakAuraForm): Promise<boolean> => {
   // Vérifier si une WeakAura avec cette URL existe déjà
@@ -36,27 +36,27 @@ export const addWeakAura = async (data: CreateWeakAuraForm): Promise<boolean> =>
   }
 };
 
-export const getAllWeakAura = async () => {
+export const getAllWeakAura = async (): Promise<WeakAuraDB[]> => {
   const weakAura = await WeakAura.find();
   return weakAura;
 };
 
-export const getWeakAuraById = async (id: string) => {
+export const getWeakAuraById = async (id: string): Promise<WeakAuraDB | null> => {
   const weakAura = await WeakAura.findById(id);
   return weakAura;
 };
 
-export const deleteWeakAura = async (id: string) => {
+export const deleteWeakAura = async (id: string): Promise<boolean> => {
   const success = await WeakAura.findByIdAndDelete(id);
-  return success;
+  return success !== null;
 };
 
-export const updateWeakAura = async (id: string, data: EditWeakAuraForm) => {
+export const updateWeakAura = async (id: string, data: EditWeakAuraForm): Promise<boolean> => {
   const success = await WeakAura.findByIdAndUpdate(id, data);
-  return success;
+  return success !== null;
 };
 
-export const getWeakAuraCount = async () => {
+export const getWeakAuraCount = async (): Promise<number> => {
   const count = await WeakAura.countDocuments();
   return count;
 };

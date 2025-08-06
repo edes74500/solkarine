@@ -1,7 +1,81 @@
 {
-  "eslint.workingDirectories": [
+  // 🌲 Masquer les dossiers inutiles dans l'explorateur
+  "files.exclude": {
+    // "**/.git": true,
+    "**/.DS_Store": true,
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/coverage": true,
+    "**/.next": true,
+    "**/logs": true,
+    "**/temp": true,
+    "**/tmp": true,
+    "**/.turbo": true,
+    "**/.cache": true
+  },
+  // 🚫 Évite de watcher les dossiers lourds pour améliorer les perfs
+  "files.watcherExclude": {
+    "**/.git/objects/**": true,
+    "**/.git/subtree-cache/**": true,
+    "**/node_modules/**": true,
+    "**/.next/**": true,
+    "**/dist/**": true,
+    "**/apps/**": true,
+    "**/packages/**": true,
+    "**/build/**": true,
+    "**/coverage/**": true,
+    "**/logs/**": true,
+    "**/temp/**": true,
+    "**/tmp/**": true,
+    "**/cache/**": true,
+    "**/img/**": true,
+    "**/.turbo/**": true,
+    "**/images/**": true,
+    "**/public/**": true
+  },
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/dist": true,
+    "**/build": true,
+    "**/.next": true,
+    "**/.turbo": true,
+    "**/coverage": true,
+    "**/.cache": true
+  },
+
+  // 🧪 Intégration propre avec Jest (si tu utilises Vitest, on peut adapter)
+  "jest.virtualFolders": [
     {
-      "mode": "auto"
+      "name": "spec-tests",
+      "jestCommandLine": "npm run test:spec --",
+      "runMode": "on-demand"
+    },
+    {
+      "name": "integration-tests",
+      "jestCommandLine": "npm run test:int --",
+      "runMode": "on-demand"
+    },
+    {
+      "name": "e2e-tests",
+      "jestCommandLine": "npm run test:e2e --",
+      "runMode": "on-demand"
     }
-  ]
+  ],
+
+  // 🧠 TypeScript : permet à l'auto-import de fonctionner dans les imports locaux (monorepo)
+  "typescript.preferences.importModuleSpecifier": "non-relative",
+
+  // 🧹 ESLint & Prettier
+  "editor.formatOnSave": true,
+  "editor.codeActionsOnSave": {
+    "source.fixAll": "always",
+    "source.fixAll.eslint": "always"
+  },
+
+  // 🎨 Tailwind CSS IntelliSense (si utilisé)
+  "tailwindCSS.includeLanguages": {
+    "typescript": "html",
+    "typescriptreact": "html"
+  }
 }

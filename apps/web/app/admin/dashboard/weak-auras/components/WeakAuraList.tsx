@@ -3,8 +3,8 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { WeakAuraClient } from "@repo/types";
 import { useState } from "react";
+import { WeakAuraFilter } from "../../../../../components/weakAuras/WeakAuraFilter";
 import { WeakAuraCard } from "./WeakAuraCard";
-import { WeakAuraFilter } from "./WeakAuraFilter";
 
 interface WeakAuraListProps {
   weakAuras: WeakAuraClient[];

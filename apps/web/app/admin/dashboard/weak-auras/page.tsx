@@ -1,8 +1,10 @@
 "use client";
 
+import { ErrorCard } from "@/components/errorCards/ErrorCard";
+import { LoadingSpinner } from "@/components/spinners/LoadingSpinner";
 import { useGetAllWeakAurasQuery } from "@/redux/api/weakAuras.apiSlice";
 import { useState } from "react";
-import { AddWeakAuraDialog, ErrorCard, InfoAlert, LoadingSpinner, WeakAuraList } from "./components";
+import { AddWeakAuraDialog, InfoAlert, WeakAuraList } from "./components";
 
 export default function WeakAurasPage() {
   const [successData, setSuccessData] = useState<any>(null);

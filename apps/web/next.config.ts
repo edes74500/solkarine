@@ -29,6 +29,18 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "wago.io",
       },
+      {
+        protocol: "https",
+        hostname: "www.curseforge.com",
+      },
+      {
+        protocol: "https",
+        hostname: "media.forgecdn.net",
+      },
+      {
+        protocol: "https",
+        hostname: "**", // Wildcard: tous les domaines
+      },
     ],
   },
 };

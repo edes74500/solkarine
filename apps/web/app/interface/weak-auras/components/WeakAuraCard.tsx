@@ -4,7 +4,8 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { WeakAuraClient } from "@repo/types/dist";
+import { frontendImageLink } from "@repo/constants";
+import { WeakAuraClient } from "@repo/types";
 import { formatDistanceToNow } from "date-fns";
 import { fr } from "date-fns/locale";
 import { HelpCircle } from "lucide-react";
@@ -16,12 +17,14 @@ interface WeakAuraCardProps {
 }
 
 export function WeakAuraCard({ weakAura }: WeakAuraCardProps) {
+  const fallbackImage = frontendImageLink.fallbackWA;
+
   return (
     <Card className="max-w-2xl !p-0 relative">
       <div className="flex flex-col md:flex-row">
         <div className="relative h-48 md:h-auto md:w-1/3 rounded-l-lg overflow-hidden">
           <Image
-            src={weakAura.image.includes("media.wago.io") ? weakAura.image : "/img/fallbackWA.png"}
+            src={weakAura.image.includes("media.wago.io") ? weakAura.image : fallbackImage}
             alt={weakAura.title}
             fill
             className="object-cover"

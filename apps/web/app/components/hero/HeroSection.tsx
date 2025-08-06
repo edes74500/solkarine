@@ -1,15 +1,17 @@
 import { Button } from "@/components/ui/button";
+import { frontendImageLink } from "@repo/constants";
 import Image from "next/image";
 import { FaDiscord, FaTwitch, FaYoutube } from "react-icons/fa";
 
 export default function HeroSection() {
+  const solkarineImage = frontendImageLink.solkarine;
   return (
     <section className="flex flex-col gap-8 items-center w-full items-center justify-center">
       <div className="flex flex-col md:flex-row gap-8 items-center min-h-[50vh]">
         {/* image */}
         <div className="relative w-full md:w-1/3 aspect-square">
           <Image
-            src="/img/solka.avif"
+            src={solkarineImage}
             alt="Solkarine"
             fill
             className="object-cover rounded-2xl shadow-lg border border-secondary/20"

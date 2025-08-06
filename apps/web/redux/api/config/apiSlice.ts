@@ -7,5 +7,5 @@ export const apiSlice = createApi({
   endpoints: () => ({
     // You can define some common endpoints here if needed
   }),
-  tagTypes: ["Dungeons", "WeakAuras"],
+  tagTypes: ["Dungeons", "WeakAuras", "Addons", "Elvui"],
 });

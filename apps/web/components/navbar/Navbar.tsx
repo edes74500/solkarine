@@ -95,6 +95,7 @@ export function Navbar() {
                       {[
                         { href: "/interface/addons", label: "Addons" },
                         { href: "/interface/weak-auras", label: "Weak Auras" },
+                        { href: "/interface/addons-profiles", label: "Profils d'addons" },
                         // { href: "/resume", label: "Résumé" },
                       ].map(({ href, label }) => {
                         const isActive = pathname === href;

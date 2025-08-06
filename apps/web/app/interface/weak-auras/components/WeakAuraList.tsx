@@ -1,7 +1,7 @@
 "use client";
 
-import { WeakAuraFilter } from "@/app/admin/dashboard/weak-auras/components/WeakAuraFilter";
 import { WeakAuraCard } from "@/app/interface/weak-auras/components/WeakAuraCard";
+import { WeakAuraFilter } from "@/components/weakAuras/WeakAuraFilter";
 import { WeakAuraClient } from "@repo/types/dist";
 import { useState } from "react";
 

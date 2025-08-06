@@ -6,7 +6,7 @@ import { cn } from "@/lib/utils";
 import { WEAK_AURA_IMAGE_SOURCE, WEAK_AURA_TAGS } from "@repo/constants";
 import { WeakAuraClient } from "@repo/types";
 import { X } from "lucide-react";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface WeakAuraFilterProps {
   weakAuras: WeakAuraClient[];
@@ -34,7 +34,7 @@ export function WeakAuraFilter({ weakAuras, onFilterChange }: WeakAuraFilterProp
   };
 
   return (
-    <div className="flex flex-wrap gap-2 rounded-lg shadow-sm">
+    <div className="flex flex-wrap gap-2">
       {WEAK_AURA_TAGS.map((tag) => {
         const tagCount = weakAuras.filter((weakAura) => weakAura.tags?.includes(tag)).length;
         return (
@@ -76,4 +76,4 @@ export function WeakAuraFilter({ weakAuras, onFilterChange }: WeakAuraFilterProp
       })}
     </div>
   );
-} 
+}

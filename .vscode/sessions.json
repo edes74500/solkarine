@@ -1,0 +1,60 @@
+{
+  "$schema": "https://cdn.statically.io/gh/nguyenngoclongdev/cdn/main/schema/v11/terminal-keeper.json",
+  "theme": "chaos",
+  "active": "saved-session",
+  "activateOnStartup": true,
+  "keepExistingTerminals": false,
+  "sessions": {
+    "default": [
+      {
+        "name": "hello",
+        "autoExecuteCommands": true,
+        "icon": "person",
+        "color": "terminal.ansiGreen",
+        "commands": [
+          "echo hello"
+        ]
+      }
+    ],
+    "saved-session": [
+      [
+        {
+          "name": "Solkarine",
+          "autoExecuteCommands": false,
+          "icon": "person",
+          "color": "terminal.ansiGreen",
+          "commands": [
+            "cd C:\\Users\\klein\\Desktop\\code\\projets\\solkarine"
+          ]
+        },
+        {
+          "name": "Web",
+          "autoExecuteCommands": true,
+          "icon": "person",
+          "color": "terminal.ansiGreen",
+          "commands": [
+            "cd C:\\Users\\klein\\Desktop\\code\\projets\\solkarine\\apps\\web; pnpm run dev"
+          ]
+        },
+        {
+          "name": "Backend",
+          "color": "terminal.ansiBrightYellow",
+          "autoExecuteCommands": true,
+          "icon": "wrench",
+          "commands": [
+            "cd C:\\Users\\klein\\Desktop\\code\\projets\\solkarine\\apps\\backend; pnpm run dev"
+          ]
+        },
+        {
+          "name": "Package",
+          "autoExecuteCommands": true,
+          "icon": "wrench",
+          "color": "terminal.ansiBlue",
+          "commands": [
+            "cd C:\\Users\\klein\\Desktop\\code\\projets\\solkarine; pnpm run dev:p"
+          ]
+        }
+      ]
+    ]
+  }
+}
