@@ -1,6 +1,6 @@
 "use client";
 
-import { WeakAuraCard } from "@/app/interface/weak-auras/components/WeakAuraCard";
+import { WeakAuraCard } from "@/components/weakAuras/WeakAuraCard";
 import { WeakAuraFilter } from "@/components/weakAuras/WeakAuraFilter";
 import { WeakAuraClient } from "@repo/types/dist";
 import { useState } from "react";
@@ -15,7 +15,7 @@ export function WeakAuraList({ weakAuras }: WeakAuraListProps) {
   return (
     <div className="flex flex-col gap-4 space-y-10">
       <WeakAuraFilter weakAuras={weakAuras} onFilterChange={setFilteredWeakAuras} />
-      <div className="flex flex-col gap-4">
+      <div className="flex flex-col gap-4 max-w-2xl">
         {filteredWeakAuras
           .slice()
           .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())

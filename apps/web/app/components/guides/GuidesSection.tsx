@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { frontendImageLink } from "@repo/constants";
+import { Button } from "@repo/ui/components/button";
 import { ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";

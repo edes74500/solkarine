@@ -1,19 +1,23 @@
 "use client";
 
 import { ThemeSwapper } from "@/components/navbar/ThemeSwapper";
-import { Button } from "@/components/ui/button";
-import { Separator } from "@/components/ui/separator";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { cn } from "@/lib/utils";
+import { Button } from "@repo/ui/components/button";
+import { Separator } from "@repo/ui/components/separator";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@repo/ui/components/tooltip";
 import {
+  CalendarClock,
+  Castle,
+  Clock,
   ExternalLink,
   HelpCircle,
   LayoutDashboard,
+  Lightbulb,
+  Map,
   Menu,
   Monitor,
   Package,
-  Settings,
-  Shield,
+  Sparkles,
   Users,
   X,
   Zap,
@@ -36,8 +40,8 @@ function NavItem({ icon, title, href, isActive, isCollapsed, className }: NavIte
     <Button
       variant="ghost"
       className={cn(
-        "w-full justify-start gap-2 px-3",
-        isActive ? "bg-foreground text-background hover:!bg-foreground/80 hover:text-background" : "!hover:bg-muted/50",
+        "w-full justify-start gap-2 px-3 hover:bg-muted-foreground/30 dark:hover:bg-muted-foreground/50",
+        isActive ? "bg-muted-foreground text-background hover:!bg-muted-foreground/80 hover:text-background" : "",
         isCollapsed ? "h-12 px-3" : "h-10 px-3",
         className,
       )}
@@ -93,19 +97,20 @@ export default function DashboardNavbar() {
         <Separator className="my-2" />
 
         <NavItem
-          icon={<Shield size={20} />}
-          title="Donjons"
-          href="/admin/dashboard/dungeons"
-          isActive={pathname === "/admin/dashboard/dungeons"}
-          isCollapsed={isCollapsed}
-        />
-        <NavItem
           icon={<Users size={20} />}
           title="Personnages"
           href="/admin/dashboard/characters"
           isActive={pathname === "/admin/dashboard/characters"}
           isCollapsed={isCollapsed}
         />
+        <NavItem
+          icon={<Clock size={20} />}
+          title="Horaires de stream"
+          href="/admin/dashboard/stream-schedule"
+          isActive={pathname === "/admin/dashboard/stream-schedule"}
+          isCollapsed={isCollapsed}
+        />
+        <Separator className="my-2" />
         {/* 
         <NavItem
           icon={<Settings size={20} />}
@@ -144,6 +149,44 @@ export default function DashboardNavbar() {
         />
         <Separator className="my-2" />
         <NavItem
+          icon={<Castle size={20} />}
+          title="Donjons"
+          href="/admin/dashboard/dungeons"
+          isActive={pathname === "/admin/dashboard/dungeons"}
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
+          icon={<Map size={20} />}
+          title="Routes"
+          href="/admin/dashboard/routes"
+          isActive={pathname === "/admin/dashboard/routes"}
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
+          icon={<Sparkles size={20} />}
+          title="Talents"
+          href="/admin/dashboard/talents"
+          isActive={pathname === "/admin/dashboard/talents"}
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
+          icon={<Lightbulb size={20} />}
+          title="Tips"
+          href="/admin/dashboard/tips"
+          isActive={pathname === "/admin/dashboard/tips"}
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
+          icon={<CalendarClock size={20} />}
+          title="Changer de saison"
+          href="/admin/dashboard/change-season"
+          isActive={pathname === "/admin/dashboard/change-season"}
+          isCollapsed={isCollapsed}
+          className="bg-destructive text-white hover:!bg-destructive/80 hover:text-white"
+        />
+        <Separator className="my-2" />
+
+        <NavItem
           icon={<Users size={20} />}
           title="Utilisateurs"
           href="/admin/dashboard/users-management"
@@ -155,14 +198,6 @@ export default function DashboardNavbar() {
           title="Aide"
           href="/admin/dashboard/help"
           isActive={pathname === "/admin/dashboard/help"}
-          isCollapsed={isCollapsed}
-        />
-        <Separator className="my-2" />
-        <NavItem
-          icon={<Settings size={20} />}
-          title="Changer de saison"
-          href="/admin/dashboard/change-season"
-          isActive={pathname === "/admin/dashboard/change-season"}
           isCollapsed={isCollapsed}
         />
       </div>

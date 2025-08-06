@@ -68,6 +68,8 @@ export const updateWeakAuraController = async (req: Request, res: Response) => {
 };
 
 export const getWeakAuraCountController = async (req: Request, res: Response) => {
+  console.log("getWeakAuraCountController");
   const count = await getWeakAuraCount();
+  console.log("count", count);
   res.json({ success: true, data: count });
 };

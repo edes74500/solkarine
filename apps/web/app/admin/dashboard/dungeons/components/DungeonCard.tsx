@@ -1,7 +1,7 @@
 "use client";
 
-import { Card, CardContent, CardFooter, CardHeader } from "@/components/ui/card";
 import { DungeonClient } from "@repo/types";
+import { Card, CardContent, CardFooter, CardHeader } from "@repo/ui/components/card";
 import Image from "next/image";
 import EditDungeon from "./EditDungeon";
 

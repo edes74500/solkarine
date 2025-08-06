@@ -1,9 +1,9 @@
 import { MainFooter } from "@/components/footer/MainFooter";
 import { Navbar } from "@/components/navbar/Navbar";
 import { ThemeProviderClient } from "@/components/theme/ThemeProvider";
-import { Toaster } from "@/components/ui/sonner";
 import { StoreProvider } from "@/redux/StoreProvider";
 import { frontendImageLink } from "@repo/constants";
+import { Toaster } from "@repo/ui/components/sonner";
 import "@repo/ui/styles/globals.css";
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";

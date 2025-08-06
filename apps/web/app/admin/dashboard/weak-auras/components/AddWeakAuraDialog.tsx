@@ -1,8 +1,12 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { useAddWeakAuraMutation, useGetWeakAuraScrapperMutation } from "@/redux/api/weakAuras.apiSlice";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { WEAK_AURA_TAGS } from "@repo/constants";
+import { CreateWeakAuraForm, ScrapingResult, createWeakAuraSchema } from "@repo/types";
+import { Badge } from "@repo/ui/components/badge";
+import { Button } from "@repo/ui/components/button";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@repo/ui/components/card";
 import {
   Dialog,
   DialogContent,
@@ -11,14 +15,10 @@ import {
   DialogHeader,
   DialogTitle,
   DialogTrigger,
-} from "@/components/ui/dialog";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useAddWeakAuraMutation, useGetWeakAuraScrapperMutation } from "@/redux/api/weakAuras.apiSlice";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { WEAK_AURA_TAGS } from "@repo/constants";
-import { CreateWeakAuraForm, ScrapingResult, createWeakAuraSchema } from "@repo/types";
+} from "@repo/ui/components/dialog";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@repo/ui/components/form";
+import { Input } from "@repo/ui/components/input";
+import { Textarea } from "@repo/ui/components/textarea";
 import { Loader2, Plus } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";

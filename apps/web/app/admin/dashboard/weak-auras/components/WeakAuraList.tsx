@@ -1,10 +1,15 @@
 "use client";
 
-import { Card, CardContent } from "@/components/ui/card";
+import { WeakAuraCard } from "@/components/weakAuras/WeakAuraCard";
+import { useDeleteWeakAuraMutation } from "@/redux/api/weakAuras.apiSlice";
 import { WeakAuraClient } from "@repo/types";
+import { Button } from "@repo/ui/components/button";
+import { Card, CardContent } from "@repo/ui/components/card";
+import { Trash2 } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 import { WeakAuraFilter } from "../../../../../components/weakAuras/WeakAuraFilter";
-import { WeakAuraCard } from "./WeakAuraCard";
+import { EditWeakAuraDialog } from "./EditWeakAuraDialog";
 
 interface WeakAuraListProps {
   weakAuras: WeakAuraClient[];
@@ -13,6 +18,24 @@ interface WeakAuraListProps {
 
 export function WeakAuraList({ weakAuras, onDelete }: WeakAuraListProps) {
   const [filteredWeakAuras, setFilteredWeakAuras] = useState<WeakAuraClient[]>(weakAuras);
+  const [deleteWeakAura, { isLoading: isDeleting }] = useDeleteWeakAuraMutation();
+
+  const handleDelete = async (id: string) => {
+    try {
+      await deleteWeakAura({ id });
+      toast.success("WeakAura supprimée avec succès");
+      if (onDelete) {
+        onDelete(id);
+      }
+    } catch (error) {
+      console.error("Erreur lors de la suppression de la WeakAura:", error);
+      toast.error("Erreur lors de la suppression de la WeakAura");
+    }
+  };
+
+  const handleEditSuccess = (data: any) => {
+    console.log("WeakAura modifiée avec succès:", data);
+  };
 
   if (!weakAuras || weakAuras.length === 0) {
     return (
@@ -33,7 +56,21 @@ export function WeakAuraList({ weakAuras, onDelete }: WeakAuraListProps) {
           .slice()
           .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
           .map((weakAura) => (
-            <WeakAuraCard key={weakAura.id} weakAura={weakAura} onDelete={onDelete} />
+            <div key={weakAura.id} className="flex flex-col gap-4 relative max-w-2xl">
+              <WeakAuraCard weakAura={weakAura} />
+              <div className="absolute top-2 -right-4 flex flex-col gap-2">
+                <Button
+                  variant="destructive"
+                  size="sm"
+                  className="z-10 h-8 w-8 p-0"
+                  onClick={() => handleDelete(weakAura.id)}
+                  disabled={isDeleting}
+                >
+                  <Trash2 className="h-4 w-4" />
+                </Button>
+                <EditWeakAuraDialog weakAura={weakAura} onSuccess={handleEditSuccess} />
+              </div>
+            </div>
           ))}
       </div>
     </div>

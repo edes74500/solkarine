@@ -1,8 +1,8 @@
 "use client";
 
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
 import { dungeonsByShortName } from "@/data/dungeons";
 import { talents, talentsPerClassPerDungeon } from "@/data/talents";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@repo/ui/components/card";
 import Image from "next/image";
 import { useState } from "react";
 

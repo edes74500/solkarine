@@ -1,4 +1,4 @@
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "@repo/ui/components/alert";
 import { InfoIcon } from "lucide-react";
 import DungeonList from "./components/DungeonList";
 

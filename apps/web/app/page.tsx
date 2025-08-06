@@ -3,7 +3,7 @@ import GuidesSection from "@/app/components/guides/GuidesSection";
 import HeroSection from "@/app/components/hero/HeroSection";
 import TwitchSection from "@/app/components/twitch/TwitchSection";
 import ContentWidthWrapper from "@/components/ContentWidthWrapper";
-import { Separator } from "@/components/ui/separator";
+import { Separator } from "@repo/ui/components/separator";
 
 export default async function Home() {
   let character = null;
@@ -18,6 +18,7 @@ export default async function Home() {
     <ContentWidthWrapper>
       <div className="font-sans flex flex-col gap-8 max-w-full ">
         {/* Hero Section */}
+
         <HeroSection />
 
         <Separator />

@@ -1,8 +1,8 @@
 "use client";
 
-import { Button } from "@/components/ui/button";
 import { useGetDungeonsQuery } from "@/redux/api/dungeons.apiSlice";
 import { DungeonClient } from "@repo/types";
+import { Button } from "@repo/ui/components/button";
 import { toast } from "sonner";
 import DungeonCard from "./DungeonCard";
 

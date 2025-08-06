@@ -1,4 +1,4 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@repo/ui/components/card";
 
 interface SuccessCardProps {
   data: {
@@ -13,9 +13,7 @@ export function SuccessCard({ data }: SuccessCardProps) {
       <CardHeader>
         <CardTitle>{data.title}</CardTitle>
       </CardHeader>
-      <CardContent>
-        {data.description && <p>{data.description}</p>}
-      </CardContent>
+      <CardContent>{data.description && <p>{data.description}</p>}</CardContent>
     </Card>
   );
-} 
+}

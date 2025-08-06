@@ -1,4 +1,8 @@
-import { Badge } from "@/components/ui/badge";
+import { useCreateAddonMutation } from "@/redux/api/addon.apiSlice";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { CreateAddonForm, createAddonSchema, CurseForgeMod } from "@repo/types";
+import { Badge } from "@repo/ui/components/badge";
+import { Button } from "@repo/ui/components/button";
 import {
   Dialog,
   DialogContent,
@@ -6,14 +10,10 @@ import {
   DialogFooter,
   DialogHeader,
   DialogTitle,
-} from "@/components/ui/dialog";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@/components/ui/form";
-import { Input } from "@/components/ui/input";
-import { Textarea } from "@/components/ui/textarea";
-import { useCreateAddonMutation } from "@/redux/api/addon.apiSlice";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { CreateAddonForm, createAddonSchema, CurseForgeMod } from "@repo/types/dist";
-import { Button } from "@repo/ui/components/button";
+} from "@repo/ui/components/dialog";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@repo/ui/components/form";
+import { Input } from "@repo/ui/components/input";
+import { Textarea } from "@repo/ui/components/textarea";
 import { Loader2, Plus, X } from "lucide-react";
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -59,12 +59,17 @@ export function AddAddonDialog({
   // Réinitialiser le formulaire quand un addon est sélectionné
   React.useEffect(() => {
     if (selectedAddon && dialogOpen) {
+      // Éliminer les doublons dans les tags
+      const uniqueTags = selectedAddon.categories
+        .map((category) => category.name)
+        .filter((value, index, self) => self.indexOf(value) === index);
+
       form.reset({
         name: selectedAddon.name,
         description: selectedAddon.summary,
         imageUrl: selectedAddon.logo?.url || "https://www.curseforge.com/images/flame.svg",
         addonUrl: selectedAddon.links.websiteUrl,
-        tags: selectedAddon.categories.map((category) => category.name),
+        tags: uniqueTags,
       });
     }
   }, [selectedAddon, dialogOpen, form]);

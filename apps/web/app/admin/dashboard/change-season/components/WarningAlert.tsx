@@ -1,6 +1,6 @@
 "use client";
 
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
+import { Alert, AlertDescription, AlertTitle } from "@repo/ui/components/alert";
 import { AlertCircle } from "lucide-react";
 
 export function WarningAlert() {
@@ -14,4 +14,4 @@ export function WarningAlert() {
       </AlertDescription>
     </Alert>
   );
-} 
+}

@@ -23,7 +23,7 @@ export function AddAddonPopover({ isOpen, isLoading, addons, onAddonSelect, sear
   };
 
   return (
-    <div className="border rounded-md shadow-md w-full max-w-4xl max-h-[400px] overflow-auto">
+    <div className="border bg-card rounded-md shadow-md w-full max-w-4xl max-h-[400px] overflow-auto">
       {isLoading ? (
         <div className="flex items-center justify-center py-6">
           <Loader2 className="h-6 w-6 animate-spin text-primary" />

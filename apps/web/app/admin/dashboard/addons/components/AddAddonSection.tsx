@@ -1,9 +1,9 @@
 "use client";
 
-import { Alert, AlertDescription, AlertTitle } from "@/components/ui/alert";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { CurseForgeApiResponse, CurseForgeMod } from "@repo/types";
+import { Alert, AlertDescription, AlertTitle } from "@repo/ui/components/alert";
+import { Button } from "@repo/ui/components/button";
+import { Input } from "@repo/ui/components/input";
 import debounce from "lodash/debounce";
 import { InfoIcon, Search, X } from "lucide-react";
 import { useCallback, useRef, useState } from "react";
@@ -103,7 +103,7 @@ export function AddAddonSection() {
           placeholder="Rechercher un addon sur CurseForge..."
           value={searchTerm}
           onChange={(e) => handleSearchChange(e.target.value)}
-          className="flex-1 pl-10"
+          className="flex-1 pl-10 !ring-primary !ring-2"
           onFocus={() => searchTerm.length >= 3 && setPopoverOpen(true)}
         />
         {searchTerm && (

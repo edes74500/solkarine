@@ -1,5 +1,5 @@
 import { StatisticDash } from "@/app/admin/dashboard/components/StatisticDash";
-import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@repo/ui/components/card";
 import { HelpCircle, LayoutDashboard, Package, Settings, Shield, Users, Zap } from "lucide-react";
 import Link from "next/link";
 

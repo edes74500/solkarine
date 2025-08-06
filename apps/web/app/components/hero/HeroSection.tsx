@@ -1,5 +1,5 @@
-import { Button } from "@/components/ui/button";
 import { frontendImageLink } from "@repo/constants";
+import { Button } from "@repo/ui/components/button";
 import Image from "next/image";
 import { FaDiscord, FaTwitch, FaYoutube } from "react-icons/fa";
 

@@ -1,5 +1,6 @@
 "use client";
 
+import { Season } from "@repo/types";
 import {
   AlertDialog,
   AlertDialogAction,
@@ -9,9 +10,7 @@ import {
   AlertDialogFooter,
   AlertDialogHeader,
   AlertDialogTitle,
-} from "@/components/ui/alert-dialog";
-import { Button } from "@/components/ui/button";
-import { Season } from "@repo/types";
+} from "@repo/ui/components/alert-dialog";
 
 interface ChangeSeasonDialogProps {
   isOpen: boolean;
@@ -21,13 +20,7 @@ interface ChangeSeasonDialogProps {
   isLoading: boolean;
 }
 
-export function ChangeSeasonDialog({
-  isOpen,
-  onClose,
-  onConfirm,
-  selectedSeason,
-  isLoading,
-}: ChangeSeasonDialogProps) {
+export function ChangeSeasonDialog({ isOpen, onClose, onConfirm, selectedSeason, isLoading }: ChangeSeasonDialogProps) {
   return (
     <AlertDialog open={isOpen} onOpenChange={onClose}>
       <AlertDialogContent>
@@ -44,11 +37,15 @@ export function ChangeSeasonDialog({
         </AlertDialogHeader>
         <AlertDialogFooter>
           <AlertDialogCancel>Annuler</AlertDialogCancel>
-          <AlertDialogAction onClick={onConfirm} disabled={isLoading} className="bg-destructive text-destructive-foreground hover:bg-destructive/90">
+          <AlertDialogAction
+            onClick={onConfirm}
+            disabled={isLoading}
+            className="bg-destructive text-destructive-foreground hover:bg-destructive/90"
+          >
             {isLoading ? "En cours..." : "Confirmer le changement"}
           </AlertDialogAction>
         </AlertDialogFooter>
       </AlertDialogContent>
     </AlertDialog>
   );
-} 
+}

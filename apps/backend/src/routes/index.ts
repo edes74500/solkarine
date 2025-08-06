@@ -2,6 +2,7 @@ import { Router } from "express";
 import addonRoutes from "./addon.route";
 import addonProfilesRoutes from "./addonProfile.route";
 import changeSeasonRoutes from "./changeSeason.route";
+import characterRoutes from "./character.route";
 import dungeonRoutes from "./dungeon.route";
 import weakAuraRoutes from "./weakAuras.route";
 
@@ -15,5 +16,6 @@ router.use("/change-season", changeSeasonRoutes);
 router.use("/weak-aura", weakAuraRoutes);
 router.use("/addon", addonRoutes);
 router.use("/addon-profiles", addonProfilesRoutes);
+router.use("/character", characterRoutes);
 
 export default router;

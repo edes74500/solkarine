@@ -1,10 +1,10 @@
 "use client";
 
-import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
-import { Badge } from "@/components/ui/badge";
 import { cn } from "@/lib/utils";
 import { WEAK_AURA_IMAGE_SOURCE, WEAK_AURA_TAGS } from "@repo/constants";
 import { WeakAuraClient } from "@repo/types";
+import { Avatar, AvatarFallback, AvatarImage } from "@repo/ui/components/avatar";
+import { Badge } from "@repo/ui/components/badge";
 import { X } from "lucide-react";
 import { useEffect, useState } from "react";
 

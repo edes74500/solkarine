@@ -1,69 +1,33 @@
 "use client";
 
-import { Badge } from "@/components/ui/badge";
-import { Button } from "@/components/ui/button";
-import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { useDeleteWeakAuraMutation } from "@/redux/api/weakAuras.apiSlice";
 import { frontendImageLink } from "@repo/constants";
-import { WeakAuraClient } from "@repo/types/dist";
+import { WeakAuraClient } from "@repo/types";
+import { Badge } from "@repo/ui/components/badge";
+import { Button } from "@repo/ui/components/button";
+import { Card, CardDescription, CardHeader, CardTitle } from "@repo/ui/components/card";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@repo/ui/components/tooltip";
 import { formatDistanceToNow } from "date-fns";
 import { fr } from "date-fns/locale";
-import { HelpCircle, Trash2 } from "lucide-react";
+import { HelpCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { toast } from "sonner";
-import { EditWeakAuraDialog } from "./EditWeakAuraDialog";
 
 interface WeakAuraCardProps {
   weakAura: WeakAuraClient;
-  onDelete?: (id: string) => void;
 }
 
-export function WeakAuraCard({ weakAura, onDelete }: WeakAuraCardProps) {
-  const [deleteWeakAura] = useDeleteWeakAuraMutation();
-  const handleDelete = async () => {
-    console.log(`Suppression de la WeakAura: ${weakAura.id} - ${weakAura.title}`);
-    try {
-      await deleteWeakAura({ id: weakAura.id });
-      if (onDelete) {
-        onDelete(weakAura.id);
-      }
-    } catch (error) {
-      console.error("Erreur lors de la suppression de la WeakAura:", error);
-      toast.error("Erreur lors de la suppression de la WeakAura");
-    }
-  };
-
-  const handleEdit = () => {
-    console.log(`Edition de la WeakAura: ${weakAura.id} - ${weakAura.title}`);
-  };
-
-  const handleEditSuccess = (data: any) => {
-    console.log("WeakAura modifiée avec succès:", data);
-    // toast.success("WeakAura modifiée avec succès");
-    // Ici vous pourriez rafraîchir la liste ou mettre à jour l'état local
-  };
-
+export function WeakAuraCard({ weakAura }: WeakAuraCardProps) {
   const fallbackImage = frontendImageLink.fallbackWA;
 
   return (
-    <Card className="max-w-2xl !p-0 relative">
-      {/* Bouton de suppression en haut à droite */}
-      <Button
-        variant="destructive"
-        size="sm"
-        className="absolute top-2 -right-4 z-10 h-8 w-8 p-0"
-        onClick={handleDelete}
-      >
-        <Trash2 className="h-4 w-4" />
-      </Button>
-      <div className="absolute top-12 -right-4 z-10 bg-card">
-        <EditWeakAuraDialog weakAura={weakAura} onSuccess={handleEditSuccess} />
-      </div>
-
-      <div className="flex flex-col md:flex-row">
-        <div className="relative h-48 md:h-auto md:w-1/3 rounded-l-lg overflow-hidden">
+    <Card className="w-full !p-0 relative">
+      <div className="flex flex-col md:flex-row min-h-40">
+        <div
+          className="relative h-48 md:h-auto md:w-1/3 rounded-l-lg overflow-hidden cursor-pointer"
+          onClick={() => {
+            window.open(weakAura.url, "_blank");
+          }}
+        >
           <Image
             src={weakAura.image.includes("media.wago.io") ? weakAura.image : fallbackImage}
             alt={weakAura.title}
@@ -84,7 +48,9 @@ export function WeakAuraCard({ weakAura, onDelete }: WeakAuraCardProps) {
           <CardHeader className="flex flex-row items-center justify-between">
             <div>
               <div className="flex justify-between items-center">
-                <CardTitle className="line-clamp-1">{weakAura.title}</CardTitle>
+                <Link href={weakAura.url} target="_blank" rel="noopener noreferrer">
+                  <CardTitle className="line-clamp-1">{weakAura.title}</CardTitle>
+                </Link>
                 {weakAura.info && (
                   <TooltipProvider>
                     <Tooltip>
@@ -117,13 +83,13 @@ export function WeakAuraCard({ weakAura, onDelete }: WeakAuraCardProps) {
             </div>
           )}
 
-          <CardFooter className="flex justify-end">
+          {/* <CardFooter className="flex justify-end">
             <Button asChild className="w-fit">
               <Link href={weakAura.url} target="_blank" rel="noopener noreferrer">
                 Voir la WeakAura
               </Link>
             </Button>
-          </CardFooter>
+          </CardFooter> */}
         </div>
       </div>
     </Card>

@@ -21,6 +21,7 @@ import { cn } from "@/lib/utils";
 //   SheetTitle,
 //   SheetTrigger,
 // } from "@repo/ui";
+import { Button } from "@repo/ui/components/button";
 import {
   NavigationMenu,
   NavigationMenuContent,
@@ -29,11 +30,17 @@ import {
   NavigationMenuList,
   NavigationMenuTrigger,
   navigationMenuTriggerStyle,
-} from "@/components/ui/navigation-menu";
-import { Popover, PopoverContent, PopoverTrigger } from "@/components/ui/popover";
-import { Separator } from "@/components/ui/separator";
-import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import { Button } from "@repo/ui/components/button";
+} from "@repo/ui/components/navigation-menu";
+import { Popover, PopoverContent, PopoverTrigger } from "@repo/ui/components/popover";
+import { Separator } from "@repo/ui/components/separator";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@repo/ui/components/sheet";
 import { Menu, Settings } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";

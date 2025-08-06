@@ -1,9 +1,9 @@
 "use client";
 
-import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
-import { Button } from "@/components/ui/button";
-import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Season } from "@repo/types";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@repo/ui/components/accordion";
+import { Button } from "@repo/ui/components/button";
+import { Card, CardContent, CardFooter, CardHeader, CardTitle } from "@repo/ui/components/card";
 import { X } from "lucide-react";
 import Image from "next/image";
 

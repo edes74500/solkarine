@@ -7,8 +7,28 @@ export const getAllAddon = async (): Promise<AddonDB[]> => {
 };
 
 export const createAddon = async (addon: CreateAddonForm): Promise<AddonDB> => {
-  const newAddon = await Addon.create(addon);
-  return newAddon;
+  // Vérifier si un addon avec cette URL existe déjà
+  const existingAddon = await Addon.findOne({ addonUrl: addon.addonUrl });
+
+  if (existingAddon) {
+    // Mettre à jour l'addon existant
+    const updatedAddon = await Addon.findByIdAndUpdate(
+      existingAddon._id,
+      {
+        name: addon.name,
+        description: addon.description,
+        imageUrl: addon.imageUrl,
+        info: addon.info,
+        tags: addon.tags,
+      },
+      { new: true },
+    );
+    return updatedAddon as AddonDB;
+  } else {
+    // Créer un nouvel addon
+    const newAddon = await Addon.create(addon);
+    return newAddon;
+  }
 };
 
 export const deleteAddon = async (id: string): Promise<boolean> => {
