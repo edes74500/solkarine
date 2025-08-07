@@ -45,3 +45,9 @@ export const getAddonCount = async (): Promise<number> => {
   const count = await Addon.countDocuments();
   return count;
 };
+
+// export const getAllAddonsTags = async (): Promise<string[]> => {
+//   const tags = await Addon.distinct("tags");
+//   console.log(tags);
+//   return tags;
+// };

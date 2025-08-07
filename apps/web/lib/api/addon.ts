@@ -20,3 +20,22 @@ export async function getAllAddons(): Promise<{ success: boolean; data: AddonCli
     return { success: false, data: [] };
   }
 }
+
+export async function getAllAddonsTags(): Promise<{ success: boolean; data: string[] }> {
+  try {
+    const res = await fetch(`${baseUrl}/addon/tags`, {
+      cache: "no-store",
+      next: { tags: [`addon-getAllAddonsTags`] },
+    });
+
+    if (!res.ok) {
+      throw new Error(`HTTP error! status: ${res.status}`);
+    }
+
+    const data = await res.json();
+    return data;
+  } catch (error) {
+    console.error(error);
+    return { success: false, data: [] };
+  }
+}

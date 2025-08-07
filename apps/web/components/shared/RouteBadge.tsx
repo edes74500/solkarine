@@ -1,0 +1,67 @@
+"use client";
+
+import { cn } from "@/lib/utils";
+import { RouteDBWithDungeonPopulated } from "@repo/types/dist";
+import { Badge } from "@repo/ui/components/badge";
+import Image from "next/image";
+
+interface RouteBadgeProps {
+  dungeon: RouteDBWithDungeonPopulated["dungeon_id"];
+  setSelectedDungeon: (dungeon: string | null) => void;
+  selectedDungeon: string | null;
+  routes: RouteDBWithDungeonPopulated[];
+}
+
+export function RouteBadge({ dungeon, selectedDungeon, routes, setSelectedDungeon }: RouteBadgeProps) {
+  const isSelected = selectedDungeon === dungeon._id;
+  const routeCount = routes.filter((route) => route.dungeon_id._id === dungeon._id).length;
+
+  const handleClick = () => {
+    setSelectedDungeon(isSelected ? null : dungeon._id);
+  };
+
+  return (
+    <Badge
+      variant={isSelected ? "default" : "outline"}
+      className={cn(
+        "cursor-pointer px-4 py-1.5 flex items-center gap-2 text-sm font-medium rounded-md transition-all h-15 border-2 border-transparent w-full",
+        isSelected ? "bg-primary text-primary-foreground shadow-md border-primary" : "hover:bg-secondary",
+        "relative overflow-hidden",
+      )}
+      onClick={handleClick}
+    >
+      <div className="absolute inset-0 z-0">
+        <Image
+          src={dungeon.background_image_url}
+          alt={dungeon.short_name}
+          fill
+          className="object-cover"
+          style={{ filter: "brightness(1.2)" }}
+        />
+        <div className="absolute inset-0  dark:bg-black/30 z-0 w-full h-full"></div>
+      </div>
+      <div className="flex items-center justify-between w-full relative z-10">
+        <div></div>
+        <div className="uppercase text-white font-extrabold truncate bg-black/60 bg-blur-md px-10 rounded-md">
+          {dungeon.short_name}
+        </div>
+        <div
+          className={`text-xs ml-2 shrink-0 text-white bg-black/60 shrink-0 bg-blur-md p-1 rounded-full aspect-square`}
+        >
+          {routeCount}
+        </div>
+      </div>
+      {/* {isSelected ? (
+        <X
+          className="h-3.5 w-3.5 cursor-pointer relative z-10 text-white"
+          onClick={(e) => {
+            e.stopPropagation();
+            setSelectedDungeon(null);
+          }}
+        />
+      ) : (
+        <></>
+      )} */}
+    </Badge>
+  );
+}

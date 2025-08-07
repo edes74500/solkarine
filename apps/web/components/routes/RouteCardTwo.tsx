@@ -59,8 +59,13 @@ export function RouteCardTwo({ route, className = "" }: RouteCardProps) {
     setTimeout(() => setCopied(false), 2000);
   };
 
+  const formatDate = (dateString: string) => {
+    const date = new Date(dateString);
+    return `${date.getDate().toString().padStart(2, "0")}/${(date.getMonth() + 1).toString().padStart(2, "0")}/${date.getFullYear().toString().slice(-2)}`;
+  };
+
   return (
-    <Card className={`overflow-hidden transition-all duration-300 hover:shadow-lg ${className} w-full !p-0 !h-full`}>
+    <Card className={`overflow-hidden transition-all duration-300 hover:shadow-lg ${className} w-full !p-0`}>
       <div className="flex flex-row">
         <div className="relative w-1/3 shrink-0 aspect-video">
           {!imageError ? (
@@ -75,6 +80,9 @@ export function RouteCardTwo({ route, className = "" }: RouteCardProps) {
                 onError={() => setImageError(true)}
                 onClick={openImageViewer}
               />
+              <Badge className="absolute bottom-1 right-1 bg-black/70 text-white text-xs z-10">
+                {formatDate(route.updatedAt.toString())}
+              </Badge>
               {isViewerOpen && (
                 <ImageViewer
                   src={[route.image]}
@@ -91,6 +99,9 @@ export function RouteCardTwo({ route, className = "" }: RouteCardProps) {
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-gray-200 dark:bg-gray-800">
               <span className="text-gray-500 dark:text-gray-400">Image non disponible</span>
+              <Badge className="absolute bottom-1 right-1 bg-black/70 text-white text-xs">
+                {formatDate(route.updatedAt.toString())}
+              </Badge>
             </div>
           )}
         </div>

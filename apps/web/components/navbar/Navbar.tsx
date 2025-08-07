@@ -58,7 +58,7 @@ export function Navbar() {
   }
 
   return (
-    <nav className="z-50  mb-10 w-full bg-navbar px-5 rounded-full max-w-[1080px] mx-auto mx-5 mt-10">
+    <nav className="  mb-10 w-full bg-navbar px-5 rounded-full max-w-[1080px] mx-auto mx-5 mt-10">
       <div className="mx-auto  flex items-center justify-between h-16 w-full relative">
         <div className="flex items-center space-x-4 w-full">
           {/* Logo */}
@@ -66,7 +66,7 @@ export function Navbar() {
             <div className="relative">
               <Image src="/img/cat/cat_1_low.png" alt="Logo chat" width={70} height={70} />
             </div>
-            <span className="z-10 font-dyna-puff">Solkarine</span>
+            <span className=" font-dyna-puff">Solkarine</span>
           </Link>
         </div>
         <div className="flex items-center space-x-4 w-full justify-end">

@@ -72,16 +72,18 @@ export function RouteCard({ route, className = "" }: RouteCardProps) {
                 onClick={openImageViewer}
               />
               {isViewerOpen && (
-                <ImageViewer
-                  src={[route.image]}
-                  currentIndex={0}
-                  disableScroll={false}
-                  closeOnClickOutside={true}
-                  onClose={closeImageViewer}
-                  backgroundStyle={{
-                    backgroundColor: "rgba(0, 0, 0, 0.8)",
-                  }}
-                />
+                <div className="z-50">
+                  <ImageViewer
+                    src={[route.image]}
+                    currentIndex={0}
+                    disableScroll={false}
+                    closeOnClickOutside={true}
+                    onClose={closeImageViewer}
+                    backgroundStyle={{
+                      backgroundColor: "rgba(0, 0, 0, 0.8)",
+                    }}
+                  />
+                </div>
               )}
             </>
           ) : (

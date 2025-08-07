@@ -20,7 +20,9 @@ export const createAddonController = async (req: Request, res: Response) => {
   }
 
   const addon = await createAddon(parsedBody.data);
+  //* revalidate les tags
   await revalidateFetch("addon-getAllAddons");
+  await revalidateFetch("addon-getAllAddonsTags");
   res.status(201).json({ success: true, data: addon });
 };
 
@@ -35,7 +37,9 @@ export const updateAddonController = async (req: Request, res: Response) => {
   if (!success) {
     return res.status(404).json({ success: false, message: "Addon not found" });
   }
+  //* revalidate les tags
   await revalidateFetch("addon-getAllAddons");
+  await revalidateFetch("addon-getAllAddonsTags");
   res.status(200).json({ success: true, message: "Addon updated successfully" });
 };
 
@@ -45,7 +49,9 @@ export const deleteAddonController = async (req: Request, res: Response) => {
   if (!success) {
     return res.status(404).json({ success: false, message: "Addon not found" });
   }
+  //* revalidate les tags
   await revalidateFetch("addon-getAllAddons");
+  await revalidateFetch("addon-getAllAddonsTags");
   res.status(200).json({ success: true, message: "Addon deleted successfully" });
 };
 
@@ -53,3 +59,8 @@ export const getAddonCountController = async (req: Request, res: Response) => {
   const count = await getAddonCount();
   res.status(200).json({ success: true, data: count });
 };
+
+// export const getAllAddonsTagsController = async (req: Request, res: Response) => {
+//   const tags = await getAllAddonsTags();
+//   res.status(200).json({ success: true, data: tags });
+// };

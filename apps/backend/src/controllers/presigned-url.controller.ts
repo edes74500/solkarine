@@ -1,7 +1,9 @@
 import s3 from "@/config/s3Client.config";
 import { PutObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
+import dotenv from "dotenv";
 import { Request, Response } from "express";
+dotenv.config();
 
 export const generatePresignedUrl = async (req: Request, res: Response) => {
   // const userId = req.user?.userId || "";
@@ -14,6 +16,13 @@ export const generatePresignedUrl = async (req: Request, res: Response) => {
   //   return;
   // }
 
+  const bucketName = process.env.R2_BUCKET_NAME;
+  if (!bucketName) {
+    console.error("Bucket name is not defined.");
+    res.status(500).json({ error: "Bucket name is not defined." });
+    return;
+  }
+
   // Construction du chemin avec imageFolder optionnel
   let pathName = `uploads/`;
   if (imageFolder) {
@@ -23,7 +32,7 @@ export const generatePresignedUrl = async (req: Request, res: Response) => {
 
   try {
     const command = new PutObjectCommand({
-      Bucket: process.env.R2_BUCKET_NAME,
+      Bucket: bucketName,
       Key: pathName,
     });
 
