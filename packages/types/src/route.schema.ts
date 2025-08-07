@@ -23,8 +23,8 @@ export const routeSchemaDB = z.object({
 export const routeSchemaDBWithDungeonPopulated = routeSchemaDB
   .extend({
     id: z.string(),
-    createdAt: z.date(),
-    updatedAt: z.date(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
     dungeon_id: dungeonDbSchema,
   })
   .omit({
@@ -39,8 +39,8 @@ export const routeSchemaClient = routeSchemaDB
   })
   .extend({
     id: z.string(),
-    createdAt: z.date(),
-    updatedAt: z.date(),
+    createdAt: z.string(),
+    updatedAt: z.string(),
     dungeon: dungeonDbSchema,
   });
 

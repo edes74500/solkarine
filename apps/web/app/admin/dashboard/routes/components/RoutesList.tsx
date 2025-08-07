@@ -50,19 +50,20 @@ export default function RoutesList() {
   return (
     <div className="flex gap-6 w-full h-full">
       <div className="flex flex-col gap-2 min-w-[200px]">
-        {uniqueDungeons.map(
-          (dungeon) =>
-            dungeon && (
-              <div key={dungeon._id} onClick={() => handleDungeonClick(dungeon._id)} className="cursor-pointer">
-                <RouteBadge
-                  dungeon={dungeon}
-                  selectedDungeon={selectedDungeon}
-                  routes={routes?.data || []}
-                  setSelectedDungeon={setSelectedDungeon}
-                />
-              </div>
-            ),
-        )}
+        {uniqueDungeons.length > 0 &&
+          uniqueDungeons.map(
+            (dungeon) =>
+              dungeon && (
+                <div key={dungeon._id} onClick={() => handleDungeonClick(dungeon._id)} className="cursor-pointer">
+                  <RouteBadge
+                    dungeon={dungeon}
+                    selectedDungeon={selectedDungeon}
+                    routes={routes?.data || []}
+                    setSelectedDungeon={setSelectedDungeon}
+                  />
+                </div>
+              ),
+          )}
         {selectedDungeon && (
           <Badge
             variant={selectedDungeon === null ? "default" : "outline"}
@@ -76,6 +77,7 @@ export default function RoutesList() {
       </div>
       <div className="flex flex-col gap-4 flex-1">
         {filteredRoutes
+          .slice()
           .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
           .map((route) => (
             <div key={route.id} className="relative max-w-2xl w-full">
