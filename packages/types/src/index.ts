@@ -16,3 +16,6 @@ export * from "./external/curseForge.api.schema";
 
 //* raider.io
 export * from "./external/raiderio.api.schema";
+
+//* route
+export * from "./route.schema";

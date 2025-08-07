@@ -18,9 +18,9 @@ export function ThemeProviderClient({ children }: { children: ReactNode }) {
     <ThemeProvider
       attribute="class"
       defaultTheme="system"
-      enableSystem={true}
-      storageKey="theme"
-      enableColorScheme={false}
+      enableSystem
+      // storageKey="theme"
+      // enableColorScheme={false}
     >
       {children}
     </ThemeProvider>

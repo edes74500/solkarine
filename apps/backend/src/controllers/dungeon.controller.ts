@@ -1,4 +1,6 @@
 import { addDungeon, clearAllDungeons, getAllDungeons, updateDungeon } from "@/services/dungeons.service";
+import { revalidateFetch } from "@/services/nextJsCache.service";
+import { deleteAllRoutes } from "@/services/route.service";
 import { EditDungeonForm, Season } from "@repo/types";
 import { Request, Response } from "express";
 
@@ -13,6 +15,10 @@ export const changeSeasonController = async (req: Request, res: Response) => {
     }),
   );
 
+  //* delete all routes et revalidate routes
+  await deleteAllRoutes();
+  await revalidateFetch("routes-getRoutesWithPopulatedDungeon");
+
   res.status(200).json({ status: "success", message: "Season changed successfully" });
 };
 
@@ -25,5 +31,8 @@ export const editDungeonController = async (req: Request, res: Response) => {
   const { id } = req.params;
   const dungeon: EditDungeonForm = req.body as EditDungeonForm;
   const success = await updateDungeon(id, dungeon);
+
+  //* revalidate routes vu que le dungeon a changé potentellement de nom ou d'image
+  await revalidateFetch("routes-getRoutesWithPopulatedDungeon");
   res.status(200).json({ status: success });
 };

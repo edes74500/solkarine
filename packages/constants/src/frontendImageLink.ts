@@ -13,4 +13,7 @@ export const frontendImageLink = {
   // fallback
   fallbackWA: "/img/fallback/weakaura.png",
   fallbackAddon: "/img/fallback/addon.png",
+
+  // routes
+  m_key: "/img/wow/content/m_key.jpg",
 };

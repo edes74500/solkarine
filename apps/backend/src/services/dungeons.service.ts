@@ -1,5 +1,5 @@
 import { Dungeon } from "@/models/dungeon.model";
-import { CreateDungeonForm, DungeonApi, EditDungeonForm } from "@repo/types";
+import { CreateDungeonForm, DungeonApi, DungeonDb, EditDungeonForm } from "@repo/types";
 
 export const addDungeon = async (dungeon: CreateDungeonForm): Promise<DungeonApi> => {
   const newDungeon = await Dungeon.create(dungeon);
@@ -10,9 +10,9 @@ export const clearAllDungeons: () => Promise<void> = async () => {
   await Dungeon.deleteMany({});
 };
 
-export const getAllDungeons = async (): Promise<DungeonApi[]> => {
-  const dungeons = await Dungeon.find();
-  return dungeons.map((dungeon) => dungeon.toObject() as unknown as DungeonApi);
+export const getAllDungeons = async (): Promise<DungeonDb[]> => {
+  const dungeons = await Dungeon.find({}).lean({ virtuals: true });
+  return dungeons as unknown as DungeonDb[];
 };
 
 export const updateDungeon = async (id: string, dungeon: EditDungeonForm): Promise<boolean> => {

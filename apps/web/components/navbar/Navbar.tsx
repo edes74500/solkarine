@@ -64,7 +64,7 @@ export function Navbar() {
           {/* Logo */}
           <Link href="/" className="font-bold text-3xl  pr-5 flex items-center relative">
             <div className="relative">
-              <Image src="/img/cat/cat_1.png" alt="Logo chat" width={70} height={70} />
+              <Image src="/img/cat/cat_1_low.png" alt="Logo chat" width={70} height={70} />
             </div>
             <span className="z-10 font-dyna-puff">Solkarine</span>
           </Link>
