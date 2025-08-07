@@ -1,5 +1,4 @@
 import { Card, CardContent } from "@repo/ui/components/card";
-import { Frown, Smile } from "lucide-react";
 
 interface EmptyCardProps {
   title?: string;
@@ -16,11 +15,12 @@ export function EmptyCard({
     <Card className={`w-full overflow-hidden ${className}`}>
       <CardContent className="flex flex-col items-center justify-center p-8 text-center">
         <div className="relative h-40 w-40 mb-6">
-          <div className="absolute animate-bounce">
-            <Frown className="h-20 w-20 text-muted-foreground" />
-          </div>
-          <div className="absolute right-0 bottom-0 animate-pulse">
-            <Smile className="h-16 w-16 text-primary" />
+          <div className="relative w-full h-full">
+            <img
+              src="https://i.pinimg.com/originals/ac/35/96/ac359671bf3fcc577817a77c49746cd2.gif"
+              alt="Animation vide"
+              className="w-full h-full object-contain"
+            />
           </div>
         </div>
 
