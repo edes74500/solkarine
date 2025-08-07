@@ -14,10 +14,10 @@ export function MainFooter() {
   }
 
   return (
-    <footer className="border-t border-border  mx-auto w-full bg-navbar px-5 rounded-t-lg">
+    <footer className="border-t border-border  mx-auto w-full bg-navbar px-5">
       <div className="mx-auto flex items-center justify-between py-6 w-full max-w-[1080px]">
         <div className="flex items-center space-x-4">
-          <Link href="/" className="font-bold text-xl font-mono pr-5">
+          <Link href="/" className="font-bold text-xl pr-5">
             Solkarine
           </Link>
         </div>

@@ -99,7 +99,7 @@ export function EditWeakAuraDialog({ weakAura, onSuccess }: EditWeakAuraDialogPr
   return (
     <Dialog open={open} onOpenChange={setOpen}>
       <DialogTrigger asChild>
-        <Button variant="outline" size="sm" className="h-8 w-8 p-0">
+        <Button variant="outline" size="sm" className="h-8 w-8 p-0 bg-card dark:bg-card">
           <Pencil className="h-4 w-4" />
         </Button>
       </DialogTrigger>

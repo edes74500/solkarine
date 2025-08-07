@@ -6,7 +6,7 @@ import { frontendImageLink } from "@repo/constants";
 import { Toaster } from "@repo/ui/components/sonner";
 import "@repo/ui/styles/globals.css";
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
+import { DynaPuff, Geist, Geist_Mono, Nunito_Sans } from "next/font/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -15,6 +15,16 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const nunito = Nunito_Sans({
+  variable: "--font-nunito",
+  subsets: ["latin"],
+});
+
+const dynaPuff = DynaPuff({
+  variable: "--font-dyna-puff",
   subsets: ["latin"],
 });
 
@@ -81,9 +91,11 @@ export default function RootLayout({
     <html lang="en">
       <head></head>
       <StoreProvider>
-        <body className={`${geistMono.className} antialiased bg-background-secondary`}>
+        <body
+          className={`${dynaPuff.variable} ${geistMono.variable}  ${nunito.variable} antialiased bg-background-secondary `}
+        >
           <ThemeProviderClient>
-            <main className="flex flex-col min-h-screen bg-background-secondary">
+            <main className="flex flex-col min-h-screen bg-background-secondary font-nunito">
               {/* <ContentWidthWrapper> */}
               <Navbar />
               {/* </ContentWidthWrapper> */}

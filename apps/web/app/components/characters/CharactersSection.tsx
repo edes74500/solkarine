@@ -49,9 +49,12 @@ export default async function CharactersSection() {
   // if (loading) {
   //   return <div>Chargement des personnages…</div>;
   // }
+  const sortedCharactersData = charactersData.sort(
+    (a, b) => b.mythic_plus_scores_by_season[0]?.scores?.all - a.mythic_plus_scores_by_season[0]?.scores?.all,
+  );
 
   // valeur par défaut du premier `value` du Tabs
-  const defaultTab = Object.keys(charactersData)[0];
+  const defaultTab = Object.keys(sortedCharactersData)[0];
 
   return (
     <section className="flex flex-col gap-6 my-20">
@@ -66,12 +69,12 @@ export default async function CharactersSection() {
           <Suspense fallback={<div>Loading...</div>}>
             <Tabs orientation="vertical" defaultValue={defaultTab} className="w-full flex flex-row items-start gap-4">
               <TabsList className="shrink-0 grid grid-cols-1 gap-1 p-0 bg-background h-fit bg-transparent">
-                {Object.entries(charactersData)
-                  .sort(([, charA], [, charB]) => {
-                    const scoreA = charA.mythic_plus_scores_by_season[0]?.scores?.all || 0;
-                    const scoreB = charB.mythic_plus_scores_by_season[0]?.scores?.all || 0;
-                    return scoreB - scoreA;
-                  })
+                {Object.entries(sortedCharactersData)
+                  // .sort(([, charA], [, charB]) => {
+                  //   const scoreA = charA.mythic_plus_scores_by_season[0]?.scores?.all || 0;
+                  //   const scoreB = charB.mythic_plus_scores_by_season[0]?.scores?.all || 0;
+                  //   return scoreB - scoreA;
+                  // })
                   .map(([key, char]) => (
                     <TabsTrigger
                       key={key}

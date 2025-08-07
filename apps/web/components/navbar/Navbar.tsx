@@ -42,6 +42,7 @@ import {
   SheetTrigger,
 } from "@repo/ui/components/sheet";
 import { Menu, Settings } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeSwapper } from "./ThemeSwapper";
@@ -57,12 +58,15 @@ export function Navbar() {
   }
 
   return (
-    <nav className="z-50 font-mono mb-10 w-full bg-navbar px-5 rounded-full max-w-[1080px] mx-auto mx-5 mt-10">
-      <div className="mx-auto  flex items-center justify-between h-16 w-full ">
+    <nav className="z-50  mb-10 w-full bg-navbar px-5 rounded-full max-w-[1080px] mx-auto mx-5 mt-10">
+      <div className="mx-auto  flex items-center justify-between h-16 w-full relative">
         <div className="flex items-center space-x-4 w-full">
           {/* Logo */}
-          <Link href="/" className="font-bold text-3xl font-mono pr-5">
-            Solkarine
+          <Link href="/" className="font-bold text-3xl  pr-5 flex items-center relative">
+            <div className="relative">
+              <Image src="/img/cat/cat_1.png" alt="Logo chat" width={70} height={70} />
+            </div>
+            <span className="z-10 font-dyna-puff">Solkarine</span>
           </Link>
         </div>
         <div className="flex items-center space-x-4 w-full justify-end">
