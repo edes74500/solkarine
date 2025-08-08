@@ -1,14 +1,19 @@
 "use client";
 
-import { ErrorCard } from "@/components/errorCards/ErrorCard";
-import { LoadingSpinner } from "@/components/spinners/LoadingSpinner";
+import { ErrorCard } from "@/components/statusCard/ErrorCard";
+import { LoadingCard } from "@/components/statusCard/LoadingCard";
 import { useGetAllWeakAurasQuery } from "@/redux/api/weakAuras.apiSlice";
 import { useState } from "react";
 import { AddWeakAuraDialog, InfoAlert, WeakAuraList } from "./components";
 
 export default function WeakAurasPage() {
   const [successData, setSuccessData] = useState<any>(null);
-  const { data: weakAuras, isLoading: isLoadingWeakAuras, error: errorWeakAuras } = useGetAllWeakAurasQuery();
+  const {
+    data: weakAuras,
+    isLoading: isLoadingWeakAuras,
+    error: errorWeakAuras,
+    isFetching,
+  } = useGetAllWeakAurasQuery();
 
   const handleAddSuccess = (data: any) => {
     setSuccessData(data);
@@ -31,7 +36,7 @@ export default function WeakAurasPage() {
 
       {/* {successData && <SuccessCard data={successData} />} */}
 
-      {isLoadingWeakAuras && <LoadingSpinner />}
+      {(isLoadingWeakAuras || isFetching) && <LoadingCard />}
 
       {errorWeakAuras && <ErrorCard message="Erreur lors du chargement des WeakAuras" />}
 

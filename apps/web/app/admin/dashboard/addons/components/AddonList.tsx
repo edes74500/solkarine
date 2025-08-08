@@ -2,9 +2,9 @@
 
 import { EditAddonDialog } from "@/app/admin/dashboard/addons/components/EditAddonDialog";
 import { AddonCard } from "@/components/addons/addoncard";
-import { ErrorCard } from "@/components/errorCards/ErrorCard";
 import { BadgeList } from "@/components/shared/BadgeList";
-import { LoadingSpinner } from "@/components/spinners/LoadingSpinner";
+import { ErrorCard } from "@/components/statusCard/ErrorCard";
+import { LoadingCard } from "@/components/statusCard/LoadingCard";
 import { useDeleteAddonMutation, useGetAddonsQuery, useUpdateAddonMutation } from "@/redux/api/addon.apiSlice";
 import { AddonClient } from "@repo/types/dist";
 import { Button } from "@repo/ui/components/button";
@@ -13,7 +13,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export function AddonList() {
-  const { data: addons, isLoading, isError } = useGetAddonsQuery();
+  const { data: addons, isLoading, isError, isFetching } = useGetAddonsQuery();
   const [deleteAddon, { isLoading: isDeleting, isSuccess: isDeleteSuccess, isError: isDeleteError }] =
     useDeleteAddonMutation();
   const [updateAddon, { isLoading: isUpdating, isSuccess: isUpdateSuccess, isError: isUpdateError }] =
@@ -61,7 +61,7 @@ export function AddonList() {
     }
   };
 
-  if (isLoading) return <LoadingSpinner />;
+  if (isLoading || isFetching) return <LoadingCard />;
   if (isError) return <ErrorCard message="Erreur lors du chargement des addons" />;
 
   return (

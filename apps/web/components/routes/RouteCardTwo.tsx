@@ -80,7 +80,7 @@ export function RouteCardTwo({ route, className = "" }: RouteCardProps) {
                 onError={() => setImageError(true)}
                 onClick={openImageViewer}
               />
-              <Badge className="absolute bottom-1 right-1 bg-black/70 text-white text-xs z-10">
+              <Badge className="absolute bottom-1 right-1 bg-black/70 text-white text-xs">
                 {formatDate(route.updatedAt.toString())}
               </Badge>
               {isViewerOpen && (

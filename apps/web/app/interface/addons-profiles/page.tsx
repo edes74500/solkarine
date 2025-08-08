@@ -1,4 +1,4 @@
-import { EmptyCard } from "@/components/errorCards/EmptyCard";
+import { EmptyCard } from "@/components/statusCard/EmptyCard";
 
 export default function AddonProfilesPage() {
   return (

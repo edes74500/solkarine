@@ -1,10 +1,10 @@
 "use client";
 
+import { DashboardEmptyListCard } from "@/components/statusCard/DashboardEmptyListCard";
 import { WeakAuraCard } from "@/components/weakAuras/WeakAuraCard";
 import { useDeleteWeakAuraMutation } from "@/redux/api/weakAuras.apiSlice";
 import { WeakAuraClient } from "@repo/types";
 import { Button } from "@repo/ui/components/button";
-import { Card, CardContent } from "@repo/ui/components/card";
 import { Trash2 } from "lucide-react";
 import { useState } from "react";
 import { toast } from "sonner";
@@ -38,13 +38,7 @@ export function WeakAuraList({ weakAuras, onDelete }: WeakAuraListProps) {
   };
 
   if (!weakAuras || weakAuras.length === 0) {
-    return (
-      <Card>
-        <CardContent className="py-8 text-center text-muted-foreground">
-          Aucune WeakAura trouvée. Ajoutez-en une en utilisant le formulaire ci-dessus.
-        </CardContent>
-      </Card>
-    );
+    return <DashboardEmptyListCard />;
   }
 
   return (

@@ -10,9 +10,16 @@ interface RouteBadgeProps {
   setSelectedDungeon: (dungeon: string | null) => void;
   selectedDungeon: string | null;
   routes: RouteDBWithDungeonPopulated[];
+  showFullName?: boolean;
 }
 
-export function RouteBadge({ dungeon, selectedDungeon, routes, setSelectedDungeon }: RouteBadgeProps) {
+export function RouteBadge({
+  dungeon,
+  selectedDungeon,
+  routes,
+  setSelectedDungeon,
+  showFullName = false,
+}: RouteBadgeProps) {
   const isSelected = selectedDungeon === dungeon._id;
   const routeCount = routes.filter((route) => route.dungeon_id._id === dungeon._id).length;
 
@@ -36,17 +43,17 @@ export function RouteBadge({ dungeon, selectedDungeon, routes, setSelectedDungeo
           alt={dungeon.short_name}
           fill
           className="object-cover"
-          style={{ filter: "brightness(1.2)" }}
+          style={{ filter: "brightness(1.2" }}
         />
-        <div className="absolute inset-0  dark:bg-black/30 z-0 w-full h-full"></div>
+        <div className="absolute inset-0 bg-white/30 dark:bg-black/30 w-full h-full"></div>
       </div>
       <div className="flex items-center justify-between w-full relative z-10">
         <div></div>
         <div className="uppercase text-white font-extrabold truncate bg-black/60 bg-blur-md px-10 rounded-md">
-          {dungeon.short_name}
+          {showFullName ? dungeon.name : dungeon.short_name}
         </div>
         <div
-          className={`text-xs ml-2 shrink-0 text-white bg-black/60 shrink-0 bg-blur-md p-1 rounded-full aspect-square`}
+          className={`text-xs ml-2 shrink-0 text-white bg-black/60 shrink-0 bg-blur-md p-1 rounded-full aspect-square w-6 h-6 flex items-center justify-center`}
         >
           {routeCount}
         </div>

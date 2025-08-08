@@ -3,6 +3,9 @@
 import EditRouteDialog from "@/app/admin/dashboard/routes/components/EditRouteDialog";
 import { RouteCardTwo } from "@/components/routes/RouteCardTwo";
 import { RouteBadge } from "@/components/shared/RouteBadge";
+import { EmptyCard } from "@/components/statusCard/EmptyCard";
+import { ErrorCard } from "@/components/statusCard/ErrorCard";
+import { LoadingCard } from "@/components/statusCard/LoadingCard";
 import { useDeleteRouteMutation, useGetRoutesWithPopulatedDungeonQuery } from "@/redux/api/routes.apiSlice";
 import { Badge } from "@repo/ui/components/badge";
 import { Button } from "@repo/ui/components/button";
@@ -11,7 +14,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export default function RoutesList() {
-  const { data: routes } = useGetRoutesWithPopulatedDungeonQuery();
+  const { data: routes, isLoading, isError, isFetching } = useGetRoutesWithPopulatedDungeonQuery();
   const [deleteRoute, { isLoading: isDeleting }] = useDeleteRouteMutation();
   const [selectedDungeon, setSelectedDungeon] = useState<string | null>(null);
   const [filteredRoutes, setFilteredRoutes] = useState(routes?.data || []);
@@ -46,6 +49,18 @@ export default function RoutesList() {
         (id) => routes.data.find((route) => route.dungeon_id._id === id)?.dungeon_id,
       )
     : [];
+
+  if (isLoading || isFetching) {
+    return <LoadingCard />;
+  }
+
+  if (routes?.data.length === 0) {
+    return <EmptyCard />;
+  }
+
+  if (isError) {
+    return <ErrorCard />;
+  }
 
   return (
     <div className="flex gap-6 w-full h-full">

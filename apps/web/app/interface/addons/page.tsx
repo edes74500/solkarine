@@ -1,5 +1,5 @@
 import { AddonList } from "@/app/interface/addons/components/AddonList";
-import { EmptyCard } from "@/components/errorCards/EmptyCard";
+import { EmptyCard } from "@/components/statusCard/EmptyCard";
 import { getAllAddons } from "@/lib/api/addon";
 
 export default async function AddonsPage() {

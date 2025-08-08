@@ -19,3 +19,10 @@ export * from "./external/raiderio.api.schema";
 
 //* route
 export * from "./route.schema";
+
+//* auth
+export * from "./auth/jwt.schema";
+export * from "./auth/permissions.schema";
+export * from "./auth/rbac.schema";
+export * from "./auth/roles.schema";
+export * from "./auth/user.schema";

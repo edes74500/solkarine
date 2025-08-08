@@ -28,15 +28,16 @@ export function RouteDisplay({ routes }: { routes: RouteDBWithDungeonPopulated[]
     : [];
 
   return (
-    <div className="flex gap-6 w-full h-full">
-      <div className="flex flex-col gap-4 w-[250px]">
+    <div className="flex flex-col md:flex-row gap-6 w-full">
+      <div className="flex flex-wrap md:flex-col gap-4 md:w-[250px] md:max-w-[250px] md:sticky md:top-4 h-full">
         {uniqueDungeons
           .sort((a, b) => a?.short_name.localeCompare(b?.short_name || "") || 0)
           .map(
             (dungeon) =>
               dungeon && (
-                <div key={dungeon._id} className="cursor-pointer">
+                <div key={dungeon._id} className="cursor-pointer md:min-w-[150px]">
                   <RouteBadge
+                    // showFullName={true}
                     dungeon={dungeon}
                     selectedDungeon={selectedDungeon}
                     routes={routes || []}
