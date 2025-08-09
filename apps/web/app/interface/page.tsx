@@ -6,85 +6,75 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function InterfacePage() {
-  const addonsImage = frontendImageLink.addons;
-  const weakAurasImage = frontendImageLink.weakAuras;
-  const addonProfilesImage = frontendImageLink.addonProfiles;
+  const imageDivOverlay = "absolute inset-0 bg-gradient-to-tl from-black/50 to-transparent";
 
-  const imageDivOverlay = "absolute inset-0 bg-gradient-to-br from-card/80 to-card/0";
+  const interfaceCards = [
+    {
+      title: "Addons",
+      description: "Ma collection d'addons recommandés",
+      content: "Découvrez les addons que j'utilise pour améliorer mon expérience de jeu.",
+      image: frontendImageLink.addons,
+      alt: "Addons",
+      icon: <Package size={20} />,
+      link: "/interface/addons",
+      buttonText: "Voir les addons",
+    },
+    {
+      title: "WeakAuras",
+      description: "Mes WeakAuras personnalisés",
+      content: "Accédez à ma collection de WeakAuras pour optimiser votre interface de combat.",
+      image: frontendImageLink.weakAuras,
+      alt: "WeakAuras",
+      icon: <Wand2 size={20} />,
+      link: "/interface/weak-auras",
+      buttonText: "Voir les WeakAuras",
+    },
+    {
+      title: "Profils d'addons",
+      description: "Ma configuration d'addons",
+      content: "Téléchargez et importez ma configuration d'addons pour une interface complète.",
+      image: frontendImageLink.addonProfiles,
+      alt: "Addon Profiles",
+      icon: <Download size={20} />,
+      link: "/interface/addons-profiles",
+      buttonText: "Voir la configuration",
+    },
+  ];
 
   return (
     <section className="dashboard-section">
       <h1>Interface</h1>
-      <p className="text-muted-foreground mb-8">
+      {/* <p className="text-muted-foreground mb-8">
         Découvrez mes outils pour personnaliser votre interface World of Warcraft
-      </p>
+      </p> */}
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        <Card className="bg-card hover:bg-card/90 transition-colors justify-between relative overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <Image src={addonsImage} alt="Addons" fill className="object-cover opacity-30" />
-            <div className={imageDivOverlay}></div>
-          </div>
-          <CardHeader className="relative z-10">
-            <CardTitle className="flex items-center gap-2">
-              <Package size={20} />
-              Addons
-            </CardTitle>
-            <CardDescription>Ma collection d'addons recommandés</CardDescription>
-          </CardHeader>
-          <CardContent className="grow-0 relative z-10">
-            <p>Découvrez les addons que j'utilise pour améliorer mon expérience de jeu.</p>
-          </CardContent>
-          <CardFooter className="relative z-10">
-            <Button asChild variant="default">
-              <Link href="/interface/addons">Voir les addons</Link>
-            </Button>
-          </CardFooter>
-        </Card>
-
-        <Card className="bg-card hover:bg-card/90 transition-colors justify-between relative overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <Image src={weakAurasImage} alt="WeakAuras" fill className="object-cover opacity-30" />
-            <div className={imageDivOverlay}></div>
-          </div>
-          <CardHeader className="relative z-10">
-            <CardTitle className="flex items-center gap-2">
-              <Wand2 size={20} />
-              WeakAuras
-            </CardTitle>
-            <CardDescription>Mes WeakAuras personnalisés</CardDescription>
-          </CardHeader>
-          <CardContent className="grow-0 relative z-10">
-            <p>Accédez à ma collection de WeakAuras pour optimiser votre interface de combat.</p>
-          </CardContent>
-          <CardFooter className="relative z-10">
-            <Button asChild variant="default">
-              <Link href="/interface/weak-auras">Voir les WeakAuras</Link>
-            </Button>
-          </CardFooter>
-        </Card>
-
-        <Card className="bg-card hover:bg-card/90 transition-colors justify-between relative overflow-hidden">
-          <div className="absolute inset-0 z-0">
-            <Image src={addonProfilesImage} alt="Addon Profiles" fill className="object-cover opacity-30" />
-            <div className={imageDivOverlay}></div>
-          </div>
-          <CardHeader className="relative z-10">
-            <CardTitle className="flex items-center gap-2">
-              <Download size={20} />
-              Profils d'addons
-            </CardTitle>
-            <CardDescription>Ma configuration d'addons</CardDescription>
-          </CardHeader>
-          <CardContent className="grow-0 relative z-10">
-            <p>Téléchargez et importez ma configuration d'addons pour une interface complète.</p>
-          </CardContent>
-          <CardFooter className="relative z-10">
-            <Button asChild variant="default">
-              <Link href="/interface/addons-profiles">Voir la configuration</Link>
-            </Button>
-          </CardFooter>
-        </Card>
+        {interfaceCards.map((card, index) => (
+          <Card
+            key={index}
+            className="bg-card hover:bg-card/90 transition-colors justify-between relative overflow-hidden"
+          >
+            <div className="absolute inset-0 z-0">
+              <Image src={card.image} alt={card.alt} fill className="object-cover opacity-30" />
+              <div className={imageDivOverlay}></div>
+            </div>
+            <CardHeader className="relative z-10">
+              <CardTitle className="flex items-center gap-2">
+                {card.icon}
+                {card.title}
+              </CardTitle>
+              <CardDescription className="text-foreground">{card.description}</CardDescription>
+            </CardHeader>
+            <CardContent className="grow-0 relative z-10 bg-background/30 !w-fit p-4">
+              <p>{card.content}</p>
+            </CardContent>
+            <CardFooter className="relative z-10">
+              <Button asChild variant="default">
+                <Link href={card.link}>{card.buttonText}</Link>
+              </Button>
+            </CardFooter>
+          </Card>
+        ))}
       </div>
     </section>
   );

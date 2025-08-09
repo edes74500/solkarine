@@ -1,4 +1,5 @@
 import CharactersSection from "@/app/components/characters/CharactersSection";
+import Community from "@/app/components/community/Community";
 import GuidesSection from "@/app/components/guides/GuidesSection";
 import HeroSection from "@/app/components/hero/HeroSection";
 import TwitchSection from "@/app/components/twitch/TwitchSection";
@@ -25,6 +26,11 @@ export default async function Home() {
 
         {/* Twitch Section */}
         <TwitchSection />
+
+        <Separator />
+
+        {/* Community Section */}
+        <Community />
 
         <Separator />
 

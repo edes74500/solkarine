@@ -1,9 +1,9 @@
-import { frontendImageLink } from "@repo/constants";
+import { frontendImageLink, SOCIAL_MEDIA_LINK } from "@repo/constants";
 import { Button } from "@repo/ui/components/button";
 import { ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaDiscord, FaYoutube } from "react-icons/fa";
+import { FaDiscord } from "react-icons/fa";
 
 export default function GuidesSection() {
   const mythicplusImage = frontendImageLink.mythicplus;
@@ -11,8 +11,8 @@ export default function GuidesSection() {
   const communityImage = frontendImageLink.community;
   const guides = [
     {
-      title: "Guides Mythic+",
-      description: "Découvrez mes stratégies et conseils pour réussir vos donjons mythiques.",
+      title: "Mythic+",
+      description: "Découvrez mes routes, les talents que j'utilise et des tips pour simplifier vos runs.",
       image: mythicplusImage,
       alt: "Mythic+",
       link: "/mythic-plus",
@@ -32,8 +32,13 @@ export default function GuidesSection() {
       image: communityImage,
       alt: "Communauté",
       buttons: [
-        { icon: <FaDiscord className="mr-2 h-4 w-4" />, text: "Discord" },
-        { icon: <FaYoutube className="mr-2 h-4 w-4" />, text: "YouTube" },
+        { icon: <FaDiscord className="mr-1 h-4 w-4 text-[#5865F2]" />, text: "Discord" },
+        {
+          icon: (
+            <Image src={frontendImageLink.wow_logo} alt="wow_logo" width={24} height={24} className="mr-1 h-4 w-4" />
+          ),
+          text: "Wow",
+        },
       ],
     },
   ];
@@ -46,7 +51,7 @@ export default function GuidesSection() {
           <Link
             key={index}
             className="group relative overflow-hidden rounded-lg border bg-card/20 transition-all hover:shadow-xl shadow-sm"
-            href={item.link || "/"}
+            href={item.link || SOCIAL_MEDIA_LINK.DISCORD}
           >
             <div className="absolute inset-0 z-0">
               <Image
@@ -56,15 +61,15 @@ export default function GuidesSection() {
                 className="object-cover transition-transform duration-300 group-hover:scale-105 opacity-50"
                 quality={90}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-card/20 to-transparent"></div>
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
             </div>
             <div className="relative z-10 p-6 flex flex-col h-full">
               <h2 className="text-xl font-bold mb-3">{item.title}</h2>
-              <p className="text-foreground/80 mb-4 flex-grow backdrop-blur-sm bg-background/30 p-2 rounded-md shadow-sm">
+              <p className="text-foreground mb-4 flex-grow backdrop-blur-sm bg-background/30 p-2 rounded-md shadow-sm ">
                 {item.description}
               </p>
               {item.link ? (
-                <Button asChild variant="link" className="p-0 justify-start group">
+                <Button asChild variant="link" className="p-0 justify-start group text-white">
                   <div className="flex items-center">
                     {item.linkText}
                     <ChevronRightIcon className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
@@ -77,9 +82,10 @@ export default function GuidesSection() {
                       key={buttonIndex}
                       variant="outline"
                       size="sm"
-                      className="flex items-center bg-background/80 backdrop-blur-sm hover:bg-background/60 transition-colors"
+                      className="flex items-center bg-background/80 backdrop-blur-sm hover:bg-background/60 transition-colors gap-0"
                     >
-                      {button.icon} {button.text}
+                      {button.icon}
+                      {button.text}
                     </Button>
                   ))}
                 </div>

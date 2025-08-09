@@ -1,5 +1,6 @@
 "use client";
 
+import { SOCIAL_MEDIA_LINK } from "@repo/constants/dist";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@repo/ui/components/tooltip";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
@@ -29,7 +30,7 @@ export function MainFooter() {
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Link href="https://discord.com" className="hover:opacity-80 transition-opacity">
+                <Link href={SOCIAL_MEDIA_LINK.DISCORD} target="_blank" className="hover:opacity-80 transition-opacity">
                   <FaDiscord className="h-5 w-5 text-[#5865F2]" />
                   <span className="sr-only">Discord</span>
                 </Link>
@@ -41,7 +42,11 @@ export function MainFooter() {
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <Link href="https://instagram.com" className="hover:opacity-80 transition-opacity">
+                <Link
+                  href={SOCIAL_MEDIA_LINK.INSTAGRAM}
+                  target="_blank"
+                  className="hover:opacity-80 transition-opacity"
+                >
                   <FaInstagram className="h-5 w-5 text-[#E4405F]" />
                   <span className="sr-only">Instagram</span>
                 </Link>
@@ -53,9 +58,13 @@ export function MainFooter() {
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <Link href="https://puzzle.com" className="hover:opacity-80 transition-opacity">
+                <Link
+                  href={SOCIAL_MEDIA_LINK.CHROME_EXTENSION}
+                  target="_blank"
+                  className="hover:opacity-80 transition-opacity"
+                >
                   <FaPuzzlePiece className="h-5 w-5 text-[#FF9900]" />
-                  <span className="sr-only">Puzzle</span>
+                  <span className="sr-only">Chrome Extension</span>
                 </Link>
               </TooltipTrigger>
               <TooltipContent>
@@ -65,7 +74,7 @@ export function MainFooter() {
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <Link href="https://twitter.com" className="hover:opacity-80 transition-opacity">
+                <Link href={SOCIAL_MEDIA_LINK.TWITTER} target="_blank" className="hover:opacity-80 transition-opacity">
                   <FaTwitter className="h-5 w-5 text-[#1DA1F2]" />
                   <span className="sr-only">Twitter</span>
                 </Link>
@@ -77,7 +86,7 @@ export function MainFooter() {
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <Link href="https://youtube.com" className="hover:opacity-80 transition-opacity">
+                <Link href={SOCIAL_MEDIA_LINK.YOUTUBE} target="_blank" className="hover:opacity-80 transition-opacity">
                   <FaYoutube className="h-5 w-5 text-[#FF0000]" />
                   <span className="sr-only">YouTube</span>
                 </Link>
@@ -89,7 +98,7 @@ export function MainFooter() {
 
             <Tooltip>
               <TooltipTrigger asChild>
-                <Link href="https://tiktok.com" className="hover:opacity-80 transition-opacity">
+                <Link href={SOCIAL_MEDIA_LINK.TIKTOK} target="_blank" className="hover:opacity-80 transition-opacity">
                   <FaTiktok className="h-5 w-5 text-[#000000] dark:text-[#FFFFFF]" />
                   <span className="sr-only">TikTok</span>
                 </Link>
