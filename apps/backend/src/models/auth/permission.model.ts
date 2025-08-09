@@ -4,7 +4,7 @@ import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 const permissionSchema = new Schema<PermissionDB>(
   {
-    name: { type: String, required: true },
+    _id: { type: String, required: true },
     description: { type: String, required: true },
   },
   {

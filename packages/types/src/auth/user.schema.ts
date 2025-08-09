@@ -2,7 +2,7 @@ import { z } from "zod";
 
 export const userSchemaDB = z.object({
   _id: z.string(),
-  name: z.string(),
+  username: z.string(),
   password: z.string(),
   roleIds: z.array(z.string()), //*ref to roles
   createdAt: z.date(),
@@ -10,13 +10,13 @@ export const userSchemaDB = z.object({
 });
 
 export const createUserSchema = z.object({
-  name: z.string(),
+  username: z.string(),
   password: z.string(),
   role: z.array(z.string()), //*ref to roles
 });
 
 export const updateUserSchema = z.object({
-  name: z.string(),
+  username: z.string(),
   password: z.string(),
   role: z.array(z.string()), //*ref to roles
 });

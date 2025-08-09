@@ -12,8 +12,8 @@ async function main() {
   // Upsert chaque permission du catalogue
   const ops = CATALOG.map((name) => ({
     updateOne: {
-      filter: { name },
-      update: { $setOnInsert: { name }, $set: { updatedAt: new Date() } },
+      filter: { _id: name },
+      update: { $setOnInsert: { _id: name, name, description: "" }, $set: { updatedAt: new Date() } },
       upsert: true,
     },
   }));

@@ -24,7 +24,7 @@ export const baseQueryWithReauth: BaseQueryFn<string | FetchArgs, unknown, Fetch
 
   if (result.error && result.error.status === 401) {
     // try to get a new token
-    const refreshResult = await baseQuery({ url: "auth/refresh-token", method: "POST" }, api, extraOptions);
+    const refreshResult = await baseQuery({ url: "auth/refresh-access-token", method: "POST" }, api, extraOptions);
     if (refreshResult.data) {
       // store the new token
       api.dispatch({ type: "auth/setCredentials", payload: refreshResult.data });

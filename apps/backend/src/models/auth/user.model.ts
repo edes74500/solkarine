@@ -4,7 +4,7 @@ import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 
 const userSchema = new Schema<UserDB>(
   {
-    name: { type: String, required: true },
+    username: { type: String, required: true },
     password: { type: String, required: true },
     roleIds: [{ type: String, ref: "Role" }],
   },

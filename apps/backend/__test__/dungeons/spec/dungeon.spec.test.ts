@@ -90,14 +90,16 @@ describe("Services de donjons", () => {
         },
       ];
 
-      (Dungeon.find as jest.Mock).mockResolvedValue(mockDungeons);
+      (Dungeon.find as jest.Mock).mockReturnValue({
+        lean: jest.fn().mockResolvedValue(mockDungeons),
+      });
 
       // Act
       const result = await getAllDungeons();
 
       // Assert
       expect(Dungeon.find).toHaveBeenCalled();
-      expect(result).toEqual(mockDungeons.map((d) => d.toObject()));
+      expect(result).toEqual(mockDungeons.map((d) => d));
       expect(result.length).toBe(2);
     });
   });

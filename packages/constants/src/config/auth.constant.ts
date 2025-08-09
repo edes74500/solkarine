@@ -12,10 +12,10 @@ export const PERMISSION_AUTH = {
     DELETE: "weak_aura:delete",
   },
   ROUTE: {
-    CREATE: "strong_aura:create",
-    READ: "strong_aura:read",
-    UPDATE: "strong_aura:update",
-    DELETE: "strong_aura:delete",
+    CREATE: "route:create",
+    READ: "route:read",
+    UPDATE: "route:update",
+    DELETE: "route:delete",
   },
   ADDON: {
     CREATE: "addon:create",
@@ -65,9 +65,21 @@ export const PERMISSION_AUTH = {
     UPDATE: "tip:update",
     DELETE: "tip:delete",
   },
-};
+} as const;
 
 export const ROLE_AUTH = {
   ADMIN: "admin",
   USER: "user",
 };
+
+export const ALL_PERMISSIONS = Object.values(PERMISSION_AUTH).flatMap((category) => Object.values(category));
+
+export const ALL_READ_PERMISSIONS = Object.values(PERMISSION_AUTH).flatMap((category) =>
+  Object.values(category).filter((perm) => perm.endsWith(":read")),
+);
+
+export const ALL_WRITE_PERMISSIONS = Object.values(PERMISSION_AUTH).flatMap((category) =>
+  Object.values(category).filter(
+    (perm) => perm.endsWith(":create") || perm.endsWith(":update") || perm.endsWith(":delete"),
+  ),
+);

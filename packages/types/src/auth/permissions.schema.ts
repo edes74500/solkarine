@@ -2,7 +2,6 @@ import { z } from "zod";
 
 export const permissionSchemaDB = z.object({
   _id: z.string(),
-  name: z.string(),
   description: z.string(),
   createdAt: z.date(),
   updatedAt: z.date(),

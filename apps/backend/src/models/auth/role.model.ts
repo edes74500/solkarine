@@ -5,7 +5,7 @@ import mongooseLeanVirtuals from "mongoose-lean-virtuals";
 const roleSchema = new Schema<RoleDB>(
   {
     name: { type: String, required: true },
-    permissions: [{ type: String, ref: "Permission" }],
+    permissionsIds: [{ type: String, ref: "Permission" }],
     version: { type: Number, default: 1 },
   },
   {

@@ -1,10 +1,12 @@
 import { cacheRBAC, TTL_USER_MS } from "@/config/rbac.config";
 import { getOrLoadRoleService } from "@/services/auth/role.service";
+import { hashPassword } from "@/utils/auth.utils";
 import { CreateUser, UpdateUser, UserDB } from "@repo/types";
 import { User } from "../../models/auth/user.model";
 
 export const dbCreateUserService = async (user: CreateUser): Promise<UserDB> => {
-  const newUser = await User.create(user);
+  const hashedPassword = await hashPassword(user.password);
+  const newUser = await User.create({ ...user, password: hashedPassword });
   return newUser;
 };
 
@@ -33,9 +35,9 @@ function versionsOK(map: Record<string, number>): boolean {
 
 export async function getUserPermsService(userId: string): Promise<Set<string>> {
   const now = Date.now();
-  const uhit = cacheRBAC.users.get(userId);
-  if (uhit && uhit.expiresAt > now && versionsOK(uhit.roleVersionMap)) {
-    return uhit.permSet;
+  const userCacheHit = cacheRBAC.users.get(userId);
+  if (userCacheHit && userCacheHit.expiresAt > now && versionsOK(userCacheHit.roleVersionMap)) {
+    return userCacheHit.permSet;
   }
 
   const user = await dbGetUserByIdService(userId);
