@@ -3,7 +3,10 @@ import { apiSlice } from "./config/apiSlice";
 
 export const authApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    login: builder.mutation<{ accessToken: string }, { username: string; password: string; rememberMe: boolean }>({
+    login: builder.mutation<
+      { success: boolean; accessToken: string },
+      { username: string; password: string; rememberMe: boolean }
+    >({
       query: (credentials) => ({
         url: "auth/login",
         method: "POST",
@@ -19,7 +22,7 @@ export const authApiSlice = apiSlice.injectEndpoints({
       },
     }),
 
-    refreshAccessToken: builder.mutation<{ accessToken: string }, void>({
+    refreshAccessToken: builder.mutation<{ success: boolean; accessToken: string }, void>({
       query: () => ({
         url: "auth/refresh-access-token",
         method: "POST",

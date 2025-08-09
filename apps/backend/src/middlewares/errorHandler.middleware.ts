@@ -1,3 +1,4 @@
+import { UnauthorizedError } from "@/errors/UnauthorisedError";
 import { NextFunction, Request, Response } from "express";
 
 export const errorHandler = (err: Error, req: Request, res: Response, next: NextFunction) => {
@@ -8,26 +9,8 @@ export const errorHandler = (err: Error, req: Request, res: Response, next: Next
   console.error(`🔴 Méthode: ${req.method}`);
 
   // Gestion des erreurs de token
-  if (err.name === "TokenExpiredError") {
-    console.error("🔴 Token expiré");
-    res.status(401).json({ message: "Token expiré" });
-    return;
-  }
-
-  if (err.name === "JsonWebTokenError") {
-    console.error("🔴 Token invalide");
-    res.status(403).json({ message: "Token invalide" });
-    return;
-  }
-
-  // Gestion des erreurs d'application
-  if (err.name === "AppError" && "status" in err) {
-    console.error(`🔴 Erreur d'application: ${err.message}`);
-    res.status((err as any).status).json({
-      status: (err as any).status,
-      success: false,
-      message: err.message || "Erreur interne du serveur",
-    });
+  if (err instanceof UnauthorizedError) {
+    res.status(err.statusCode).json({ message: err.message });
     return;
   }
 
