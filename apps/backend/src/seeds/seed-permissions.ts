@@ -4,7 +4,7 @@ import dotenv from "dotenv";
 import mongoose from "mongoose";
 dotenv.config();
 
-async function main() {
+export async function seedPermissions() {
   const uri = process.env.MONGO_URI || "mongodb://localhost:27017/app";
   await mongoose.connect(uri);
   console.log(`Connected to ${uri}`);
@@ -34,7 +34,7 @@ async function main() {
   console.log("Done.");
 }
 
-main().catch(async (err) => {
+seedPermissions().catch(async (err) => {
   console.error(err);
   try {
     await mongoose.disconnect();

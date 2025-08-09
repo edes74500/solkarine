@@ -6,7 +6,7 @@ import mongoose from "mongoose";
 
 dotenv.config();
 
-async function main() {
+export async function seedUser() {
   const uri = process.env.MONGO_URI || "mongodb://localhost:27017/app";
   await mongoose.connect(uri);
   console.log(`Connected to ${uri}`);
@@ -33,7 +33,7 @@ async function main() {
   await mongoose.disconnect();
 }
 
-main().catch(async (err) => {
+seedUser().catch(async (err) => {
   console.error(err);
   try {
     await mongoose.disconnect();

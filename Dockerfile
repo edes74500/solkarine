@@ -1,7 +1,7 @@
 # ---------- 1) PRUNE : extraire uniquement ce que le backend utilise ----------
 FROM node:22-alpine AS pruner
 RUN apk add --no-cache git
-RUN corepack enable && corepack prepare pnpm@latest --activate
+RUN corepack enable && corepack prepare pnpm@9.12.0 --activate
 WORKDIR /repo
 COPY . .
 RUN pnpm dlx turbo prune --scope=backend --docker
@@ -9,13 +9,24 @@ RUN pnpm dlx turbo prune --scope=backend --docker
 # ---------- 2) BUILD ----------
 FROM node:22-alpine AS builder
 RUN apk add --no-cache python3 make g++ git
-RUN corepack enable && corepack prepare pnpm@latest --activate
+ENV PNPM_HOME=/root/.local/share/pnpm
+RUN corepack enable && corepack prepare pnpm@9.12.0 --activate
 WORKDIR /repo
+
+# Manifests prunés -> maximise le cache d'install
 COPY --from=pruner /repo/out/json/ ./
 ENV NODE_ENV=development
-RUN pnpm install
+
+# Cache du store pnpm (BuildKit)
+RUN --mount=type=cache,target=/root/.local/share/pnpm/store \
+    pnpm install
+
+# Code pruné + build (avec cache turbo)
 COPY --from=pruner /repo/out/full/ ./
-RUN pnpm turbo build --filter=backend
+RUN --mount=type=cache,target=/root/.cache/turbo \
+    pnpm turbo build --filter=backend
+
+# Bundle minimal prod-only pour le backend
 RUN pnpm deploy --filter=backend --prod /out
 
 # ---------- 3) RUNNER (prod) ----------
@@ -31,8 +42,10 @@ ENV NODE_ENV=production \
     PORT=5000
 WORKDIR /app
 COPY --from=builder /out/ ./
-# user non-root
+
+# user non-root (Puppeteer OK avec sandbox)
 RUN useradd -m appuser
 USER appuser
+
 EXPOSE 5000
 CMD ["node", "dist/index.js"]
