@@ -1,12 +1,32 @@
-# On refuse les dossiers de modules et builds lourds
+# --- Node modules & builds ---
 node_modules
 **/node_modules
 dist
 **/dist
-*.log
+.pnpm-store
+.pnpm-debug.log
+.turbo
+turbo.log
 
-# Git, cache, éditeur…
+# --- Logs ---
+*.log
+**/*.log
+
+# --- Git & CI/CD ---
 .git
+.gitignore
+.gitattributes
+
+# --- Éditeurs & OS ---
 .vscode
 .idea
 .DS_Store
+
+# --- Tests & coverage ---
+coverage
+tests
+**/__tests__/
+tmp
+
+# --- Autres caches & fichiers temporaires ---
+*.tmp
