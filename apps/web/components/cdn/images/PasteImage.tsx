@@ -1,21 +1,27 @@
 "use client";
 
-import { usePasteImage } from "@/hooks/usePasteImage";
+import { usePasteImageAndUpload } from "@/hooks/img/usePasteImage";
 import { usePasteZone } from "@/hooks/usePasteZone";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 
 interface PasteImageZoneProps {
-  onFileReceived: (file: File) => void;
+  setUploadedImageUrl: (imageUrl: string | null) => void;
 }
 
-export default function PasteImageZone({ onFileReceived }: PasteImageZoneProps) {
+export default function PasteImageZone({ setUploadedImageUrl }: PasteImageZoneProps) {
   const ref = useRef<HTMLDivElement>(null);
-  const { handlePaste } = usePasteImage();
+  const { handlePasteAndUpload, uploadedImageUrl } = usePasteImageAndUpload();
   const { isPasteActive, setIsPasteActive } = usePasteZone();
 
   const handlePasteEvent = (e: React.ClipboardEvent) => {
-    handlePaste(e, onFileReceived);
+    handlePasteAndUpload(e);
   };
+
+  useEffect(() => {
+    if (uploadedImageUrl) {
+      setUploadedImageUrl(uploadedImageUrl);
+    }
+  }, [uploadedImageUrl]);
 
   return (
     <div className="space-y-4 w-full justify-center items-center">

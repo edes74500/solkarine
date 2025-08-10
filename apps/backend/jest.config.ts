@@ -8,6 +8,7 @@ const config: Config = {
       tsconfig: "tsconfig.json",
     },
   },
+
   testEnvironment: "node",
   setupFiles: ["<rootDir>/jest.setup.ts"],
   // indique à Jest de gérer .ts et .js

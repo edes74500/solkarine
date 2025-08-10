@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export default function RoutesList() {
-  const { data: routes, isLoading, isError, isFetching } = useGetRoutesWithPopulatedDungeonQuery();
+  const { data: routes, isLoading, isError } = useGetRoutesWithPopulatedDungeonQuery();
   const [deleteRoute, { isLoading: isDeleting }] = useDeleteRouteMutation();
   const [selectedDungeon, setSelectedDungeon] = useState<string | null>(null);
   const [filteredRoutes, setFilteredRoutes] = useState(routes?.data || []);
@@ -50,7 +50,7 @@ export default function RoutesList() {
       )
     : [];
 
-  if (isLoading || isFetching) {
+  if (isLoading) {
     return <LoadingCard />;
   }
 

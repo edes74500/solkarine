@@ -1,5 +1,6 @@
 // ✅ Correction du useImageUpload hook
-import { useUploadImageWithPresignedUrlMutation } from "@/redux/api/cdn.apiSlice";
+import { useUploadImagetoTempR2WithPresignedUrlMutation } from "@/redux/api/cdn.apiSlice";
+import { compressAndGiveUuid } from "@/utils/compressAndGiveUuid";
 import { toast } from "sonner";
 
 interface UseImageUploadProps {
@@ -7,21 +8,17 @@ interface UseImageUploadProps {
 }
 
 export function useImageUpload({ file }: UseImageUploadProps = {}) {
-  const [uploadImageWithPresignedUrl, { isLoading }] = useUploadImageWithPresignedUrlMutation();
+  const [uploadImageWithPresignedUrl, { isLoading }] = useUploadImagetoTempR2WithPresignedUrlMutation();
 
   // ✅ Fonction pour uploader avec un nom personnalisé
-  const uploadUrl = async (fileToUpload: File, customName?: string): Promise<string | null> => {
+  const uploadToTempR2 = async (fileToUpload: File): Promise<string | null> => {
     if (!fileToUpload) return null;
-
     try {
-      const fileName = customName
-        ? `${customName}.${fileToUpload.name.split(".").pop()}`
-        : `route_${Date.now()}.${fileToUpload.name.split(".").pop()}`;
+      const compressedFile = await compressAndGiveUuid(fileToUpload);
 
       const response = await uploadImageWithPresignedUrl({
-        file: fileToUpload,
-        imageFolder: "routes",
-        imageName: fileName,
+        file: compressedFile,
+        imageName: compressedFile.name,
       });
 
       return response.data || null;
@@ -34,6 +31,6 @@ export function useImageUpload({ file }: UseImageUploadProps = {}) {
 
   return {
     isLoading,
-    uploadUrl, // ✅ Fonction, pas string
+    uploadToTempR2, // ✅ Fonction, pas string
   };
 }

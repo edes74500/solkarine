@@ -1,4 +1,5 @@
 import imageCompression from "browser-image-compression";
+import { v4 as uuidv4 } from "uuid";
 
 /**
  * Compresse une image pour réduire sa taille
@@ -8,15 +9,16 @@ import imageCompression from "browser-image-compression";
  * @param maxWidthOrHeight - Largeur ou hauteur maximale en pixels (par défaut 1920px)
  * @returns Le fichier image compressé
  */
-export async function compressAndRenameImage(
+export async function compressAndGiveUuid(
   file: File,
-  name: string,
-  maxSizeMB: number = 0.2,
-  maxWidthOrHeight: number = 1080,
+  // name: string | null = null,
+  maxSizeMB?: number,
+  maxWidthOrHeight?: number,
 ): Promise<File> {
   try {
     const options = {
       maxSizeMB,
+      quality: 1,
       maxWidthOrHeight,
       useWebWorker: true,
       fileType: "image/webp",
@@ -29,12 +31,8 @@ export async function compressAndRenameImage(
       - Taille compressée: ${(compressedFile.size / 1024 / 1024).toFixed(2)} MB
       - Taux de compression: ${((1 - compressedFile.size / file.size) * 100).toFixed(2)}%`);
 
-    const timestamp = Date.now();
-    const extension = compressedFile.name.split(".").pop() || "webp";
-    const newFileName = `${name}_${timestamp}.${extension}`;
-
     // Créer un nouveau File avec le nom personnalisé
-    const renamedFile = new File([compressedFile], newFileName, {
+    const renamedFile = new File([compressedFile], `${uuidv4()}.${compressedFile.type.split("/")[1]}`, {
       type: compressedFile.type,
     });
 

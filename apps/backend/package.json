@@ -40,7 +40,8 @@
     "mongoose-lean-virtuals": "^2.0.0",
     "puppeteer": "^24.15.0",
     "puppeteer-core": "^24.15.0",
-    "ts-node": "^10.9.2"
+    "ts-node": "^10.9.2",
+    "uuid": "^11.1.0"
   },
   "devDependencies": {
     "@sparticuz/chrome-aws-lambda": "^17.1.3",

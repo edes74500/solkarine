@@ -7,6 +7,7 @@ export const addDungeon = async (dungeon: CreateDungeonForm): Promise<DungeonApi
 };
 
 export const clearAllDungeons: () => Promise<void> = async () => {
+  console.log("🔴 Clearing all dungeons");
   await Dungeon.deleteMany({});
 };
 
@@ -19,4 +20,9 @@ export const updateDungeon = async (id: string, dungeon: EditDungeonForm): Promi
   const updatedDungeon = await Dungeon.findByIdAndUpdate(id, dungeon, { new: true });
   const success = updatedDungeon !== null;
   return success;
+};
+
+export const getDungeonById = async (id: string): Promise<DungeonDb> => {
+  const dungeon = await Dungeon.findById(id).lean({ virtuals: true });
+  return dungeon as unknown as DungeonDb;
 };

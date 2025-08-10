@@ -73,7 +73,8 @@ describe("Tests d'intégration des services de donjons", () => {
       ];
 
       // Ajouter les donjons à la base de données
-      await Dungeon.create(dungeons);
+      await Dungeon.create(dungeons[0]);
+      await Dungeon.create(dungeons[1]);
 
       // Act
       const retrievedDungeons = await getAllDungeons();

@@ -13,7 +13,7 @@ export const createRoute = async (route: CreateRouteForm): Promise<RouteDB> => {
   return newRoute;
 };
 
-export const deleteRoute = async (id: string): Promise<boolean> => {
+export const deleteRouteById = async (id: string): Promise<boolean> => {
   const route = await Route.findByIdAndDelete(id);
 
   return route ? true : false;

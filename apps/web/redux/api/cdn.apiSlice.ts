@@ -54,8 +54,8 @@ export const postsApiSlice = apiSlice.injectEndpoints({
       },
     }),
 
-    uploadImageWithPresignedUrl: builder.mutation<string, { file: File; imageFolder: string; imageName: string }>({
-      async queryFn({ file, imageFolder, imageName }, api, extraOptions, baseQuery) {
+    uploadImagetoTempR2WithPresignedUrl: builder.mutation<string, { file: File; imageName: string }>({
+      async queryFn({ file, imageName }, api, extraOptions, baseQuery) {
         try {
           // Étape 1 : Générer l'URL présignée
           const presignedResponse = await baseQuery({
@@ -65,7 +65,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
             //   "Content-Type": "application/json",
             //   authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
             // },
-            body: { imageFolder, imageName },
+            body: { imageName },
           });
 
           if (presignedResponse.error) {
@@ -131,7 +131,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
 });
 
 export const {
-  useUploadImageWithPresignedUrlMutation,
+  useUploadImagetoTempR2WithPresignedUrlMutation,
   useGeneratePresignedUrlMutation,
   useUploadImageToPresignedUrlMutation,
 } = postsApiSlice;

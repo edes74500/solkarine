@@ -1,4 +1,5 @@
-// lib/raider.ts
+{
+} // lib/raider.ts
 
 import { RaiderioCharacter } from "@repo/types/dist";
 

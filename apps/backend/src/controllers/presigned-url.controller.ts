@@ -8,7 +8,7 @@ dotenv.config();
 export const generatePresignedUrl = async (req: Request, res: Response) => {
   // const userId = req.user?.userId || "";
   const timestamp = Date.now();
-  const { imageFolder, imageName } = req.body;
+  const { imageName } = req.body;
   // const objectKey = `${userId}-${timestamp}.jpg`; // Génère un nom unique avec l'ID utilisateur et le timestamp
 
   // if (!objectKey) {
@@ -24,10 +24,7 @@ export const generatePresignedUrl = async (req: Request, res: Response) => {
   }
 
   // Construction du chemin avec imageFolder optionnel
-  let pathName = `uploads/`;
-  if (imageFolder) {
-    pathName += `${imageFolder}/`;
-  }
+  let pathName = `uploads/temp/`;
   pathName += `${imageName}`;
 
   try {

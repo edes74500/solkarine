@@ -4,6 +4,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import express from "express";
 import helmet from "helmet";
+import mongoose from "mongoose";
 import corsOptions from "./config/cors.config";
 import { dbConnexion } from "./config/dbConnexion.config";
 import { errorHandler } from "./middlewares/errorHandler.middleware";
@@ -36,6 +37,17 @@ async function main() {
 
   // --- Connexion à MongoDB ---
   await dbConnexion.connect();
+  if (mongoose.connection.db) {
+    const coll = mongoose.connection.db.collection("dungeons");
+    const idx = await coll.indexes();
+    console.table(
+      idx.map((i) => ({
+        name: i.name,
+        key: JSON.stringify(i.key),
+        expireAfterSeconds: i.expireAfterSeconds ?? null,
+      })),
+    );
+  }
   console.log("Connexion à MongoDB réussie");
   // helper to auto-catch errors on async handlers
   const wrapAsync = (fn: any) => (req: any, res: any, next: any) => Promise.resolve(fn(req, res, next)).catch(next);

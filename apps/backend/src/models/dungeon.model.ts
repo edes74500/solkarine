@@ -17,6 +17,7 @@ const dungeonSchema = new Schema<DungeonDb>(
     versionKey: false,
     toJSON: { virtuals: true },
     toObject: { virtuals: true },
+    collection: "dungeons",
   },
 );
 
@@ -26,4 +27,4 @@ dungeonSchema.virtual("id").get(function (this: mongoose.Document & { _id: mongo
   return this._id.toHexString();
 });
 
-export const Dungeon = model<DungeonDb>("Dungeon", dungeonSchema);
+export const Dungeon = model<DungeonDb>("dungeons", dungeonSchema);

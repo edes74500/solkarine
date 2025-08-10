@@ -14,6 +14,7 @@ export const jwtRefreshTokenConfig = {
 export const jwtCookieOptions = {
   httpOnly: true,
   secure: process.env.NODE_ENV === "production",
-  maxAge: 60 * 60 * 1000, //1 hour
+  maxAge: 60 * 60 * 1000 * 24 * 7, //7 days
+  // maxAge: 1000, //7 days
   sameSite: "lax" as const,
 };

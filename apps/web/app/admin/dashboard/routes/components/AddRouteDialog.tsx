@@ -2,7 +2,7 @@
 
 import { StarRating } from "@/app/admin/dashboard/routes/components/StarRating";
 import PasteImageZone from "@/components/cdn/images/PasteImage";
-import { useImageUpload } from "@/hooks/useImageUpload";
+import { useImageUpload } from "@/hooks/img/useImageUpload";
 import { useGetDungeonsQuery } from "@/redux/api/dungeons.apiSlice";
 import { useCreateRouteMutation } from "@/redux/api/routes.apiSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -28,12 +28,13 @@ import { z } from "zod";
 
 export default function AddRouteDialog() {
   const [open, setOpen] = useState(false);
-  const [uploadedImage, setUploadedImage] = useState<File | null>(null);
+  // const [uploadedImage, setUploadedImage] = useState<File | null>(null);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [createRoute] = useCreateRouteMutation();
   const { data: dungeons } = useGetDungeonsQuery();
-  const { uploadUrl } = useImageUpload();
+  const { uploadToTempR2 } = useImageUpload();
 
   const form = useForm<z.infer<typeof createRouteSchema>>({
     resolver: zodResolver(createRouteSchema),
@@ -54,10 +55,10 @@ export default function AddRouteDialog() {
     mode: "all",
   });
 
-  console.log("form", form.formState.errors);
-  console.log("form", form.getValues());
-  console.log("errors", form.formState.errors);
-  console.log("form valid", form.formState.isValid);
+  // console.log("form", form.formState.errors);
+  // console.log("form", form.getValues());
+  // console.log("errors", form.formState.errors);
+  // console.log("form valid", form.formState.isValid);
 
   useEffect(() => {
     form.setValue("key_level", { min: 2, max: 30 }, { shouldValidate: true });
@@ -69,24 +70,29 @@ export default function AddRouteDialog() {
 
   //*submit
   const onSubmit = async (data: z.infer<typeof createRouteSchema>) => {
+    form.trigger();
+    if (!form.formState.isValid) {
+      toast.error("Veuillez remplir tous les champs requis");
+      return;
+    }
     setIsSubmitting(true);
 
     try {
       //* formatage de l'image
-      if (!uploadedImage) return;
-      const imgName =
-        data.name
-          .toLowerCase()
-          .replace(/[^a-z0-9]/g, "_")
-          .replace(/:/g, "_") +
-        "_" +
-        dungeons?.data
-          .find((dungeon) => dungeon.id === data.dungeon_id)
-          ?.name.toLowerCase()
-          .replace(/ /g, "_");
-      const image = await uploadUrl(uploadedImage, imgName);
-      console.log("image compressée", image);
-      if (!image) {
+      if (!uploadedImageUrl) return;
+      // const imgName =
+      //   data.name
+      //     .toLowerCase()
+      //     .replace(/[^a-z0-9]/g, "_")
+      //     .replace(/:/g, "_") +
+      //   "_" +
+      //   dungeons?.data
+      //     .find((dungeon) => dungeon.id === data.dungeon_id)
+      //     ?.name.toLowerCase()
+      //     .replace(/ /g, "_");
+      // const image = await uploadToTempR2(uploadedImage, imgName);
+      // console.log("image compressée", image);
+      if (!uploadedImageUrl) {
         console.log("no uploadUrl");
         toast.error("Erreur lors de la création de la route, impossible d'uploader l'image");
         return;
@@ -94,7 +100,7 @@ export default function AddRouteDialog() {
 
       const finalData = {
         ...data,
-        image,
+        image: uploadedImageUrl,
       };
       console.log("finalData", finalData);
       const response = await createRoute(finalData);
@@ -114,14 +120,15 @@ export default function AddRouteDialog() {
 
   const resetForm = useCallback(() => {
     form.reset();
-    setUploadedImage(null);
+    setUploadedImageUrl(null);
     setPreviewImage(null);
   }, [form]);
 
-  const handleImageUpload = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
     const file = e.target.files?.[0];
     if (file) {
-      setUploadedImage(file);
+      const imageUrl = await uploadToTempR2(file);
+      setUploadedImageUrl(imageUrl);
       const reader = new FileReader();
       reader.onload = (e) => {
         if (e.target?.result) {
@@ -134,21 +141,21 @@ export default function AddRouteDialog() {
     }
   }, []);
 
-  const handlePasteImage = useCallback((file: File) => {
-    setUploadedImage(file);
-    const reader = new FileReader();
-    reader.onload = (e) => {
-      if (e.target?.result) {
-        setPreviewImage(e.target.result as string);
-      }
-    };
-    form.setValue("image", file.name);
-    reader.readAsDataURL(file);
-    console.log("handlePasteImage");
-  }, []);
+  // const handlePasteImage = useCallback((file: File) => {
+  //   setUploadedImage(file);
+  //   const reader = new FileReader();
+  //   reader.onload = (e) => {
+  //     if (e.target?.result) {
+  //       setPreviewImage(e.target.result as string);
+  //     }
+  //   };
+  //   form.setValue("image", file.name);
+  //   reader.readAsDataURL(file);
+  //   console.log("handlePasteImage");
+  // }, []);
 
   const handleClearImage = useCallback(() => {
-    setUploadedImage(null);
+    setUploadedImageUrl(null);
     setPreviewImage(null);
     form.setValue("image", "");
   }, []);
@@ -367,23 +374,41 @@ export default function AddRouteDialog() {
                           />
                         </label>
 
-                        <PasteImageZone onFileReceived={handlePasteImage} />
+                        <PasteImageZone setUploadedImageUrl={setUploadedImageUrl} />
 
-                        {previewImage && (
+                        {uploadedImageUrl ? (
                           <div className="mt-2">
                             <p className="text-sm font-medium mb-1">Aperçu de l'image:</p>
                             <div className="relative w-fit">
-                              <img src={previewImage} alt="Aperçu" className="max-h-40 rounded-md object-contain" />
-                              <button
-                                type="button"
-                                onClick={handleClearImage}
-                                className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 text-xs aspect-square w-5 h-5 flex items-center justify-center"
-                              >
-                                X
-                              </button>
+                              {uploadedImageUrl ? (
+                                <>
+                                  <img
+                                    src={uploadedImageUrl}
+                                    alt="Aperçu"
+                                    className="max-h-40 rounded-md object-contain"
+                                    onLoad={(e) => e.currentTarget.classList.remove("opacity-0")}
+                                    onLoadStart={(e) => e.currentTarget.classList.add("opacity-0")}
+                                  />
+                                  {/* <div
+                                    className="absolute inset-0 flex items-center justify-center pointer-events-none transition-opacity duration-300"
+                                    id="loading-spinner"
+                                  >
+                                    <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
+                                  </div> */}
+                                  <button
+                                    type="button"
+                                    onClick={handleClearImage}
+                                    className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 text-xs aspect-square w-6 h-6 shrink-0 flex items-center justify-center"
+                                  >
+                                    X
+                                  </button>
+                                </>
+                              ) : (
+                                <div className="h-8 w-8 animate-spin rounded-full border-4 border-primary border-t-transparent"></div>
+                              )}
                             </div>
                           </div>
-                        )}
+                        ) : null}
                       </div>
 
                       {/* Champ caché pour stocker l'URL de l'image */}
@@ -396,7 +421,7 @@ export default function AddRouteDialog() {
             />
 
             <DialogFooter>
-              <Button type="submit" disabled={isSubmitting || !form.formState.isValid || !uploadedImage}>
+              <Button type="submit" disabled={isSubmitting || !form.formState.isValid || !uploadedImageUrl}>
                 {isSubmitting ? "Création en cours..." : "Créer la route"}
               </Button>
             </DialogFooter>

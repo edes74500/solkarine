@@ -50,7 +50,7 @@ export const createRouteSchema = z.object({
   dungeon_id: z.string().min(1),
   difficulty: z.number(),
   speed: z.number(),
-  lien_mdt: z.string(),
+  lien_mdt: z.string().min(1, "Le lien MDT est requis"),
   key_level: z.object({
     min: z.number(),
     max: z.number(),

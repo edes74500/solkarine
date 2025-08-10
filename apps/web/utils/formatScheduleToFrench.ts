@@ -1,3 +1,5 @@
+import { format, subHours } from "date-fns";
+
 export const formatScheduleToFrench = (icalData: string): any[] => {
   const events: any[] = [];
   const eventBlocks = icalData.split("BEGIN:VEVENT");
@@ -12,26 +14,36 @@ export const formatScheduleToFrench = (icalData: string): any[] => {
     const rrule = block.match(/RRULE:(.*)/)?.[1]?.trim();
 
     if (startMatch && endMatch && summary) {
-      // Convertir les heures de Séoul (UTC+9) en heures françaises (UTC+1)
-      // Différence de 8 heures
-      const startYear = parseInt(startMatch[1]);
-      const startMonth = parseInt(startMatch[2]) - 1; // Les mois commencent à 0 en JS
-      const startDay = parseInt(startMatch[3]);
-      const startHour = parseInt(startMatch[4]);
-      const startMinute = parseInt(startMatch[5]);
+      // Créer les dates avec date-fns
+      const startDateSeoul = new Date(
+        parseInt(startMatch[1]),
+        parseInt(startMatch[2]) - 1,
+        parseInt(startMatch[3]),
+        parseInt(startMatch[4]),
+        parseInt(startMatch[5]),
+      );
 
-      const endYear = parseInt(endMatch[1]);
-      const endMonth = parseInt(endMatch[2]) - 1;
-      const endDay = parseInt(endMatch[3]);
-      const endHour = parseInt(endMatch[4]);
-      const endMinute = parseInt(endMatch[5]);
+      const endDateSeoul = new Date(
+        parseInt(endMatch[1]),
+        parseInt(endMatch[2]) - 1,
+        parseInt(endMatch[3]),
+        parseInt(endMatch[4]),
+        parseInt(endMatch[5]),
+      );
 
-      const startDateSeoul = new Date(startYear, startMonth, startDay, startHour, startMinute);
-      const endDateSeoul = new Date(endYear, endMonth, endDay, endHour, endMinute);
+      // Calculer le décalage horaire en tenant compte des heures d'été/hiver
+      // Séoul est toujours à UTC+9
+      const seoulOffset = 9;
 
-      // Convertir de l'heure de Séoul à l'heure française (UTC+9 à UTC+1)
-      const startDateFrance = new Date(startDateSeoul.getTime() - 8 * 60 * 60 * 1000);
-      const endDateFrance = new Date(endDateSeoul.getTime() - 8 * 60 * 60 * 1000);
+      // Obtenir le décalage horaire français actuel (UTC+1 ou UTC+2 selon l'heure d'été/hiver)
+      const frenchOffset = -(new Date().getTimezoneOffset() / 60);
+
+      // Calculer la différence entre les deux fuseaux horaires
+      const hourDifference = seoulOffset - frenchOffset;
+
+      // Convertir de l'heure de Séoul à l'heure française en tenant compte du décalage
+      const startDateFrance = subHours(startDateSeoul, hourDifference);
+      const endDateFrance = subHours(endDateSeoul, hourDifference);
 
       // Déterminer le jour de la semaine en français
       let dayOfWeek = "";
@@ -79,8 +91,8 @@ export const formatScheduleToFrench = (icalData: string): any[] => {
         endDate: endDateFrance,
         dayOfWeek,
         dayOrder,
-        startTime: `${startDateFrance.getHours().toString().padStart(2, "0")}:${startDateFrance.getMinutes().toString().padStart(2, "0")}`,
-        endTime: `${endDateFrance.getHours().toString().padStart(2, "0")}:${endDateFrance.getMinutes().toString().padStart(2, "0")}`,
+        startTime: format(startDateFrance, "HH:mm"),
+        endTime: format(endDateFrance, "HH:mm"),
       });
     }
   });

@@ -2,7 +2,7 @@
 
 import { StarRating } from "@/app/admin/dashboard/routes/components/StarRating";
 import PasteImageZone from "@/components/cdn/images/PasteImage";
-import { useImageUpload } from "@/hooks/useImageUpload";
+import { useImageUpload } from "@/hooks/img/useImageUpload";
 import { useGetDungeonsQuery } from "@/redux/api/dungeons.apiSlice";
 import { useUpdateRouteMutation } from "@/redux/api/routes.apiSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
