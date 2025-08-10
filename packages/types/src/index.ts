@@ -8,6 +8,9 @@ export * from "./scrapping.schema";
 export * from "./season.schema";
 export * from "./weakAura.schema";
 
+//* addon profile
+export * from "./addonProfile.schema";
+
 //* character
 export * from "./character.schema";
 

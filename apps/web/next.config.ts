@@ -2,6 +2,15 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   transpilePackages: ["@repo/utils", "@repo/types", "@repo/typescript-config", "@repo/ui", "@repo/constants"],
+  // Suppression des console.log en production
+  compiler: {
+    removeConsole:
+      process.env.NODE_ENV === "production"
+        ? {
+            exclude: ["error", "warn"],
+          }
+        : false,
+  },
   /* config options here */
   images: {
     remotePatterns: [

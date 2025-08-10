@@ -1,5 +1,6 @@
 "use client";
 
+import { LogOutButton } from "@/components/auth/LogOut";
 import { ThemeSwapper } from "@/components/navbar/ThemeSwapper";
 import { cn } from "@/lib/utils";
 import { Button } from "@repo/ui/components/button";
@@ -8,7 +9,6 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@repo/
 import {
   CalendarClock,
   Castle,
-  Clock,
   ExternalLink,
   HelpCircle,
   LayoutDashboard,
@@ -103,13 +103,13 @@ export default function DashboardNavbar() {
           isActive={pathname === "/admin/dashboard/characters"}
           isCollapsed={isCollapsed}
         />
-        <NavItem
+        {/* <NavItem
           icon={<Clock size={20} />}
           title="Horaires de stream"
           href="/admin/dashboard/stream-schedule"
           isActive={pathname === "/admin/dashboard/stream-schedule"}
           isCollapsed={isCollapsed}
-        />
+        /> */}
         <Separator className="my-2" />
         {/* 
         <NavItem
@@ -203,6 +203,9 @@ export default function DashboardNavbar() {
       </div>
       <footer className="border-t border-border py-4 mt-auto">
         <div className="px-4">
+          <LogOutButton />
+          <Separator className="my-2" />
+
           <ThemeSwapper />
           <Separator className="my-2" />
           <Link

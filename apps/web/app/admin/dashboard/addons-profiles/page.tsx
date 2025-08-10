@@ -1,3 +1,4 @@
+import AddAddonProfile from "@/app/admin/dashboard/addons-profiles/components/AddAddonProfile";
 import { Alert, AlertDescription, AlertTitle } from "@repo/ui/components/alert";
 import { InfoIcon } from "lucide-react";
 
@@ -14,6 +15,8 @@ export default function AddonProfilesPage() {
           Ajoutez, modifiez ou supprimez des profils pour les rendre disponibles aux utilisateurs.
         </AlertDescription>
       </Alert>
+
+      <AddAddonProfile />
     </section>
   );
 }

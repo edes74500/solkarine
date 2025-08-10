@@ -1,4 +1,5 @@
 import TwitchEmbedLib from "@/app/components/twitch/TwitchEmbed";
+import TwitchScheduleModule from "@/app/components/twitch/TwitchScheduleModule";
 
 export default function TwitchSection() {
   return (
@@ -14,27 +15,10 @@ export default function TwitchSection() {
         </svg> */}
       </h2>
       <div className="flex flex-col md:flex-row gap-10 items-center w-full">
-        <div className="w-full grow">
+        <div className="w-full grow flex gap-10 lg:flex-row flex-col">
           <TwitchEmbedLib />
-        </div>
-        <div className="bg-secondary/20 p-6 rounded-lg">
-          <div className=" md:grid-cols-4 gap-4 flex flex-col">
-            <div className="bg-background p-3 rounded border text-center">
-              <p className="font-bold">Lundi</p>
-              <p className="text-sm text-muted-foreground">20h - 23h</p>
-            </div>
-            <div className="bg-background p-3 rounded border text-center">
-              <p className="font-bold">Mercredi</p>
-              <p className="text-sm text-muted-foreground">20h - 23h</p>
-            </div>
-            <div className="bg-background p-3 rounded border text-center">
-              <p className="font-bold">Vendredi</p>
-              <p className="text-sm text-muted-foreground">20h - 23h</p>
-            </div>
-            <div className="bg-background p-3 rounded border text-center">
-              <p className="font-bold">Dimanche</p>
-              <p className="text-sm text-muted-foreground">14h - 18h</p>
-            </div>
+          <div className="w-full justify-center items-center flex lg:max-w-[20%]">
+            <TwitchScheduleModule />
           </div>
         </div>
       </div>

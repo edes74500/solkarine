@@ -99,7 +99,7 @@ export default function RootLayout({
               {/* <ContentWidthWrapper> */}
               <Navbar />
               {/* </ContentWidthWrapper> */}
-              <div className="grow">
+              <div className="grow px-4 lg:px-0">
                 <Toaster position="bottom-center" />
                 {children}
               </div>
