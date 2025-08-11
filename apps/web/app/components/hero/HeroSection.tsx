@@ -9,7 +9,7 @@ export default function HeroSection() {
   const solkarineImage = frontendImageLink.solkarine;
   return (
     <section className="flex flex-col gap-8 items-center w-full items-center justify-center">
-      <div className="flex flex-col md:flex-row gap-8 items-center min-h-[50vh]">
+      <div className="flex flex-col md:flex-row gap-8 items-center py-20">
         {/* image */}
         <div className="relative w-full md:w-1/3 aspect-square">
           <Image

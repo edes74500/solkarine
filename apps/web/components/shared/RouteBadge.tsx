@@ -31,21 +31,26 @@ export function RouteBadge({
     <Badge
       variant={isSelected ? "default" : "outline"}
       className={cn(
-        "cursor-pointer px-4 py-1.5 flex items-center gap-2 text-sm font-medium rounded-md transition-all h-15 border-2 border-transparent w-full",
-        isSelected ? "bg-primary text-primary-foreground shadow-md border-primary" : "hover:bg-secondary",
+        "cursor-pointer px-4 py-1.5 flex items-center gap-2 text-sm font-medium rounded-md transition-all h-15 border-2 border-none w-full shadow-md",
+        isSelected
+          ? "bg-primary text-primary-foreground shadow-md border-primary ring-2 ring-primary"
+          : "hover:bg-secondary",
         "relative overflow-hidden",
       )}
       onClick={handleClick}
     >
       <div className="absolute inset-0 z-0">
-        <Image
-          src={dungeon.background_image_url}
-          alt={dungeon.short_name}
-          fill
-          className="object-cover"
-          style={{ filter: "brightness(1.2" }}
-        />
-        <div className="absolute inset-0 bg-white/30 dark:bg-black/30 w-full h-full"></div>
+        <div className="absolute inset-0 left-1/2 w-1/2 h-full">
+          <Image
+            src={dungeon.background_image_url}
+            alt={dungeon.short_name}
+            fill
+            className="object-cover"
+            style={{ filter: "brightness(1.2)" }}
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-card to-transparent w-full h-full"></div>
+        </div>
+        <div className="absolute inset-0 right-1/2 w-1/2 h-full bg-card"></div>
       </div>
       <div className="flex items-center justify-between w-full relative z-10">
         <div></div>

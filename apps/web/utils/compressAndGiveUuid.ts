@@ -12,8 +12,8 @@ import { v4 as uuidv4 } from "uuid";
 export async function compressAndGiveUuid(
   file: File,
   // name: string | null = null,
-  maxSizeMB?: number,
-  maxWidthOrHeight?: number,
+  maxSizeMB: number = 0.4,
+  maxWidthOrHeight: number = 1920,
 ): Promise<File> {
   try {
     const options = {

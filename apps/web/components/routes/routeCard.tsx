@@ -8,8 +8,8 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@repo/
 import { Check, Copy, Info, Star, StarHalf } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useState } from "react";
-import ImageViewer from "react-simple-image-viewer";
 import { toast } from "sonner";
+import { useLightbox } from "../wrapper/lightboxProvider";
 
 interface RouteCardProps {
   route: RouteDBWithDungeonPopulated;
@@ -19,15 +19,11 @@ interface RouteCardProps {
 export function RouteCard({ route, className = "" }: RouteCardProps) {
   const [imageError, setImageError] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [isViewerOpen, setIsViewerOpen] = useState(false);
+  const openLightbox = useLightbox();
 
-  const openImageViewer = useCallback(() => {
-    setIsViewerOpen(true);
-  }, []);
-
-  const closeImageViewer = useCallback(() => {
-    setIsViewerOpen(false);
-  }, []);
+  const handleImageClick = useCallback(() => {
+    openLightbox([route.image]);
+  }, [openLightbox, route.image]);
 
   const renderStars = (rating: number) => {
     const stars = [];
@@ -58,34 +54,23 @@ export function RouteCard({ route, className = "" }: RouteCardProps) {
   };
 
   return (
-    <Card className={`overflow-hidden transition-all duration-300 hover:shadow-lg ${className}  w-full !p-0 !h-full`}>
+    <Card className={`overflow-hidden transition-all duration-300 hover:shadow-lg ${className} w-full !p-0 !h-full`}>
       <CardHeader className="!p-0">
         <div className="relative h-40 w-full overflow-hidden">
           {!imageError ? (
-            <>
-              <Image
-                src={route.image}
-                alt={route.name}
-                fill
-                className="object-cover cursor-pointer"
-                onError={() => setImageError(true)}
-                onClick={openImageViewer}
-              />
-              {isViewerOpen && (
-                <div className="z-50">
-                  <ImageViewer
-                    src={[route.image]}
-                    currentIndex={0}
-                    disableScroll={false}
-                    closeOnClickOutside={true}
-                    onClose={closeImageViewer}
-                    backgroundStyle={{
-                      backgroundColor: "rgba(0, 0, 0, 0.8)",
-                    }}
-                  />
-                </div>
-              )}
-            </>
+            <div className="h-full w-full relative">
+              <div className="absolute inset-0 left-1/2 z-10 cursor-pointer" onClick={handleImageClick}>
+                <Image
+                  src={route.image}
+                  alt={route.name}
+                  fill
+                  className="object-cover"
+                  onError={() => setImageError(true)}
+                />
+                <div className="absolute inset-0 bg-gradient-to-r from-transparent to-white dark:to-card"></div>
+              </div>
+              <div className="absolute inset-0 left-0 right-1/2 bg-card"></div>
+            </div>
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-gray-200 dark:bg-gray-800">
               <span className="text-gray-500 dark:text-gray-400">Image non disponible</span>

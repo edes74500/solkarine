@@ -16,32 +16,43 @@ export default async function Home() {
   // }
 
   return (
-    <ContentWidthWrapper>
-      <div className="font-sans flex flex-col gap-8 max-w-full ">
-        {/* Hero Section */}
+    <>
+      <ContentWidthWrapper>
+        <div className="font-sans flex flex-col gap-8 max-w-full mb-">
+          {/* Hero Section */}
 
-        <HeroSection />
+          <HeroSection />
 
-        <Separator />
+          <Separator />
+          {/* </div>
+      </ContentWidthWrapper> */}
+          {/* Guides Section */}
+          <GuidesSection />
 
-        {/* Twitch Section */}
-        <TwitchSection />
+          {/* <ContentWidthWrapper>
+        <div className="font-sans flex flex-col gap-8 max-w-full "> */}
+          <Separator />
+          {/* Twitch Section */}
+          <TwitchSection />
+          {/* </div>
+      </ContentWidthWrapper> */}
+          <Separator />
 
-        <Separator />
+          {/* Community Section */}
+          <Community />
 
-        {/* Community Section */}
-        <Community />
+          <Separator />
+          {/* <ContentWidthWrapper>
+        <div className="font-sans flex flex-col gap-8 max-w-full "> */}
+          {/* Guides Section */}
+          {/* <GuidesSection /> */}
 
-        <Separator />
+          {/* <Separator /> */}
 
-        {/* Guides Section */}
-        <GuidesSection />
-
-        <Separator />
-
-        {/* Characters Section */}
-        <CharactersSection />
-      </div>
-    </ContentWidthWrapper>
+          {/* Characters Section */}
+          <CharactersSection />
+        </div>
+      </ContentWidthWrapper>
+    </>
   );
 }

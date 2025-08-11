@@ -20,7 +20,7 @@ import {
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@repo/ui/components/form";
 import { Input } from "@repo/ui/components/input";
 import { Textarea } from "@repo/ui/components/textarea";
-import { PlusCircle } from "lucide-react";
+import { PlusCircle, XIcon } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
@@ -400,7 +400,7 @@ export default function AddRouteDialog() {
                                     onClick={handleClearImage}
                                     className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 text-xs aspect-square w-6 h-6 shrink-0 flex items-center justify-center"
                                   >
-                                    X
+                                    <XIcon className="w-4 h-4" />
                                   </button>
                                 </>
                               ) : (

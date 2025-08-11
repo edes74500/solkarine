@@ -7,7 +7,8 @@ export const addonProfileSchemaDB = z.object({
   name: z.string(),
   description: z.string(),
   info: z.string().optional(),
-  content: z.string(),
+  screenshots: z.array(z.string().max(3).url().optional()),
+  export_string: z.string(),
   createdAt: z.date(),
   updatedAt: z.date(),
 });
@@ -39,9 +40,18 @@ export const createAddonProfileSchema = z.object({
     message: "La description doit contenir au moins 10 caractères",
   }),
   info: z.string().optional(),
-  content: z.string().min(10, {
+  export_string: z.string().min(10, {
     message: "Le contenu doit contenir au moins 10 caractères",
   }),
+  screenshots: z.array(
+    z
+      .string()
+      .max(3, {
+        message: "Vous ne pouvez pas ajouter plus de 3 screenshots",
+      })
+      .url()
+      .optional(),
+  ),
 });
 
 export const updateAddonProfileSchema = createAddonProfileSchema.partial();

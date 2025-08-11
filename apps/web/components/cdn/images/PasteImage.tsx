@@ -31,7 +31,7 @@ export default function PasteImageZone({ setUploadedImageUrl }: PasteImageZonePr
         onPaste={handlePasteEvent}
         onFocus={() => setIsPasteActive(true)}
         onBlur={() => setIsPasteActive(false)}
-        className={`border justify-center items-center border-dashed p-4 rounded cursor-pointer transition-all duration-300 text-center ${
+        className={`border justify-center items-center border-dashed p-4 rounded cursor-pointer transition-all bg-input duration-300 text-center ${
           isPasteActive ? "border-2 border-primary bg-primary/10 shadow-lg" : "border-primary focus:outline-primary"
         }`}
       >

@@ -20,15 +20,15 @@ const RaiderIoCard: React.FC<Props> = ({ data }) => {
 
   return (
     <Card className="overflow-hidden max-w-sm dark:bg-black/70 bg-stone-600 drop-shadow-md">
-      <CardHeader className="!mb-0 !pb-0 !text-white">
-        <div className="flex items-center gap-4">
+      <CardHeader className="!mb-0 !pb-0 !text-white !h-fit">
+        <div className="flex items-center gap-2">
           {data.thumbnail_url && (
             <Avatar className="h-16 w-16 border-2 border-primary/50">
               <AvatarImage src={data.thumbnail_url || ""} alt={data.name} className="object-cover" />
             </Avatar>
           )}
-          <div>
-            <h2 className="text-xl font-bold line-clamp-1">
+          <div className="flex- flex-col w-full">
+            <h3 className="text-xl font-bold line-clamp-1">
               <a
                 href={data.profile_url}
                 target="_blank"
@@ -43,7 +43,7 @@ const RaiderIoCard: React.FC<Props> = ({ data }) => {
               >
                 {data.name}
               </a>
-            </h2>
+            </h3>
             <div className="text-sm ">
               <p className="line-clamp-2 text-xs">
                 {data.active_spec_name} {data.class} - {data.realm} ({data.region.toUpperCase()})

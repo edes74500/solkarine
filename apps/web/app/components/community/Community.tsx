@@ -6,39 +6,64 @@ import { FaArrowRight } from "react-icons/fa";
 
 export default function Community() {
   return (
-    <section className="gap-8 items-center w-full min-h-[10vh] mx-auto items-center justify-center flex flex-col font-dyna-puff">
-      <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-        <Image
-          src={frontendImageLink.wow_logo}
-          alt="discord"
-          width={24}
-          height={24}
-          className="w-8 h-8 text-purple-500"
-        />
-        Ma communauté sur wow
-      </h2>
-      <div className="relative w-full max-w-md h-20 mx-auto overflow-hidden rounded-lg ring-2 ring-primary/80 dark:ring-primary/20 shadow-xl group hover:scale-[1.02] transition-all duration-300">
+    <section className="gap-8 min-h-[40vh] items-center w-full mx-auto justify-center flex flex-col  relative overflow-hidden">
+      <div className="absolute inset-0 w-full h-full">
         <Image
           src={frontendImageLink.community_button}
-          alt="community"
-          className="w-full h-full object-cover transform group-hover:scale-105 transition-transform duration-500"
+          alt="community background"
+          className="w-full h-full object-cover"
           fill
-          sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+          sizes="100vw"
+          priority
         />
-        <div className="absolute inset-0 bg-gradient-to-r from-black/40 to-secondary/40 group-hover:opacity-80 transition-opacity duration-300"></div>
-        <Button
-          variant="outline"
-          asChild
-          className="absolute inset-0 w-full h-full bg-background/20  hover:bg-background/30 text-white tracking-wide font-dyna-puff text-lg font-bold border-0 overflow-hidden"
-        >
-          <Link
-            href={SOCIAL_MEDIA_LINK.WOW_COMMUNITY}
-            target="_blank"
-            className="flex items-center justify-center gap-2 group-hover:gap-4 transition-all duration-300 tracking-widest bg-black/10 hover:bg-black/20 hover:!text-white"
+        <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/40"></div>
+      </div>
+
+      <div className="relative z-10 flex flex-col items-center max-w-4xl w-full px-4">
+        <h2 className="font-dyna-puff text-white tracking-widest text-center">
+          <Image src={frontendImageLink.wow_logo} alt="wow logo" width={40} height={40} className="w-10 h-10 " />
+          <span className="drop-shadow-lg">Marre de jouer seul ?</span>
+        </h2>
+
+        <p className="text-white text-center mb-8 max-w-2xl text-lg drop-shadow-md backdrop-blur-sm bg-black/40 p-4 rounded-lg border border-primary/30">
+          Raz le bol d&apos;être stuck à Dornogal ? Marre des Pugs qui passent plus de temps à s&apos;énerver dans le
+          chat qu&apos;à jouer ? Rejoins ma communauté pour trouver des partenaires de Mythic+, et jouer ensemble dans
+          un environnement convivial.
+        </p>
+        {/* 
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl mb-8">
+          <div className="bg-black/40 backdrop-blur-sm p-4 rounded-lg flex items-center gap-4 border border-primary/30">
+            <FaUsers className="text-primary text-3xl" />
+            <div>
+              <h3 className="text-white font-bold">Trouvez des partenaires</h3>
+              <p className="text-gray-200 text-sm">Formez des groupes pour vos Mythic+ et raids</p>
+            </div>
+          </div>
+          <div className="bg-black/40 backdrop-blur-sm p-4 rounded-lg flex items-center gap-4 border border-primary/30">
+            <FaGamepad className="text-primary text-3xl" />
+            <div>
+              <h3 className="text-white font-bold">Progressez ensemble</h3>
+              <p className="text-gray-200 text-sm">Partagez des stratégies et améliorez votre jeu</p>
+            </div>
+          </div>
+        </div> */}
+
+        <div className="relative w-full max-w-sm mx-auto overflow-hidden rounded-lg shadow-[0_0_10px_rgba(255,255,255,0.15)] group hover:scale-[1.01] transition-all duration-300 font-dyna-puff">
+          <Button
+            variant="outline"
+            asChild
+            className="w-full h-12 bg-primary/70 hover:bg-primary text-white tracking-wide font-medium text-base border-0 overflow-hidden !bg-primary"
           >
-            Rejoindre la communauté <FaArrowRight className="group-hover:animate-pulse" />
-          </Link>
-        </Button>
+            <Link
+              href={SOCIAL_MEDIA_LINK.WOW_COMMUNITY}
+              target="_blank"
+              className="flex items-center justify-center gap-2 group-hover:gap-3 transition-all duration-300"
+            >
+              Rejoindre la communauté <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+            </Link>
+          </Button>
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-primary/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+        </div>
       </div>
     </section>
   );
