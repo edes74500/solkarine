@@ -35,10 +35,11 @@ export default function EditRouteDialog({ route, onSuccess }: EditRouteDialogPro
   const [open, setOpen] = useState(false);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(route.image);
+  const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(route.image);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [updateRoute] = useUpdateRouteMutation();
   const { data: dungeons } = useGetDungeonsQuery();
-  const { uploadUrl } = useImageUpload();
+  const { uploadToTempR2 } = useImageUpload();
 
   const form = useForm<z.infer<typeof createRouteSchema>>({
     resolver: zodResolver(createRouteSchema),
@@ -76,6 +77,7 @@ export default function EditRouteDialog({ route, onSuccess }: EditRouteDialogPro
         image: route.image,
       });
       setPreviewImage(route.image);
+      setUploadedImageUrl(route.image);
     }
   }, [open, route, form]);
 
@@ -107,7 +109,7 @@ export default function EditRouteDialog({ route, onSuccess }: EditRouteDialogPro
             .find((dungeon) => dungeon.id === data.dungeon_id)
             ?.name.toLowerCase()
             .replace(/ /g, "_");
-        const image = await uploadUrl(uploadedImage, imgName);
+        const image = await uploadToTempR2(uploadedImage);
 
         if (!image) {
           toast.error("Erreur lors de la modification de la route, impossible d'uploader l'image");
@@ -379,7 +381,7 @@ export default function EditRouteDialog({ route, onSuccess }: EditRouteDialogPro
                           />
                         </label>
 
-                        <PasteImageZone onFileReceived={handlePasteImage} />
+                        <PasteImageZone setUploadedImageUrl={setUploadedImageUrl} />
 
                         {previewImage && (
                           <div className="mt-2">
