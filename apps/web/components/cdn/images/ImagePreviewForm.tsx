@@ -8,9 +8,19 @@ type Props = {
   fildValue: (string | undefined)[];
   isUploading: boolean;
   handleClearImageAction: (index: number) => void;
+  showTumbails?: boolean;
+  showDeleteButton?: boolean;
+  showArrows?: boolean;
 };
 
-export default function ImagePreviewForm({ fildValue, isUploading, handleClearImageAction }: Props) {
+export default function ImagePreviewForm({
+  fildValue,
+  isUploading,
+  handleClearImageAction,
+  showTumbails = true,
+  showDeleteButton = true,
+  showArrows = true,
+}: Props) {
   const openLightbox = useLightbox();
 
   // Construit une liste (src + index d'origine) en filtrant les undefined
@@ -26,7 +36,7 @@ export default function ImagePreviewForm({ fildValue, isUploading, handleClearIm
   const slides = useMemo(() => entries.map((e) => e.src), [entries]);
 
   const openImageDialog = (index: number) => {
-    openLightbox(slides, index);
+    openLightbox(slides, index, showArrows, showTumbails);
   };
 
   const hasContent = entries.length > 0 || isUploading;
@@ -51,14 +61,16 @@ export default function ImagePreviewForm({ fildValue, isUploading, handleClearIm
                 onLoadStart={(ev) => ev.currentTarget.classList.add("opacity-0")}
               />
 
-              <button
-                type="button"
-                onClick={() => handleClearImageAction(e.originalIndex)}
-                className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 text-xs aspect-square w-6 h-6 shrink-0 flex items-center justify-center"
-                aria-label={`Supprimer l'image ${e.originalIndex + 1}`}
-              >
-                <XIcon className="w-4 h-4" />
-              </button>
+              {showDeleteButton && (
+                <button
+                  type="button"
+                  onClick={() => handleClearImageAction(e.originalIndex)}
+                  className="absolute top-1 right-1 bg-red-500 text-white rounded-full p-1 text-xs aspect-square w-6 h-6 shrink-0 flex items-center justify-center"
+                  aria-label={`Supprimer l'image ${e.originalIndex + 1}`}
+                >
+                  <XIcon className="w-4 h-4" />
+                </button>
+              )}
             </div>
           ))}
         </div>

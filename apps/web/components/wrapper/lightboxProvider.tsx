@@ -1,7 +1,7 @@
 "use client";
 
+import { ChevronLeftIcon, ChevronRightIcon } from "lucide-react";
 import { createContext, ReactNode, useContext, useEffect, useMemo, useState } from "react";
-import { createPortal } from "react-dom";
 import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
@@ -9,7 +9,7 @@ import Zoom from "yet-another-react-lightbox/plugins/zoom";
 import "yet-another-react-lightbox/styles.css";
 
 type Ctx = {
-  openLightbox: (images: string[], startIndex?: number) => void;
+  openLightbox: (images: string[], startIndex?: number, showArrows?: boolean, showTumbails?: boolean) => void;
   closeLightbox: () => void;
   isOpen: boolean;
 };
@@ -25,17 +25,29 @@ export const useLightbox = () => {
   return openLightbox;
 };
 
-export const useLightboxState = () => useContext(LightboxCtx);
+export const useLightboxState = (showThumbnails = true, showArrows = true) => useContext(LightboxCtx);
 
-export function LightboxProvider({ children }: { children: ReactNode }) {
+export function LightboxProvider({
+  children,
+  showThumbnails = true,
+  showArrows = true,
+}: {
+  children: ReactNode;
+  showThumbnails?: boolean;
+  showArrows?: boolean;
+}) {
   const [open, setOpen] = useState(false);
   const [index, setIndex] = useState(0);
   const [slides, setSlides] = useState<{ src: string }[]>([]);
   const [mounted, setMounted] = useState(false);
+  const [arrows, setArrows] = useState<boolean>(showArrows);
+  const [thumbnails, setThumbnails] = useState<boolean>(showThumbnails);
 
   useEffect(() => setMounted(true), []);
 
-  const openLightbox = (images: string[], startIndex = 0) => {
+  const openLightbox = (images: string[], startIndex = 0, showArrows = true, showThumbnails = true) => {
+    setArrows(showArrows);
+    setThumbnails(showThumbnails);
     const filtered = images.filter(Boolean).map((src) => ({ src }));
     if (!filtered.length) return;
     setSlides(filtered);
@@ -84,22 +96,34 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
   return (
     <LightboxCtx.Provider value={ctx}>
       {children}
-      {mounted &&
-        open &&
-        createPortal(
+      {mounted && open && (
+        <>
           <div>
             <Lightbox
+              portal={{
+                root: document.body,
+              }}
+              render={{
+                iconNext: () => (arrows ? <ChevronRightIcon className="w-10 h-10" /> : undefined),
+                iconPrev: () => (arrows ? <ChevronLeftIcon className="w-10 h-10" /> : undefined),
+              }}
               open={open}
               close={closeLightbox}
               slides={slides}
               index={index}
+              //   toolbar={{
+              //     buttons: [arrows ? "Précédent" : undefined, arrows ? "Suivant" : undefined],
+              //   }}
               controller={{
                 closeOnBackdropClick: true,
                 closeOnPullDown: true,
                 closeOnPullUp: true,
               }}
-              plugins={[Zoom, Thumbnails]}
+              plugins={[Zoom, ...(thumbnails ? [Thumbnails] : [])]}
               styles={{
+                root: {
+                  zIndex: 9999,
+                },
                 container: {
                   backgroundColor: "rgba(0, 0, 0, 0.8)",
                 },
@@ -108,9 +132,9 @@ export function LightboxProvider({ children }: { children: ReactNode }) {
                 },
               }}
             />
-          </div>,
-          document.body,
-        )}
+          </div>
+        </>
+      )}
     </LightboxCtx.Provider>
   );
 }

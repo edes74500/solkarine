@@ -8,11 +8,17 @@ export const routesApi = apiSlice.injectEndpoints({
       providesTags: ["Routes"],
     }),
 
-    updateRoute: builder.mutation<{ success: boolean; data: RouteDB }, { id: string; route: UpdateRouteForm }>({
+    updateRoute: builder.mutation<
+      { success: boolean; data: RouteDB },
+      { id: string; route: UpdateRouteForm; previousImage: string }
+    >({
       query: (route) => ({
         url: `/routes/update/${route.id}`,
         method: "PUT",
-        body: route.route,
+        body: {
+          route: route.route,
+          previousImage: route.previousImage,
+        },
       }),
       invalidatesTags: ["Routes"],
     }),

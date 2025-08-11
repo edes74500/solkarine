@@ -257,6 +257,8 @@ export default function AddAddonProfile() {
                                 fildValue={field.value}
                                 isUploading={isUploading}
                                 handleClearImageAction={handleClearImage}
+                                showTumbails={field.value.length > 1 ? true : false}
+                                showArrows={field.value.length > 1 ? true : false}
                               />
                             </div>
                           </div>

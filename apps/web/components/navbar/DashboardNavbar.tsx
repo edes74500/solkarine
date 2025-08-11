@@ -79,8 +79,10 @@ export default function DashboardNavbar() {
         isCollapsed ? "w-16" : "w-64",
       )}
     >
-      <div className="flex flex-row items-center justify-between p-4 border-b">
-        {!isCollapsed && <h2 className="font-semibold flex flex-row items-center gap-2">ADMIN DASHBOARD</h2>}
+      <div className="flex flex-row items-center justify-between p-4 border-b line-clamp-1">
+        {!isCollapsed && (
+          <span className="font-semibold text-xl flex flex-row items-center gap-2 line-clamp-1">ADMIN DASHBOARD</span>
+        )}
         <Button variant="ghost" size="icon" onClick={() => setIsCollapsed(!isCollapsed)} className="ml-auto">
           {isCollapsed ? <Menu size={20} /> : <X size={20} />}
         </Button>

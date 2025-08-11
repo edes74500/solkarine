@@ -28,14 +28,10 @@ export default async function CharactersSection() {
 
   return (
     <section className="flex flex-col gap-10 my-15 relative">
-      <div className="absolute inset-0 w-full h-full opacity-10 pointer-events-none">
-        <Image
-          src={frontendImageLink.wow_logo}
-          alt="WoW background"
-          className="w-full h-full object-cover"
-          fill
-          sizes="100vw"
-        />
+      <div className="absolute inset-0 w-[90%] h-[90%] mx-auto my-auto opacity-10 pointer-events-none flex items-center justify-center">
+        <div className="relative w-full h-full max-w-[100%] max-h-[100%] z-10">
+          <Image src={frontendImageLink.wow_logo} alt="WoW background" className="object-contain" fill sizes="100vw" />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/40"></div>
       </div>
 
@@ -71,7 +67,7 @@ export default async function CharactersSection() {
                   <TabsTrigger
                     key={key}
                     value={key}
-                    className="border border-b-[3px] border-transparent data-[state=active]:border-primary rounded-lg justify-start px-4 py-3 flex items-center gap-3 bg-black/60 backdrop-blur-sm text-white hover:bg-black/80 transition-all duration-200 [&[data-state=active]]:bg-black/80 [&[data-state=active]]:shadow-[0_0_15px_rgba(255,255,255,0.3)] w-full"
+                    className="border border-b-[3px] border-transparent data-[state=active]:border-primary rounded-lg justify-start px-4 py-3 flex items-center gap-3 bg-black/60 backdrop-blur-sm text-white hover:bg-black/80 transition-all duration-200 [&[data-state=active]]:bg-black/80 [&[data-state=active]]:shadow-[0_0_15px_rgba(255,255,255,0.3)] w-full text-left"
                   >
                     <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0 border-2 border-primary/50 shadow-[0_0_8px_rgba(255,255,255,0.2)]">
                       <Image src={char.thumbnail_url} alt={char.name} fill className="object-cover" />

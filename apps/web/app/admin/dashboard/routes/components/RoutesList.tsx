@@ -1,6 +1,6 @@
 "use client";
 
-import EditRouteDialog from "@/app/admin/dashboard/routes/components/EditRouteDialog";
+import AddRouteDialog from "@/app/admin/dashboard/routes/components/AddRouteDialog";
 import { RouteCardTwo } from "@/components/routes/RouteCardTwo";
 import { RouteBadge } from "@/components/shared/RouteBadge";
 import { EmptyCard } from "@/components/statusCard/EmptyCard";
@@ -107,7 +107,7 @@ export default function RoutesList() {
                 >
                   <Trash2 className="h-4 w-4" />
                 </Button>
-                <EditRouteDialog route={route} />
+                <AddRouteDialog mode="edit" route={route} />
               </div>
             </div>
           ))}

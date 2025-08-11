@@ -123,7 +123,7 @@ export default function EditRouteDialog({ route, onSuccess }: EditRouteDialogPro
         ...data,
         image: imageUrl,
       };
-      const response = await updateRoute({ id: route.id, route: finalData });
+      const response = await updateRoute({ id: route.id, route: finalData, previousImage: route.image });
       if ("error" in response) {
         toast.error("Erreur lors de la modification de la route");
       } else {

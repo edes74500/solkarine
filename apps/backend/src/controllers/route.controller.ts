@@ -1,10 +1,14 @@
-import { setImageToFolderInR2 } from "@/services/cdn.service";
-import { getDungeonById } from "@/services/dungeons.service";
+import { deleteImageFromR2, setImageToFolderInR2 } from "@/services/cdn.service";
 import { revalidateFetch } from "@/services/nextJsCache.service";
-import { createRoute, deleteRouteById, getRoutesWithPopulatedDungeon, updateRoute } from "@/services/route.service";
+import {
+  createRoute,
+  deleteRouteById,
+  getRouteById,
+  getRoutesWithPopulatedDungeon,
+  updateRoute,
+} from "@/services/route.service";
 import { createRouteSchema, updateRouteSchema } from "@repo/types";
 import { Request, Response } from "express";
-import { v4 as uuidv4 } from "uuid";
 
 export const getRoutesWithPopulatedDungeonController = async (req: Request, res: Response) => {
   const routes = await getRoutesWithPopulatedDungeon();
@@ -14,10 +18,14 @@ export const getRoutesWithPopulatedDungeonController = async (req: Request, res:
 export const createRouteController = async (req: Request, res: Response) => {
   const body = createRouteSchema.parse(req.body);
 
-  const fileExtension = body.image.split(".").pop();
-  const dungeon = await getDungeonById(body.dungeon_id);
-  const newImageName = `${uuidv4().slice(0, 5)}_${body.name + "_" + dungeon.short_name.toLowerCase()}.${fileExtension}`;
-  const imageUrl = await setImageToFolderInR2(body.image, "routes", newImageName);
+  // const fileExtension = body.image.split(".").pop();
+  // const dungeon = await getDungeonById(body.dungeon_id);
+  // const newImageName = `${uuidv4().slice(0, 5)}_${body.name + "_" + dungeon.short_name.toLowerCase()}.${fileExtension}`;
+  const imageUrl = await setImageToFolderInR2({
+    imageUrl: body.image,
+    folder: "routes",
+    imageName: body.name.toLowerCase(),
+  });
   const route = await createRoute({ ...body, image: imageUrl });
 
   await revalidateFetch("routes-getRoutesWithPopulatedDungeon");
@@ -27,6 +35,13 @@ export const createRouteController = async (req: Request, res: Response) => {
 
 export const deleteRouteController = async (req: Request, res: Response) => {
   const { id } = req.params;
+  const route = await getRouteById(id);
+  if (!route) {
+    return res.status(404).json({ success: false, message: "Route non trouvée" });
+  }
+  if (route.image) {
+    await deleteImageFromR2(route.image);
+  }
 
   const success = await deleteRouteById(id);
   await revalidateFetch("routes-getRoutesWithPopulatedDungeon");
@@ -36,9 +51,21 @@ export const deleteRouteController = async (req: Request, res: Response) => {
 
 export const updateRouteController = async (req: Request, res: Response) => {
   const { id } = req.params;
-  const body = updateRouteSchema.parse(req.body);
+  const body = updateRouteSchema.parse(req.body.route);
+  const previousImage = req.body.previousImage;
+  // let newUrl = body.image;
+  if (previousImage && previousImage !== body.image) {
+    body.image = await setImageToFolderInR2({
+      imageUrl: body.image,
+      folder: "routes",
+      imageName: body.name.toLowerCase(),
+    });
 
-  const success = await updateRoute(id, body);
+    console.info("delete previousImage", previousImage);
+    await deleteImageFromR2(previousImage);
+  }
+
+  const success = await updateRoute(id, body, previousImage);
 
   if (!success) {
     return res.status(400).json({ success: false, message: "Erreur lors de la modification de la route" });
