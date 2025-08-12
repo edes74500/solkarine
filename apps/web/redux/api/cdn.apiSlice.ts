@@ -3,56 +3,56 @@ import { apiSlice } from "./config/apiSlice";
 
 export const postsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
-    generatePresignedUrl: builder.mutation<{ url: string }, { imageFolder: string; imageName: string }>({
-      query: ({ imageFolder, imageName }) => ({
-        url: "/cdn/generate-presigned-url",
-        method: "POST",
-        body: { imageFolder, imageName },
-        // headers: {
-        //   "Content-Type": "application/json",
-        //   authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
-        // },
-      }),
-    }),
+    // generatePresignedUrl: builder.mutation<{ url: string }, { imageFolder: string; imageName: string }>({
+    //   query: ({ imageFolder, imageName }) => ({
+    //     url: "/cdn/generate-presigned-url",
+    //     method: "POST",
+    //     body: { imageFolder, imageName },
+    //     // headers: {
+    //     //   "Content-Type": "application/json",
+    //     //   authorization: `Bearer ${localStorage.getItem("accessToken") || ""}`,
+    //     // },
+    //   }),
+    // }),
 
-    uploadImageToPresignedUrl: builder.mutation<string, { file: File; presignedUrl: string }>({
-      async queryFn({ file, presignedUrl }) {
-        try {
-          // Upload file to the presigned URL
-          const response = await fetch(presignedUrl, {
-            method: "PUT",
-            body: file,
-            headers: {
-              "Content-Type": file.type,
-            },
-          });
+    // uploadImageToPresignedUrl: builder.mutation<string, { file: File; presignedUrl: string }>({
+    //   async queryFn({ file, presignedUrl }) {
+    //     try {
+    //       // Upload file to the presigned URL
+    //       const response = await fetch(presignedUrl, {
+    //         method: "PUT",
+    //         body: file,
+    //         headers: {
+    //           "Content-Type": file.type,
+    //         },
+    //       });
 
-          if (!response.ok) {
-            return {
-              error: {
-                status: response.status,
-                data: `Erreur HTTP: ${response.statusText}`,
-              } as FetchBaseQueryError,
-            };
-          }
-          // Étape 3 : Construire l'URL publique
-          const baseUrl = presignedUrl.replace(
-            "nextanim.a1c984e21a682e4c63eb50270ee07eb4.r2.cloudflarestorage.com",
-            "cdn.nextanim.fr",
-          );
-          const publicUrl = baseUrl.split("?")[0];
-          console.log("Image uploaded to:", publicUrl);
-          return { data: publicUrl };
-        } catch (error) {
-          return {
-            error: {
-              status: "CUSTOM_ERROR",
-              data: error instanceof Error ? error.message : "Erreur inconnue",
-            } as FetchBaseQueryError,
-          };
-        }
-      },
-    }),
+    //       if (!response.ok) {
+    //         return {
+    //           error: {
+    //             status: response.status,
+    //             data: `Erreur HTTP: ${response.statusText}`,
+    //           } as FetchBaseQueryError,
+    //         };
+    //       }
+    //       // Étape 3 : Construire l'URL publique
+    //       const baseUrl = presignedUrl.replace(
+    //         "nextanim.a1c984e21a682e4c63eb50270ee07eb4.r2.cloudflarestorage.com",
+    //         "cdn.nextanim.fr",
+    //       );
+    //       const publicUrl = baseUrl.split("?")[0];
+    //       console.log("Image uploaded to:", publicUrl);
+    //       return { data: publicUrl };
+    //     } catch (error) {
+    //       return {
+    //         error: {
+    //           status: "CUSTOM_ERROR",
+    //           data: error instanceof Error ? error.message : "Erreur inconnue",
+    //         } as FetchBaseQueryError,
+    //       };
+    //     }
+    //   },
+    // }),
 
     uploadImagetoTempR2WithPresignedUrl: builder.mutation<string, { file: File; imageName: string }>({
       async queryFn({ file, imageName }, api, extraOptions, baseQuery) {
@@ -110,6 +110,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
           // Étape 3 : Construire l'URL publique
           const baseUrl = presignedUrl.replace(
             "solkarine.a1c984e21a682e4c63eb50270ee07eb4.r2.cloudflarestorage.com",
+            // "https://a1c984e21a682e4c63eb50270ee07eb4.r2.cloudflarestorage.com",
             "cdn.solkarine.jdapp.dev",
           );
           const publicUrl = baseUrl.split("?")[0];
@@ -132,6 +133,6 @@ export const postsApiSlice = apiSlice.injectEndpoints({
 
 export const {
   useUploadImagetoTempR2WithPresignedUrlMutation,
-  useGeneratePresignedUrlMutation,
-  useUploadImageToPresignedUrlMutation,
+  // useGeneratePresignedUrlMutation,
+  // useUploadImageToPresignedUrlMutation,
 } = postsApiSlice;

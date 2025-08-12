@@ -1,7 +1,7 @@
 import { NEXT_API_TAGS } from "@repo/constants/dist";
 import { CharacterClient } from "@repo/types/dist";
 
-const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL?.replace(/\/$/, "") || "https://api.solkarine.jdapp.dev";
+const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL?.replace(/\/$/, "") || "https://api.solkarine.jdapp.dev/api/v1";
 
 export async function getAllCharacters(): Promise<{ success: boolean; data: CharacterClient[] }> {
   try {

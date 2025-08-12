@@ -1,5 +1,7 @@
 import { createAddonProfileService, getAddonProfilesService } from "@/services/addonProfile.service";
 import { setImageToFolderInR2 } from "@/services/cdn.service";
+import { revalidateFetch } from "@/services/nextJsCache.service";
+import { NEXT_API_TAGS } from "@repo/constants";
 import { createAddonProfileSchema } from "@repo/types";
 import { Request, Response } from "express";
 
@@ -26,6 +28,8 @@ export const createAddonProfileController = async (req: Request, res: Response) 
     ...parsedBody,
     screenshots: Array.isArray(uploadedScreenshots) ? uploadedScreenshots : [uploadedScreenshots],
   });
+
+  await revalidateFetch(NEXT_API_TAGS.ADDON_PROFILE.GET.GET_ALL_WITH_POPULATED_ADDON);
 
   res.status(201).json({ success: true, data: addonProfile });
 };

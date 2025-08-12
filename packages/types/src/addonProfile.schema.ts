@@ -26,7 +26,10 @@ export const addonProfileSchemaClient = addonProfileSchemaDB
   });
 
 export const addonProfileSchemaDBWithAddonPopulated = addonProfileSchemaClient.extend({
-  addon_id: addonDBSchema,
+  addon_id: addonDBSchema.extend({
+    createdAt: z.string(),
+    updatedAt: z.string(),
+  }),
 });
 
 export const createAddonProfileSchema = z.object({
