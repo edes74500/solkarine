@@ -1,5 +1,6 @@
 "use client";
 
+import YetAnotherLightBox from "@/components/cdn/images/YetAnotherLightBox";
 import { frontendImageLink } from "@repo/constants/dist";
 import { RouteDBWithDungeonPopulated } from "@repo/types";
 import { Avatar, AvatarFallback, AvatarImage } from "@repo/ui/components/avatar";
@@ -10,7 +11,6 @@ import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@repo/
 import { Check, Copy, Info, Star, StarHalf } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useState } from "react";
-import ImageViewer from "react-simple-image-viewer";
 import { toast } from "sonner";
 
 interface RouteCardProps {
@@ -21,14 +21,15 @@ interface RouteCardProps {
 export function RouteCardTwo({ route, className = "" }: RouteCardProps) {
   const [imageError, setImageError] = useState(false);
   const [copied, setCopied] = useState(false);
-  const [isViewerOpen, setIsViewerOpen] = useState(false);
+  // const [isViewerOpen, setIsViewerOpen] = useState(false);
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const openImageViewer = useCallback(() => {
-    setIsViewerOpen(true);
+    setLightboxOpen(true);
   }, []);
 
   const closeImageViewer = useCallback(() => {
-    setIsViewerOpen(false);
+    setLightboxOpen(false);
   }, []);
 
   const renderStars = (rating: number) => {
@@ -83,18 +84,14 @@ export function RouteCardTwo({ route, className = "" }: RouteCardProps) {
               <Badge className="absolute bottom-1 right-1 bg-black/70 text-white text-xs">
                 {formatDate(route.updatedAt.toString())}
               </Badge>
-              {isViewerOpen && (
-                <ImageViewer
-                  src={[route.image]}
-                  currentIndex={0}
-                  disableScroll={false}
-                  closeOnClickOutside={true}
-                  onClose={closeImageViewer}
-                  backgroundStyle={{
-                    backgroundColor: "rgba(0, 0, 0, 0.8)",
-                  }}
-                />
-              )}
+              <YetAnotherLightBox
+                open={lightboxOpen}
+                close={closeImageViewer}
+                slides={route.image}
+                index={0}
+                showArrows={false}
+                showThumbnails={false}
+              />
             </>
           ) : (
             <div className="flex h-full w-full items-center justify-center bg-gray-200 dark:bg-gray-800">

@@ -35,6 +35,7 @@ export default function EditRouteDialog({ route, onSuccess }: EditRouteDialogPro
   const [open, setOpen] = useState(false);
   const [uploadedImage, setUploadedImage] = useState<File | null>(null);
   const [previewImage, setPreviewImage] = useState<string | null>(route.image);
+  const [isUploading, setIsUploading] = useState(false);
   const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(route.image);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [updateRoute] = useUpdateRouteMutation();
@@ -381,7 +382,7 @@ export default function EditRouteDialog({ route, onSuccess }: EditRouteDialogPro
                           />
                         </label>
 
-                        <PasteImageZone setUploadedImageUrl={setUploadedImageUrl} />
+                        <PasteImageZone setUploadedImageUrl={setUploadedImageUrl} setIsUploading={setIsUploading} />
 
                         {previewImage && (
                           <div className="mt-2">

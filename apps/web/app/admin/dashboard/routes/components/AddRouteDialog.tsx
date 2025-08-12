@@ -1,10 +1,11 @@
 "use client";
 
 import { StarRating } from "@/app/admin/dashboard/routes/components/StarRating";
+import DownloadImage from "@/components/cdn/images/DownloadImage";
 import ImagePreviewForm from "@/components/cdn/images/ImagePreviewForm";
 import PasteImageZone from "@/components/cdn/images/PasteImage";
-import { useLightboxState } from "@/components/wrapper/lightboxProvider";
-import { useImageUpload } from "@/hooks/img/useImageUpload";
+import { FormAreaText } from "@/components/Form/FormAreaText";
+import { FormInput } from "@/components/Form/FormInput";
 import { cn } from "@/lib/utils";
 import { useGetDungeonsQuery } from "@/redux/api/dungeons.apiSlice";
 import { useCreateRouteMutation, useUpdateRouteMutation } from "@/redux/api/routes.apiSlice";
@@ -22,7 +23,6 @@ import {
 } from "@repo/ui/components/dialog";
 import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@repo/ui/components/form";
 import { Input } from "@repo/ui/components/input";
-import { Textarea } from "@repo/ui/components/textarea";
 import { Pencil, PlusCircle } from "lucide-react";
 import { useCallback, useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
@@ -34,16 +34,14 @@ type AddRouteDialogProps = { mode: "edit"; route: RouteDBWithDungeonPopulated } 
 export default function AddRouteDialog(props: AddRouteDialogProps) {
   const { mode } = props;
   const isEditing = mode === "edit";
+  const [isUploading, setIsUploading] = useState(false);
   const routeData = isEditing ? props.route : undefined;
-  console.log("routeData", routeData);
   const [open, setOpen] = useState(false);
   const [updateRoute] = useUpdateRouteMutation();
-  const [uploadedImageUrl, setUploadedImageUrl] = useState<string | null>(routeData?.image || null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [createRoute] = useCreateRouteMutation();
   const { data: dungeons } = useGetDungeonsQuery();
-  const { uploadToTempR2 } = useImageUpload();
-  const { isOpen: lightboxOpen } = useLightboxState();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const form = useForm<z.infer<typeof createRouteSchema>>({
     resolver: zodResolver(createRouteSchema),
@@ -61,27 +59,26 @@ export default function AddRouteDialog(props: AddRouteDialogProps) {
       info: routeData?.info || "",
       image: routeData?.image || "",
     },
-    mode: "all",
+    mode: "onChange",
   });
 
-  useEffect(() => {
-    if (routeData) {
-      setUploadedImageUrl(routeData.image);
-    }
-  }, [routeData, open]);
+  const uploadedImageUrl = form.watch("image");
 
-  // console.log("form", form.formState.errors);
-  // console.log("form", form.getValues());
-  // console.log("errors", form.formState.errors);
-  // console.log("form valid", form.formState.isValid);
+  const setUploadedImageUrl = (url: string | null) => {
+    form.setValue("image", url || "");
+  };
+
+  useEffect(() => {
+    console.log("routeData", routeData);
+    if (routeData?.image) {
+      console.log("routeData.image", routeData.image, "setUploadedImageUrl");
+      form.setValue("image", routeData.image);
+    }
+  }, [routeData, form]);
 
   useEffect(() => {
     form.setValue("key_level", { min: 2, max: 30 }, { shouldValidate: true });
   }, []);
-
-  useEffect(() => {
-    form.trigger("image");
-  }, [form.watch("image")]);
 
   const handleEditRoute = async (data: z.infer<typeof createRouteSchema>) => {
     try {
@@ -163,54 +160,15 @@ export default function AddRouteDialog(props: AddRouteDialogProps) {
     }
   };
 
-  const resetForm = useCallback(() => {
+  const resetForm = () => {
     form.reset();
     setUploadedImageUrl(null);
-    // setPreviewImage(null);
-  }, [form]);
-
-  const handleImageUpload = useCallback(async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      const imageUrl = await uploadToTempR2(file);
-      setUploadedImageUrl(imageUrl);
-      // const reader = new FileReader();
-      // reader.onload = (e) => {
-      //   if (e.target?.result) {
-      //     setPreviewImage(e.target.result as string);
-      //   }
-      // };
-      // reader.readAsDataURL(file);
-      // form.setValue("image", file.name);
-      // console.log("handleImageUpload");
-    }
-  }, []);
-
-  // const handlePasteImage = useCallback((file: File) => {
-  //   setUploadedImage(file);
-  //   const reader = new FileReader();
-  //   reader.onload = (e) => {
-  //     if (e.target?.result) {
-  //       setPreviewImage(e.target.result as string);
-  //     }
-  //   };
-  //   form.setValue("image", file.name);
-  //   reader.readAsDataURL(file);
-  //   console.log("handlePasteImage");
-  // }, []);
+  };
 
   const handleClearImage = useCallback(() => {
     setUploadedImageUrl(null);
-    // setPreviewImage(null);
     form.setValue("image", "");
   }, []);
-
-  // Réinitialiser le formulaire quand le dialogue est fermé
-  useEffect(() => {
-    if (!open) {
-      resetForm();
-    }
-  }, [open, resetForm]);
 
   return (
     <>
@@ -262,34 +220,13 @@ export default function AddRouteDialog(props: AddRouteDialogProps) {
 
           <Form {...form}>
             <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Nom *</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Nom de la route" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
+              <FormInput control={form.control} name="name" label="Nom *" placeholder="Nom de la route" />
+              <FormAreaText
                 control={form.control}
                 name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Description *</FormLabel>
-                    <FormControl>
-                      <Textarea placeholder="Description de la route" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                label="Description"
+                placeholder="Description de la route"
               />
-
               <FormField
                 control={form.control}
                 name="dungeon_id"
@@ -361,7 +298,6 @@ export default function AddRouteDialog(props: AddRouteDialogProps) {
                           <div className="flex flex-col space-y-2">
                             <div className="flex items-center gap-4">
                               <div className="flex-1">
-                                {/* <FormLabel className="text-sm">Minimum</FormLabel> */}
                                 <Input
                                   type="number"
                                   min={2}
@@ -374,7 +310,6 @@ export default function AddRouteDialog(props: AddRouteDialogProps) {
                                 />
                               </div>
                               <div className="flex-1">
-                                {/* <FormLabel className="text-sm">Maximum</FormLabel> */}
                                 <Input
                                   type="number"
                                   min={field.value.min}
@@ -397,34 +332,14 @@ export default function AddRouteDialog(props: AddRouteDialogProps) {
                 </div>
               </div>
 
-              <FormField
-                control={form.control}
-                name="lien_mdt"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Lien MDT *</FormLabel>
-                    <FormControl>
-                      <Input placeholder="Lien MDT" {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-
-              <FormField
+              <FormInput control={form.control} name="lien_mdt" label="Lien MDT *" placeholder="Lien MDT" />
+              <FormInput
                 control={form.control}
                 name="info"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Informations supplémentaires</FormLabel>
-                    <FormControl>
-                      <Textarea placeholder="Utilisation d'invi pots, compo meta, melee etc..." {...field} />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
+                label="Informations supplémentaires"
+                placeholder="Utilisation d'invi pots, compo meta, melee etc..."
               />
-              {uploadedImageUrl}
+
               <FormField
                 control={form.control}
                 name="image"
@@ -433,36 +348,24 @@ export default function AddRouteDialog(props: AddRouteDialogProps) {
                     <FormLabel>Image *</FormLabel>
                     <FormControl>
                       <div className="space-y-4">
-                        <div className="flex flex-col gap-2">
-                          <label htmlFor="image-upload" className="cursor-pointer">
-                            <div className="border border-dashed border-gray-300 rounded-md p-4 text-center hover:bg-gray-50 transition-colors">
-                              <span className="text-sm text-gray-500">
-                                Cliquez pour sélectionner une image ou utilisez la zone de collage ci-dessous
-                              </span>
-                            </div>
-                            <input
-                              id="image-upload"
-                              type="file"
-                              accept="image/*"
-                              className="hidden"
-                              onChange={handleImageUpload}
-                              // Réinitialiser la valeur pour permettre de sélectionner la même image
-                              onClick={(e) => (e.currentTarget.value = "")}
-                            />
-                          </label>
+                        <div className="flex flex-col gap-2 h-full">
+                          <div className="grid grid-cols-2 gap-2 w-full h-full">
+                            <DownloadImage setUploadedImageUrl={setUploadedImageUrl} setIsUploading={setIsUploading} />
 
-                          <PasteImageZone setUploadedImageUrl={setUploadedImageUrl} />
+                            <PasteImageZone setUploadedImageUrl={setUploadedImageUrl} setIsUploading={setIsUploading} />
+                          </div>
 
                           <ImagePreviewForm
-                            fildValue={[field.value]}
-                            isUploading={isSubmitting}
+                            fieldValue={field.value}
+                            isUploading={isUploading}
                             handleClearImageAction={handleClearImage}
                             showTumbails={false}
                             showArrows={false}
+                            isLightboxOpen={lightboxOpen}
+                            setIsLightboxOpenAction={setLightboxOpen}
                           />
                         </div>
 
-                        {/* Champ caché pour stocker l'URL de l'image */}
                         <input type="hidden" {...field} />
                       </div>
                     </FormControl>
@@ -470,7 +373,6 @@ export default function AddRouteDialog(props: AddRouteDialogProps) {
                   </FormItem>
                 )}
               />
-
               <DialogFooter>
                 <Button type="submit" disabled={isSubmitting || !form.formState.isValid || !uploadedImageUrl}>
                   {isSubmitting ? "Traitement en cours..." : mode === "edit" ? "Modifier la route" : "Créer la route"}

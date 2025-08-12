@@ -1,12 +1,14 @@
 "use client";
 
+import DownloadImage from "@/components/cdn/images/DownloadImage";
 import ImagePreviewForm from "@/components/cdn/images/ImagePreviewForm";
 import PasteImageZone from "@/components/cdn/images/PasteImage";
-import { useLightboxState } from "@/components/wrapper/lightboxProvider";
-import { useImageUpload } from "@/hooks/img/useImageUpload";
+import { FormAreaText } from "@/components/Form/FormAreaText";
+import { FormInput } from "@/components/Form/FormInput";
 import { cn } from "@/lib/utils";
 import { useGetAddonsQuery } from "@/redux/api/addon.apiSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { AddonClient, CreateAddonProfileForm, createAddonProfileSchema } from "@repo/types/dist";
 import { Button } from "@repo/ui/components/button";
 import {
@@ -19,18 +21,8 @@ import {
   DialogTitle,
   DialogTrigger,
 } from "@repo/ui/components/dialog";
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from "@repo/ui/components/form";
-import { Input } from "@repo/ui/components/input";
+import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@repo/ui/components/form";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@repo/ui/components/select";
-import { Textarea } from "@repo/ui/components/textarea";
 import { PlusIcon } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
@@ -38,9 +30,8 @@ import { useForm } from "react-hook-form";
 export default function AddAddonProfile() {
   const { data: addons, isLoading } = useGetAddonsQuery();
   const [open, setOpen] = useState(false);
-  const { uploadToTempR2 } = useImageUpload();
   const [isUploading, setIsUploading] = useState(false);
-  const { isOpen: lightboxOpen } = useLightboxState();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const form = useForm<CreateAddonProfileForm>({
     resolver: zodResolver(createAddonProfileSchema),
@@ -59,22 +50,6 @@ export default function AddAddonProfile() {
     setOpen(false);
     form.reset();
   }
-
-  const handleImageUpload = async (e: React.ChangeEvent<HTMLInputElement>) => {
-    const file = e.target.files?.[0];
-    if (file) {
-      setIsUploading(true);
-      const reader = new FileReader();
-      const uploadUrl = await uploadToTempR2(file);
-      console.log(uploadUrl);
-
-      reader.onload = (e) => {
-        handleAddImageToUrlArray(uploadUrl);
-        setIsUploading(false);
-      };
-      reader.readAsDataURL(file);
-    }
-  };
 
   const handleAddImageToUrlArray = (imageUrl: string | null) => {
     if (imageUrl) {
@@ -132,9 +107,11 @@ export default function AddAddonProfile() {
             >
               <DialogHeader>
                 <DialogTitle>Ajouter un nouveau profil d'addon</DialogTitle>
-                <DialogDescription>
-                  Créez un nouveau profil pour partager votre configuration d'addon avec la communauté.
-                </DialogDescription>
+                <VisuallyHidden asChild>
+                  <DialogDescription>
+                    Créez un nouveau profil pour partager votre configuration d'addon avec la communauté.
+                  </DialogDescription>
+                </VisuallyHidden>
               </DialogHeader>
               <Form {...form}>
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
@@ -171,59 +148,28 @@ export default function AddAddonProfile() {
                       </FormItem>
                     )}
                   />
-                  <FormField
-                    control={form.control}
-                    name="name"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Nom du profil</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Nom du profil" {...field} />
-                        </FormControl>
-                        <FormDescription>Donnez un nom clair à votre profil d'addon.</FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
-                  />
-                  <FormField
+
+                  <FormInput control={form.control} name="name" label="Nom du profil" placeholder="Nom du profil" />
+
+                  <FormAreaText
                     control={form.control}
                     name="description"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Description</FormLabel>
-                        <FormControl>
-                          <Textarea placeholder="Description du profil" {...field} />
-                        </FormControl>
-                        <FormDescription>Une brève description de ce que fait votre profil.</FormDescription>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+                    label="Description"
+                    placeholder="Description du profil"
                   />
-                  <FormField
+
+                  <FormInput
                     control={form.control}
                     name="info"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Informations supplémentaires</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Informations supplémentaires (optionnel)" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+                    label="Informations supplémentaires"
+                    placeholder="Instalation, utilisation... (optionnel)"
                   />
-                  <FormField
+
+                  <FormInput
                     control={form.control}
                     name="export_string"
-                    render={({ field }) => (
-                      <FormItem>
-                        <FormLabel>Export text *</FormLabel>
-                        <FormControl>
-                          <Input placeholder="Collez ici le text d'export" {...field} />
-                        </FormControl>
-                        <FormMessage />
-                      </FormItem>
-                    )}
+                    label="Export text *"
+                    placeholder="Collez ici le text d'export"
                   />
 
                   <FormField
@@ -235,30 +181,26 @@ export default function AddAddonProfile() {
                         <FormControl>
                           <div className="space-y-4">
                             <div className="flex flex-col gap-2">
-                              <label htmlFor="image-upload" className="cursor-pointer">
-                                <div className="border border-dashed border-gray-300 rounded-md p-4 text-center hover:bg-gray-50 transition-colors">
-                                  <span className="text-sm text-gray-500">
-                                    Cliquez pour sélectionner une image ou utilisez la zone de collage ci-dessous
-                                  </span>
-                                </div>
-                                <input
-                                  id="image-upload"
-                                  type="file"
-                                  accept="image/*"
-                                  className="hidden"
-                                  onChange={handleImageUpload}
-                                  onClick={(e) => (e.currentTarget.value = "")}
+                              <div className="grid grid-cols-2 gap-2 w-full h-full">
+                                <DownloadImage
+                                  setUploadedImageUrl={handleAddImageToUrlArray}
+                                  setIsUploading={setIsUploading}
                                 />
-                              </label>
 
-                              <PasteImageZone setUploadedImageUrl={handleAddImageToUrlArray} />
+                                <PasteImageZone
+                                  setUploadedImageUrl={handleAddImageToUrlArray}
+                                  setIsUploading={setIsUploading}
+                                />
+                              </div>
 
                               <ImagePreviewForm
-                                fildValue={field.value}
+                                fieldValue={field.value}
                                 isUploading={isUploading}
                                 handleClearImageAction={handleClearImage}
                                 showTumbails={field.value.length > 1 ? true : false}
                                 showArrows={field.value.length > 1 ? true : false}
+                                isLightboxOpen={lightboxOpen}
+                                setIsLightboxOpenAction={setLightboxOpen}
                               />
                             </div>
                           </div>

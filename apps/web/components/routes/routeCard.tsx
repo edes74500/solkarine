@@ -9,7 +9,7 @@ import { Check, Copy, Info, Star, StarHalf } from "lucide-react";
 import Image from "next/image";
 import { useCallback, useState } from "react";
 import { toast } from "sonner";
-import { useLightbox } from "../wrapper/lightboxProvider";
+// import { useLightbox } from "../wrapper/lightboxProvider";
 
 interface RouteCardProps {
   route: RouteDBWithDungeonPopulated;
@@ -19,11 +19,12 @@ interface RouteCardProps {
 export function RouteCard({ route, className = "" }: RouteCardProps) {
   const [imageError, setImageError] = useState(false);
   const [copied, setCopied] = useState(false);
-  const openLightbox = useLightbox();
+  // const openLightbox = useLightbox();
+  const [lightboxOpen, setLightboxOpen] = useState(false);
 
   const handleImageClick = useCallback(() => {
-    openLightbox([route.image]);
-  }, [openLightbox, route.image]);
+    setLightboxOpen(true);
+  }, [setLightboxOpen]);
 
   const renderStars = (rating: number) => {
     const stars = [];

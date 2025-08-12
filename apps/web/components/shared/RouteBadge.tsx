@@ -52,7 +52,7 @@ export function RouteBadge({
         </div>
         <div className="absolute inset-0 right-1/2 w-1/2 h-full bg-card"></div>
       </div>
-      <div className="flex items-center justify-between w-full relative z-10">
+      <div className="flex items-center justify-between w-full relative ">
         <div></div>
         <div className="uppercase text-white font-extrabold truncate bg-black/60 bg-blur-md px-10 rounded-md">
           {showFullName ? dungeon.name : dungeon.short_name}

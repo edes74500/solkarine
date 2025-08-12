@@ -1,7 +1,6 @@
 import { MainFooter } from "@/components/footer/MainFooter";
 import { Navbar } from "@/components/navbar/Navbar";
 import { ThemeProviderClient } from "@/components/theme/ThemeProvider";
-import { LightboxProvider } from "@/components/wrapper/lightboxProvider";
 import { StoreProvider } from "@/redux/StoreProvider";
 import { frontendImageLink } from "@repo/constants";
 import { Toaster } from "@repo/ui/components/sonner";
@@ -96,20 +95,18 @@ export default function RootLayout({
           className={`${dynaPuff.variable} ${geistMono.variable}  ${nunito.variable} antialiased bg-background-secondary `}
         >
           <ThemeProviderClient>
-            <LightboxProvider>
-              <main className="flex flex-col min-h-screen bg-background-secondary font-nunito">
-                {/* <ContentWidthWrapper> */}
-                <Navbar />
-                {/* </ContentWidthWrapper> */}
-                <div className="grow px-4 lg:px-0">
-                  <Toaster position="bottom-center" />
-                  {children}
-                </div>
-                {/* <ContentWidthWrapper> */}
-                <MainFooter />
-                {/* </ContentWidthWrapper> */}
-              </main>
-            </LightboxProvider>
+            <main className="flex flex-col min-h-screen bg-background-secondary font-nunito">
+              {/* <ContentWidthWrapper> */}
+              <Navbar />
+              {/* </ContentWidthWrapper> */}
+              <div className="grow px-4 lg:px-0">
+                <Toaster position="bottom-center" />
+                {children}
+              </div>
+              {/* <ContentWidthWrapper> */}
+              <MainFooter />
+              {/* </ContentWidthWrapper> */}
+            </main>
           </ThemeProviderClient>
         </body>
       </StoreProvider>
