@@ -1,5 +1,5 @@
-import { NEXT_API_TAGS } from "@repo/constants/dist";
-import { AddonClient } from "@repo/types/dist";
+import { NEXT_API_TAGS } from "@repo/constants";
+import { AddonClient } from "@repo/types";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL?.replace(/\/$/, "") || "https://api.solkarine.jdapp.dev";
 

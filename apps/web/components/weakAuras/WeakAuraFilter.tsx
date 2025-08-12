@@ -56,10 +56,10 @@ export function WeakAuraFilter({ weakAuras, onFilterChange }: WeakAuraFilterProp
                 <span className="uppercase">{tag.replace("_", " ")}</span>
               </AvatarFallback>
             </Avatar>
-            <span className="uppercase">
+            <div className="uppercase flex items-center gap-2">
               {tag.replace("_", " ")}{" "}
               <span className={`text-xs ${tagFilter !== tag ? "text-muted-foreground" : ""}`}>{tagCount}</span>
-            </span>
+            </div>
             {tagFilter === tag ? (
               <X
                 className="h-3.5 w-3.5 cursor-pointer"

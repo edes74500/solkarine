@@ -1,4 +1,4 @@
-import { NEXT_API_TAGS } from "@repo/constants/dist";
+import { NEXT_API_TAGS } from "@repo/constants";
 
 export const getTwitchSchedule = async () => {
   try {
