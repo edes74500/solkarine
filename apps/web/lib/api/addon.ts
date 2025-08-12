@@ -1,3 +1,4 @@
+import { NEXT_API_TAGS } from "@repo/constants/dist";
 import { AddonClient } from "@repo/types/dist";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL?.replace(/\/$/, "") || "https://api.solkarine.jdapp.dev";
@@ -6,7 +7,7 @@ export async function getAllAddons(): Promise<{ success: boolean; data: AddonCli
   try {
     const res = await fetch(`${baseUrl}/addon`, {
       cache: "force-cache",
-      next: { tags: [`addon-getAllAddons`] },
+      next: { tags: [NEXT_API_TAGS.ADDON.GET.GET_ALL] },
     });
 
     if (!res.ok) {
@@ -21,21 +22,21 @@ export async function getAllAddons(): Promise<{ success: boolean; data: AddonCli
   }
 }
 
-export async function getAllAddonsTags(): Promise<{ success: boolean; data: string[] }> {
-  try {
-    const res = await fetch(`${baseUrl}/addon/tags`, {
-      cache: "no-store",
-      next: { tags: [`addon-getAllAddonsTags`] },
-    });
+// export async function getAllAddonsTags(): Promise<{ success: boolean; data: string[] }> {
+//   try {
+//     const res = await fetch(`${baseUrl}/addon/tags`, {
+//       cache: "no-store",
+//       next: { tags: [`addon-getAllAddonsTags`] },
+//     });
 
-    if (!res.ok) {
-      throw new Error(`HTTP error! status: ${res.status}`);
-    }
+//     if (!res.ok) {
+//       throw new Error(`HTTP error! status: ${res.status}`);
+//     }
 
-    const data = await res.json();
-    return data;
-  } catch (error) {
-    console.error(error);
-    return { success: false, data: [] };
-  }
-}
+//     const data = await res.json();
+//     return data;
+//   } catch (error) {
+//     console.error(error);
+//     return { success: false, data: [] };
+//   }
+// }

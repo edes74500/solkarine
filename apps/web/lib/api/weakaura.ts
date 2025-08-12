@@ -1,3 +1,4 @@
+import { NEXT_API_TAGS } from "@repo/constants/dist";
 import { WeakAuraClient } from "@repo/types/dist";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL?.replace(/\/$/, "") || "https://api.solkarine.jdapp.dev";
@@ -6,7 +7,7 @@ export async function getAllWeakAura(): Promise<{ success: boolean; data: WeakAu
   try {
     const res = await fetch(`${baseUrl}/weak-aura`, {
       cache: "force-cache",
-      next: { tags: [`weakaura-getAllWeakAura`] },
+      next: { tags: [NEXT_API_TAGS.WEAK_AURA.GET.GET_ALL] },
     });
 
     if (!res.ok) {

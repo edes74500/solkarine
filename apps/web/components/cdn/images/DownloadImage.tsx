@@ -26,9 +26,9 @@ export default function DownloadImage({ setUploadedImageUrl, setIsUploading }: D
   );
 
   return (
-    <div className="cursor-pointer block !w-full !h-full flex items-center justify-center bg-input">
-      <label htmlFor="image-upload" className="w-full h-full flex items-center justify-center bg-input cursor-pointer">
-        <div className="border border-dashed border-primary/50 rounded-lg p-2 text-center hover:bg-primary/5 transition-all duration-300 flex flex-col items-center justify-center gap-2  dark:bg-background/30 h-full w-full">
+    <div className="cursor-pointer block !w-full !h-full flex items-center justify-center">
+      <label htmlFor="image-upload" className="w-full h-full flex items-center justify-center cursor-pointer">
+        <div className="border border-dashed border-primary/50 rounded-lg p-2 text-center hover:bg-primary/5 transition-all duration-300 flex flex-col items-center justify-center gap-2   h-full w-full bg-input">
           <Upload className="h-6 w-6 text-primary/70" />
           <span className="text-sm text-foreground/80 font-medium">Importer une image</span>
           <span className="text-xs text-muted-foreground">Formats acceptés: JPG, PNG, GIF, WebP</span>

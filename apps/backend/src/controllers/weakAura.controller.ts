@@ -7,6 +7,7 @@ import {
   updateWeakAura,
 } from "@/services/weakaura.service";
 import { scrapeOGTags } from "@/utils/ogBaliseScrapper";
+import { NEXT_API_TAGS } from "@repo/constants";
 import { createWeakAuraSchema, editWeakAuraSchema } from "@repo/types";
 import { Request, Response } from "express";
 
@@ -40,7 +41,7 @@ export const createWeakAuraController = async (req: Request, res: Response) => {
   const data = createWeakAuraSchema.parse(req.body);
   const success = await addWeakAura(data);
   //* revalidate nextjs cache
-  await revalidateFetch("weakaura-getAllWeakAura");
+  await revalidateFetch(NEXT_API_TAGS.WEAK_AURA.GET.GET_ALL);
   res.json({ success: success });
 };
 
@@ -54,7 +55,7 @@ export const deleteWeakAuraController = async (req: Request, res: Response) => {
   const { id } = req.params;
   const success = await deleteWeakAura(id);
   //* revalidate nextjs cache
-  await revalidateFetch("weakaura-getAllWeakAura");
+  await revalidateFetch(NEXT_API_TAGS.WEAK_AURA.GET.GET_ALL);
   res.json({ success: success });
 };
 
@@ -63,7 +64,7 @@ export const updateWeakAuraController = async (req: Request, res: Response) => {
   const data = editWeakAuraSchema.parse(req.body);
   const success = await updateWeakAura(id, data);
   //* revalidate nextjs cache
-  await revalidateFetch("weakaura-getAllWeakAura");
+  await revalidateFetch(NEXT_API_TAGS.WEAK_AURA.GET.GET_ALL);
   res.json({ success: success });
 };
 

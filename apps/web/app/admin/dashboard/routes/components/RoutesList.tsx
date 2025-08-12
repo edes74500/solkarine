@@ -3,7 +3,7 @@
 import AddRouteDialog from "@/app/admin/dashboard/routes/components/AddRouteDialog";
 import { RouteCardTwo } from "@/components/routes/RouteCardTwo";
 import { RouteBadge } from "@/components/shared/RouteBadge";
-import { EmptyCard } from "@/components/statusCard/EmptyCard";
+import { DashboardEmptyListCard } from "@/components/statusCard/DashboardEmptyListCard";
 import { ErrorCard } from "@/components/statusCard/ErrorCard";
 import { LoadingCard } from "@/components/statusCard/LoadingCard";
 import { useDeleteRouteMutation, useGetRoutesWithPopulatedDungeonQuery } from "@/redux/api/routes.apiSlice";
@@ -55,7 +55,7 @@ export default function RoutesList() {
   }
 
   if (routes?.data.length === 0) {
-    return <EmptyCard />;
+    return <DashboardEmptyListCard />;
   }
 
   if (isError) {

@@ -1,6 +1,7 @@
 {
 } // lib/raider.ts
 
+import { NEXT_API_TAGS } from "@repo/constants/dist";
 import { RaiderioCharacter } from "@repo/types/dist";
 
 const BASE = process.env.NEXT_PUBLIC_RAIDER_IO_BASE_URL || "https://raider.io/api/v1";
@@ -28,7 +29,7 @@ export async function fetchRaiderCharacter(
   const res = await fetch(url, {
     next: {
       revalidate: 60 * 60 * 24, // 24 heures
-      tags: [`character-getRaiderIoCharacter`],
+      tags: [NEXT_API_TAGS.RAIDER_IO.GET.GET_RAIDER_IO_BY_CHARACTER_NAME],
     },
   });
 

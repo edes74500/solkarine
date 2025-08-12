@@ -21,7 +21,7 @@ export async function compressAndGiveUuid(
       quality: 1,
       maxWidthOrHeight,
       useWebWorker: true,
-      fileType: "image/webp",
+      fileType: "image/jpeg",
     };
 
     const compressedFile = await imageCompression(file, options);

@@ -1,4 +1,5 @@
 import AddAddonProfile from "@/app/admin/dashboard/addons-profiles/components/AddAddonProfile";
+import AddonProfileList from "@/app/admin/dashboard/addons-profiles/components/AddonProfileList";
 import { Alert, AlertDescription, AlertTitle } from "@repo/ui/components/alert";
 import { InfoIcon } from "lucide-react";
 
@@ -17,6 +18,7 @@ export default function AddonProfilesPage() {
       </Alert>
 
       <AddAddonProfile />
+      <AddonProfileList />
     </section>
   );
 }

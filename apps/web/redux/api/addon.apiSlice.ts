@@ -13,14 +13,15 @@ export const addonApi = apiSlice.injectEndpoints({
         method: "POST",
         body: data,
       }),
-      invalidatesTags: ["Addons"],
+      invalidatesTags: ["Addons", "AddonProfiles"],
     }),
-    deleteAddon: builder.mutation<{ success: boolean; data: AddonClient }, string>({
-      query: (id: string) => ({
+    deleteAddon: builder.mutation<{ success: boolean; message: string }, { id: string; confirm?: boolean }>({
+      query: ({ id, confirm = false }) => ({
         url: `/addon/${id}`,
         method: "DELETE",
+        params: { confirm },
       }),
-      invalidatesTags: ["Addons"],
+      invalidatesTags: ["Addons", "AddonProfiles"],
     }),
     updateAddon: builder.mutation<{ success: boolean; data: AddonClient }, { id: string; data: EditAddonForm }>({
       query: ({ id, data }) => ({
@@ -28,7 +29,7 @@ export const addonApi = apiSlice.injectEndpoints({
         method: "PUT",
         body: data,
       }),
-      invalidatesTags: ["Addons"],
+      invalidatesTags: ["Addons", "AddonProfiles"],
     }),
     getAddonCount: builder.query<{ success: boolean; data: number }, void>({
       query: () => "/addon/count",

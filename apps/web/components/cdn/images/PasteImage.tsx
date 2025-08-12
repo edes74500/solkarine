@@ -52,14 +52,14 @@ export default function PasteImageZone({ setUploadedImageUrl, setIsUploading }: 
   }, []);
 
   return (
-    <div className="w-full h-full flex items-center justify-center bg-input">
+    <div className="w-full h-full flex items-center justify-center ">
       <div
         ref={ref}
         tabIndex={0}
         onPaste={handlePasteEvent}
         onFocus={() => !hasUploaded && setIsPasteActive(true)}
         onBlur={() => setIsPasteActive(false)}
-        className={`border border-dashed rounded-lg p-4 cursor-pointer transition-all duration-300 flex flex-col items-center justify-center gap-2 w-full h-full ${
+        className={`border border-dashed rounded-lg p-4 cursor-pointer transition-all duration-300 flex flex-col items-center justify-center gap-2 w-full h-full bg-input ${
           isPasteActive && !hasUploaded
             ? "border-2 border-primary bg-primary/10 shadow-lg"
             : hasUploaded

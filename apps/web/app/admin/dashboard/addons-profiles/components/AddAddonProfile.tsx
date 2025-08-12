@@ -7,6 +7,7 @@ import { FormAreaText } from "@/components/Form/FormAreaText";
 import { FormInput } from "@/components/Form/FormInput";
 import { cn } from "@/lib/utils";
 import { useGetAddonsQuery } from "@/redux/api/addon.apiSlice";
+import { useCreateAddonProfileMutation } from "@/redux/api/addonProfile.apiSlice";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
 import { AddonClient, CreateAddonProfileForm, createAddonProfileSchema } from "@repo/types/dist";
@@ -26,17 +27,20 @@ import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectVa
 import { PlusIcon } from "lucide-react";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 export default function AddAddonProfile() {
   const { data: addons, isLoading } = useGetAddonsQuery();
+  const [createAddonProfile, { isLoading: isCreating }] = useCreateAddonProfileMutation();
   const [open, setOpen] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [lightboxOpen, setLightboxOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const form = useForm<CreateAddonProfileForm>({
     resolver: zodResolver(createAddonProfileSchema),
     defaultValues: {
-      addonId: "",
+      addon_id: "",
       name: "",
       description: "",
       info: "",
@@ -45,11 +49,23 @@ export default function AddAddonProfile() {
     },
   });
 
-  function onSubmit(values: CreateAddonProfileForm) {
+  const handleCreateAddonProfile = async (values: CreateAddonProfileForm) => {
     console.log(values);
-    setOpen(false);
-    form.reset();
-  }
+    try {
+      setIsSubmitting(true);
+      await createAddonProfile(values).unwrap();
+      setOpen(false);
+      form.reset();
+      toast.success("Profil d'addon créé avec succès");
+    } catch (error) {
+      console.error(error);
+      toast.error("Erreur lors de la création du profil d'addon");
+    }
+  };
+
+  const onSubmit = async (values: CreateAddonProfileForm) => {
+    await handleCreateAddonProfile(values);
+  };
 
   const handleAddImageToUrlArray = (imageUrl: string | null) => {
     if (imageUrl) {
@@ -67,7 +83,6 @@ export default function AddAddonProfile() {
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
-        <h2 className="text-xl font-bold">Liste des profils d'addons</h2>
         <div className={cn(lightboxOpen && "pointer-events-none")}>
           {/* Modal personnalisée avec fond plus sombre */}
           <div
@@ -117,10 +132,10 @@ export default function AddAddonProfile() {
                 <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-4">
                   <FormField
                     control={form.control}
-                    name="addonId"
+                    name="addon_id"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Addon</FormLabel>
+                        <FormLabel>Addon *</FormLabel>
                         <Select onValueChange={field.onChange} defaultValue={field.value}>
                           <FormControl>
                             <SelectTrigger className="w-full">
@@ -149,12 +164,12 @@ export default function AddAddonProfile() {
                     )}
                   />
 
-                  <FormInput control={form.control} name="name" label="Nom du profil" placeholder="Nom du profil" />
+                  <FormInput control={form.control} name="name" label="Nom du profil *" placeholder="Nom du profil" />
 
                   <FormAreaText
                     control={form.control}
                     name="description"
-                    label="Description"
+                    label="Description *"
                     placeholder="Description du profil"
                   />
 
@@ -168,7 +183,7 @@ export default function AddAddonProfile() {
                   <FormInput
                     control={form.control}
                     name="export_string"
-                    label="Export text *"
+                    label="Export texte *"
                     placeholder="Collez ici le text d'export"
                   />
 
@@ -177,7 +192,7 @@ export default function AddAddonProfile() {
                     name="screenshots"
                     render={({ field }) => (
                       <FormItem>
-                        <FormLabel>Screenshots</FormLabel>
+                        <FormLabel>Screenshots *</FormLabel>
                         <FormControl>
                           <div className="space-y-4">
                             <div className="flex flex-col gap-2">

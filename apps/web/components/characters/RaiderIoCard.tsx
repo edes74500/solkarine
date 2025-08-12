@@ -19,7 +19,7 @@ const RaiderIoCard: React.FC<Props> = ({ data }) => {
   if (!data) return null;
 
   return (
-    <Card className="overflow-hidden max-w-sm dark:bg-black/70 bg-stone-600 drop-shadow-md">
+    <Card className="overflow-hidden max-w-sm dark:bg-stone-800bg-stone-600 drop-shadow-md">
       <CardHeader className="!mb-0 !pb-0 !text-white !h-fit">
         <div className="flex items-center gap-2">
           {data.thumbnail_url && (

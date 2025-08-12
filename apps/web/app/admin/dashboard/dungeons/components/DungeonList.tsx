@@ -1,5 +1,6 @@
 "use client";
 
+import { DashboardEmptyListCard } from "@/components/statusCard/DashboardEmptyListCard";
 import { ErrorCard } from "@/components/statusCard/ErrorCard";
 import { LoadingCard } from "@/components/statusCard/LoadingCard";
 import { useGetDungeonsQuery } from "@/redux/api/dungeons.apiSlice";
@@ -32,9 +33,7 @@ export default function DungeonList() {
       <h2 className="text-2xl font-bold">Liste des donjons</h2>
 
       {dungeons?.data?.length === 0 ? (
-        <div className="text-center p-8 border border-dashed rounded-md">
-          <p className="text-muted-foreground">Aucun donjon trouvé</p>
-        </div>
+        <DashboardEmptyListCard />
       ) : (
         <div
           className="grid gap-4 w-full justify-center"

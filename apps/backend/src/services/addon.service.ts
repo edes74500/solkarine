@@ -33,7 +33,8 @@ export const createAddon = async (addon: CreateAddonForm): Promise<AddonDB> => {
 
 export const deleteAddon = async (id: string): Promise<boolean> => {
   const addon = await Addon.findByIdAndDelete(id);
-  return !!addon;
+
+  return true;
 };
 
 export const updateAddon = async (id: string, addon: EditAddonForm): Promise<boolean> => {

@@ -7,7 +7,7 @@ interface EmptyCardProps {
 }
 
 export function EmptyCard({
-  title = "Cette section est aussi vide que mon frigo un dimanche soir (ou que la motivation d'un lundi matin)",
+  title = "",
   message = "N'hésitez pas à revenir plus tard, nous préparons quelque chose d'extraordinaire",
   className = "",
 }: EmptyCardProps) {

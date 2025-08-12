@@ -1,3 +1,4 @@
+import { NEXT_API_TAGS } from "@repo/constants/dist";
 import { RouteDBWithDungeonPopulated } from "@repo/types/dist";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL?.replace(/\/$/, "") || "https://api.solkarine.jdapp.dev";
@@ -10,7 +11,7 @@ export async function getRoutesWithPopulatedDungeon(): Promise<{
     const res = await fetch(`${baseUrl}/routes/routes-with-populated-dungeon`, {
       cache: "force-cache",
       next: {
-        tags: [`routes-getRoutesWithPopulatedDungeon`],
+        tags: [NEXT_API_TAGS.ROUTE.GET.GET_ALL_WITH_POPULATED_DUNGEON],
       },
     });
 

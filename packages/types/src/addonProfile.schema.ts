@@ -3,11 +3,11 @@ import { z } from "zod";
 
 export const addonProfileSchemaDB = z.object({
   _id: z.string(),
-  addonId: z.string(),
+  addon_id: z.string(),
   name: z.string(),
   description: z.string(),
   info: z.string().optional(),
-  screenshots: z.array(z.string().max(3).url().optional()),
+  screenshots: z.array(z.string().url()).min(1).max(3),
   export_string: z.string(),
   createdAt: z.date(),
   updatedAt: z.date(),
@@ -26,11 +26,11 @@ export const addonProfileSchemaClient = addonProfileSchemaDB
   });
 
 export const addonProfileSchemaDBWithAddonPopulated = addonProfileSchemaClient.extend({
-  addonId: addonDBSchema,
+  addon_id: addonDBSchema,
 });
 
 export const createAddonProfileSchema = z.object({
-  addonId: z.string({
+  addon_id: z.string({
     required_error: "Veuillez sélectionner un addon",
   }),
   name: z.string().min(2, {
@@ -43,15 +43,19 @@ export const createAddonProfileSchema = z.object({
   export_string: z.string().min(10, {
     message: "Le contenu doit contenir au moins 10 caractères",
   }),
-  screenshots: z.array(
-    z
-      .string()
-      .max(3, {
-        message: "Vous ne pouvez pas ajouter plus de 3 screenshots",
-      })
-      .url()
-      .optional(),
-  ),
+  screenshots: z
+    .array(
+      z
+        .string()
+
+        .url(),
+    )
+    .min(1, {
+      message: "Vous devez ajouter au moins une screenshot",
+    })
+    .max(3, {
+      message: "Vous ne pouvez pas ajouter plus de 3 screenshots",
+    }),
 });
 
 export const updateAddonProfileSchema = createAddonProfileSchema.partial();

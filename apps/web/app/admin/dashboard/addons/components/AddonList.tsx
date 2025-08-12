@@ -3,10 +3,21 @@
 import { EditAddonDialog } from "@/app/admin/dashboard/addons/components/EditAddonDialog";
 import { AddonCard } from "@/components/addons/addoncard";
 import { BadgeList } from "@/components/shared/BadgeList";
+import { DashboardEmptyListCard } from "@/components/statusCard/DashboardEmptyListCard";
 import { ErrorCard } from "@/components/statusCard/ErrorCard";
 import { LoadingCard } from "@/components/statusCard/LoadingCard";
-import { useDeleteAddonMutation, useGetAddonsQuery, useUpdateAddonMutation } from "@/redux/api/addon.apiSlice";
+import { useDeleteAddonMutation, useGetAddonsQuery } from "@/redux/api/addon.apiSlice";
 import { AddonClient } from "@repo/types/dist";
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from "@repo/ui/components/alert-dialog";
 import { Button } from "@repo/ui/components/button";
 import { Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
@@ -16,12 +27,13 @@ export function AddonList() {
   const { data: addons, isLoading, isError, isFetching } = useGetAddonsQuery();
   const [deleteAddon, { isLoading: isDeleting, isSuccess: isDeleteSuccess, isError: isDeleteError }] =
     useDeleteAddonMutation();
-  const [updateAddon, { isLoading: isUpdating, isSuccess: isUpdateSuccess, isError: isUpdateError }] =
-    useUpdateAddonMutation();
 
   const [selectedTag, setSelectedTag] = useState<string | null>(null);
   const [filteredAddons, setFilteredAddons] = useState<AddonClient[]>([]);
   const [availableTags, setAvailableTags] = useState<string[]>([]);
+  const [confirmDialogOpen, setConfirmDialogOpen] = useState(false);
+  const [deleteMessage, setDeleteMessage] = useState("");
+  const [addonToDelete, setAddonToDelete] = useState<string | null>(null);
 
   useEffect(() => {
     if (addons?.data) {
@@ -51,18 +63,33 @@ export function AddonList() {
     console.log("Addon modifié avec succès:", data);
   };
 
-  const handleDelete = async (id: string) => {
+  const handleDelete = async (id: string, confirm = false) => {
     try {
-      await deleteAddon(id);
-      toast.success("Addon supprimé avec succès");
+      const response = await deleteAddon({ id, confirm }).unwrap();
+
+      if (response.success) {
+        toast.success("Addon supprimé avec succès");
+      } else {
+        setAddonToDelete(id);
+        setDeleteMessage(response.message);
+        setConfirmDialogOpen(true);
+      }
     } catch (error) {
       console.error("Erreur lors de la suppression de l'addon:", error);
       toast.error("Erreur lors de la suppression de l'addon");
     }
   };
 
-  if (isLoading || isFetching) return <LoadingCard />;
+  const handleConfirmDelete = () => {
+    if (addonToDelete) {
+      handleDelete(addonToDelete, true);
+    }
+    setConfirmDialogOpen(false);
+  };
+
+  if (isLoading) return <LoadingCard />;
   if (isError) return <ErrorCard message="Erreur lors du chargement des addons" />;
+  if (addons?.data.length === 0) return <DashboardEmptyListCard />;
 
   return (
     <div className="space-y-10">
@@ -101,6 +128,21 @@ export function AddonList() {
           </div>
         ))}
       </div>
+
+      <AlertDialog open={confirmDialogOpen} onOpenChange={setConfirmDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Confirmation de suppression</AlertDialogTitle>
+            <AlertDialogDescription>{deleteMessage}</AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel>Annuler</AlertDialogCancel>
+            <AlertDialogAction onClick={handleConfirmDelete} className="bg-destructive text-destructive-foreground">
+              Confirmer
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </div>
   );
 }

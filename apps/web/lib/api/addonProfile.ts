@@ -1,16 +1,16 @@
 import { NEXT_API_TAGS } from "@repo/constants/dist";
-import { CharacterClient } from "@repo/types/dist";
+import { AddonProfileDBWithAddonPopulated } from "@repo/types/dist";
 
 const baseUrl = process.env.NEXT_PUBLIC_BASE_API_URL?.replace(/\/$/, "") || "https://api.solkarine.jdapp.dev";
 
-export async function getAllCharacters(): Promise<{ success: boolean; data: CharacterClient[] }> {
+export async function getAllAddonProfilesWithPopulatedAddon(): Promise<{
+  success: boolean;
+  data: AddonProfileDBWithAddonPopulated[];
+}> {
   try {
-    const res = await fetch(`${baseUrl}/character`, {
+    const res = await fetch(`${baseUrl}/addon-profile/with-populated-addon`, {
       cache: "force-cache",
-      next: {
-        revalidate: 60 * 60 * 24,
-        tags: [NEXT_API_TAGS.CHARACTER.GET.GET_ALL],
-      },
+      next: { tags: [NEXT_API_TAGS.ADDON_PROFILE.GET.GET_ALL_WITH_POPULATED_ADDON] },
     });
 
     if (!res.ok) {
