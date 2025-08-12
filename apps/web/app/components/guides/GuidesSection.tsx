@@ -26,21 +26,6 @@ export default function GuidesSection() {
       link: "/interface",
       linkText: "Decouvrir mes outils",
     },
-    {
-      title: "Communauté",
-      description: "Rejoignez une communauté passionnée et bienveillante de joueurs.",
-      image: communityImage,
-      alt: "Communauté",
-      buttons: [
-        { icon: <FaDiscord className="mr-1 h-4 w-4 text-[#5865F2]" />, text: "Discord" },
-        {
-          icon: (
-            <Image src={frontendImageLink.wow_logo} alt="wow_logo" width={24} height={24} className="mr-1 h-4 w-4" />
-          ),
-          text: "Wow",
-        },
-      ],
-    },
   ];
 
   return (
@@ -68,7 +53,7 @@ export default function GuidesSection() {
             <Link
               key={index}
               className="group relative overflow-hidden rounded-lg border border-primary/30 bg-black/40 backdrop-blur-sm transition-all hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
-              href={item.link || SOCIAL_MEDIA_LINK.DISCORD}
+              href={item.link}
             >
               <div className="absolute inset-0 z-0">
                 <Image
@@ -85,31 +70,63 @@ export default function GuidesSection() {
                 <p className="text-white mb-4 flex-grow backdrop-blur-sm bg-black/40 p-3 rounded-lg border border-primary/30 drop-shadow-md">
                   {item.description}
                 </p>
-                {item.link ? (
-                  <Button asChild variant="link" className="p-0 justify-start group text-white">
-                    <div className="flex items-center">
-                      {item.linkText}
-                      <ChevronRightIcon className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
-                    </div>
-                  </Button>
-                ) : (
-                  <div className="flex flex-wrap gap-3">
-                    {item.buttons?.map((button, buttonIndex) => (
-                      <Button
-                        key={buttonIndex}
-                        variant="outline"
-                        size="sm"
-                        className="flex items-center bg-primary/80 hover:bg-primary text-white border-0 transition-colors gap-0"
-                      >
-                        {button.icon}
-                        {button.text}
-                      </Button>
-                    ))}
+                <Button asChild variant="link" className="p-0 justify-start group text-white">
+                  <div className="flex items-center">
+                    {item.linkText}
+                    <ChevronRightIcon className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </div>
-                )}
+                </Button>
               </div>
             </Link>
           ))}
+
+          {/* Carte Communauté séparée */}
+          <div className="group relative overflow-hidden rounded-lg border border-primary/30 bg-black/40 backdrop-blur-sm transition-all hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:scale-[1.02]">
+            <div className="absolute inset-0 z-0">
+              <Image
+                src={communityImage}
+                alt="Communauté"
+                fill
+                className="object-cover transition-transform duration-300 group-hover:scale-105 opacity-50"
+                quality={90}
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+            </div>
+            <div className="relative z-10 p-6 flex flex-col h-full">
+              <h2 className="text-xl font-bold mb-3 text-white drop-shadow-md">Communauté</h2>
+              <p className="text-white mb-4 flex-grow backdrop-blur-sm bg-black/40 p-3 rounded-lg border border-primary/30 drop-shadow-md">
+                Rejoignez une communauté passionnée et bienveillante de joueurs.
+              </p>
+              <div className="flex flex-wrap gap-3">
+                <a href={SOCIAL_MEDIA_LINK.DISCORD} target="_blank" rel="noopener noreferrer">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center bg-primary/80 hover:bg-primary text-white border-0 transition-colors gap-0"
+                  >
+                    <FaDiscord className="mr-1 h-4 w-4 text-[#5865F2]" />
+                    Discord
+                  </Button>
+                </a>
+                <a href={SOCIAL_MEDIA_LINK.WOW_COMMUNITY} target="_blank" rel="noopener noreferrer">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="flex items-center bg-primary/80 hover:bg-primary text-white border-0 transition-colors gap-0"
+                  >
+                    <Image
+                      src={frontendImageLink.wow_logo}
+                      alt="wow_logo"
+                      width={24}
+                      height={24}
+                      className="mr-1 h-4 w-4"
+                    />
+                    Wow
+                  </Button>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>

@@ -98,7 +98,7 @@ export default async function CharactersSection() {
                   </TabsTrigger>
                 ))}
               </TabsList>
-              <div className="flex-1 w-full py-3">
+              <div className="flex-1 w-full">
                 {Object.entries(charactersData).map(([key, char]) => (
                   <TabsContent key={key} value={key} className="!text-white w-full">
                     <RaiderIoCard data={char} />
