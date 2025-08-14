@@ -43,7 +43,7 @@ export default function YetAnotherLightBox({ open, close, slides, index, showArr
       close={close}
       slides={formattedSlides}
       index={index}
-      carousel={{ finite: true }}
+      // carousel={{ finite: true }}
       thumbnails={{ position: "bottom" }}
       controller={{
         closeOnBackdropClick: true,

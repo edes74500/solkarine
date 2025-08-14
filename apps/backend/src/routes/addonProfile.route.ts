@@ -11,8 +11,8 @@ const router: Router = Router();
 
 router.get("/", getAddonProfilesController);
 router.post("/create", createAddonProfileController);
-router.put("/:id", updateAddonProfileController);
-router.delete("/:id", deleteAddonProfileController);
+router.put("/edit/:id", updateAddonProfileController);
+router.delete("/delete/:id", deleteAddonProfileController);
 router.get("/count", getAddonProfileCountController);
 
 export default router;

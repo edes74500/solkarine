@@ -30,3 +30,9 @@ tmp
 
 # --- Autres caches & fichiers temporaires ---
 *.tmp
+
+# --- Minio ---
+minio-data
+minio-config
+.minio.sys
+minio-volumes

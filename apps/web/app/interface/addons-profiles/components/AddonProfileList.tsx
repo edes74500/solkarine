@@ -13,7 +13,7 @@ export default function AddonProfileList({ addonProfiles }: AddonProfileListProp
   const [filteredAddonProfiles, setFilteredAddonProfiles] = useState<AddonProfileDBWithAddonPopulated[]>(addonProfiles);
 
   return (
-    <div className="flex flex-col gap-4 space-y-10">
+    <div className="flex flex-col gap-6">
       <ListFilter addonProfiles={addonProfiles} setFilteredAddonProfiles={setFilteredAddonProfiles} />
       <div className="grid grid-cols-1 gap-4 max-w-2xl">
         {filteredAddonProfiles

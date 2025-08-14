@@ -37,3 +37,10 @@ yarn-error.log*
 # Misc
 .DS_Store
 *.pem
+
+
+# Minio
+minio-data
+minio-config
+.minio.sys
+minio-volumes

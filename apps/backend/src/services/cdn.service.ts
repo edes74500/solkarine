@@ -8,75 +8,39 @@ export const setImageToFolderInR2 = async ({
   imageUrl,
   folder,
   imageName,
+  index,
 }: {
-  imageUrl: string | undefined | string[];
+  imageUrl: string;
   folder: string;
   imageName: string;
-}): Promise<string | string[]> => {
+  index?: number; // index du form
+}): Promise<string> => {
   const bucketName = process.env.R2_BUCKET_NAME;
-  if (!bucketName) {
-    throw new Error("R2_BUCKET_NAME is not defined");
-  }
-
-  if (!imageUrl || imageUrl.length === 0) {
-    console.info("No image url provided");
-    return [];
-  }
-
   const bucketUrl = process.env.R2_BUCKET_URL;
-  if (!bucketUrl) {
-    throw new Error("R2_BUCKET_URL is not defined");
-  }
+  if (!bucketName) throw new Error("R2_BUCKET_NAME is not defined");
+  if (!bucketUrl) throw new Error("R2_BUCKET_URL is not defined");
+  if (!imageUrl) throw new Error("imageUrl is required");
 
-  console.info(`Début du traitement des images pour le dossier: ${folder}`);
+  const imgExtension = (imageUrl.split(".").pop() || "jpeg").split("?")[0];
+  const suffix = typeof index === "number" ? `_${index}` : "";
+  const newImgName = `${uuidv4().slice(0, 10)}_${imageName}${suffix}`;
+  const key = `uploads/${folder}/${newImgName}.${imgExtension}`;
 
-  // Convertir en tableau même si c'est une seule URL
-  const imageUrls = Array.isArray(imageUrl) ? imageUrl : [imageUrl];
-  console.info(`Nombre d'images à traiter: ${imageUrls.length}`);
+  // si l'URL pointe déjà sur le bucket, extraire la clé source, sinon utiliser l'URL telle quelle
+  const srcKey = imageUrl.includes(bucketUrl) ? imageUrl.split(`${bucketUrl}/`).pop() : imageUrl;
 
-  const promises = imageUrls.map(async (url, index) => {
-    if (!url) return null;
+  if (!srcKey) throw new Error("Source key resolution failed");
 
-    const imgExtension = url.split(".").pop() || "png";
-    const newImgName = `${uuidv4().slice(0, 10)}_${imageName}_${index}`;
-    const imagePath = `uploads/${folder}/${newImgName}.${imgExtension}`;
+  await s3.send(
+    new CopyObjectCommand({
+      Bucket: bucketName,
+      CopySource: encodeURI(`${bucketName}/${srcKey}`),
+      Key: key,
+      MetadataDirective: "COPY",
+    }),
+  );
 
-    console.info(`Traitement de l'image ${index + 1}/${imageUrls.length}: ${newImgName}.${imgExtension}`);
-
-    let tmpKeyUrl: string | undefined;
-    if (url.includes(bucketUrl)) {
-      tmpKeyUrl = url.split(bucketUrl + "/").pop();
-      console.info(`Image source détectée dans le bucket: ${tmpKeyUrl}`);
-    } else {
-      tmpKeyUrl = url;
-      console.info(`Image source externe: ${url}`);
-    }
-
-    if (!tmpKeyUrl) {
-      throw new Error(`Tmp key url is not defined for image ${index}`);
-    }
-
-    console.info(`Copie de l'image vers: ${imagePath}`);
-    await s3.send(
-      new CopyObjectCommand({
-        Bucket: bucketName,
-        CopySource: encodeURI(`${bucketName}/${tmpKeyUrl}`),
-        Key: imagePath,
-        MetadataDirective: "COPY",
-      }),
-    );
-    console.info(`Image copiée avec succès: ${imagePath}`);
-
-    return `${bucketUrl}/${imagePath}`;
-  });
-
-  const results = await Promise.all(promises);
-  const filteredResults = results.filter((url) => url !== null) as string[];
-
-  console.info(`Traitement terminé: ${filteredResults.length} images traitées avec succès`);
-
-  // Retourner un tableau ou une chaîne selon le type d'entrée
-  return Array.isArray(imageUrl) ? filteredResults : filteredResults[0];
+  return `${bucketUrl}/${key}`;
 };
 
 export const deleteImageFromR2 = async (imageUrl: string | string[]): Promise<boolean> => {

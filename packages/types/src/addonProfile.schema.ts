@@ -61,6 +61,8 @@ export const createAddonProfileSchema = z.object({
     }),
 });
 
+export const editAddonProfileSchema = createAddonProfileSchema;
+
 export const updateAddonProfileSchema = createAddonProfileSchema.partial();
 
 export type AddonProfileDB = z.infer<typeof addonProfileSchemaDB>;
@@ -68,3 +70,4 @@ export type AddonProfileClient = z.infer<typeof addonProfileSchemaClient>;
 export type CreateAddonProfileForm = z.infer<typeof createAddonProfileSchema>;
 export type UpdateAddonProfileForm = z.infer<typeof updateAddonProfileSchema>;
 export type AddonProfileDBWithAddonPopulated = z.infer<typeof addonProfileSchemaDBWithAddonPopulated>;
+export type EditAddonProfileForm = z.infer<typeof editAddonProfileSchema>;

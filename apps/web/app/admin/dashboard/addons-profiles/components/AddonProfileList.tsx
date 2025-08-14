@@ -1,20 +1,22 @@
 "use client";
 
+import EditAddonProfile from "@/app/admin/dashboard/addons-profiles/components/EditAddonProfile";
 import AddonProfileCard from "@/components/addonProfile/AddonProfileCard";
 import ListFilter from "@/components/addonProfile/ListFilter";
 import { DashboardEmptyListCard } from "@/components/statusCard/DashboardEmptyListCard";
 import { ErrorCard } from "@/components/statusCard/ErrorCard";
 import { LoadingCard } from "@/components/statusCard/LoadingCard";
-import { useGetAddonProfilesQuery } from "@/redux/api/addonProfile.apiSlice";
+import { useDeleteAddonProfileMutation, useGetAddonProfilesQuery } from "@/redux/api/addonProfile.apiSlice";
 import { AddonProfileDBWithAddonPopulated } from "@repo/types/dist";
 import { Button } from "@repo/ui/components/button";
-import { Edit, Trash2 } from "lucide-react";
+import { Trash2 } from "lucide-react";
 import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export default function AddonProfileList() {
   const { data: addonProfiles, isLoading, isError } = useGetAddonProfilesQuery();
   const [filteredAddonProfiles, setFilteredAddonProfiles] = useState<AddonProfileDBWithAddonPopulated[]>([]);
+  const [deleteAddonProfile] = useDeleteAddonProfileMutation();
 
   useEffect(() => {
     if (addonProfiles?.data) {
@@ -24,7 +26,7 @@ export default function AddonProfileList() {
 
   const handleDelete = async (id: string) => {
     try {
-      // Implémentation à venir
+      await deleteAddonProfile(id).unwrap();
       toast.success("Profil d'addon supprimé avec succès");
     } catch (error) {
       console.error("Erreur lors de la suppression du profil d'addon:", error);
@@ -37,7 +39,7 @@ export default function AddonProfileList() {
   if (addonProfiles?.data.length === 0) return <DashboardEmptyListCard />;
 
   return (
-    <div className="space-y-10">
+    <div className="flex flex-col gap-6">
       <h3 className="text-2xl font-semibold">Mes profils d'addons</h3>
 
       <ListFilter addonProfiles={addonProfiles?.data || []} setFilteredAddonProfiles={setFilteredAddonProfiles} />
@@ -47,12 +49,15 @@ export default function AddonProfileList() {
           <div key={addonProfile.id} className="relative max-w-2xl w-full min-h-40">
             <AddonProfileCard addonProfile={addonProfile} />
             <div className="absolute top-2 -right-4 flex flex-col gap-2">
-              <Button variant="destructive" size="sm" className="h-8 w-8 p-0">
+              <Button
+                variant="destructive"
+                size="sm"
+                className="h-8 w-8 p-0"
+                onClick={() => handleDelete(addonProfile.id)}
+              >
                 <Trash2 className="h-4 w-4" />
               </Button>
-              <Button variant="outline" size="sm" className="z-10 h-8 w-8 p-0">
-                <Edit className="h-4 w-4" />
-              </Button>
+              <EditAddonProfile addonProfile={addonProfile} />
             </div>
           </div>
         ))}

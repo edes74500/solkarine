@@ -23,7 +23,11 @@ const config: Config = {
   // si vous importez des alias type "@/…", gardez le même mapping que tsconfig.json
   moduleNameMapper: {
     "^@/(.*)$": "<rootDir>/src/$1",
-    "^@repo/(.*)$": "<rootDir>/../../packages/$1/src/$1",
+    "^@repo/constants": "<rootDir>/../../packages/constants/src/index.ts",
+    "^@repo/utils": "<rootDir>/../../packages/utils/src/index.ts",
+    "^@repo/types": "<rootDir>/../../packages/types/src/index.ts",
+
+    // "^@repo/(.*)$": "<rootDir>/../../packages/$1/src/$1",
   },
   // coverage (optionnel)
   collectCoverage: true,

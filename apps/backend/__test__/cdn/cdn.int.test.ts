@@ -55,83 +55,45 @@ describe("CDN Service", () => {
       // Assert
       expect(result).toBeDefined();
       expect(typeof result).toBe("string");
-      expect((result as string).includes(`uploads/${folder}`)).toBeTruthy();
-      expect((result as string).includes(imageName)).toBeTruthy();
+      expect(result.includes(`uploads/${folder}`)).toBeTruthy();
+      expect(result.includes(imageName)).toBeTruthy();
 
       // Cleanup
-      await deleteImageFromR2(result as string);
+      await deleteImageFromR2(result);
     });
 
-    it("devrait copier plusieurs images dans un dossier spécifique", async () => {
+    it("devrait ajouter un index à l'image si spécifié", async () => {
       // Arrange
       const folder = "test-folder";
-      const imageName = "test-multiple";
-      const imageUrls = [testImageUrl, testImageUrl]; // Utiliser la même image deux fois
+      const imageName = "test-index";
+      const index = 3;
 
-      // Act
-      const results = await setImageToFolderInR2({
-        imageUrl: imageUrls,
-        folder,
-        imageName,
-      });
-
-      // Assert
-      expect(Array.isArray(results)).toBeTruthy();
-      expect((results as string[]).length).toBe(2);
-      (results as string[]).forEach((url) => {
-        expect(url.includes(`uploads/${folder}`)).toBeTruthy();
-        expect(url.includes(imageName)).toBeTruthy();
-      });
-
-      // Cleanup
-      await deleteImageFromR2(results as string[]);
-    });
-
-    it("devrait retourner un tableau vide si aucune image n'est fournie", async () => {
       // Act
       const result = await setImageToFolderInR2({
-        imageUrl: undefined,
-        folder: "test-folder",
-        imageName: "test-empty",
-      });
-
-      // Assert
-      expect(Array.isArray(result)).toBeTruthy();
-      expect((result as string[]).length).toBe(0);
-    });
-
-    it("devrait gérer correctement un tableau vide d'images", async () => {
-      // Act
-      const result = await setImageToFolderInR2({
-        imageUrl: [],
-        folder: "test-folder",
-        imageName: "test-empty-array",
-      });
-
-      // Assert
-      expect(Array.isArray(result)).toBeTruthy();
-      expect((result as string[]).length).toBe(0);
-    });
-
-    it("devrait ignorer les URLs nulles dans un tableau", async () => {
-      // Arrange
-      const folder = "test-folder";
-      const imageName = "test-null-urls";
-      const imageUrls = [testImageUrl, null, undefined, testImageUrl] as any[];
-
-      // Act
-      const results = await setImageToFolderInR2({
-        imageUrl: imageUrls,
+        imageUrl: testImageUrl,
         folder,
         imageName,
+        index,
       });
 
       // Assert
-      expect(Array.isArray(results)).toBeTruthy();
-      expect((results as string[]).length).toBe(2);
+      expect(result).toBeDefined();
+      expect(typeof result).toBe("string");
+      expect(result.includes(`_${index}`)).toBeTruthy();
 
       // Cleanup
-      await deleteImageFromR2(results as string[]);
+      await deleteImageFromR2(result);
+    });
+
+    it("devrait lever une erreur si imageUrl n'est pas défini", async () => {
+      // Act & Assert
+      await expect(
+        setImageToFolderInR2({
+          imageUrl: undefined as unknown as string,
+          folder: "test-folder",
+          imageName: "test-error",
+        }),
+      ).rejects.toThrow("imageUrl is required");
     });
 
     it("devrait lever une erreur si R2_BUCKET_NAME n'est pas défini", async () => {

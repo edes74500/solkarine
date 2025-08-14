@@ -1,70 +1,50 @@
 "use client";
 
-import DownloadImage from "@/components/cdn/images/DownloadImage";
-import ImagePreviewForm from "@/components/cdn/images/ImagePreviewForm";
-import PasteImageZone from "@/components/cdn/images/PasteImage";
-import { FormAreaText } from "@/components/Form/FormAreaText";
-import { FormInput } from "@/components/Form/FormInput";
-import { cn } from "@/lib/utils";
+import AddonProfileFormDialog from "@/app/admin/dashboard/addons-profiles/components/AddonProfileFormDIalog";
+import { useCreateAddonProfileForm } from "@/app/admin/dashboard/addons-profiles/hooks/useAddonProfileForm";
+import { useAddonProfileCreateSubmit } from "@/app/admin/dashboard/addons-profiles/hooks/useAddonProfileSubmit";
 import { useGetAddonsQuery } from "@/redux/api/addon.apiSlice";
-import { useCreateAddonProfileMutation } from "@/redux/api/addonProfile.apiSlice";
-import { zodResolver } from "@hookform/resolvers/zod";
-import { VisuallyHidden } from "@radix-ui/react-visually-hidden";
-import { AddonClient, CreateAddonProfileForm, createAddonProfileSchema } from "@repo/types/dist";
+import { CreateAddonProfileForm } from "@repo/types/dist";
 import { Button } from "@repo/ui/components/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogDescription,
-  DialogFooter,
-  DialogHeader,
-  DialogOverlay,
-  DialogTitle,
-  DialogTrigger,
-} from "@repo/ui/components/dialog";
-import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "@repo/ui/components/form";
-import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@repo/ui/components/select";
 import { PlusIcon } from "lucide-react";
-import { useState } from "react";
-import { useForm } from "react-hook-form";
+import { useEffect, useState } from "react";
 import { toast } from "sonner";
 
 export default function AddAddonProfile() {
   const { data: addons, isLoading } = useGetAddonsQuery();
-  const [createAddonProfile, { isLoading: isCreating }] = useCreateAddonProfileMutation();
+  // const [createAddonProfile, { isLoading: isCreating }] = useCreateAddonProfileMutation();
   const [open, setOpen] = useState(false);
-  const [isUploading, setIsUploading] = useState(false);
-  const [lightboxOpen, setLightboxOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false);
+  // const [isUploading, setIsUploading] = useState(false);
+  // const [lightboxOpen, setLightboxOpen] = useState(false);
+  // const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const form = useForm<CreateAddonProfileForm>({
-    resolver: zodResolver(createAddonProfileSchema),
-    defaultValues: {
-      addon_id: "",
-      name: "",
-      description: "",
-      info: "",
-      export_string: "",
-      screenshots: [],
-    },
-  });
-
-  const handleCreateAddonProfile = async (values: CreateAddonProfileForm) => {
-    console.log(values);
-    try {
-      setIsSubmitting(true);
-      await createAddonProfile(values).unwrap();
+  const { createAddonProfileForm } = useCreateAddonProfileForm();
+  const form = createAddonProfileForm;
+  const { onSubmitAction, isSubmitting } = useAddonProfileCreateSubmit({
+    form,
+    onSuccessAction: () => {
       setOpen(false);
       form.reset();
       toast.success("Profil d'addon créé avec succès");
-    } catch (error) {
-      console.error(error);
-      toast.error("Erreur lors de la création du profil d'addon");
-    }
-  };
+    },
+  });
+
+  // const handleCreateAddonProfile = async (values: CreateAddonProfileForm) => {
+  //   console.log(values);
+  //   try {
+  //     // setIsSubmitting(true);
+  //     await createAddonProfile(values).unwrap();
+  //     setOpen(false);
+  //     form.reset();
+  //     toast.success("Profil d'addon créé avec succès");
+  //   } catch (error) {
+  //     console.error(error);
+  //     toast.error("Erreur lors de la création du profil d'addon");
+  //   }
+  // };
 
   const onSubmit = async (values: CreateAddonProfileForm) => {
-    await handleCreateAddonProfile(values);
+    await onSubmitAction(values);
   };
 
   const handleAddImageToUrlArray = (imageUrl: string | null) => {
@@ -72,6 +52,12 @@ export default function AddAddonProfile() {
       form.setValue("screenshots", [...form.getValues("screenshots"), imageUrl]);
     }
   };
+
+  useEffect(() => {
+    if (!open) {
+      form.reset();
+    }
+  }, [open]);
 
   const handleClearImage = (index: number) => {
     form.setValue(
@@ -81,17 +67,32 @@ export default function AddAddonProfile() {
   };
 
   return (
-    <div className="space-y-4">
-      <div className="flex justify-between items-center">
-        <div className={cn(lightboxOpen && "pointer-events-none")}>
-          {/* Modal personnalisée avec fond plus sombre */}
-          <div
-            className={cn(
-              "fixed inset-0 bg-black/70 z-40 flex items-center justify-center transition-opacity",
-              open ? "opacity-100" : "opacity-0 pointer-events-none",
-            )}
-          ></div>
-          <Dialog open={open} onOpenChange={setOpen} modal={false} key={open ? "open" : "closed"}>
+    <AddonProfileFormDialog
+      open={open}
+      onOpenChangeAction={setOpen}
+      title="Ajouter un nouveau profil d'addon"
+      submitLabel="Ajouter le profil"
+      form={form}
+      onSubmitAction={onSubmit}
+      addons={addons?.data || []}
+      isAddonsLoading={isLoading}
+      dialogTrigger={
+        <Button className="flex items-center gap-2">
+          <PlusIcon className="h-4 w-4" />
+          Ajouter un profil
+        </Button>
+      }
+      // lightboxOpen={lightboxOpen}
+      // isUploading={isUploading}
+      // setIsUploadingAction={setIsUploading}
+      // setLightboxOpenAction={setLightboxOpen}
+      onAddImageAction={handleAddImageToUrlArray}
+      onClearImageAction={handleClearImage}
+      isSubmitting={isSubmitting}
+    />
+  );
+
+  /* <Dialog open={open} onOpenChange={setOpen} modal={false} key={open ? "open" : "closed"}>
             <DialogOverlay className="bg-black/70" />
             <DialogTrigger asChild>
               <Button className="flex items-center gap-2">
@@ -231,9 +232,5 @@ export default function AddAddonProfile() {
                 </form>
               </Form>
             </DialogContent>
-          </Dialog>
-        </div>
-      </div>
-    </div>
-  );
+          </Dialog> */
 }

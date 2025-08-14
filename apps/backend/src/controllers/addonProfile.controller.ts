@@ -1,8 +1,14 @@
-import { createAddonProfileService, getAddonProfilesService } from "@/services/addonProfile.service";
+import { AppError } from "@/errors/AppError";
+import {
+  createAddonProfileService,
+  deleteAddonProfileService,
+  getAddonProfilesService,
+  updateAddonProfileService,
+} from "@/services/addonProfile.service";
 import { setImageToFolderInR2 } from "@/services/cdn.service";
 import { revalidateFetch } from "@/services/nextJsCache.service";
 import { NEXT_API_TAGS } from "@repo/constants";
-import { createAddonProfileSchema } from "@repo/types";
+import { createAddonProfileSchema, editAddonProfileSchema } from "@repo/types";
 import { Request, Response } from "express";
 
 export const getAddonProfilesController = async (req: Request, res: Response) => {
@@ -18,11 +24,16 @@ export const getAddonProfilesController = async (req: Request, res: Response) =>
 export const createAddonProfileController = async (req: Request, res: Response) => {
   const parsedBody = createAddonProfileSchema.parse(req.body);
 
-  const uploadedScreenshots = await setImageToFolderInR2({
-    imageUrl: parsedBody.screenshots,
-    folder: "addon-profiles",
-    imageName: parsedBody.name,
-  });
+  const uploadedScreenshots = await Promise.all(
+    parsedBody.screenshots.map(async (url: string, i: number) => {
+      return await setImageToFolderInR2({
+        imageUrl: url,
+        folder: "addon-profiles",
+        imageName: parsedBody.name,
+        index: i,
+      });
+    }),
+  );
 
   const addonProfile = await createAddonProfileService({
     ...parsedBody,
@@ -34,8 +45,30 @@ export const createAddonProfileController = async (req: Request, res: Response) 
   res.status(201).json({ success: true, data: addonProfile });
 };
 
-export const updateAddonProfileController = async (req: Request, res: Response) => {};
+export const updateAddonProfileController = async (req: Request, res: Response) => {
+  const data = editAddonProfileSchema.parse(req.body.formData);
+  const initialScreenshots: string[] = req.body.initialScreenshots ?? [];
+  const id = req.params.id;
 
-export const deleteAddonProfileController = async (req: Request, res: Response) => {};
+  // 1) Supprimer ce qui n’est plus dans le form
+  const { success, data: updatedProfile } = await updateAddonProfileService(id, data, initialScreenshots);
+
+  if (!success) {
+    throw new AppError("Error updating addon profile", 500);
+  }
+
+  res.status(200).json({ success, data: updatedProfile });
+};
+
+export const deleteAddonProfileController = async (req: Request, res: Response) => {
+  const id = req.params.id;
+  const { success } = await deleteAddonProfileService(id);
+
+  if (!success) {
+    throw new AppError("Error deleting addon profile", 500);
+  }
+
+  res.status(200).json({ success });
+};
 
 export const getAddonProfileCountController = async (req: Request, res: Response) => {};
