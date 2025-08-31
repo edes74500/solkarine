@@ -3,9 +3,9 @@ import Community from "@/app/components/community/Community";
 import GuidesSection from "@/app/components/guides/GuidesSection";
 import HeroSection from "@/app/components/hero/HeroSection";
 import TwitchSection from "@/app/components/twitch/TwitchSection";
+import YouTubeLatest from "@/app/components/youtube/YouTubeLatest";
 import ContentWidthWrapper from "@/components/ContentWidthWrapper";
 import { Separator } from "@repo/ui/components/separator";
-import { VideoIcon } from "lucide-react";
 
 export default async function Home() {
   let character = null;
@@ -43,14 +43,8 @@ export default async function Home() {
 
             <Separator />
             <Community />
-
             <Separator />
-            <div>
-              <h2>
-                Mes dernieres videos
-                <VideoIcon className="w-4 h-4" />
-              </h2>
-            </div>
+            <YouTubeLatest handle="@SolkarineTwitch" />
             <Separator />
             <TwitchSection />
             {/* </div>

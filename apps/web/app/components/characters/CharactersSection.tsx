@@ -1,4 +1,4 @@
-import RaiderIoCard from "@/components/characters/RaiderIoCard";
+import RaiderIoCardHome from "@/components/characters/RaiderIoCardHome";
 import { getAllCharacters } from "@/lib/api/character";
 import { fetchRaiderCharacter } from "@/lib/api/Raider.io";
 import { getClassColor } from "@/utils/classColor";
@@ -28,7 +28,7 @@ export default async function CharactersSection() {
 
   return (
     <section className="flex flex-col gap-10 my-15 relative">
-      <div className="absolute inset-0 w-[90%] h-[90%] mx-auto my-auto opacity-10 pointer-events-none flex items-center justify-center">
+      <div className="absolute inset-0 w-[90%] h-[90%] mx-auto my-auto opacity-10 pointer-events-none flex items-center justify-center !mb-0">
         {/* <div className="relative w-full h-full max-w-[100%] max-h-[100%] z-10">
           <Image src={frontendImageLink.wow_logo} alt="WoW background" className="object-contain" fill sizes="100vw" />
         </div> */}
@@ -36,17 +36,17 @@ export default async function CharactersSection() {
       </div>
 
       <div className="relative z-10 space-y-10">
-        <div className="flex flex-col mb-8">
-          <h2>
+        <div className="flex flex-col">
+          <h2 className="mb-0">
             <Image src={frontendImageLink.wow_logo} alt="wow logo" width={40} height={40} className="w-10 h-10" />
             <span>Mes Personnages</span>
           </h2>
 
-          <div className="text-foreground ">
+          {/* <div className="text-foreground ">
             <p className=" leading-relaxed">
               Voici les personnages que je joue actuellement. Cliquez sur un personnage pour voir ses détails.
             </p>
-          </div>
+          </div> */}
         </div>
 
         <div className="mt-8">
@@ -63,45 +63,47 @@ export default async function CharactersSection() {
               className="w-full flex flex-col lg:flex-row items-start gap-6"
             >
               <TabsList className="shrink-0 flex flex-wrap lg:flex-col md:grid-cols-1 gap-3 p-0 bg-background h-fit bg-transparent w-full md:w-auto">
-                {Object.entries(sortedCharactersData).map(([key, char]) => (
-                  <TabsTrigger
-                    key={key}
-                    value={key}
-                    className="border border-b-[3px] border-transparent data-[state=active]:border-primary rounded-lg justify-start px-4 py-3 flex items-center gap-3 bg-black/60 backdrop-blur-sm text-white hover:bg-black/80 transition-all duration-200 [&[data-state=active]]:bg-black/80 [&[data-state=active]]:shadow-[0_0_15px_rgba(255,255,255,0.3)] w-full text-left"
-                  >
-                    <div className="relative w-12 h-12 rounded-full overflow-hidden shrink-0 border-2 border-primary/50 shadow-[0_0_8px_rgba(255,255,255,0.2)]">
-                      <Image src={char.thumbnail_url} alt={char.name} fill className="object-cover" />
-                    </div>
-                    <div className="flex flex-col">
-                      <span
-                        className="text-base font-bold"
-                        style={{
-                          color: getClassColor(char.class),
-                          textShadow: "0px 0px 3px rgba(0,0,0,0.8)",
-                        }}
+                {Object.entries(sortedCharactersData).map(([key, char]) => {
+                  const classColor = getClassColor(char.class);
+                  return (
+                    <TabsTrigger
+                      key={key}
+                      value={key}
+                      className="border border-transparent data-[state=active]:border-2 rounded-lg justify-start px-4 py-3 flex items-center gap-3 bg-card backdrop-blur-sm text-card-foreground hover:bg-card/80 transition-all duration-200 [&[data-state=active]]:bg-card/90 [&[data-state=active]]:shadow-md w-full text-left"
+                      style={{
+                        ["--class-color" as any]: classColor,
+                        ["--border-color" as any]: `var(--class-color)`,
+                        borderColor: "var(--border-color)",
+                      }}
+                    >
+                      <div
+                        className="relative w-12 h-12 rounded-full overflow-hidden shrink-0 border-2 shadow-[0_0_8px_rgba(255,255,255,0.2)]"
+                        style={{ borderColor: classColor }}
                       >
-                        {char.name}
-                      </span>
-                      <span className="text-xs text-gray-200">
-                        {char.class} - {char.race}
-                      </span>
-                      <span
-                        className="text-sm font-medium"
-                        style={{
-                          color: char.mythic_plus_scores_by_season[0]?.segments?.all?.color,
-                          textShadow: "0px 0px 3px rgba(0,0,0,0.8)",
-                        }}
-                      >
-                        Score: {char.mythic_plus_scores_by_season[0]?.scores?.all.toFixed(1)}
-                      </span>
-                    </div>
-                  </TabsTrigger>
-                ))}
+                        <Image src={char.thumbnail_url} alt={char.name} fill className="object-cover" />
+                      </div>
+                      <div className="flex flex-col">
+                        <span className="text-base font-bold text-card-foreground">{char.name}</span>
+                        <span className="text-xs text-card-foreground">
+                          {char.class} - {char.race}
+                        </span>
+                        <span
+                          className="text-sm font-medium"
+                          style={{
+                            color: char.mythic_plus_scores_by_season[0]?.segments?.all?.color,
+                          }}
+                        >
+                          Score: {char.mythic_plus_scores_by_season[0]?.scores?.all.toFixed(1)}
+                        </span>
+                      </div>
+                    </TabsTrigger>
+                  );
+                })}
               </TabsList>
               <div className="flex-1 w-full">
                 {Object.entries(charactersData).map(([key, char]) => (
-                  <TabsContent key={key} value={key} className="!text-white w-full">
-                    <RaiderIoCard data={char} />
+                  <TabsContent key={key} value={key} className="text-card-foreground w-full">
+                    <RaiderIoCardHome data={char} />
                   </TabsContent>
                 ))}
               </div>

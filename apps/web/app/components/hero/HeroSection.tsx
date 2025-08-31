@@ -34,8 +34,8 @@ export default function HeroSection() {
             et conseils pour les joueurs de tous niveaux.
           </p>
 
-          <div className="flex flex-wrap gap-3 pt-2">
-            <h2 className="text-2xl font-bold">Suivez-moi sur :</h2>
+          <div className="flex flex-wrap pt-2">
+            <h2 className="text-2xl font-bold mb-2">Suivez-moi sur :</h2>
             <div className="flex flex-wrap gap-3">
               <Button className="flex items-center bg-purple-600 hover:bg-purple-700 text-white" asChild>
                 <Link href={SOCIAL_MEDIA_LINK.TWITCH} target="_blank">

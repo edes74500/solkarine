@@ -1,6 +1,6 @@
 export const frontendImageLink = {
   // avatar
-  solkarine: "/img/solkarine.avif",
+  solkarine: "/img/solkarine.jpg",
   wow_logo: "/img/wow/wow_logo.png",
   // home
   interface: "/img/pages/home/interface.jpg",

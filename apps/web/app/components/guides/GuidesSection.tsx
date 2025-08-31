@@ -15,11 +15,11 @@ export default function GuidesSection() {
       image: interfaceImage,
       alt: "Addons & WeakAuras",
       link: "/interface",
-      linkText: "Decouvrir mes outils",
+      linkText: "Découvrir mes outils",
     },
     {
       title: "Routes et Talents",
-      description: "Découvrez mes routes, les talents que j'utilise et des tips pour simplifier vos runs.",
+      description: "Découvrez mes routes, les talents que j'utilise pour push les mythic+.",
       image: mythicplusImage,
       alt: "Routes et Talents",
       link: "/mythic-plus",
@@ -28,30 +28,24 @@ export default function GuidesSection() {
   ];
 
   return (
-    <section className="my-15 ">
-      {/* <div className="absolute inset-0 w-full h-full">
-        <Image
-          src={frontendImageLink.community_button}
-          alt="guides background"
-          className="w-full h-full object-cover"
-          fill
-          sizes="100vw"
-          priority
-        />
-        <div className="absolute inset-0 bg-gradient-to-b from-background/20 via-transparent to-background/10"></div>
-      </div> */}
+    <section className="my-15">
+      <div className="relative z-10 flex flex-col items-center w-full px-4 max-w-7xl mx-auto">
+        {/* <h2 className="font-dyna-puff mb-8 text-center flex items-center gap-3 bg-gradient-to-r from-pink-300 to-purple-400 bg-clip-text text-transparent">
+          <Image
+            src={frontendImageLink.wow_logo}
+            alt="wow logo"
+            width={48}
+            height={48}
+            className="w-12 h-12 animate-pulse"
+          />
+          <span className="drop-shadow-sm">Routes, Addons & Talents</span>
+        </h2> */}
 
-      <div className="relative z-10 flex flex-col  w-full px-4">
-        <h2>
-          <Image src={frontendImageLink.wow_logo} alt="wow logo" width={40} height={40} className="w-10 h-10" />
-          Addons & WeakAuras / Routes et Talents
-        </h2>
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 w-full">
           {guides.map((item, index) => (
             <Link
               key={index}
-              className="group relative overflow-hidden rounded-lg border border-primary/30 bg-black/40 backdrop-blur-sm transition-all hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:scale-[1.02]"
+              className="group relative overflow-hidden rounded-2xl border border-pink-300/30 bg-black/40 backdrop-blur-sm transition-all hover:shadow-[0_0_20px_rgba(236,72,153,0.3)] hover:scale-[1.03] duration-300"
               href={item.link}
             >
               <div className="absolute inset-0 z-0">
@@ -59,73 +53,27 @@ export default function GuidesSection() {
                   src={item.image}
                   alt={item.alt}
                   fill
-                  className="object-cover transition-transform duration-300 group-hover:scale-105 opacity-50"
-                  quality={90}
+                  className="object-cover transition-transform duration-500 group-hover:scale-110 opacity-60"
+                  quality={95}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
               </div>
-              <div className="relative z-10 p-6 flex flex-col h-full">
-                <h2 className="text-xl font-bold mb-3 text-white drop-shadow-md">{item.title}</h2>
-                <p className="text-white mb-4 flex-grow backdrop-blur-sm bg-black/40 p-3 rounded-lg border border-primary/30 drop-shadow-md">
+              <div className="relative z-10 p-8 flex flex-col h-full">
+                <h2 className="text-2xl font-bold mb-4 text-white drop-shadow-md bg-gradient-to-r from-pink-300 to-purple-400 bg-clip-text text-transparent">
+                  {item.title}
+                </h2>
+                <p className="text-white mb-6 flex-grow backdrop-blur-sm bg-black/50 p-4 rounded-xl border border-pink-300/30 drop-shadow-md leading-relaxed">
                   {item.description}
                 </p>
-                <Button asChild variant="link" className="p-0 justify-start group text-white">
+                <Button asChild variant="link" className="p-0 justify-start group text-pink-300 hover:text-pink-200">
                   <div className="flex items-center">
                     {item.linkText}
-                    <ChevronRightIcon className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                    <ChevronRightIcon className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-2" />
                   </div>
                 </Button>
               </div>
             </Link>
           ))}
-
-          {/* Carte Communauté séparée */}
-          {/* <div className="group relative overflow-hidden rounded-lg border border-primary/30 bg-black/40 backdrop-blur-sm transition-all hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:scale-[1.02]">
-            <div className="absolute inset-0 z-0">
-              <Image
-                src={communityImage}
-                alt="Communauté"
-                fill
-                className="object-cover transition-transform duration-300 group-hover:scale-105 opacity-50"
-                quality={90}
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
-            </div>
-            <div className="relative z-10 p-6 flex flex-col h-full">
-              <h2 className="text-xl font-bold mb-3 text-white drop-shadow-md">Communauté</h2>
-              <p className="text-white mb-4 flex-grow backdrop-blur-sm bg-black/40 p-3 rounded-lg border border-primary/30 drop-shadow-md">
-                Rejoignez une communauté passionnée et bienveillante de joueurs.
-              </p>
-              <div className="flex flex-wrap gap-3">
-                <a href={SOCIAL_MEDIA_LINK.DISCORD} target="_blank" rel="noopener noreferrer">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex items-center bg-primary/80 hover:bg-primary text-white border-0 transition-colors gap-0"
-                  >
-                    <FaDiscord className="mr-1 h-4 w-4 text-[#5865F2]" />
-                    Discord
-                  </Button>
-                </a>
-                <a href={SOCIAL_MEDIA_LINK.WOW_COMMUNITY} target="_blank" rel="noopener noreferrer">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="flex items-center bg-primary/80 hover:bg-primary text-white border-0 transition-colors gap-0"
-                  >
-                    <Image
-                      src={frontendImageLink.wow_logo}
-                      alt="wow_logo"
-                      width={24}
-                      height={24}
-                      className="mr-1 h-4 w-4"
-                    />
-                    Wow
-                  </Button>
-                </a>
-              </div>
-            </div>
-          </div> */}
         </div>
       </div>
     </section>

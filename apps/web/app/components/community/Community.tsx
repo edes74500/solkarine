@@ -48,40 +48,40 @@ export default function Community() {
           </div>
         </div> */}
         <div className="flex flex-col md:flex-row gap-4 w-full max-w-md mx-auto">
-          <div className="relative w-full overflow-hidden rounded-lg shadow-[0_0_10px_rgba(255,255,255,0.15)] group hover:scale-[1.01] transition-all duration-300 font-dyna-puff">
+          <div className="relative w-full overflow-hidden rounded-lg group hover:scale-[1.02] transition-all duration-300 font-dyna-puff">
             <Button
               variant="outline"
               asChild
-              className="w-full h-12 bg-gradient-to-r from-[#5865F2] to-[#7289DA] hover:from-[#4752C4] hover:to-[#5865F2] text-white tracking-wide font-medium text-base border-0 overflow-hidden"
+              className="w-full h-12 bg-gradient-to-r from-[#5865F2]/90 to-[#7289DA]/90 hover:from-[#5865F2] hover:to-[#7289DA] text-white tracking-wide font-medium text-base border border-white/20 overflow-hidden hover:text-white"
             >
               <Link
                 href={SOCIAL_MEDIA_LINK.DISCORD}
                 target="_blank"
-                className="flex items-center justify-center gap-2 group-hover:gap-3 transition-all duration-300"
+                className="flex items-center justify-center gap-2 transition-all duration-300"
               >
-                <span className="font-bold">Discord </span>
-                <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                <i className="fab fa-discord text-lg"></i>
+                <span className="font-bold">Discord</span>
+                <FaArrowRight className="ml-1 text-sm transition-transform" />
               </Link>
             </Button>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#5865F2]/20 to-[#7289DA]/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
           </div>
 
-          <div className="relative w-full overflow-hidden rounded-lg shadow-[0_0_10px_rgba(255,255,255,0.15)] group hover:scale-[1.01] transition-all duration-300 font-dyna-puff">
+          <div className="relative w-full overflow-hidden rounded-lg group hover:scale-[1.02] transition-all duration-300 font-dyna-puff">
             <Button
               variant="outline"
               asChild
-              className="w-full h-12 bg-gradient-to-r from-[#6441A4] to-[#FF79C6] hover:from-[#5A3A93] hover:to-[#E76DB3] text-white tracking-wide font-medium text-base border-0 overflow-hidden"
+              className="w-full h-12 bg-gradient-to-r from-[#6441A4]/90 to-[#9146FF]/90 hover:from-[#6441A4] hover:to-[#9146FF] text-white tracking-wide font-medium text-base border border-white/20 overflow-hidden hover:text-white"
             >
               <Link
                 href={SOCIAL_MEDIA_LINK.WOW_COMMUNITY}
                 target="_blank"
-                className="flex items-center justify-center gap-2 group-hover:gap-3 transition-all duration-300"
+                className="flex items-center justify-center gap-2 transition-all duration-300"
               >
-                <span className="font-bold">Communauté WoW </span>
-                <FaArrowRight className="group-hover:translate-x-1 transition-transform" />
+                <i className="fas fa-users text-lg"></i>
+                <span className="font-bold">Communauté WoW</span>
+                <FaArrowRight className="ml-1 text-sm transition-transform" />
               </Link>
             </Button>
-            <div className="absolute inset-0 bg-gradient-to-r from-[#6441A4]/20 to-[#FF79C6]/10 opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
           </div>
         </div>
       </div>
