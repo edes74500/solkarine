@@ -58,11 +58,11 @@ async function main() {
   app.use("/api/v1", wrapAsync(router));
 
   app.use(errorHandler);
-  app.set("trust proxy", 1);
+  // app.set("trust proxy", 1);
   const port = process.env.PORT || 5000;
 
   // --- Démarrage du serveur ---
-  app.listen(Number(port), "0.0.0.0", () => {
+  app.listen(Number(port), () => {
     console.info(`🚀 Serveur démarré sur le port ${port}`);
   });
 }

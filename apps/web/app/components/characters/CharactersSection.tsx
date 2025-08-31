@@ -69,7 +69,7 @@ export default async function CharactersSection() {
                     <TabsTrigger
                       key={key}
                       value={key}
-                      className="border border-transparent data-[state=active]:border-2 rounded-lg justify-start px-4 py-3 flex items-center gap-3 bg-card backdrop-blur-sm text-card-foreground hover:bg-card/80 transition-all duration-200 [&[data-state=active]]:bg-card/90 [&[data-state=active]]:shadow-md w-full text-left"
+                      className="border-2 border-transparent data-[state=active]:border-current rounded-lg justify-start px-4 py-3 flex items-center gap-3 bg-stone-500 dark:bg-card backdrop-blur-sm text-white hover:bg-stone-500/80 dark:hover:bg-card/80 transition-all duration-200 [&[data-state=active]]:bg-stone-500/90 dark:[&[data-state=active]]:bg-card/90 [&[data-state=active]]:shadow-md hover:shadow-lg w-full text-left hover:cursor-pointer"
                       style={{
                         ["--class-color" as any]: classColor,
                         ["--border-color" as any]: `var(--class-color)`,
@@ -83,18 +83,22 @@ export default async function CharactersSection() {
                         <Image src={char.thumbnail_url} alt={char.name} fill className="object-cover" />
                       </div>
                       <div className="flex flex-col">
-                        <span className="text-base font-bold text-card-foreground">{char.name}</span>
-                        <span className="text-xs text-card-foreground">
+                        <span className="text-base font-bold text-white" style={{ color: classColor }}>
+                          {char.name}
+                        </span>
+                        <span className="text-xs text-white">
                           {char.class} - {char.race}
                         </span>
-                        <span
-                          className="text-sm font-medium"
-                          style={{
-                            color: char.mythic_plus_scores_by_season[0]?.segments?.all?.color,
-                          }}
-                        >
-                          Score: {char.mythic_plus_scores_by_season[0]?.scores?.all.toFixed(1)}
-                        </span>
+                        {char.mythic_plus_scores_by_season[0]?.scores?.all !== 0 && (
+                          <div
+                            className="text-sm font-medium px-2 py-0.5 rounded-sm mt-1 w-fit"
+                            style={{
+                              backgroundColor: char.mythic_plus_scores_by_season[0]?.segments?.all?.color || "#666",
+                            }}
+                          >
+                            {char.mythic_plus_scores_by_season[0]?.scores?.all.toFixed(1)}
+                          </div>
+                        )}
                       </div>
                     </TabsTrigger>
                   );

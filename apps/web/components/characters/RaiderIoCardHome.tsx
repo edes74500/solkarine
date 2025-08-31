@@ -22,10 +22,10 @@ const RaiderIoCardHome: React.FC<Props> = ({ data }) => {
 
   return (
     <Card
-      className="overflow-hidden w-full max-w-3xl mx-auto bg-card"
+      className="overflow-hidden w-full max-w-3xl mx-auto bg-stone-500 dark:bg-card"
       style={{ boxShadow: `0 4px 12px ${classColor}30` }}
     >
-      <CardHeader className="!mb-0 !pb-0 !text-foreground dark:!text-white !h-fit py-3">
+      <CardHeader className="!mb-0 !pb-0 !text-white dark:!text-white !h-fit py-3">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
           {data.thumbnail_url && (
             <Avatar className={`h-16 w-16 border-3 shrink-0`} style={{ borderColor: classColor }}>
@@ -35,29 +35,37 @@ const RaiderIoCardHome: React.FC<Props> = ({ data }) => {
           <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between w-full">
             <div>
               <h3 className="text-xl font-bold line-clamp-1">
-                <a href={data.profile_url} target="_blank" rel="noopener noreferrer" className="hover:underline">
+                <a
+                  href={data.profile_url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="hover:underline"
+                  style={{ color: classColor }}
+                >
                   {data.name}
                 </a>
               </h3>
               <div className="text-xs md:text-sm space-y-1">
-                <p className="line-clamp-1">
+                <p className="line-clamp-1 text-gray-200">
                   {data.active_spec_name} {data.class} - {data.realm} ({data.region.toUpperCase()})
                 </p>
                 <p className="font-medium">{Math.floor(data.gear?.item_level_equipped)} ilvl</p>
               </div>
             </div>
-            <div className="hidden sm:flex items-center">
-              <div
-                className="rounded-md px-3 py-2 text-white font-bold"
-                style={{
-                  backgroundColor: data.mythic_plus_scores_by_season[0]?.segments?.all?.color || "#666",
-                  boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
-                }}
-              >
-                <p className="text-xs uppercase mb-1">Score M+</p>
-                <p className="text-xl">{data.mythic_plus_scores_by_season[0]?.scores?.all.toFixed(1)}</p>
+            {data.mythic_plus_scores_by_season[0]?.scores?.all !== 0 && (
+              <div className="hidden sm:flex items-center">
+                <div
+                  className="rounded-md px-3 py-2 text-white font-bold"
+                  style={{
+                    backgroundColor: data.mythic_plus_scores_by_season[0]?.segments?.all?.color || "#666",
+                    boxShadow: "0 2px 4px rgba(0,0,0,0.2)",
+                  }}
+                >
+                  <p className="text-xs uppercase mb-1">Score M+</p>
+                  <p className="text-xl">{data.mythic_plus_scores_by_season[0]?.scores?.all.toFixed(1)}</p>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
       </CardHeader>
