@@ -40,7 +40,7 @@ export function RouteBadge({
       onClick={handleClick}
     >
       <div className="absolute inset-0 z-0">
-        <div className="absolute inset-0 left-1/2 w-1/2 h-full">
+        <div className="absolute inset-0 h-full">
           <Image
             src={dungeon.background_image_url}
             alt={dungeon.short_name}
@@ -48,9 +48,9 @@ export function RouteBadge({
             className="object-cover"
             style={{ filter: "brightness(1.2)" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-card to-transparent w-full h-full"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-card/50 to-transparent w-full h-full"></div>
         </div>
-        <div className="absolute inset-0 right-1/2 w-1/2 h-full bg-card"></div>
+        {/* <div className="absolute inset-0 right-1/2 w-1/2 h-full bg-card"></div> */}
       </div>
       <div className="flex items-center justify-between w-full relative ">
         <div></div>

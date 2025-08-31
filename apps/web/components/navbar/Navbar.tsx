@@ -42,7 +42,6 @@ import {
   SheetTrigger,
 } from "@repo/ui/components/sheet";
 import { Menu, Settings } from "lucide-react";
-import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeSwapper } from "./ThemeSwapper";
@@ -63,10 +62,19 @@ export function Navbar() {
         <div className="flex items-center space-x-4 w-full">
           {/* Logo */}
           <Link href="/" className="font-bold text-3xl  pr-5 flex items-center relative">
-            <div className="relative">
+            {/* <div className="relative">
               <Image src="/img/cat/cat_1_low.png" alt="Logo chat" width={70} height={70} />
-            </div>
-            <span className=" font-dyna-puff">Solkarine</span>
+            </div> */}
+            <span className="font-dyna-puff dark:text-foreground">
+              {"Solkarine".split("").map((letter, index) => (
+                <span
+                  key={index}
+                  className="text-background dark:text-foreground drop-shadow-[0_2px_2px_rgba(0,0,0,0.5)]"
+                >
+                  {letter}
+                </span>
+              ))}
+            </span>
           </Link>
         </div>
         <div className="flex items-center space-x-4 w-full justify-end">

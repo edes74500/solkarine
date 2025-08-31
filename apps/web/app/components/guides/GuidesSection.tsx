@@ -1,9 +1,8 @@
-import { frontendImageLink, SOCIAL_MEDIA_LINK } from "@repo/constants";
+import { frontendImageLink } from "@repo/constants";
 import { Button } from "@repo/ui/components/button";
 import { ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-import { FaDiscord } from "react-icons/fa";
 
 export default function GuidesSection() {
   const mythicplusImage = frontendImageLink.mythicplus;
@@ -11,20 +10,20 @@ export default function GuidesSection() {
   const communityImage = frontendImageLink.community_button;
   const guides = [
     {
-      title: "Mythic+",
-      description: "Découvrez mes routes, les talents que j'utilise et des tips pour simplifier vos runs.",
-      image: mythicplusImage,
-      alt: "Mythic+",
-      link: "/mythic-plus",
-      linkText: "Voir les guides",
-    },
-    {
       title: "Addons & WeakAuras",
       description: "Optimisez votre interface avec mes configurations personnalisées.",
       image: interfaceImage,
       alt: "Addons & WeakAuras",
       link: "/interface",
       linkText: "Decouvrir mes outils",
+    },
+    {
+      title: "Routes et Talents",
+      description: "Découvrez mes routes, les talents que j'utilise et des tips pour simplifier vos runs.",
+      image: mythicplusImage,
+      alt: "Routes et Talents",
+      link: "/mythic-plus",
+      linkText: "Voir les guides",
     },
   ];
 
@@ -45,7 +44,7 @@ export default function GuidesSection() {
       <div className="relative z-10 flex flex-col  w-full px-4">
         <h2>
           <Image src={frontendImageLink.wow_logo} alt="wow logo" width={40} height={40} className="w-10 h-10" />
-          Mes guides
+          Addons & WeakAuras / Routes et Talents
         </h2>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">
@@ -81,7 +80,7 @@ export default function GuidesSection() {
           ))}
 
           {/* Carte Communauté séparée */}
-          <div className="group relative overflow-hidden rounded-lg border border-primary/30 bg-black/40 backdrop-blur-sm transition-all hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:scale-[1.02]">
+          {/* <div className="group relative overflow-hidden rounded-lg border border-primary/30 bg-black/40 backdrop-blur-sm transition-all hover:shadow-[0_0_15px_rgba(255,255,255,0.2)] hover:scale-[1.02]">
             <div className="absolute inset-0 z-0">
               <Image
                 src={communityImage}
@@ -126,7 +125,7 @@ export default function GuidesSection() {
                 </a>
               </div>
             </div>
-          </div>
+          </div> */}
         </div>
       </div>
     </section>

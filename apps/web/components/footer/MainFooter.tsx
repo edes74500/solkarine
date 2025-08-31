@@ -16,8 +16,8 @@ export function MainFooter() {
 
   return (
     <footer className="border-t border-border  mx-auto w-full bg-navbar px-5">
-      <div className="mx-auto flex items-center justify-between py-6 w-full max-w-[1080px]">
-        <div className="flex items-center space-x-4">
+      <div className="mx-auto flex items-center justify-center align-middle py-6 w-full max-w-[1080px]">
+        {/* <div className="flex items-center space-x-4">
           <Link href="/" className="font-bold text-xl pr-5">
             Solkarine
           </Link>
@@ -25,8 +25,8 @@ export function MainFooter() {
 
         <div>
           <Link href="/admin/dashboard">Admin</Link>
-        </div>
-        <div className="flex items-center space-x-6">
+        </div> */}
+        <div className="flex items-center space-x-6 w-fit justify-between align-middle ">
           <TooltipProvider>
             <Tooltip>
               <TooltipTrigger asChild>
@@ -64,11 +64,11 @@ export function MainFooter() {
                   className="hover:opacity-80 transition-opacity"
                 >
                   <FaPuzzlePiece className="h-5 w-5 text-[#FF9900]" />
-                  <span className="sr-only">Chrome Extension</span>
+                  <span className="sr-only">Extension Chrome</span>
                 </Link>
               </TooltipTrigger>
               <TooltipContent>
-                <p>Puzzle</p>
+                <p>Extension Chrome</p>
               </TooltipContent>
             </Tooltip>
 

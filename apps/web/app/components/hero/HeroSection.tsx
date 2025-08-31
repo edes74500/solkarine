@@ -3,7 +3,7 @@ import { SOCIAL_MEDIA_LINK } from "@repo/constants/dist";
 import { Button } from "@repo/ui/components/button";
 import Image from "next/image";
 import Link from "next/link";
-import { FaDiscord, FaInstagram, FaTiktok, FaTwitch, FaYoutube } from "react-icons/fa";
+import { FaInstagram, FaShoppingBag, FaTiktok, FaTwitch, FaYoutube } from "react-icons/fa";
 
 export default function HeroSection() {
   const solkarineImage = frontendImageLink.solkarine;
@@ -51,14 +51,7 @@ export default function HeroSection() {
                   <FaYoutube className="" /> YouTube
                 </Link>
               </Button>
-              <Button
-                variant="outline"
-                className="flex items-center text-indigo-500 border-indigo-500 hover:bg-indigo-500/10"
-              >
-                <Link href={SOCIAL_MEDIA_LINK.DISCORD} target="_blank" className="flex items-center gap-2">
-                  <FaDiscord className="" /> Discord
-                </Link>
-              </Button>
+
               <Button
                 variant="outline"
                 className="flex items-center text-black dark:text-white border-gray-500 hover:bg-gray-500/10"
@@ -86,6 +79,14 @@ export default function HeroSection() {
                 </svg>{" "}
                 <Link href={SOCIAL_MEDIA_LINK.TWITTER} target="_blank">
                   Twitter
+                </Link>
+              </Button>
+              <Button
+                variant="outline"
+                className="flex items-center text-indigo-500 border-indigo-500 hover:bg-indigo-500/10"
+              >
+                <Link href={SOCIAL_MEDIA_LINK.BOUTIQUE} target="_blank" className="flex items-center gap-2">
+                  <FaShoppingBag className="" /> Boutique
                 </Link>
               </Button>
             </div>

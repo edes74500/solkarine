@@ -29,9 +29,9 @@ export default async function CharactersSection() {
   return (
     <section className="flex flex-col gap-10 my-15 relative">
       <div className="absolute inset-0 w-[90%] h-[90%] mx-auto my-auto opacity-10 pointer-events-none flex items-center justify-center">
-        <div className="relative w-full h-full max-w-[100%] max-h-[100%] z-10">
+        {/* <div className="relative w-full h-full max-w-[100%] max-h-[100%] z-10">
           <Image src={frontendImageLink.wow_logo} alt="WoW background" className="object-contain" fill sizes="100vw" />
-        </div>
+        </div> */}
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-transparent to-background/40"></div>
       </div>
 
@@ -39,7 +39,7 @@ export default async function CharactersSection() {
         <div className="flex flex-col mb-8">
           <h2>
             <Image src={frontendImageLink.wow_logo} alt="wow logo" width={40} height={40} className="w-10 h-10" />
-            <span>Mes personnages</span>
+            <span>Mes Personnages</span>
           </h2>
 
           <div className="text-foreground ">

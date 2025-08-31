@@ -26,21 +26,21 @@ export default function MythicPlusPage() {
       link: "/mythic-plus/talents",
       linkText: "Voir les talents",
     },
-    {
-      title: "Astuces",
-      description: "Apprenez des astuces pour améliorer vos performances en Mythic+.",
-      image: tipsImage,
-      alt: "Astuces Mythic+",
-      link: "/mythic-plus/tips",
-      linkText: "Voir les astuces",
-    },
+    // {
+    //   title: "Astuces",
+    //   description: "Apprenez des astuces pour améliorer vos performances en Mythic+.",
+    //   image: tipsImage,
+    //   alt: "Astuces Mythic+",
+    //   link: "/mythic-plus/tips",
+    //   linkText: "Voir les astuces",
+    // },
   ];
 
   return (
     <section className="dashboard-section">
       <h1>
         <Image src={frontendImageLink.wow_logo} alt="wow logo" width={40} height={40} className="w-10 h-10" />
-        Mythic+
+        Routes et Talents
       </h1>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 w-full">

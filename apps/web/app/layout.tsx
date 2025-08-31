@@ -6,11 +6,17 @@ import { frontendImageLink } from "@repo/constants";
 import { Toaster } from "@repo/ui/components/sonner";
 import "@repo/ui/styles/globals.css";
 import type { Metadata } from "next";
-import { DynaPuff, Geist, Geist_Mono, Nunito_Sans } from "next/font/google";
+import { DynaPuff, Geist, Geist_Mono, Nunito_Sans, Poppins } from "next/font/google";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
   subsets: ["latin"],
+});
+
+const poppins = Poppins({
+  variable: "--font-poppins",
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
 });
 
 const geistMono = Geist_Mono({
@@ -92,10 +98,10 @@ export default function RootLayout({
       <head></head>
       <StoreProvider>
         <body
-          className={`${dynaPuff.variable} ${geistMono.variable}  ${nunito.variable} antialiased bg-background-secondary `}
+          className={`${dynaPuff.variable} ${geistMono.variable}  ${poppins.variable} antialiased bg-background-secondary `}
         >
           <ThemeProviderClient>
-            <main className="flex flex-col min-h-screen bg-background-secondary font-nunito">
+            <main className="flex flex-col min-h-screen bg-background-secondary font-poppins">
               {/* <ContentWidthWrapper> */}
               <Navbar />
               {/* </ContentWidthWrapper> */}

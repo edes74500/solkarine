@@ -5,6 +5,7 @@ import HeroSection from "@/app/components/hero/HeroSection";
 import TwitchSection from "@/app/components/twitch/TwitchSection";
 import ContentWidthWrapper from "@/components/ContentWidthWrapper";
 import { Separator } from "@repo/ui/components/separator";
+import { VideoIcon } from "lucide-react";
 
 export default async function Home() {
   let character = null;
@@ -17,7 +18,7 @@ export default async function Home() {
 
   return (
     <>
-      <div className="relative w-full h-full overflow-hidden select-none">
+      <div className="relative w-full h-full overflow-hidden ">
         <ContentWidthWrapper>
           <div className="font-sans flex flex-col gap-8 max-w-full">
             {/* Effet lightning subtil */}
@@ -35,33 +36,25 @@ export default async function Home() {
             {/* Hero Section */}
             <HeroSection />
             <Separator />
-            {/* </div>
-      </ContentWidthWrapper> */}
-            {/* Guides Section */}
             <GuidesSection />
 
-            {/* <ContentWidthWrapper>
-        <div className="font-sans flex flex-col gap-8 max-w-full "> */}
             <Separator />
-            {/* Twitch Section */}
-            <TwitchSection />
-            {/* </div>
-      </ContentWidthWrapper> */}
-            <Separator />
+            <CharactersSection />
 
-            {/* Community Section */}
+            <Separator />
             <Community />
 
             <Separator />
-            {/* <ContentWidthWrapper>
-        <div className="font-sans flex flex-col gap-8 max-w-full "> */}
-            {/* Guides Section */}
-            {/* <GuidesSection /> */}
-
-            {/* <Separator /> */}
-
-            {/* Characters Section */}
-            <CharactersSection />
+            <div>
+              <h2>
+                Mes dernieres videos
+                <VideoIcon className="w-4 h-4" />
+              </h2>
+            </div>
+            <Separator />
+            <TwitchSection />
+            {/* </div>
+      </ContentWidthWrapper> */}
           </div>
         </ContentWidthWrapper>
       </div>

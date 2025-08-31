@@ -7,4 +7,5 @@ export const SOCIAL_MEDIA_LINK = {
   YOUTUBE: "https://www.youtube.com/@SolkarineTwitch",
   TIKTOK: "https://www.tiktok.com/@solkarinetwitch",
   WOW_COMMUNITY: "https://worldofwarcraft.blizzard.com/en-gb/invite/mXjPjmSank?region=EU&faction=Alliance",
+  BOUTIQUE: "https://solkashop.tpopsite.com",
 };

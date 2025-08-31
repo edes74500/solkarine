@@ -8,8 +8,9 @@
   --color-foreground: var(--foreground);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
-  --font-dyna-puff: var(--font-dyna-puff);
+  --font-dyna-puff: var(--font-poppins);
   --font-nunito: var(--font-nunito);
+  --font-poppins: var(--font-poppins);
   --color-navbar: var(--navbar);
   --color-background-secondary: var(--background-secondary);
   --color-background-tertiary: var(--background-tertiary);
