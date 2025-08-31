@@ -1,6 +1,8 @@
 import { FetchBaseQueryError } from "@reduxjs/toolkit/query";
 import { apiSlice } from "./config/apiSlice";
 
+const CDN_URL = process.env.NEXT_PUBLIC_CDN_URL || "cdn.solkarine.fr";
+
 export const postsApiSlice = apiSlice.injectEndpoints({
   endpoints: (builder) => ({
     // generatePresignedUrl: builder.mutation<{ url: string }, { imageFolder: string; imageName: string }>({
@@ -111,7 +113,7 @@ export const postsApiSlice = apiSlice.injectEndpoints({
           const baseUrl = presignedUrl.replace(
             "solkarine.a1c984e21a682e4c63eb50270ee07eb4.r2.cloudflarestorage.com",
             // "https://a1c984e21a682e4c63eb50270ee07eb4.r2.cloudflarestorage.com",
-            "cdn.solkarine.jdapp.dev",
+            CDN_URL as string,
           );
           const publicUrl = baseUrl.split("?")[0];
           console.log(uploadResponse);
