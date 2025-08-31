@@ -12,8 +12,9 @@ export const getTwitchSchedule = async () => {
     if (!response.ok) {
       throw new Error(`Twitch API erreur ${response.status} – ${await response.text()}`);
     }
-
-    return response.text();
+    const data = await response.text();
+    // console.log("response", data);
+    return data;
   } catch (error) {
     console.error("Erreur lors de la récupération du planning Twitch:", error);
     return null;

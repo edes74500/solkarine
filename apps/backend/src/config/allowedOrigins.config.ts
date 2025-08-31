@@ -11,6 +11,13 @@ const allowedOrigins = [
   "https://www.admin.solkarine.jdapp.dev",
   "https://www.solkarine.jdapp.dev",
   "https://www.solkarine.jdapp.dev",
+  "https://solkarine.fr",
+  "https://www.solkarine.fr",
+  "https://api.solkarine.fr",
+  "https://www.api.solkarine.fr",
+  "https://admin.solkarine.fr",
+  "https://www.admin.solkarine.fr",
+  "https://cdn.solkarine.fr",
 ];
 
 export default allowedOrigins;
