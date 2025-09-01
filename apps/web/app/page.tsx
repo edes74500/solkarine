@@ -35,17 +35,17 @@ export default async function Home() {
 
             {/* Hero Section */}
             <HeroSection />
-            <Separator />
+            <Separator className="bg-muted-foreground/30" />
             <GuidesSection />
 
-            <Separator />
+            <Separator className="bg-muted-foreground/30" />
             <CharactersSection />
 
-            <Separator />
+            <Separator className="bg-muted-foreground/30" />
             <Community />
-            <Separator />
+            <Separator className="bg-muted-foreground/30" />
             <YouTubeLatest handle="@SolkarineTwitch" />
-            <Separator />
+            <Separator className="bg-muted-foreground/30" />
             <TwitchSection />
             {/* </div>
       </ContentWidthWrapper> */}

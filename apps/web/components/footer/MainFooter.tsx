@@ -15,7 +15,7 @@ export function MainFooter() {
   }
 
   return (
-    <footer className="border-t border-border  mx-auto w-full bg-navbar px-5">
+    <footer className="border-t border-border  mx-auto w-full bg-navbar px-5 z-10">
       <div className="mx-auto flex items-center justify-center align-middle py-6 w-full max-w-[1080px]">
         {/* <div className="flex items-center space-x-4">
           <Link href="/" className="font-bold text-xl pr-5">

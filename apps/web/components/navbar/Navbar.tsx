@@ -46,7 +46,7 @@ export function Navbar() {
   const closeMenu = () => setIsMenuOpen(false);
 
   return (
-    <nav className="mb-10 w-full bg-navbar px-5 rounded-full max-w-[1080px] mx-auto mt-10 z-50 shadow-lg backdrop-blur-sm">
+    <nav className="mb-10 w-full bg-navbar px-5 rounded-full max-w-[1080px] mx-auto mt-10 z-50 backdrop-blur-sm shadow-lg">
       <div className="mx-auto flex items-center justify-between h-16 w-full relative">
         <div className="flex items-center space-x-4 w-full">
           {/* Logo */}
@@ -72,18 +72,28 @@ export function Navbar() {
           <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
             <SheetTrigger asChild>
               <div className="p-2 rounded-full hover:bg-white/10 transition-colors duration-200 cursor-pointer">
-                <FaBars className="h-6 w-6 text-white hover:text-white/80" />
+                <FaBars className="h-6 w-6 text-background dark:text-foreground drop-shadow-[0_2px_2px_rgba(0,0,0,0.25)] hover:opacity-80" />
               </div>
             </SheetTrigger>
             <SheetContent
               side="right"
-              className="w-[320px] p-6 space-y-6 flex flex-col border-l border-accent/20 backdrop-blur-md"
+              className="w-[320px] p-6 space-y-6 flex flex-col border-l border-accent/20 backdrop-blur-md bg-card"
             >
               <div className="flex flex-col justify-between h-full">
-                {/* <div className="mb-6">
-                  <h2 className="text-2xl font-semibold mb-2">Menu</h2>
-                  <p className="text-sm text-muted-foreground">Navigation du site</p>
-                </div> */}
+                <div className="mb-10">
+                  <Link
+                    href="/"
+                    className="font-bold text-3xl pr-5 flex items-center relative transition-transform hover:scale-105"
+                  >
+                    <span className="font-dyna-puff dark:text-foreground">
+                      {"Solkarine".split("").map((letter, index) => (
+                        <span key={index} className="text-foreground dark:text-foreground ">
+                          {letter}
+                        </span>
+                      ))}
+                    </span>
+                  </Link>
+                </div>
                 {/* liens navbar */}
                 <div className="space-y-8">
                   <div className="space-y-4">

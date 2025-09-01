@@ -101,11 +101,19 @@ export default function RootLayout({
           className={`${dynaPuff.variable} ${geistMono.variable}  ${poppins.variable} antialiased bg-background-secondary `}
         >
           <ThemeProviderClient>
-            <main className="flex flex-col min-h-screen bg-background-secondary font-poppins">
+            <main className="flex flex-col min-h-screen h-full bg-background-secondary font-poppins relative">
               {/* <ContentWidthWrapper> */}
+              <div
+                className="absolute inset-0 opacity-[0.025] dark:opacity-[0.01] light:opacity-[0.01] h-full"
+                style={{
+                  backgroundImage:
+                    "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px) ",
+                  backgroundSize: "40px 40px",
+                }}
+              ></div>
               <Navbar />
               {/* </ContentWidthWrapper> */}
-              <div className="grow px-4 lg:px-0">
+              <div className="grow px-4 lg:px-0 z-10">
                 <Toaster position="bottom-center" />
                 {children}
               </div>
