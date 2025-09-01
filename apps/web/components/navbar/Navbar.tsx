@@ -21,50 +21,39 @@ import { cn } from "@/lib/utils";
 //   SheetTitle,
 //   SheetTrigger,
 // } from "@repo/ui";
-import { Button } from "@repo/ui/components/button";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-  navigationMenuTriggerStyle,
-} from "@repo/ui/components/navigation-menu";
-import { Popover, PopoverContent, PopoverTrigger } from "@repo/ui/components/popover";
 import { Separator } from "@repo/ui/components/separator";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@repo/ui/components/sheet";
-import { Menu, Settings } from "lucide-react";
+import { Sheet, SheetContent, SheetTrigger } from "@repo/ui/components/sheet";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useState } from "react";
+import { FaBars } from "react-icons/fa";
+import { FiMonitor, FiZap } from "react-icons/fi";
 import { ThemeSwapper } from "./ThemeSwapper";
 
 export function Navbar() {
   const pathname = usePathname();
   // Vérifier si le chemin actuel contient "admin"
   const isAdminPage = pathname.includes("admin");
+  // État pour contrôler l'ouverture/fermeture du menu
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // Si c'est une page admin, ne pas afficher la navbar
   if (isAdminPage) {
     return null;
   }
 
+  // Fonction pour fermer le menu
+  const closeMenu = () => setIsMenuOpen(false);
+
   return (
-    <nav className="  mb-10 w-full bg-navbar px-5 rounded-full max-w-[1080px] mx-auto mx-5 mt-10 z-50">
-      <div className="mx-auto  flex items-center justify-between h-16 w-full relative">
+    <nav className="mb-10 w-full bg-navbar px-5 rounded-full max-w-[1080px] mx-auto mt-10 z-50 shadow-lg backdrop-blur-sm">
+      <div className="mx-auto flex items-center justify-between h-16 w-full relative">
         <div className="flex items-center space-x-4 w-full">
           {/* Logo */}
-          <Link href="/" className="font-bold text-3xl  pr-5 flex items-center relative">
-            {/* <div className="relative">
-              <Image src="/img/cat/cat_1_low.png" alt="Logo chat" width={70} height={70} />
-            </div> */}
+          <Link
+            href="/"
+            className="font-bold text-3xl pr-5 flex items-center relative transition-transform hover:scale-105"
+          >
             <span className="font-dyna-puff dark:text-foreground">
               {"Solkarine".split("").map((letter, index) => (
                 <span
@@ -77,160 +66,101 @@ export function Navbar() {
             </span>
           </Link>
         </div>
-        <div className="flex items-center space-x-4 w-full justify-end">
-          {/* Logo */}
-          {/* <Link href="/" className="font-bold text-xl font-mono pr-5">
-            Solkarine
-          </Link> */}
 
-          {/* Desktop Links */}
-          <div className="hidden md:flex items-center space-x-4">
-            <NavigationMenu viewport={false}>
-              <NavigationMenuList className="flex items-baseline space-x-4">
-                {[
-                  // { href: "/", label: "Accueil" },
-                  // { href: "/projects", label: "Mes projets" },
-                  // { href: "/blog", label: "Blog" },
-                ].map(({ href, label }) => {
-                  const isActive = pathname === href;
-                  return (
-                    <NavigationMenuItem key={href}>
-                      <NavigationMenuLink
-                        asChild
-                        className={cn(navigationMenuTriggerStyle(), isActive && "bg-accent/50 text-accent-foreground")}
-                      >
-                        <Link href={href}>{label}</Link>
-                      </NavigationMenuLink>
-                    </NavigationMenuItem>
-                  );
-                })}
-
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger onMouseEnter={() => console.log("Mouse entered")}>
-                    Interface
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent className="animate-in slide-in-from-bottom-60 duration-100 ease-in-out">
-                    <ul className="grid w-[200px] gap-2 p-2">
+        <div className="flex items-center space-x-4 justify-end">
+          {/* Menu pour tous les appareils */}
+          <Sheet open={isMenuOpen} onOpenChange={setIsMenuOpen}>
+            <SheetTrigger asChild>
+              <div className="p-2 rounded-full hover:bg-white/10 transition-colors duration-200 cursor-pointer">
+                <FaBars className="h-6 w-6 text-white hover:text-white/80" />
+              </div>
+            </SheetTrigger>
+            <SheetContent
+              side="right"
+              className="w-[320px] p-6 space-y-6 flex flex-col border-l border-accent/20 backdrop-blur-md"
+            >
+              <div className="flex flex-col justify-between h-full">
+                {/* <div className="mb-6">
+                  <h2 className="text-2xl font-semibold mb-2">Menu</h2>
+                  <p className="text-sm text-muted-foreground">Navigation du site</p>
+                </div> */}
+                {/* liens navbar */}
+                <div className="space-y-8">
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                      <FiMonitor className="text-primary" />
+                      <h3 className="text-base font-medium">Interface</h3>
+                    </div>
+                    <Separator className="bg-accent/30" />
+                    <div className="space-y-1 pl-2">
                       {[
                         { href: "/interface/addons", label: "Addons" },
                         { href: "/interface/weak-auras", label: "Weak Auras" },
                         { href: "/interface/addons-profiles", label: "Profils d'addons" },
-                        // { href: "/resume", label: "Résumé" },
                       ].map(({ href, label }) => {
                         const isActive = pathname === href;
                         return (
-                          <li key={href}>
-                            <NavigationMenuLink asChild>
-                              <Link
-                                href={href}
-                                className={cn(
-                                  "block px-3 py-2 text-sm rounded-md",
-                                  isActive && "bg-accent/50 text-accent-foreground",
-                                )}
-                              >
-                                {label}
-                              </Link>
-                            </NavigationMenuLink>
-                          </li>
+                          <Link
+                            key={href}
+                            href={href}
+                            onClick={closeMenu}
+                            className={cn(
+                              "flex items-center px-4 py-2.5 text-sm rounded-lg transition-all duration-200 hover:bg-accent/20 hover:translate-x-1",
+                              isActive &&
+                                "bg-accent/30 text-primary font-medium translate-x-1 border-l-2 border-primary",
+                            )}
+                          >
+                            {label}
+                          </Link>
                         );
                       })}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
+                    </div>
+                  </div>
 
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger onMouseEnter={() => console.log("Mouse entered")}>
-                    Mythic +
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent className="animate-in slide-in-from-bottom-60 duration-100 ease-in-out">
-                    <ul className="grid w-[200px] gap-2 p-2">
+                  {/* liens mythic + */}
+                  <div className="space-y-4">
+                    <div className="flex items-center gap-2">
+                      <FiZap className="text-primary" />
+                      <h3 className="text-base font-medium">Mythic +</h3>
+                    </div>
+                    <Separator className="bg-accent/30" />
+                    <div className="space-y-1 pl-2">
                       {[
-                        { href: "/mythic-plus/tips", label: "Tips" },
+                        // { href: "/mythic-plus/tips", label: "Tips" },
                         { href: "/mythic-plus/routes", label: "Routes" },
                         { href: "/mythic-plus/talents", label: "Talents" },
                       ].map(({ href, label }) => {
                         const isActive = pathname === href;
                         return (
-                          <li key={href}>
-                            <NavigationMenuLink asChild>
-                              <Link
-                                href={href}
-                                className={cn(
-                                  "block px-3 py-2 text-sm rounded-md",
-                                  isActive && "bg-accent/50 text-accent-foreground",
-                                )}
-                              >
-                                {label}
-                              </Link>
-                            </NavigationMenuLink>
-                          </li>
-                        );
-                      })}
-                    </ul>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-                {/* Right icons (desktop) */}
-                <div className="hidden md:flex items-center space-x-2">
-                  <Popover>
-                    <PopoverTrigger asChild>
-                      <Button variant="ghost" size="icon">
-                        <Settings className="h-5 w-5" />
-                      </Button>
-                    </PopoverTrigger>
-                    <PopoverContent className="w-48 p-2 flex flex-col gap-2 text-sm">
-                      <ThemeSwapper />
-                    </PopoverContent>
-                  </Popover>
-                </div>
-              </NavigationMenuList>
-            </NavigationMenu>
-          </div>
-        </div>
-
-        {/* Mobile Hamburger */}
-        <div className="md:hidden flex items-center space-x-1 ">
-          <Sheet>
-            <SheetTrigger asChild>
-              <Button variant="ghost" size="icon" className="h-10 w-10">
-                <Menu className="!h-7 !w-7" />
-              </Button>
-            </SheetTrigger>
-            <SheetContent side="left" className="w-64 p-4 space-y-4 items-center">
-              <SheetHeader hidden>
-                <SheetTitle>Menu</SheetTitle>
-                <SheetDescription>Navigation</SheetDescription>
-              </SheetHeader>
-              <NavigationMenu viewport={false}>
-                <NavigationMenuList className="flex flex-col space-y-1">
-                  {[
-                    { href: "/", label: "Accueil" },
-                    { href: "/work", label: "Mes travaux" },
-                    { href: "/blog", label: "Blog" },
-                    { href: "/about", label: "À propos" },
-                    { href: "/contact", label: "Contact" },
-                    { href: "/resume", label: "CV" },
-                  ].map(({ href, label }) => {
-                    const isActive = pathname === href;
-                    return (
-                      <NavigationMenuItem key={href}>
-                        <NavigationMenuLink asChild>
                           <Link
+                            key={href}
                             href={href}
+                            onClick={closeMenu}
                             className={cn(
-                              "block px-3 py-2 rounded-md hover:bg-slate-100 dark:hover:bg-slate-700",
-                              isActive && "bg-accent/50 text-accent-foreground",
+                              "flex items-center px-4 py-2.5 text-sm rounded-lg transition-all duration-200 hover:bg-accent/20 hover:translate-x-1",
+                              isActive &&
+                                "bg-accent/30 text-primary font-medium translate-x-1 border-l-2 border-primary",
                             )}
                           >
                             {label}
                           </Link>
-                        </NavigationMenuLink>
-                      </NavigationMenuItem>
-                    );
-                  })}
-                </NavigationMenuList>
-              </NavigationMenu>
-              <Separator className="!my-0" />
-              <ThemeSwapper />
+                        );
+                      })}
+                    </div>
+                  </div>
+                </div>
+                {/* paramètres */}
+                <div className="space-y-4 mt-auto pt-6">
+                  {/* <div className="flex items-center gap-2">
+                    <FiSettings className="text-muted-foreground" />
+                    <h3 className="text-base font-medium text-muted-foreground">Paramètres</h3>
+                  </div> */}
+                  <Separator className="bg-accent/30" />
+                  <div className="px-4 py-2">
+                    <ThemeSwapper />
+                  </div>
+                </div>
+              </div>
             </SheetContent>
           </Sheet>
         </div>

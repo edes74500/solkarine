@@ -21,13 +21,24 @@ const RaiderIoCardHome: React.FC<Props> = ({ data }) => {
   const classColor = getClassColor(data.class);
 
   return (
-    <Card className="overflow-hidden w-full mx-auto bg-card relative shadow-lg">
+    <Card
+      className="overflow-hidden w-full  mx-auto bg-gradient-to-br from-[#070a3b]  to-[#f8b195] dark:bg-slate-800 dark:bg-gradient-to-br dark:from-[#070a3b] dark:to-[#3d1e0b] relative shadow-lg"
+      // style={{ boxShadow: `0 4px 12px black` }}
+    >
       {/* Effets de fond subtils */}
       <div className="absolute inset-0 overflow-hidden">
+        {/* <div
+          className="absolute -top-10 -right-10 w-40 h-40 rounded-full opacity-10"
+          style={{ background: `radial-gradient(circle, ${classColor} 0%, transparent 70%)` }}
+        />
+        <div
+          className="absolute -bottom-20 -left-10 w-60 h-60 rounded-full opacity-5"
+          style={{ background: `radial-gradient(circle, ${classColor} 0%, transparent 70%)` }}
+        /> */}
         <div className="absolute inset-0 bg-gradient-to-br from-transparent via-black/5 to-transparent opacity-30" />
       </div>
 
-      <CardHeader className="!mb-0 !pb-0 !text-card-foreground !h-fit py-3 relative z-10">
+      <CardHeader className="!mb-0 !pb-0 !text-white dark:!text-white !h-fit py-3 relative z-10">
         <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3">
           {data.thumbnail_url && (
             <Avatar className={`h-16 w-16 border-3 shrink-0`} style={{ borderColor: classColor }}>
@@ -42,16 +53,16 @@ const RaiderIoCardHome: React.FC<Props> = ({ data }) => {
                   target="_blank"
                   rel="noopener noreferrer"
                   className="hover:underline"
-                  // style={{ color: classColor }}
+                  style={{ color: classColor }}
                 >
                   {data.name}
                 </a>
               </h3>
               <div className="text-xs md:text-sm space-y-1">
-                <p className="line-clamp-1 text-muted-foreground">
+                <p className="line-clamp-1 text-gray-200">
                   {data.active_spec_name} {data.class} - {data.realm} ({data.region.toUpperCase()})
                 </p>
-                <p className="font-medium text-card-foreground">{Math.floor(data.gear?.item_level_equipped)} ilvl</p>
+                <p className="font-medium">{Math.floor(data.gear?.item_level_equipped)} ilvl</p>
               </div>
             </div>
             {data.mythic_plus_scores_by_season[0]?.scores?.all !== 0 && (
