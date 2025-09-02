@@ -113,12 +113,10 @@ export default function RootLayout({
               ></div>
               <Navbar />
               {/* </ContentWidthWrapper> */}
-              <div className="grow px-4 lg:px-0 z-10">
-                <Toaster position="bottom-center" />
-                {children}
-              </div>
+              <div className="grow px-4 lg:px-0 z-10">{children}</div>
               {/* <ContentWidthWrapper> */}
               <MainFooter />
+              <Toaster position="bottom-center" className="!z-50" />
               {/* </ContentWidthWrapper> */}
             </main>
           </ThemeProviderClient>

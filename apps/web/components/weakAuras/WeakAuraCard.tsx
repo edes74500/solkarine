@@ -47,7 +47,7 @@ export function WeakAuraCard({ weakAura }: WeakAuraCardProps) {
         <div className="flex flex-col justify-between md:w-2/3 p-4 gap-4">
           <CardHeader className="flex flex-row items-center justify-between">
             <div>
-              <div className="flex justify-between items-center">
+              <div className="flex justify-between items-center mb-2">
                 <Link href={weakAura.url} target="_blank" rel="noopener noreferrer">
                   <CardTitle className="line-clamp-1">{weakAura.title}</CardTitle>
                 </Link>
