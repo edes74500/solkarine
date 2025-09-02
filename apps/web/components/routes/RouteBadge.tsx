@@ -31,7 +31,7 @@ export function RouteBadge({
     <Badge
       variant={isSelected ? "default" : "outline"}
       className={cn(
-        "cursor-pointer px-4 py-1.5 flex items-center gap-2 text-sm font-medium rounded-md transition-all h-15 border-2 border-none w-full shadow-md",
+        "cursor-pointer px-4 flex items-center gap-2 text-sm font-medium rounded-md transition-all h-12 border-2 border-none w-full shadow-md md:w-[200px] md:max-w-[200px]",
         isSelected
           ? "bg-primary text-primary-foreground shadow-md border-primary ring-2 ring-primary"
           : "hover:bg-secondary",
@@ -46,9 +46,9 @@ export function RouteBadge({
             alt={dungeon.short_name}
             fill
             className="object-cover"
-            style={{ filter: "brightness(1.2)" }}
+            style={{ filter: "brightness(1.5)" }}
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-card/50 to-transparent w-full h-full"></div>
+          <div className="absolute inset-0 bg-gradient-to-r from-card/20 to-card/10 w-full h-full"></div>
         </div>
         {/* <div className="absolute inset-0 right-1/2 w-1/2 h-full bg-card"></div> */}
       </div>

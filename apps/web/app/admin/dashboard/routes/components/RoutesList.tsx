@@ -1,8 +1,8 @@
 "use client";
 
 import AddRouteDialog from "@/app/admin/dashboard/routes/components/AddRouteDialog";
+import { RouteBadge } from "@/components/routes/RouteBadge";
 import { RouteCardTwo } from "@/components/routes/RouteCardTwo";
-import { RouteBadge } from "@/components/shared/RouteBadge";
 import { DashboardEmptyListCard } from "@/components/statusCard/DashboardEmptyListCard";
 import { ErrorCard } from "@/components/statusCard/ErrorCard";
 import { LoadingCard } from "@/components/statusCard/LoadingCard";

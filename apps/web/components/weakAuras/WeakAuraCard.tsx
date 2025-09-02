@@ -6,8 +6,6 @@ import { Badge } from "@repo/ui/components/badge";
 import { Button } from "@repo/ui/components/button";
 import { Card, CardDescription, CardHeader, CardTitle } from "@repo/ui/components/card";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@repo/ui/components/tooltip";
-import { formatDistanceToNow } from "date-fns";
-import { fr } from "date-fns/locale";
 import { HelpCircle } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -18,6 +16,18 @@ interface WeakAuraCardProps {
 
 export function WeakAuraCard({ weakAura }: WeakAuraCardProps) {
   const fallbackImage = frontendImageLink.fallbackWA;
+  const formatDate = (dateString: string) => {
+    try {
+      const date = new Date(dateString);
+      if (isNaN(date.getTime())) {
+        return "Date invalide";
+      }
+      return `${date.getDate().toString().padStart(2, "0")}/${(date.getMonth() + 1).toString().padStart(2, "0")}/${date.getFullYear().toString().slice(-2)}`;
+    } catch (error) {
+      console.error("Erreur de formatage de date:", error);
+      return "Date invalide";
+    }
+  };
 
   return (
     <Card className="w-full !p-0 relative">
@@ -39,8 +49,8 @@ export function WeakAuraCard({ weakAura }: WeakAuraCardProps) {
             }}
           />
           <div className="absolute bottom-2 right-2 z-10 flex flex-col gap-1">
-            <Badge variant="default" className="text-xs">
-              Il y a {formatDistanceToNow(new Date(weakAura.updatedAt), { locale: fr, addSuffix: false })}
+            <Badge className="absolute bottom-1 right-1 bg-black/70 text-white text-xs">
+              {formatDate(weakAura.updatedAt)}
             </Badge>
           </div>
         </div>
