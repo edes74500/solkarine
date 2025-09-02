@@ -31,7 +31,7 @@ export function RouteBadge({
     <Badge
       variant={isSelected ? "default" : "outline"}
       className={cn(
-        "cursor-pointer px-4 flex items-center gap-2 text-sm font-medium rounded-md transition-all h-12 border-2 border-none w-full shadow-md md:w-[200px] md:max-w-[200px]",
+        "cursor-pointer px-4 flex items-center gap-2 text-sm font-medium rounded-md transition-all h-14 border-2 border-none w-full shadow-md md:w-[250px] md:max-w-[250px]",
         isSelected
           ? "bg-primary text-primary-foreground shadow-md border-primary ring-2 ring-primary"
           : "hover:bg-secondary",
