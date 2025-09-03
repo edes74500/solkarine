@@ -7,6 +7,7 @@ import { Toaster } from "@repo/ui/components/sonner";
 import "@repo/ui/styles/globals.css";
 import type { Metadata } from "next";
 import { DynaPuff, Geist, Geist_Mono, Nunito_Sans, Poppins } from "next/font/google";
+import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -95,7 +96,18 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head></head>
+      <head>
+        {/* Google tag (gtag.js) */}
+        <Script src="https://www.googletagmanager.com/gtag/js?id=G-H59G71TTZQ" strategy="afterInteractive" />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){window.dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-H59G71TTZQ');
+          `}
+        </Script>
+      </head>
       <StoreProvider>
         <body
           className={`${dynaPuff.variable} ${geistMono.variable}  ${poppins.variable} antialiased bg-background-secondary `}
