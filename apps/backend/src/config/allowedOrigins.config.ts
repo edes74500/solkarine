@@ -18,6 +18,7 @@ const allowedOrigins = [
   "https://admin.solkarine.fr",
   "https://www.admin.solkarine.fr",
   "https://cdn.solkarine.fr",
+  "https://*.solkarine.fr",
 ];
 
 export default allowedOrigins;

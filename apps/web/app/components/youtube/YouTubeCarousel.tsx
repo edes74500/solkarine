@@ -7,7 +7,18 @@ import "swiper/css/navigation";
 import { Autoplay, Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 
-type Video = { id: string; title: string; publishedAt: string };
+type Video = {
+  id: string;
+  title: string;
+  description?: string;
+  publishedAt: string;
+  thumbnail: string;
+  channelId?: string;
+  channelTitle?: string;
+  views?: number;
+  likes?: number;
+  comments?: number;
+};
 
 export default function YouTubeCarousel({ videos }: { videos: Video[] }) {
   if (!videos?.length) return null;
@@ -15,7 +26,7 @@ export default function YouTubeCarousel({ videos }: { videos: Video[] }) {
   return (
     <div className="w-full relative py-6">
       {/* ✅ Hauteur explicite du viewport du carrousel */}
-      <div className="h-[220px]">
+      <div className="h-[280px]">
         {/* ✅ Forcer 100% sur wrapper & slide */}
         <Swiper
           modules={[Navigation, Autoplay]}
@@ -27,7 +38,7 @@ export default function YouTubeCarousel({ videos }: { videos: Video[] }) {
           breakpoints={{
             640: { slidesPerView: 2, spaceBetween: 16 },
             1024: { slidesPerView: 3, spaceBetween: 16 },
-            1280: { slidesPerView: 4, spaceBetween: 16 },
+            1280: { slidesPerView: 3, spaceBetween: 16 },
           }}
           className="h-full [&_.swiper-wrapper]:h-full [&_.swiper-slide]:h-full overflow-hidden"
         >
@@ -35,7 +46,7 @@ export default function YouTubeCarousel({ videos }: { videos: Video[] }) {
             <SwiperSlide key={video.id} className="!h-full flex">
               {/* ✅ le contenu doit aussi étirer */}
               <div className="h-full w-full">
-                <VideoCardCarousel id={video.id} title={video.title} publishedAt={video.publishedAt} />
+                <VideoCardCarousel video={video} />
               </div>
             </SwiperSlide>
           ))}

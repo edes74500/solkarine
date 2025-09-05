@@ -7,6 +7,7 @@ import { Button } from "@repo/ui/components/button";
 import { Separator } from "@repo/ui/components/separator";
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@repo/ui/components/tooltip";
 import {
+  BarChart,
   CalendarClock,
   Castle,
   ExternalLink,
@@ -200,6 +201,13 @@ export default function DashboardNavbar() {
           title="Aide"
           href="/admin/dashboard/help"
           isActive={pathname === "/admin/dashboard/help"}
+          isCollapsed={isCollapsed}
+        />
+        <NavItem
+          icon={<BarChart size={20} />}
+          title="Analytics"
+          href="/admin/dashboard/analytics"
+          isActive={pathname === "/admin/dashboard/analytics"}
           isCollapsed={isCollapsed}
         />
       </div>

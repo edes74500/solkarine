@@ -40,4 +40,9 @@ export const NEXT_API_TAGS = {
       GET_ALL: "weakAura-getAllWeakAuras",
     },
   },
+  YOUTUBE: {
+    GET: {
+      GET_LATEST: "youtube-getYoutubeLatest",
+    },
+  },
 };

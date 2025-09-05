@@ -1,4 +1,5 @@
 import { MainFooter } from "@/components/footer/MainFooter";
+import BackgroundGrid from "@/components/layout/BackgroundGrid";
 import { Navbar } from "@/components/navbar/Navbar";
 import { ThemeProviderClient } from "@/components/theme/ThemeProvider";
 import { StoreProvider } from "@/redux/StoreProvider";
@@ -117,14 +118,7 @@ export default function RootLayout({
           <ThemeProviderClient>
             <main className="flex flex-col min-h-screen h-full bg-background-secondary font-poppins relative">
               {/* <ContentWidthWrapper> */}
-              <div
-                className="absolute inset-0 opacity-[0.025] dark:opacity-[0.01] light:opacity-[0.01] h-full"
-                style={{
-                  backgroundImage:
-                    "linear-gradient(to right, currentColor 1px, transparent 1px), linear-gradient(to bottom, currentColor 1px, transparent 1px) ",
-                  backgroundSize: "40px 40px",
-                }}
-              ></div>
+              <BackgroundGrid />
 
               <Navbar />
               {/* </ContentWidthWrapper> */}

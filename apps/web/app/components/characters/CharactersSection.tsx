@@ -33,7 +33,7 @@ export default async function CharactersSection() {
       </div>
 
       <div className="relative z-10 space-y-10">
-        <div className="flex flex-col">
+        <div className="flex flex-col text-center items-center">
           <h2 className="mb-0">
             <Image src={frontendImageLink.wow_logo} alt="wow logo" width={40} height={40} className="w-10 h-10" />
             <span>Mes Personnages</span>
@@ -53,7 +53,7 @@ export default async function CharactersSection() {
               defaultValue={defaultTab}
               className="w-full flex flex-col lg:flex-row items-start gap-6"
             >
-              <TabsList className="shrink-0 flex flex-wrap lg:flex-col md:grid-cols-1 gap-3 p-0 bg-background h-fit bg-transparent w-full md:w-auto">
+              <TabsList className="shrink-0 grid grid-cols-2 sm:grid-cols-3 md:grid-cols-2 lg:grid-cols-1 gap-3 p-0 bg-background h-fit bg-transparent w-full md:w-auto">
                 {Object.entries(sortedCharactersData).map(([key, char]) => {
                   const classColor = getClassColor(char.class);
                   return (

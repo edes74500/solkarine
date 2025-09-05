@@ -54,6 +54,7 @@
     "react-simple-image-viewer": "^1.2.2",
     "react-twitch-embed": "^3.0.2",
     "react-zoom-pan-pinch": "^3.7.0",
+    "recharts": "2.15.4",
     "sonner": "^2.0.7",
     "swiper": "^11.2.10",
     "tailwind-merge": "^3.3.1",

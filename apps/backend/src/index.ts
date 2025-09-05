@@ -35,6 +35,10 @@ async function main() {
   app.use(cookieParser());
   app.use(express.json());
 
+  // // --- Connexion à Redis ---
+  // await redis.connect();
+  // console.log("Connexion à Redis réussie");
+
   // --- Connexion à MongoDB ---
   await dbConnexion.connect();
   if (mongoose.connection.db) {

@@ -1,10 +1,22 @@
 // components/youtube/YouTubeLatest.tsx
+import { getYoutubeLatest } from "@/lib/api/youtube";
 import { XMLParser } from "fast-xml-parser";
 import { FaYoutube } from "react-icons/fa";
 import VideoCard from "./VideoCard"; // <-- client component
 import YouTubeCarousel from "./YouTubeCarousel"; // <-- client component
 
-type Video = { id: string; title: string; publishedAt: string };
+type Video = {
+  id: string;
+  title: string;
+  description?: string;
+  publishedAt: string;
+  thumbnail: string;
+  channelId?: string;
+  channelTitle?: string;
+  views?: number;
+  likes?: number;
+  comments?: number;
+};
 
 /** Résout un handle @xxxx → channelId UCxxxx sans API (HTML public) */
 async function handleToChannelId(handle: string, revalidateSeconds = 1800): Promise<string | null> {
@@ -23,6 +35,25 @@ async function handleToChannelId(handle: string, revalidateSeconds = 1800): Prom
 }
 
 async function fetchLastVideosByChannelId(channelId: string, limit = 6): Promise<Video[]> {
+  // Récupérer les données depuis l'API
+  const youtubeData = await getYoutubeLatest();
+
+  if (youtubeData.success && youtubeData.data.length > 0) {
+    return youtubeData.data.map((video) => ({
+      id: video.id,
+      title: video.title,
+      publishedAt: video.publishedAt,
+      views: video.views,
+      thumbnail: video.thumbnail,
+      likes: video.likes,
+      comments: video.comments,
+      description: video.description,
+      channelId: video.channelId,
+      channelTitle: video.channelTitle,
+    }));
+  }
+
+  // Fallback à l'ancienne méthode si l'API ne retourne pas de données
   const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
   const res = await fetch(feedUrl, { next: { revalidate: 1800 } }); // cache 30 min
   if (!res.ok) return [];
@@ -36,6 +67,8 @@ async function fetchLastVideosByChannelId(channelId: string, limit = 6): Promise
     id: e["yt:videoId"],
     title: e.title,
     publishedAt: e.published,
+    thumbnail: e["media:group"]["media:thumbnail"]["@_url"],
+    views: e["yt:views"],
   }));
 }
 
@@ -89,7 +122,7 @@ export default async function YouTubeLatest({ handle = "@SolkarineTwitch" }: { h
         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
           {latestTwoVideos.map((video) => (
             <div key={video.id}>
-              <VideoCard id={video.id} title={video.title} publishedAt={video.publishedAt} />
+              <VideoCard video={video} />
             </div>
           ))}
         </div>

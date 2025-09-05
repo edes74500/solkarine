@@ -29,7 +29,7 @@ export default function HeroSection() {
         {/* description */}
         <div className="flex-1 space-y-4">
           <h1 className="text-4xl font-bold font-dyna-puff">Hello there!</h1>
-          <p className="text-muted-foreground">
+          <p className="">
             Bienvenue sur mon site officiel ! Je partage ma passion pour World of Warcraft à travers mes streams, guides
             et conseils pour les joueurs de tous niveaux.
           </p>

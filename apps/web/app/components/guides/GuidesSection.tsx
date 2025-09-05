@@ -1,78 +1,77 @@
 import { frontendImageLink } from "@repo/constants";
 import { Button } from "@repo/ui/components/button";
+import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@repo/ui/components/card";
 import { ChevronRightIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 
 export default function GuidesSection() {
-  const mythicplusImage = frontendImageLink.mythicplus;
-  const interfaceImage = frontendImageLink.interface;
-  const communityImage = frontendImageLink.community_button;
   const guides = [
     {
-      title: "Addons & WeakAuras",
-      description: "Optimisez votre interface avec mes configurations personnalisées.",
-      image: interfaceImage,
-      alt: "Addons & WeakAuras",
-      link: "/interface",
-      linkText: "Découvrir mes outils",
+      title: "Addons",
+      description: "Découvrez les addons que j'utilise pour améliorer mon expérience de jeu",
+      image: frontendImageLink.addons,
+      alt: "Addons",
+      link: "/interface/addons",
+      linkText: "Voir les addons",
     },
     {
-      title: "Routes et Talents",
-      description: "Découvrez mes routes, les talents que j'utilise pour push les mythic+.",
-      image: mythicplusImage,
-      alt: "Routes et Talents",
-      link: "/mythic-plus",
-      linkText: "Voir les guides",
+      title: "WeakAuras",
+      description: "Accédez à ma collection de WeakAuras pour optimiser votre interface de combat",
+      image: frontendImageLink.weakAuras,
+      alt: "WeakAuras",
+      link: "/interface/weak-auras",
+      linkText: "Voir les WeakAuras",
+    },
+    {
+      title: "Profils d'addons",
+      description: "Téléchargez et importez ma configuration d'addons pour une interface complète",
+      image: frontendImageLink.addonProfiles,
+      alt: "Profils d'addons",
+      link: "/interface/addons-profiles",
+      linkText: "Voir la configuration",
+    },
+    {
+      title: "Routes",
+      description: "Routes optimisées pour tous les donjons de la saison actuelle",
+      image: frontendImageLink.routes,
+      alt: "Routes",
+      link: "/mythic-plus/routes",
+      linkText: "Voir les routes",
+    },
+    {
+      title: "Talents",
+      description: "Configurations de talents recommandées pour chaque donjon",
+      image: frontendImageLink.talents,
+      alt: "Talents",
+      link: "/mythic-plus/talents",
+      linkText: "Voir les talents",
     },
   ];
 
   return (
-    <section className="my-15">
-      <div className="relative z-10 flex flex-col items-center w-full px-4 max-w-7xl mx-auto">
-        {/* <h2 className="font-dyna-puff mb-8 text-center flex items-center gap-3 bg-gradient-to-r from-pink-300 to-purple-400 bg-clip-text text-transparent">
-          <Image
-            src={frontendImageLink.wow_logo}
-            alt="wow logo"
-            width={48}
-            height={48}
-            className="w-12 h-12 animate-pulse"
-          />
-          <span className="drop-shadow-sm">Routes, Addons & Talents</span>
-        </h2> */}
-
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 gap-8 w-full">
+    <section className="py-20">
+      <div className="container mx-auto flex flex-col gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4">
           {guides.map((item, index) => (
-            <Link
-              key={index}
-              className="group relative overflow-hidden rounded-2xl border border-pink-300/30 bg-black/40 backdrop-blur-sm transition-all hover:shadow-[0_0_20px_rgba(236,72,153,0.3)] hover:scale-[1.03] duration-300"
-              href={item.link}
-            >
-              <div className="absolute inset-0 z-0">
-                <Image
-                  src={item.image}
-                  alt={item.alt}
-                  fill
-                  className="object-cover transition-transform duration-500 group-hover:scale-110 opacity-60"
-                  quality={95}
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-transparent"></div>
-              </div>
-              <div className="relative z-10 p-8 flex flex-col h-full">
-                <h2 className="text-2xl font-bold mb-4 text-white drop-shadow-md bg-gradient-to-r from-pink-300 to-purple-400 bg-clip-text text-transparent">
-                  {item.title}
-                </h2>
-                <p className="text-white mb-6 flex-grow backdrop-blur-sm bg-black/50 p-4 rounded-xl border border-pink-300/30 drop-shadow-md leading-relaxed">
-                  {item.description}
-                </p>
-                <Button asChild variant="link" className="p-0 justify-start group text-pink-300 hover:text-pink-200">
-                  <div className="flex items-center">
+            <Card key={index} className="overflow-hidden border-primary/30 bg-card backdrop-blur-sm pt-0">
+              <Link href={item.link} className="relative h-36 block">
+                <Image src={item.image} alt={item.alt} fill className="object-cover opacity-70" quality={90} />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent"></div>
+              </Link>
+              <CardHeader className="py-3">
+                <CardTitle className="text-2xl">{item.title}</CardTitle>
+                <CardDescription className="text-xs">{item.description}</CardDescription>
+              </CardHeader>
+              <CardFooter className="pt-0 pb-3">
+                <Button asChild variant="link" className="p-0 group">
+                  <Link href={item.link} className="flex items-center">
                     {item.linkText}
-                    <ChevronRightIcon className="ml-2 h-5 w-5 transition-transform group-hover:translate-x-2" />
-                  </div>
+                    <ChevronRightIcon className="ml-1 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </Link>
                 </Button>
-              </div>
-            </Link>
+              </CardFooter>
+            </Card>
           ))}
         </div>
       </div>
