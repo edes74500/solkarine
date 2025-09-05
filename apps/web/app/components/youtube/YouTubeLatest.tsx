@@ -1,6 +1,5 @@
 // components/youtube/YouTubeLatest.tsx
 import { getYoutubeLatest } from "@/lib/api/youtube";
-import { XMLParser } from "fast-xml-parser";
 import { FaYoutube } from "react-icons/fa";
 import VideoCard from "./VideoCard"; // <-- client component
 import YouTubeCarousel from "./YouTubeCarousel"; // <-- client component
@@ -34,56 +33,57 @@ async function handleToChannelId(handle: string, revalidateSeconds = 1800): Prom
   return null;
 }
 
-async function fetchLastVideosByChannelId(channelId: string, limit = 6): Promise<Video[]> {
-  // Récupérer les données depuis l'API
-  const youtubeData = await getYoutubeLatest();
+// async function fetchLastVideosByChannelId(channelId: string, limit = 6): Promise<Video[]> {
+//   // Récupérer les données depuis l'API
+//   const youtubeData = await getYoutubeLatest();
 
-  if (youtubeData.success && youtubeData.data.length > 0) {
-    return youtubeData.data.map((video) => ({
-      id: video.id,
-      title: video.title,
-      publishedAt: video.publishedAt,
-      views: video.views,
-      thumbnail: video.thumbnail,
-      likes: video.likes,
-      comments: video.comments,
-      description: video.description,
-      channelId: video.channelId,
-      channelTitle: video.channelTitle,
-    }));
-  }
+//   if (youtubeData.success && youtubeData.data.length > 0) {
+//     return youtubeData.data.map((video) => ({
+//       id: video.id,
+//       title: video.title,
+//       publishedAt: video.publishedAt,
+//       views: video.views,
+//       thumbnail: video.thumbnail,
+//       likes: video.likes,
+//       comments: video.comments,
+//       description: video.description,
+//       channelId: video.channelId,
+//       channelTitle: video.channelTitle,
+//     }));
+//   }
 
-  // Fallback à l'ancienne méthode si l'API ne retourne pas de données
-  const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
-  const res = await fetch(feedUrl, { next: { revalidate: 1800 } }); // cache 30 min
-  if (!res.ok) return [];
+//   // Fallback à l'ancienne méthode si l'API ne retourne pas de données
+//   const feedUrl = `https://www.youtube.com/feeds/videos.xml?channel_id=${channelId}`;
+//   const res = await fetch(feedUrl, { next: { revalidate: 1800 } }); // cache 30 min
+//   if (!res.ok) return [];
 
-  const xml = await res.text();
-  const parser = new XMLParser({ ignoreAttributes: false });
-  const feed = parser.parse(xml)?.feed ?? {};
-  const entries = Array.isArray(feed.entry) ? feed.entry : feed.entry ? [feed.entry] : [];
+//   const xml = await res.text();
+//   const parser = new XMLParser({ ignoreAttributes: false });
+//   const feed = parser.parse(xml)?.feed ?? {};
+//   const entries = Array.isArray(feed.entry) ? feed.entry : feed.entry ? [feed.entry] : [];
 
-  return entries.slice(0, limit).map((e: any) => ({
-    id: e["yt:videoId"],
-    title: e.title,
-    publishedAt: e.published,
-    thumbnail: e["media:group"]["media:thumbnail"]["@_url"],
-    views: e["yt:views"],
-  }));
-}
+//   return entries.slice(0, limit).map((e: any) => ({
+//     id: e["yt:videoId"],
+//     title: e.title,
+//     publishedAt: e.published,
+//     thumbnail: e["media:group"]["media:thumbnail"]["@_url"],
+//     views: e["yt:views"],
+//   }));
+// }
 
 export default async function YouTubeLatest({ handle = "@SolkarineTwitch" }: { handle?: string }) {
   const channelId = await handleToChannelId(handle);
-  const videos = channelId ? await fetchLastVideosByChannelId(channelId, 6) : [];
+  const videosResponse = channelId ? await getYoutubeLatest() : null;
 
-  if (!videos.length) {
+  // Vérifier si la réponse est valide et contient des données
+  if (!videosResponse || !videosResponse.success || !videosResponse.data || !videosResponse.data.length) {
     return <div className="text-sm text-muted-foreground">Aucune vidéo trouvée pour {handle}.</div>;
   }
 
   // Extraire les deux dernières vidéos pour l'affichage en tête
-  const latestTwoVideos = videos.slice(0, 2);
+  const latestTwoVideos = videosResponse.data.slice(0, 2);
   // Utiliser toutes les vidéos pour le carrousel
-  const allVideos = videos;
+  const allVideos = videosResponse;
 
   return (
     <section className="w-full mx-auto min-h-[50vh] my-15">
@@ -135,7 +135,7 @@ export default async function YouTubeLatest({ handle = "@SolkarineTwitch" }: { h
         </div> */}
 
         {/* Carousel avec toutes les vidéos */}
-        <YouTubeCarousel videos={allVideos} />
+        <YouTubeCarousel videos={allVideos.data} />
       </div>
     </section>
   );

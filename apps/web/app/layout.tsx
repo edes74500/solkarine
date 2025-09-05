@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     images: [
       {
         url: frontendImageLink.solkarine,
-        width: 200,
+        width: 113,
         height: 200,
         alt: "Solkarine",
       },
@@ -73,7 +73,7 @@ export const metadata: Metadata = {
   other: {
     "discord:image": frontendImageLink.solkarine,
     "discord:image:alt": "Solkarine - Joueuse de WoW et streameuse",
-    "discord:image:width": "200",
+    "discord:image:width": "113",
     "discord:image:height": "200",
   },
 
