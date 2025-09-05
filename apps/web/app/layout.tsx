@@ -1,15 +1,14 @@
-import Analytics from "@/components/analytics/gtag";
 import { MainFooter } from "@/components/footer/MainFooter";
 import { Navbar } from "@/components/navbar/Navbar";
 import { ThemeProviderClient } from "@/components/theme/ThemeProvider";
 import { StoreProvider } from "@/redux/StoreProvider";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import { frontendImageLink } from "@repo/constants";
 import { Toaster } from "@repo/ui/components/sonner";
 import "@repo/ui/styles/globals.css";
 import type { Metadata } from "next";
 import { DynaPuff, Geist, Geist_Mono, Nunito_Sans, Poppins } from "next/font/google";
 import Script from "next/script";
-import { Suspense } from "react";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -110,6 +109,7 @@ export default function RootLayout({
           `}
         </Script>
       </head>
+      <GoogleAnalytics gaId="G-H59G71TTZQ" />
       <StoreProvider>
         <body
           className={`${dynaPuff.variable} ${geistMono.variable}  ${poppins.variable} antialiased bg-background-secondary `}
@@ -125,9 +125,7 @@ export default function RootLayout({
                   backgroundSize: "40px 40px",
                 }}
               ></div>
-              <Suspense>
-                <Analytics />
-              </Suspense>
+
               <Navbar />
               {/* </ContentWidthWrapper> */}
               <div className="grow px-4 lg:px-0 z-10">{children}</div>
