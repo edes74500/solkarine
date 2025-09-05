@@ -21,7 +21,7 @@ const Analytics = () => {
     // console.log("Tracking page view:", url);
 
     if (typeof window !== "undefined" && window.gtag) {
-      window.gtag("config", "G-CKGT6GFXGF", { page_path: url });
+      window.gtag("config", "G-H59G71TTZQ", { page_path: url });
       // console.log("gtag config sent for URL:", url);
     } else {
       console.warn("gtag not initialized or window.gtag is undefined");
