@@ -114,7 +114,7 @@ export default function RootLayout({
       <GoogleAnalytics gaId="G-H59G71TTZQ" />
       <StoreProvider>
         <body
-          className={`${dynaPuff.variable} ${geistMono.variable}  ${poppins.variable} antialiased bg-background-secondary [scrollbar-gutter:stable_both-edges]`}
+          className={`${dynaPuff.variable} ${geistMono.variable}  ${poppins.variable} antialiased bg-red-500 [scrollbar-gutter:stable_both-edges]`}
         >
           <ThemeProviderClient>
             <main className="flex flex-col min-h-screen h-full bg-background-secondary font-poppins relative">
