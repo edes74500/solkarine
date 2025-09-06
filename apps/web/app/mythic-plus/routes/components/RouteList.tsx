@@ -1,9 +1,11 @@
 "use client";
 
+import { cardVariants, containerVariants } from "@/components/layout/ListFramer";
 import { RouteBadge } from "@/components/routes/RouteBadge";
 import { RouteCardTwo } from "@/components/routes/RouteCardTwo";
 import { RouteDBWithDungeonPopulated } from "@repo/types/dist";
 import { Badge } from "@repo/ui/components/badge";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 export function RouteDisplay({ routes }: { routes: RouteDBWithDungeonPopulated[] | undefined }) {
@@ -56,14 +58,40 @@ export function RouteDisplay({ routes }: { routes: RouteDBWithDungeonPopulated[]
           </Badge>
         )}
       </div>
-      <div className="flex flex-col gap-4 flex-1 max-w-2xl">
-        {filteredRoutes
-          // .sort((a, b) => a.dungeon_id.short_name.localeCompare(b.dungeon_id.short_name))
-          .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
-          .map((route) => (
-            <RouteCardTwo key={route.id} route={route} />
-          ))}
-      </div>
+      <motion.div
+        className="flex flex-col gap-4 flex-1 max-w-2xl"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <AnimatePresence mode="popLayout">
+          {filteredRoutes
+            .sort((a, b) => new Date(b.updatedAt).getTime() - new Date(a.updatedAt).getTime())
+            .map((route) => (
+              <motion.div
+                key={route.id}
+                layout
+                variants={cardVariants as any}
+                initial="hidden"
+                animate="visible"
+                exit="exit"
+                className="w-full"
+              >
+                <RouteCardTwo route={route} />
+              </motion.div>
+            ))}
+        </AnimatePresence>
+
+        {filteredRoutes.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-8 text-muted-foreground"
+          >
+            Aucune route ne correspond aux critères
+          </motion.div>
+        )}
+      </motion.div>
     </div>
   );
 }

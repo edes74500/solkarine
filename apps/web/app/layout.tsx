@@ -1,5 +1,6 @@
 import { MainFooter } from "@/components/footer/MainFooter";
 import BackgroundGrid from "@/components/layout/BackgroundGrid";
+import RouteTransition from "@/components/layout/RouteTransition";
 import { Navbar } from "@/components/navbar/Navbar";
 import { ThemeProviderClient } from "@/components/theme/ThemeProvider";
 import { StoreProvider } from "@/redux/StoreProvider";
@@ -122,7 +123,10 @@ export default function RootLayout({
 
               <Navbar />
               {/* </ContentWidthWrapper> */}
-              <div className="grow px-4 lg:px-0 z-10">{children}</div>
+              <div className="grow px-4 lg:px-0 z-10">
+                <RouteTransition>{children}</RouteTransition>
+              </div>
+              {/* {children}</div> */}
               {/* <ContentWidthWrapper> */}
               <MainFooter />
               <Toaster position="bottom-center" className="!z-50" />

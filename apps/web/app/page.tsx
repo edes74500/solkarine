@@ -5,6 +5,7 @@ import HeroSection from "@/app/components/hero/HeroSection";
 import TwitchSection from "@/app/components/twitch/TwitchSection";
 import YouTubeLatest from "@/app/components/youtube/YouTubeLatest";
 import ContentWidthWrapper from "@/components/ContentWidthWrapper";
+import { FadeInOnView } from "@/components/layout/FramerTransition";
 import { Separator } from "@repo/ui/components/separator";
 
 export default async function Home() {
@@ -34,21 +35,65 @@ export default async function Home() {
             <div className="absolute bottom-1/4 left-1/2 w-[700px] h-[700px] bg-navbar dark:bg-white/20 rounded-full blur-3xl opacity-20 animate-float pointer-events-none select-none"></div>
 
             {/* Hero Section */}
-            <HeroSection />
-            <Separator className="bg-muted-foreground/30" />
-            <GuidesSection />
+            <FadeInOnView
+              key="hero"
+              variants={{ hidden: { opacity: 0, y: 20 }, show: { opacity: 1, y: 0, transition: { duration: 0.8 } } }}
+            >
+              <HeroSection />
+            </FadeInOnView>
 
             <Separator className="bg-muted-foreground/30" />
-            <CharactersSection />
+
+            <FadeInOnView
+              key="guides"
+              viewport={{ once: true, amount: 0.3 }}
+              variants={{ hidden: { opacity: 0, x: 30 }, show: { opacity: 1, x: 0, transition: { duration: 0.6 } } }}
+            >
+              <GuidesSection />
+            </FadeInOnView>
 
             <Separator className="bg-muted-foreground/30" />
-            <Community />
+
+            <FadeInOnView
+              key="characters"
+              variants={{ hidden: { opacity: 0, y: 30 }, show: { opacity: 1, y: 0, transition: { duration: 0.8 } } }}
+              viewport={{ once: true, amount: 0.4 }}
+            >
+              <CharactersSection />
+            </FadeInOnView>
+
             <Separator className="bg-muted-foreground/30" />
-            <YouTubeLatest handle="@SolkarineTwitch" />
+
+            <FadeInOnView
+              key="community"
+              variants={{
+                hidden: { opacity: 0, scale: 0.95 },
+                show: { opacity: 1, scale: 1, transition: { duration: 0.7 } },
+              }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <Community />
+            </FadeInOnView>
+
             <Separator className="bg-muted-foreground/30" />
-            <TwitchSection />
-            {/* </div>
-      </ContentWidthWrapper> */}
+
+            <FadeInOnView
+              key="youtube"
+              variants={{ hidden: { opacity: 0, x: -20 }, show: { opacity: 1, x: 0, transition: { duration: 0.7 } } }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <YouTubeLatest handle="@SolkarineTwitch" />
+            </FadeInOnView>
+
+            <Separator className="bg-muted-foreground/30" />
+
+            <FadeInOnView
+              key="twitch"
+              variants={{ hidden: { opacity: 0, x: 20 }, show: { opacity: 1, x: 0, transition: { duration: 0.7 } } }}
+              viewport={{ once: true, amount: 0.3 }}
+            >
+              <TwitchSection />
+            </FadeInOnView>
           </div>
         </ContentWidthWrapper>
       </div>

@@ -1,8 +1,10 @@
 "use client";
 
 import { AddonCard } from "@/components/addons/addoncard";
+import { cardVariants, containerVariants } from "@/components/layout/ListFramer";
 import { BadgeList } from "@/components/shared/BadgeList";
 import { AddonClient } from "@repo/types/dist";
+import { AnimatePresence, motion } from "framer-motion";
 import { useEffect, useState } from "react";
 
 interface AddonListProps {
@@ -50,13 +52,33 @@ export function AddonList({ addons }: AddonListProps) {
         })}
       </div>
 
-      <div className="flex flex-col gap-4">
-        {filteredAddons.map((addon) => (
-          <div key={addon.id}>
-            <AddonCard addon={addon} />
-          </div>
-        ))}
-      </div>
+      <motion.div className="flex flex-col gap-4" variants={containerVariants} initial="hidden" animate="visible">
+        <AnimatePresence mode="popLayout">
+          {filteredAddons.map((addon) => (
+            <motion.div
+              key={addon.id}
+              layout
+              variants={cardVariants as any}
+              initial="hidden"
+              animate="visible"
+              exit="exit"
+              className="w-full"
+            >
+              <AddonCard addon={addon} />
+            </motion.div>
+          ))}
+        </AnimatePresence>
+
+        {filteredAddons.length === 0 && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            className="text-center py-8 text-muted-foreground"
+          >
+            Aucun addon ne correspond à ce tag
+          </motion.div>
+        )}
+      </motion.div>
     </div>
   );
 }
