@@ -98,7 +98,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className="[scrollbar-gutter:stable_both-edges]">
       <head>
         {/* Google tag (gtag.js) */}
         <Script src="https://www.googletagmanager.com/gtag/js?id=G-H59G71TTZQ" strategy="afterInteractive" />
@@ -114,7 +114,7 @@ export default function RootLayout({
       <GoogleAnalytics gaId="G-H59G71TTZQ" />
       <StoreProvider>
         <body
-          className={`${dynaPuff.variable} ${geistMono.variable}  ${poppins.variable} antialiased bg-background-secondary `}
+          className={`${dynaPuff.variable} ${geistMono.variable}  ${poppins.variable} antialiased bg-background-secondary`}
         >
           <ThemeProviderClient>
             <main className="flex flex-col min-h-screen h-full bg-background-secondary font-poppins relative">
