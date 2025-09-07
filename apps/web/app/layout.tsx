@@ -10,7 +10,6 @@ import { Toaster } from "@repo/ui/components/sonner";
 import "@repo/ui/styles/globals.css";
 import type { Metadata } from "next";
 import { DynaPuff, Geist, Geist_Mono, Nunito_Sans, Poppins } from "next/font/google";
-import Script from "next/script";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -98,10 +97,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning className="[scrollbar-gutter:stable_both-edges]">
+    <html lang="en" suppressHydrationWarning className="">
       <head>
         {/* Google tag (gtag.js) */}
-        <Script src="https://www.googletagmanager.com/gtag/js?id=G-H59G71TTZQ" strategy="afterInteractive" />
+        {/* <Script src="https://www.googletagmanager.com/gtag/js?id=G-H59G71TTZQ" strategy="afterInteractive" />
         <Script id="google-analytics" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
@@ -109,23 +108,24 @@ export default function RootLayout({
             gtag('js', new Date());
             gtag('config', 'G-H59G71TTZQ');
           `}
-        </Script>
+        </Script> */}
       </head>
       <GoogleAnalytics gaId="G-H59G71TTZQ" />
       <StoreProvider>
         <body
-          className={`${dynaPuff.variable} ${geistMono.variable}  ${poppins.variable} antialiased bg-red-500 [scrollbar-gutter:stable_both-edges]`}
+          className={`${dynaPuff.variable} ${geistMono.variable}  ${poppins.variable} antialiased bg-background-secondary`}
         >
           <ThemeProviderClient>
-            <main className="flex flex-col min-h-screen h-full bg-background-secondary font-poppins relative">
+            <main className="flex flex-col bg-background-secondary font-poppins relative">
               {/* <ContentWidthWrapper> */}
               <BackgroundGrid />
-
-              <Navbar />
-              {/* </ContentWidthWrapper> */}
-              <div className="grow px-4 lg:px-0 z-10">
-                <RouteTransition>{children}</RouteTransition>
-              </div>
+              <section className="min-h-screen z-10">
+                <Navbar />
+                {/* </ContentWidthWrapper> */}
+                <div className="grow px-4 lg:px-0 z-10 ">
+                  <RouteTransition>{children}</RouteTransition>
+                </div>
+              </section>
               {/* {children}</div> */}
               {/* <ContentWidthWrapper> */}
               <MainFooter />

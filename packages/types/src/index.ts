@@ -29,3 +29,6 @@ export * from "./auth/permissions.schema";
 export * from "./auth/rbac.schema";
 export * from "./auth/roles.schema";
 export * from "./auth/user.schema";
+
+//* talents
+export * from "./talents.schema";

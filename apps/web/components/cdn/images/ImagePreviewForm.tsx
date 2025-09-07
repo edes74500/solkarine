@@ -29,8 +29,13 @@ export default function ImagePreviewForm({
 
   // Normalisation des valeurs pour éviter les erreurs TypeScript et trim des valeurs
   const normalizedFieldValue = useMemo(() => {
-    if (!fieldValue) return [];
+    if (!fieldValue) {
+      console.log("fieldValue is undefined");
+      return [];
+    }
+    console.log("fieldValue", fieldValue);
     const values = Array.isArray(fieldValue) ? fieldValue : [fieldValue];
+    console.log("values", values);
     return values
       .filter(Boolean)
       .map((val) => (typeof val === "string" ? val.trim() : val))

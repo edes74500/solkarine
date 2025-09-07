@@ -12,12 +12,7 @@ import { toast } from "sonner";
 
 export default function AddAddonProfile() {
   const { data: addons, isLoading } = useGetAddonsQuery();
-  // const [createAddonProfile, { isLoading: isCreating }] = useCreateAddonProfileMutation();
   const [open, setOpen] = useState(false);
-  // const [isUploading, setIsUploading] = useState(false);
-  // const [lightboxOpen, setLightboxOpen] = useState(false);
-  // const [isSubmitting, setIsSubmitting] = useState(false);
-
   const { createAddonProfileForm } = useCreateAddonProfileForm();
   const form = createAddonProfileForm;
   const { onSubmitAction, isSubmitting } = useAddonProfileCreateSubmit({
@@ -28,20 +23,6 @@ export default function AddAddonProfile() {
       toast.success("Profil d'addon créé avec succès");
     },
   });
-
-  // const handleCreateAddonProfile = async (values: CreateAddonProfileForm) => {
-  //   console.log(values);
-  //   try {
-  //     // setIsSubmitting(true);
-  //     await createAddonProfile(values).unwrap();
-  //     setOpen(false);
-  //     form.reset();
-  //     toast.success("Profil d'addon créé avec succès");
-  //   } catch (error) {
-  //     console.error(error);
-  //     toast.error("Erreur lors de la création du profil d'addon");
-  //   }
-  // };
 
   const onSubmit = async (values: CreateAddonProfileForm) => {
     await onSubmitAction(values);

@@ -19,134 +19,623 @@ export const CLASS_COLORS = {
   Warlock: "#8788EE",
 } as const;
 
-export const TALENTS = {
-  "Death Knight": {
-    Blood: { name: "Blood", role: "Tank", description: "Blood", icon_url: "blood" },
-    Frost: { name: "Frost", role: "Dps", description: "Frost", icon_url: "frost" },
-    Unholy: { name: "Unholy", role: "Dps", description: "Unholy", icon_url: "unholy" },
-    hero_talent: {
-      Deathbringer: { name: "Deathbringer", description: "Deathbringer", icon_url: "deathbringer" },
-      "San'layn": { name: "San'layn", description: "San'layn", icon_url: "san_layn" },
+export const CLASS_AND_TALENTS = {
+  1: {
+    name: "Death Knight",
+    icon_url: "/img/wow/classes/64/deathknight.jpg",
+    1: {
+      name: "Blood",
+      role: "Tank",
+      description: "Blood",
+      icon_url: "/img/wow/specs/blood-dk.png",
+      hero_talent: {
+        1: { name: "San'layn", description: "San'layn", icon_url: "/img/wow/hero_specs/herospec_sanlayn.png" },
+        2: {
+          name: "Deathbringer",
+          description: "Deathbringer",
+          icon_url: "/img/wow/hero_specs/herospec_deathbringer.png",
+        },
+      },
+    },
+    2: {
+      name: "Frost",
+      role: "Dps",
+      description: "Frost",
+      icon_url: "/img/wow/specs/frost-dk.png",
+      hero_talent: {
+        1: {
+          name: "Rider of the Apocalypse",
+          description: "Rider of the Apocalypse",
+          icon_url: "/img/wow/hero_specs/herospec_rider-of-the-apocalypse.png",
+        },
+        2: {
+          name: "Deathbringer",
+          description: "Deathbringer",
+          icon_url: "/img/wow/hero_specs/herospec_deathbringer.png",
+        },
+      },
+    },
+    3: {
+      name: "Unholy",
+      role: "Dps",
+      description: "Unholy",
+      icon_url: "/img/wow/specs/unholy-dk.png",
+      hero_talent: {
+        1: {
+          name: "Rider of the Apocalypse",
+          description: "Rider of the Apocalypse",
+          icon_url: "/img/wow/hero_specs/herospec_rider-of-the-apocalypse.png",
+        },
+        2: { name: "San'layn", description: "San'layn", icon_url: "/img/wow/hero_specs/herospec_sanlayn.png" },
+      },
     },
   },
 
-  "Demon Hunter": {
-    Havoc: { name: "Havoc", role: "Dps", description: "Havoc", icon_url: "havoc" },
-    Vengeance: { name: "Vengeance", role: "Tank", description: "Vengeance", icon_url: "vengeance" },
-    hero_talent: {
-      Felblade: { name: "Felblade", description: "Felblade", icon_url: "felblade" },
-      Aldrachi: { name: "Aldrachi", description: "Aldrachi", icon_url: "aldrachi" },
+  2: {
+    name: "Demon Hunter",
+    icon_url: "/img/wow/classes/64/demonhunter.jpg",
+    1: {
+      name: "Havoc",
+      role: "Dps",
+      description: "Havoc",
+      icon_url: "/img/wow/specs/havoc-dh.png",
+      hero_talent: {
+        1: {
+          name: "Aldrachi Reaver",
+          description: "Aldrachi Reaver",
+          icon_url: "/img/wow/hero_specs/herospec_aldrachi-reaver.png",
+        },
+        2: {
+          name: "Fel-Scarred",
+          description: "Fel-Scarred",
+          icon_url: "/img/wow/hero_specs/herospec_fel-scarred.png",
+        },
+      },
+    },
+    2: {
+      name: "Vengeance",
+      role: "Tank",
+      description: "Vengeance",
+      icon_url: "/img/wow/specs/vengeance-dh.png",
+      hero_talent: {
+        1: {
+          name: "Aldrachi Reaver",
+          description: "Aldrachi Reaver",
+          icon_url: "/img/wow/hero_specs/herospec_aldrachi-reaver.png",
+        },
+        2: {
+          name: "Fel-Scarred",
+          description: "Fel-Scarred",
+          icon_url: "/img/wow/hero_specs/herospec_fel-scarred.png",
+        },
+      },
     },
   },
 
-  Druid: {
-    Balance: { name: "Balance", role: "Dps", description: "Balance", icon_url: "balance" },
-    Feral: { name: "Feral", role: "Dps", description: "Feral", icon_url: "feral" },
-    Guardian: { name: "Guardian", role: "Tank", description: "Guardian", icon_url: "guardian" },
-    Restoration: { name: "Restoration", role: "Heal", description: "Restoration", icon_url: "restoration" },
-    hero_talent: {
-      Keeper: { name: "Keeper of the Grove", description: "Keeper of the Grove", icon_url: "keeper" },
-      Wildstalker: { name: "Wildstalker", description: "Wildstalker", icon_url: "wildstalker" },
+  3: {
+    name: "Druid",
+    icon_url: "/img/wow/classes/64/druid.png",
+    1: {
+      name: "Balance",
+      role: "Dps",
+      description: "Balance",
+      icon_url: "/img/wow/specs/balance-druid.png",
+      hero_talent: {
+        1: {
+          name: "Keeper of the Grove",
+          description: "Keeper of the Grove",
+          icon_url: "/img/wow/hero_specs/herospec_keeper-of-the-grove.png",
+        },
+        2: {
+          name: "Elune's Chosen",
+          description: "Elune's Chosen",
+          icon_url: "/img/wow/hero_specs/herospec_elunes-chosen.png",
+        },
+      },
+    },
+    2: {
+      name: "Feral",
+      role: "Dps",
+      description: "Feral",
+      icon_url: "/img/wow/specs/feral-druid.png",
+      hero_talent: {
+        1: {
+          name: "Wildstalker",
+          description: "Wildstalker",
+          icon_url: "/img/wow/hero_specs/herospec_wildstalker.png",
+        },
+        2: {
+          name: "Druid of the Claw",
+          description: "Druid of the Claw",
+          icon_url: "/img/wow/hero_specs/herospec_druid-of-the-claw.png",
+        },
+      },
+    },
+    3: {
+      name: "Guardian",
+      role: "Tank",
+      description: "Guardian",
+      icon_url: "/img/wow/specs/guardian-druid.png",
+      hero_talent: {
+        1: {
+          name: "Druid of the Claw",
+          description: "Druid of the Claw",
+          icon_url: "/img/wow/hero_specs/herospec_druid-of-the-claw.png",
+        },
+        2: {
+          name: "Elune's Chosen",
+          description: "Elune's Chosen",
+          icon_url: "/img/wow/hero_specs/herospec_elunes-chosen.png",
+        },
+      },
+    },
+    4: {
+      name: "Restoration",
+      role: "Heal",
+      description: "Restoration",
+      icon_url: "/img/wow/specs/restoration-druid.png",
+      hero_talent: {
+        1: {
+          name: "Keeper of the Grove",
+          description: "Keeper of the Grove",
+          icon_url: "/img/wow/hero_specs/herospec_keeper-of-the-grove.png",
+        },
+        2: {
+          name: "Wildstalker",
+          description: "Wildstalker",
+          icon_url: "/img/wow/hero_specs/herospec_wildstalker.png",
+        },
+      },
     },
   },
 
-  Evoker: {
-    Devastation: { name: "Devastation", role: "Dps", description: "Devastation", icon_url: "devastation" },
-    Preservation: { name: "Preservation", role: "Heal", description: "Preservation", icon_url: "preservation" },
-    Augmentation: { name: "Augmentation", role: "Dps", description: "Augmentation", icon_url: "augmentation" },
-    hero_talent: {
-      Flameshaper: { name: "Flameshaper", description: "Flameshaper", icon_url: "flameshaper" },
-      Scalecommander: { name: "Scalecommander", description: "Scalecommander", icon_url: "scalecommander" },
+  4: {
+    name: "Evoker",
+    icon_url: "/img/wow/classes/64/evoker.jpg",
+    1: {
+      name: "Devastation",
+      role: "Dps",
+      description: "Devastation",
+      icon_url: "/img/wow/specs/devastation-evoker.png",
+      hero_talent: {
+        1: {
+          name: "Flameshaper",
+          description: "Flameshaper",
+          icon_url: "/img/wow/hero_specs/herospec_flameshaper.png",
+        },
+        2: {
+          name: "Scalecommander",
+          description: "Scalecommander",
+          icon_url: "/img/wow/hero_specs/herospec_scalecommander.png",
+        },
+      },
+    },
+    2: {
+      name: "Preservation",
+      role: "Heal",
+      description: "Preservation",
+      icon_url: "/img/wow/specs/preservation-evoker.png",
+      hero_talent: {
+        1: {
+          name: "Flameshaper",
+          description: "Flameshaper",
+          icon_url: "/img/wow/hero_specs/herospec_flameshaper.png",
+        },
+        2: {
+          name: "Chronowarden",
+          description: "Chronowarden",
+          icon_url: "/img/wow/hero_specs/herospec_chronowarden.png",
+        },
+      },
+    },
+    3: {
+      name: "Augmentation",
+      role: "Dps",
+      description: "Augmentation",
+      icon_url: "/img/wow/specs/augmentation-evoker.png",
+      hero_talent: {
+        1: {
+          name: "Chronowarden",
+          description: "Chronowarden",
+          icon_url: "/img/wow/hero_specs/herospec_chronowarden.png",
+        },
+        2: {
+          name: "Scalecommander",
+          description: "Scalecommander",
+          icon_url: "/img/wow/hero_specs/herospec_scalecommander.png",
+        },
+      },
     },
   },
 
-  Hunter: {
-    BeastMastery: { name: "Beast Mastery", role: "Dps", description: "Beast Mastery", icon_url: "beast_mastery" },
-    Marksmanship: { name: "Marksmanship", role: "Dps", description: "Marksmanship", icon_url: "marksmanship" },
-    Survival: { name: "Survival", role: "Dps", description: "Survival", icon_url: "survival" },
-    hero_talent: {
-      Sentinel: { name: "Sentinel", description: "Sentinel", icon_url: "sentinel" },
-      Packleader: { name: "Packleader", description: "Packleader", icon_url: "packleader" },
+  5: {
+    name: "Hunter",
+    icon_url: "/img/wow/classes/64/hunter.png",
+    1: {
+      name: "Beast Mastery",
+      role: "Dps",
+      description: "Beast Mastery",
+      icon_url: "/img/wow/specs/beast_mastery-hunter.png",
+      hero_talent: {
+        1: {
+          name: "Pack Leader",
+          description: "Pack Leader",
+          icon_url: "/img/wow/hero_specs/herospec_pack-leader.png",
+        },
+        2: {
+          name: "Dark Ranger",
+          description: "Dark Ranger",
+          icon_url: "/img/wow/hero_specs/herospec_dark-ranger.png",
+        },
+      },
+    },
+    2: {
+      name: "Marksmanship",
+      role: "Dps",
+      description: "Marksmanship",
+      icon_url: "/img/wow/specs/marksmanship-hunter.png",
+      hero_talent: {
+        1: {
+          name: "Dark Ranger",
+          description: "Dark Ranger",
+          icon_url: "/img/wow/hero_specs/herospec_dark-ranger.png",
+        },
+        2: { name: "Sentinel", description: "Sentinel", icon_url: "/img/wow/hero_specs/herospec_sentinel.png" },
+      },
+    },
+    3: {
+      name: "Survival",
+      role: "Dps",
+      description: "Survival",
+      icon_url: "/img/wow/specs/survival-hunter.png",
+      hero_talent: {
+        1: { name: "Sentinel", description: "Sentinel", icon_url: "/img/wow/hero_specs/herospec_sentinel.png" },
+        2: { name: "Pack Leader", description: "Pack Leader", icon_url: "/img/wow/hero_specs/pack-leader.png" },
+      },
     },
   },
 
-  Mage: {
-    Arcane: { name: "Arcane", role: "Dps", description: "Arcane", icon_url: "arcane" },
-    Fire: { name: "Fire", role: "Dps", description: "Fire", icon_url: "fire" },
-    Frost: { name: "Frost", role: "Dps", description: "Frost", icon_url: "frost" },
-    hero_talent: {
-      Spellslinger: { name: "Spellslinger", description: "Spellslinger", icon_url: "spellslinger" },
-      Frostfire: { name: "Frostfire", description: "Frostfire", icon_url: "frostfire" },
+  6: {
+    name: "Mage",
+    icon_url: "/img/wow/classes/64/mage.png",
+    1: {
+      name: "Arcane",
+      role: "Dps",
+      description: "Arcane",
+      icon_url: "/img/wow/specs/arcane-mage.png",
+      hero_talent: {
+        1: { name: "Sunfury", description: "Sunfury", icon_url: "/img/wow/hero_specs/herospec_sunfury.png" },
+        2: {
+          name: "Spellslinger",
+          description: "Spellslinger",
+          icon_url: "/img/wow/hero_specs/herospec_spellslinger.png",
+        },
+      },
+    },
+    2: {
+      name: "Fire",
+      role: "Dps",
+      description: "Fire",
+      icon_url: "/img/wow/specs/fire-mage.png",
+      hero_talent: {
+        1: { name: "Sunfury", description: "Sunfury", icon_url: "/img/wow/hero_specs/herospec_sunfury.png" },
+        2: { name: "Frostfire", description: "Frostfire", icon_url: "/img/wow/hero_specs/herospec_frostfire.png" },
+      },
+    },
+    3: {
+      name: "Frost",
+      role: "Dps",
+      description: "Frost",
+      icon_url: "/img/wow/specs/frost-mage.png",
+      hero_talent: {
+        1: { name: "Frostfire", description: "Frostfire", icon_url: "/img/wow/hero_specs/herospec_frostfire.png" },
+        2: {
+          name: "Spellslinger",
+          description: "Spellslinger",
+          icon_url: "/img/wow/hero_specs/herospec_spellslinger.png",
+        },
+      },
     },
   },
 
-  Monk: {
-    Brewmaster: { name: "Brewmaster", role: "Tank", description: "Brewmaster", icon_url: "brewmaster" },
-    Mistweaver: { name: "Mistweaver", role: "Heal", description: "Mistweaver", icon_url: "mistweaver" },
-    Windwalker: { name: "Windwalker", role: "Dps", description: "Windwalker", icon_url: "windwalker" },
-    hero_talent: {
-      ShadoPan: { name: "Shado-Pan", description: "Shado-Pan", icon_url: "shado_pan" },
-      MasterOfHarmony: { name: "Master of Harmony", description: "Master of Harmony", icon_url: "master_of_harmony" },
+  7: {
+    name: "Monk",
+    icon_url: "/img/wow/classes/64/monk.png",
+    1: {
+      name: "Brewmaster",
+      role: "Tank",
+      description: "Brewmaster",
+      icon_url: "/img/wow/specs/brewmaster-monk.png",
+      hero_talent: {
+        1: {
+          name: "Master of Harmony",
+          description: "Master of Harmony",
+          icon_url: "/img/wow/hero_specs/herospec_master-of-harmony.png",
+        },
+        2: { name: "Shado-Pan", description: "Shado-Pan", icon_url: "/img/wow/hero_specs/herospec_shado-pan.png" },
+      },
+    },
+    2: {
+      name: "Mistweaver",
+      role: "Heal",
+      description: "Mistweaver",
+      icon_url: "/img/wow/specs/mistweaver-monk.png",
+      hero_talent: {
+        1: {
+          name: "Master of Harmony",
+          description: "Master of Harmony",
+          icon_url: "/img/wow/hero_specs/herospec_master-of-harmony.png",
+        },
+        2: {
+          name: "Conduit of the Celestials",
+          description: "Conduit of the Celestials",
+          icon_url: "/img/wow/hero_specs/herospec_conduit-of-the-celestials.png",
+        },
+      },
+    },
+    3: {
+      name: "Windwalker",
+      role: "Dps",
+      description: "Windwalker",
+      icon_url: "/img/wow/specs/windwalker-monk.png",
+      hero_talent: {
+        1: { name: "Shado-Pan", description: "Shado-Pan", icon_url: "/img/wow/hero_specs/herospec_shado-pan.png" },
+        2: {
+          name: "Conduit of the Celestials",
+          description: "Conduit of the Celestials",
+          icon_url: "/img/wow/hero_specs/herospec_conduit-of-the-celestials.png",
+        },
+      },
     },
   },
 
-  Paladin: {
-    Holy: { name: "Holy", role: "Heal", description: "Holy", icon_url: "holy" },
-    Protection: { name: "Protection", role: "Tank", description: "Protection", icon_url: "protection" },
-    Retribution: { name: "Retribution", role: "Dps", description: "Retribution", icon_url: "retribution" },
-    hero_talent: {
-      Lightsmith: { name: "Lightsmith", description: "Lightsmith", icon_url: "lightsmith" },
-      Templar: { name: "Templar", description: "Templar", icon_url: "templar" },
+  8: {
+    name: "Paladin",
+    icon_url: "/img/wow/classes/64/paladin.png",
+    1: {
+      name: "Holy",
+      role: "Heal",
+      description: "Holy",
+      icon_url: "/img/wow/specs/holy-paladin.png",
+      hero_talent: {
+        1: { name: "Lightsmith", description: "Lightsmith", icon_url: "/img/wow/hero_specs/herospec_lightsmith.png" },
+        2: {
+          name: "Herald of the Sun",
+          description: "Herald of the Sun",
+          icon_url: "/img/wow/hero_specs/herospec_herald-of-the-sun.png",
+        },
+      },
+    },
+    2: {
+      name: "Protection",
+      role: "Tank",
+      description: "Protection",
+      icon_url: "/img/wow/specs/protection-paladin.png",
+      hero_talent: {
+        1: { name: "Lightsmith", description: "Lightsmith", icon_url: "/img/wow/hero_specs/herospec_lightsmith.png" },
+        2: { name: "Templar", description: "Templar", icon_url: "/img/wow/hero_specs/herospec_templar.png" },
+      },
+    },
+    3: {
+      name: "Retribution",
+      role: "Dps",
+      description: "Retribution",
+      icon_url: "/img/wow/specs/retribution-paladin.png",
+      hero_talent: {
+        1: {
+          name: "Herald of the Sun",
+          description: "Herald of the Sun",
+          icon_url: "/img/wow/hero_specs/herospec_herald-of-the-sun.png",
+        },
+        2: { name: "Templar", description: "Templar", icon_url: "/img/wow/hero_specs/herospec_templar.png" },
+      },
     },
   },
 
-  Priest: {
-    Discipline: { name: "Discipline", role: "Heal", description: "Discipline", icon_url: "discipline" },
-    Holy: { name: "Holy", role: "Heal", description: "Holy", icon_url: "holy" },
-    Shadow: { name: "Shadow", role: "Dps", description: "Shadow", icon_url: "shadow" },
-    hero_talent: {
-      Oracle: { name: "Oracle", description: "Oracle", icon_url: "oracle" },
-      Voidweaver: { name: "Voidweaver", description: "Voidweaver", icon_url: "voidweaver" },
+  9: {
+    name: "Priest",
+    icon_url: "/img/wow/classes/64/priest.png",
+    1: {
+      name: "Discipline",
+      role: "Heal",
+      description: "Discipline",
+      icon_url: "/img/wow/specs/discipline-priest.png",
+      hero_talent: {
+        1: { name: "Voidweaver", description: "Voidweaver", icon_url: "/img/wow/hero_specs/herospec_voidweaver.png" },
+        2: { name: "Oracle", description: "Oracle", icon_url: "/img/wow/hero_specs/herospec_oracle.png" },
+      },
+    },
+    2: {
+      name: "Holy",
+      role: "Heal",
+      description: "Holy",
+      icon_url: "/img/wow/specs/holy-priest.png",
+      hero_talent: {
+        1: { name: "Oracle", description: "Oracle", icon_url: "/img/wow/hero_specs/herospec_oracle.png" },
+        2: { name: "Archon", description: "Archon", icon_url: "/img/wow/hero_specs/herospec_archon.png" },
+      },
+    },
+    3: {
+      name: "Shadow",
+      role: "Dps",
+      description: "Shadow",
+      icon_url: "/img/wow/specs/shadow-priest.png",
+      hero_talent: {
+        1: { name: "Voidweaver", description: "Voidweaver", icon_url: "/img/wow/hero_specs/herospec_voidweaver.png" },
+        2: { name: "Archon", description: "Archon", icon_url: "/img/wow/hero_specs/herospec_archon.png" },
+      },
     },
   },
 
-  Rogue: {
-    Assassination: { name: "Assassination", role: "Dps", description: "Assassination", icon_url: "assassination" },
-    Outlaw: { name: "Outlaw", role: "Dps", description: "Outlaw", icon_url: "outlaw" },
-    Subtlety: { name: "Subtlety", role: "Dps", description: "Subtlety", icon_url: "subtlety" },
-    hero_talent: {
-      Trickster: { name: "Trickster", description: "Trickster", icon_url: "trickster" },
-      Deathstalker: { name: "Deathstalker", description: "Deathstalker", icon_url: "deathstalker" },
+  10: {
+    name: "Rogue",
+    icon_url: "/img/wow/classes/64/rogue.png",
+    1: {
+      name: "Assassination",
+      role: "Dps",
+      description: "Assassination",
+      icon_url: "/img/wow/specs/assassination-rogue.png",
+      hero_talent: {
+        1: {
+          name: "Deathstalker",
+          description: "Deathstalker",
+          icon_url: "/img/wow/hero_specs/herospec_deathstalker.png",
+        },
+        2: { name: "Fatebound", description: "Fatebound", icon_url: "/img/wow/hero_specs/herospec_fatebound.png" },
+      },
+    },
+    2: {
+      name: "Outlaw",
+      role: "Dps",
+      description: "Outlaw",
+      icon_url: "/img/wow/specs/outlaw-rogue.png",
+      hero_talent: {
+        1: { name: "Trickster", description: "Trickster", icon_url: "/img/wow/hero_specs/herospec_trickster.png" },
+        2: { name: "Fatebound", description: "Fatebound", icon_url: "/img/wow/hero_specs/herospec_fatebound.png" },
+      },
+    },
+    3: {
+      name: "Subtlety",
+      role: "Dps",
+      description: "Subtlety",
+      icon_url: "/img/wow/specs/subtlety-rogue.png",
+      hero_talent: {
+        1: {
+          name: "Deathstalker",
+          description: "Deathstalker",
+          icon_url: "/img/wow/hero_specs/herospec_deathstalker.png",
+        },
+        2: { name: "Trickster", description: "Trickster", icon_url: "/img/wow/hero_specs/herospec_trickster.png" },
+      },
     },
   },
 
-  Shaman: {
-    Elemental: { name: "Elemental", role: "Dps", description: "Elemental", icon_url: "elemental" },
-    Enhancement: { name: "Enhancement", role: "Dps", description: "Enhancement", icon_url: "enhancement" },
-    Restoration: { name: "Restoration", role: "Heal", description: "Restoration", icon_url: "restoration" },
-    hero_talent: {
-      Stormbringer: { name: "Stormbringer", description: "Stormbringer", icon_url: "stormbringer" },
-      Farseer: { name: "Farseer", description: "Farseer", icon_url: "farseer" },
+  11: {
+    name: "Shaman",
+    icon_url: "/img/wow/classes/64/shaman.png",
+    1: {
+      name: "Elemental",
+      role: "Dps",
+      description: "Elemental",
+      icon_url: "/img/wow/specs/elemental-shaman.png",
+      hero_talent: {
+        1: {
+          name: "Stormbringer",
+          description: "Stormbringer",
+          icon_url: "/img/wow/hero_specs/herospec_stormbringer.png",
+        },
+        2: { name: "Farseer", description: "Farseer", icon_url: "/img/wow/hero_specs/herospec_farseer.png" },
+      },
+    },
+    2: {
+      name: "Enhancement",
+      role: "Dps",
+      description: "Enhancement",
+      icon_url: "/img/wow/specs/enhancement-shaman.png",
+      hero_talent: {
+        1: {
+          name: "Stormbringer",
+          description: "Stormbringer",
+          icon_url: "/img/wow/hero_specs/herospec_stormbringer.png",
+        },
+        2: { name: "Totemic", description: "Totemic", icon_url: "/img/wow/hero_specs/herospec_totemic.png" },
+      },
+    },
+    3: {
+      name: "Restoration",
+      role: "Heal",
+      description: "Restoration",
+      icon_url: "/img/wow/specs/restoration-shaman.png",
+      hero_talent: {
+        1: { name: "Farseer", description: "Farseer", icon_url: "/img/wow/hero_specs/herospec_farseer.png" },
+        2: { name: "Totemic", description: "Totemic", icon_url: "/img/wow/hero_specs/herospec_totemic.png" },
+      },
     },
   },
 
-  Warlock: {
-    Affliction: { name: "Affliction", role: "Dps", description: "Affliction", icon_url: "affliction" },
-    Demonology: { name: "Demonology", role: "Dps", description: "Demonology", icon_url: "demonology" },
-    Destruction: { name: "Destruction", role: "Dps", description: "Destruction", icon_url: "destruction" },
-    hero_talent: {
-      SoulHarvester: { name: "Soul Harvester", description: "Soul Harvester", icon_url: "soul_harvester" },
-      Hellcaller: { name: "Hellcaller", description: "Hellcaller", icon_url: "hellcaller" },
+  12: {
+    name: "Warlock",
+    icon_url: "/img/wow/classes/64/warlock.png",
+    1: {
+      name: "Affliction",
+      role: "Dps",
+      description: "Affliction",
+      icon_url: "/img/wow/specs/affliction-warlock.png",
+      hero_talent: {
+        1: {
+          name: "Soul Harvester",
+          description: "Soul Harvester",
+          icon_url: "/img/wow/hero_specs/herospec_soul-harvester.png",
+        },
+        2: { name: "Hellcaller", description: "Hellcaller", icon_url: "/img/wow/hero_specs/herospec_hellcaller.png" },
+      },
+    },
+    2: {
+      name: "Demonology",
+      role: "Dps",
+      description: "Demonology",
+      icon_url: "/img/wow/specs/demonology-warlock.png",
+      hero_talent: {
+        1: {
+          name: "Soul Harvester",
+          description: "Soul Harvester",
+          icon_url: "/img/wow/hero_specs/herospec_soul-harvester.png",
+        },
+        2: { name: "Diabolist", description: "Diabolist", icon_url: "/img/wow/hero_specs/herospec_diabolist.png" },
+      },
+    },
+    3: {
+      name: "Destruction",
+      role: "Dps",
+      description: "Destruction",
+      icon_url: "/img/wow/specs/destruction-warlock.png",
+      hero_talent: {
+        1: { name: "Hellcaller", description: "Hellcaller", icon_url: "/img/wow/hero_specs/herospec_hellcaller.png" },
+        2: { name: "Diabolist", description: "Diabolist", icon_url: "/img/wow/hero_specs/herospec_diabolist.png" },
+      },
     },
   },
 
-  Warrior: {
-    Arms: { name: "Arms", role: "Dps", description: "Arms", icon_url: "arms" },
-    Fury: { name: "Fury", role: "Dps", description: "Fury", icon_url: "fury" },
-    Protection: { name: "Protection", role: "Tank", description: "Protection", icon_url: "protection" },
-    hero_talent: {
-      Colossus: { name: "Colossus", description: "Colossus", icon_url: "colossus" },
-      MountainThane: { name: "Mountain Thane", description: "Mountain Thane", icon_url: "mountain_thane" },
+  13: {
+    name: "Warrior",
+    icon_url: "/img/wow/classes/64/warrior.png",
+    1: {
+      name: "Arms",
+      role: "Dps",
+      description: "Arms",
+      icon_url: "/img/wow/specs/arms-warrior.png",
+      hero_talent: {
+        1: { name: "Colossus", description: "Colossus", icon_url: "/img/wow/hero_specs/herospec_colossus.png" },
+        2: { name: "Slayer", description: "Slayer", icon_url: "/img/wow/hero_specs/herospec_slayer.png" },
+      },
+    },
+    2: {
+      name: "Fury",
+      role: "Dps",
+      description: "Fury",
+      icon_url: "/img/wow/specs/fury-warrior.png",
+      hero_talent: {
+        1: { name: "Slayer", description: "Slayer", icon_url: "/img/wow/hero_specs/herospec_slayer.png" },
+        2: {
+          name: "Mountain Thane",
+          description: "Mountain Thane",
+          icon_url: "/img/wow/hero_specs/herospec_mountain-thane.png",
+        },
+      },
+    },
+    3: {
+      name: "Protection",
+      role: "Tank",
+      description: "Protection",
+      icon_url: "/img/wow/specs/protection-warrior.png",
+      hero_talent: {
+        1: { name: "Colossus", description: "Colossus", icon_url: "/img/wow/hero_specs/herospec_colossus.png" },
+        2: {
+          name: "Mountain Thane",
+          description: "Mountain Thane",
+          icon_url: "/img/wow/hero_specs/herospec_mountain-thane.png",
+        },
+      },
     },
   },
-};
+} as const;

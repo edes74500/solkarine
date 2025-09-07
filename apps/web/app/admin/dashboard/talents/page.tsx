@@ -1,8 +1,10 @@
+import TalentsList from "@/app/admin/dashboard/talents/components/TalentsList";
+
 export default function TalentsPage() {
   return (
-    <div>
-      TalentsPage
-      <div>RAid / m+ || raid = class || m+ = dungeon - classe</div>
-    </div>
+    <section className="dashboard-section">
+      <h1>Talents</h1>
+      <TalentsList />
+    </section>
   );
 }

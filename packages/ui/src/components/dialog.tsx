@@ -10,6 +10,36 @@ function Dialog({ ...props }: React.ComponentProps<typeof DialogPrimitive.Root>)
   return <DialogPrimitive.Root data-slot="dialog" {...props} />;
 }
 
+// function Dialog(props: React.ComponentProps<typeof DialogPrimitive.Root>) {
+//   const { open, defaultOpen, onOpenChange, ...rest } = props;
+
+//   const isControlled = open !== undefined;
+//   const [internalOpen, setInternalOpen] = React.useState(!!defaultOpen);
+//   const currentOpen = isControlled ? open : internalOpen;
+
+//   React.useEffect(() => {
+//     const el = document.documentElement;
+//     if (currentOpen) el.classList.add("modal-open");
+//     else el.classList.remove("modal-open");
+//     return () => el.classList.remove("modal-open");
+//   }, [currentOpen]);
+
+//   const handleChange = (o: boolean) => {
+//     if (!isControlled) setInternalOpen(o);
+//     onOpenChange?.(o);
+//   };
+
+//   return (
+//     <DialogPrimitive.Root
+//       data-slot="dialog"
+//       open={open}
+//       defaultOpen={defaultOpen}
+//       onOpenChange={handleChange}
+//       {...rest}
+//     />
+//   );
+// }
+
 function DialogTrigger({ ...props }: React.ComponentProps<typeof DialogPrimitive.Trigger>) {
   return <DialogPrimitive.Trigger data-slot="dialog-trigger" {...props} />;
 }

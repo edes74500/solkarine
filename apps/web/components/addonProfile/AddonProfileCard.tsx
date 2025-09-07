@@ -53,15 +53,15 @@ export default function AddonProfileCard({ addonProfile }: AddonProfileCardProps
 
   return (
     <Card className="overflow-hidden transition-all duration-300 hover:shadow-lg w-full !p-0 h-full min-h-40">
-      <div className="flex flex-row !h-full">
-        <div className="relative w-1/3 shrink-0 aspect-video h-full">
+      <div className="flex flex-row !h-full ">
+        <div className="relative shrink-0 w-1/3 ">
           {!imageError && addonProfile.screenshots && addonProfile.screenshots.length > 0 ? (
             <>
               <Image
                 src={addonProfile.screenshots[0]}
                 alt={addonProfile.name}
                 fill
-                className="object-cover cursor-pointer h-full w-full"
+                className="object-cover cursor-pointer h-full !w-full"
                 onError={() => setImageError(true)}
                 onClick={() => openImageViewer(0)}
               />

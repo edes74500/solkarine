@@ -8,6 +8,10 @@ import type { PropsWithChildren } from "react";
 export default function RouteTransition({ children }: PropsWithChildren) {
   const pathname = usePathname();
 
+  if (pathname.includes("admin")) {
+    return <>{children}</>;
+  }
+
   return (
     <AnimatePresence>
       <motion.div
