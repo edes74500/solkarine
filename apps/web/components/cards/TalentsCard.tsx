@@ -183,7 +183,7 @@ export default function TalentsCard({ talent }: TalentsCardProps) {
         </div>
       </CardHeader>
 
-      <CardContent className="!p-0">
+      <CardContent className="!p-0 w-full">
         <div className="flex flex-wrap gap-2 justify-center py-2 !px-0">
           {talent.dungeon_ids.map((dungeon) => (
             <Badge
