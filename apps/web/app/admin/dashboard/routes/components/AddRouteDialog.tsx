@@ -227,6 +227,8 @@ export default function AddRouteDialog(props: AddRouteDialogProps) {
                 label="Description"
                 placeholder="Description de la route"
               />
+
+              {/* Dungeon */}
               <FormField
                 control={form.control}
                 name="dungeon_id"
@@ -259,6 +261,8 @@ export default function AddRouteDialog(props: AddRouteDialogProps) {
                   </FormItem>
                 )}
               />
+
+              {/* Difficulté et Vitesse */}
               <div className="flex gap-10">
                 <FormField
                   control={form.control}

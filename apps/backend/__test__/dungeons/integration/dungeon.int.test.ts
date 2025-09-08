@@ -1,4 +1,3 @@
-import { dbConnexion } from "@/config/dbConnexion.config";
 import { Dungeon } from "@/models/dungeon.model";
 import { addDungeon, clearAllDungeons, getAllDungeons, updateDungeon } from "@/services/dungeons.service";
 import { CreateDungeonForm, EditDungeonForm } from "@repo/types";
@@ -7,7 +6,7 @@ import mongoose from "mongoose";
 describe("Tests d'intégration des services de donjons", () => {
   // Connexion à la base de données avant tous les tests
   beforeAll(async () => {
-    await dbConnexion.connect();
+    // await dbConnexion.connect();
   });
 
   // Nettoyage après chaque test
@@ -17,7 +16,8 @@ describe("Tests d'intégration des services de donjons", () => {
 
   // Déconnexion après tous les tests
   afterAll(async () => {
-    await dbConnexion.disconnect();
+    await Dungeon.deleteMany({});
+    // await dbConnexion.disconnect();
   });
 
   describe("addDungeon", () => {

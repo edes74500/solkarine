@@ -1,4 +1,3 @@
-import { dbConnexion } from "@/config/dbConnexion.config";
 import { cacheRBAC } from "@/config/rbac.config";
 import { Role } from "@/models/auth/role.model";
 import {
@@ -14,7 +13,7 @@ import { CreateRole, UpdateRole } from "@repo/types";
 describe("Tests d'intégration des services de rôles", () => {
   // Connexion à la base de données avant tous les tests
   beforeAll(async () => {
-    await dbConnexion.connect();
+    // await dbConnexion.connect();
   });
 
   // Nettoyage après chaque test
@@ -26,7 +25,7 @@ describe("Tests d'intégration des services de rôles", () => {
 
   // Déconnexion après tous les tests
   afterAll(async () => {
-    await dbConnexion.disconnect();
+    // await dbConnexion.disconnect();
   });
 
   describe("dbCreateRoleService", () => {

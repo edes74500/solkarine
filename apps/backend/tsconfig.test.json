@@ -1,0 +1,16 @@
+{
+  "extends": "./tsconfig.json",
+  "compilerOptions": {
+    "module": "CommonJS",
+    "target": "ES2020"
+  },
+  "moduleResolution": "node",
+  "baseUrl": ".",
+  "paths": {
+    "@fixture/*": ["./__fixture__/*"],
+    "@/*": ["./src/*"]
+  },
+
+  "types": ["jest", "ts-jest"],
+  "include": ["src/**/*", "__test__/**/*", "**/*.test.ts", "**/*.spec.ts", "__fixture__/**/*", "__jest__/**/*"]
+}

@@ -22,6 +22,18 @@
     "test": {
       "dependsOn": ["^test"],
       "inputs": ["src/**", "jest.config.ts"]
+    },
+    "test:spec": {
+      "dependsOn": [],
+      "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts", "test/**/*.tsx"]
+    },
+    "test:int": {
+      "dependsOn": [],
+      "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts", "test/**/*.tsx"]
+    },
+    "test:e2e": {
+      "dependsOn": [],
+      "inputs": ["src/**/*.tsx", "src/**/*.ts", "test/**/*.ts", "test/**/*.tsx"]
     }
   }
 }

@@ -1,5 +1,5 @@
-import { dungeonSchema } from "src/dungeon.schema";
 import { z } from "zod";
+import { dungeonSchema } from "./dungeon.schema";
 
 // Schéma pour les dates de début et fin
 export const DateRangeSchema = z.object({

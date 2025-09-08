@@ -1,5 +1,5 @@
-import { addonDBSchema } from "src/addon.schema";
 import { z } from "zod";
+import { addonDBSchema } from "./addon.schema";
 
 export const addonProfileSchemaDB = z.object({
   _id: z.string(),

@@ -1,4 +1,3 @@
-import { dbConnexion } from "@/config/dbConnexion.config";
 import { UnauthorizedError } from "@/errors/UnauthorisedError";
 import {
   generateJwtAccessToken,
@@ -14,7 +13,7 @@ describe("JWT access and refresh token", () => {
   let user: UserDB;
 
   beforeAll(async () => {
-    await dbConnexion.connect();
+    // await dbConnexion.connect();
     user = await dbCreateUserService({
       username: "test",
       password: "test",
@@ -23,7 +22,7 @@ describe("JWT access and refresh token", () => {
   });
 
   afterAll(async () => {
-    await dbConnexion.disconnect();
+    // await dbConnexion.disconnect();
   });
 
   describe("generateJwtAccessToken", () => {

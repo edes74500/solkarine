@@ -1,5 +1,6 @@
 import { CLASS_AND_TALENTS } from "@repo/constants";
 import { z } from "zod";
+import { dungeonDbSchema } from "./dungeon.schema";
 
 export const talentDBSchema = z.object({
   _id: z.string(),
@@ -13,10 +14,20 @@ export const talentDBSchema = z.object({
   hero_talent: z.number(),
 
   dungeon_ids: z.array(z.string()),
-  string: z.string(),
+  export_string: z.string(),
 
   createdAt: z.date(),
   updatedAt: z.date(),
+});
+
+export const talentDBSchemaWithDungeonPopulated = talentDBSchema.extend({
+  dungeon_ids: z.array(dungeonDbSchema),
+});
+
+export const talentSchemaClientWithDungeonPopulated = talentDBSchemaWithDungeonPopulated.extend({
+  id: z.string(),
+  createdAt: z.string(),
+  updatedAt: z.string(),
 });
 
 export const createTalentSchema = z
@@ -65,6 +76,8 @@ export const createTalentSchema = z
 
 export const editTalentSchema = createTalentSchema;
 
-export type TalentDB = z.infer<typeof talentDBSchema>;
+export type TalentsDB = z.infer<typeof talentDBSchema>;
 export type CreateTalentForm = z.infer<typeof createTalentSchema>;
 export type EditTalentForm = z.infer<typeof editTalentSchema>;
+export type TalentsDBWithDungeonPopulated = z.infer<typeof talentDBSchemaWithDungeonPopulated>;
+export type TalentClientWithDungeonPopulated = z.infer<typeof talentSchemaClientWithDungeonPopulated>;

@@ -13,7 +13,6 @@ import {
   ExternalLink,
   HelpCircle,
   LayoutDashboard,
-  Lightbulb,
   Map,
   Menu,
   Monitor,
@@ -172,13 +171,13 @@ export default function DashboardNavbar() {
           isActive={pathname === "/admin/dashboard/talents"}
           isCollapsed={isCollapsed}
         />
-        <NavItem
+        {/* <NavItem
           icon={<Lightbulb size={20} />}
           title="Tips"
           href="/admin/dashboard/tips"
           isActive={pathname === "/admin/dashboard/tips"}
           isCollapsed={isCollapsed}
-        />
+        /> */}
         <NavItem
           icon={<CalendarClock size={20} />}
           title="Changer de saison"

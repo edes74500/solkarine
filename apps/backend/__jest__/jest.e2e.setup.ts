@@ -7,6 +7,6 @@ process.env.NODE_ENV = "test";
 delete process.env.MONGO_URI;
 
 dotenv.config({
-  path: path.join(__dirname, ".env.test"),
+  path: path.join(__dirname, ".env.e2e.test"),
   override: true, // <-- remplace ce qui aurait été chargé avant
 });

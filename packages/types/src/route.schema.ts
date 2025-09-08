@@ -1,5 +1,5 @@
-import { dungeonDbSchema } from "@repo/types";
 import { z } from "zod";
+import { dungeonDbSchema } from "./dungeon.schema";
 
 export const routeSchemaDB = z.object({
   _id: z.string(),

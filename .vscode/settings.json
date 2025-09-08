@@ -4,7 +4,7 @@
     // "**/.git": true,
     "**/.DS_Store": true,
     "**/node_modules": true,
-    "**/dist": true,
+    // "**/dist": true,
     "**/build": true,
     "**/coverage": true,
     "**/.next": true,
@@ -62,7 +62,23 @@
   //     "runMode": "on-demand"
   //   }
   // ],
-
+  "jest.virtualFolders": [
+    {
+      "name": "spec-tests",
+      "jestCommandLine": "pnpm run test:spec -- --runInBand",
+      "runMode": "on-demand"
+    },
+    {
+      "name": "integration-tests",
+      "jestCommandLine": "pnpm run test:int -- --runInBand",
+      "runMode": "on-demand"
+    },
+    {
+      "name": "e2e-tests",
+      "jestCommandLine": "pnpm run test:e2e -- --runInBand",
+      "runMode": "on-demand"
+    }
+  ],
   // 🧠 TypeScript : permet à l'auto-import de fonctionner dans les imports locaux (monorepo)
   "typescript.preferences.importModuleSpecifier": "non-relative",
 

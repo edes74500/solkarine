@@ -1,4 +1,3 @@
-import { dbConnexion } from "@/config/dbConnexion.config";
 import { AddonProfile } from "@/models/addonProfile.model";
 import { createAddon } from "@/services/addon.service";
 import {
@@ -13,8 +12,8 @@ import { revalidateFetch } from "@/services/nextJsCache.service";
 import { NEXT_API_TAGS } from "@repo/constants";
 import { AddonDB } from "@repo/types";
 import mongoose from "mongoose";
-import { mockCreateAddon } from "../../fixture/mockAddon";
-import { mockCreateAddonProfile, mockEditAddonProfile } from "../../fixture/mockAddonProfile";
+import { mockCreateAddon } from "../../../__fixture__/mockAddon";
+import { mockCreateAddonProfile, mockEditAddonProfile } from "../../../__fixture__/mockAddonProfile";
 
 jest.mock("@/services/cdn.service", () => ({
   setImageToFolderInR2: jest.fn(),
@@ -34,8 +33,9 @@ describe("AddonProfile", () => {
   let addon: AddonDB;
 
   beforeAll(async () => {
-    await dbConnexion.connect();
+    // await dbConnexion.connect();
     // Ajouter un addon
+    await AddonProfile.deleteMany({});
     addon = await createAddon(mockCreateAddon());
 
     (setImageToFolderInR2 as jest.Mock).mockImplementation(({ imageUrl, folder, imageName, index }) => {
@@ -50,11 +50,12 @@ describe("AddonProfile", () => {
   });
 
   afterAll(async () => {
-    await dbConnexion.disconnect();
+    // await dbConnexion.disconnect();
   });
 
   describe("getAddonProfilesService", () => {
     it("devrait retourner tous les profils d'addon", async () => {
+      AddonProfile.deleteMany({});
       // Arrange
       await createAddonProfileService(
         mockCreateAddonProfile({

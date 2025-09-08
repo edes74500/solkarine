@@ -66,7 +66,14 @@
   },
 
   /* Inclure tous les fichiers TypeScript sous src/ */
-  "include": ["src/**/*", "__tests__/**/*", "**/*.test.ts", "**/*.spec.ts"],
+  "include": [
+    "src/**/*",
+    "__tests__/**/*",
+    "**/*.test.ts",
+    "**/*.spec.ts",
+    "__fixture__/mockTalents.ts",
+    "__jest__/**/*"
+  ],
 
   /* Exclure les sorties et dossiers inutiles */
   "exclude": ["node_modules", "dist"]

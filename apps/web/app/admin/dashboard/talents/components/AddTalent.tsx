@@ -1,4 +1,5 @@
 import TalentDialogForm from "@/app/admin/dashboard/talents/components/TalentDialogForm";
+import { useTalentCreateSubmit } from "@/app/admin/dashboard/talents/hooks/useTalentSubmit";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { CreateTalentForm, createTalentSchema, DungeonClient } from "@repo/types/dist";
 import { Button } from "@repo/ui/components/button";
@@ -29,8 +30,16 @@ export default function AddTalent({
     },
   });
 
+  const { onSubmitAction, isSubmitting } = useTalentCreateSubmit({
+    form,
+    onSuccessAction: () => {
+      setDialogOpen(false);
+      form.reset();
+    },
+  });
   const onSubmit = async (data: CreateTalentForm) => {
     console.log(data);
+    await onSubmitAction(data);
   };
 
   const handleAddImage = (imageUrl: string | null) => {
@@ -49,8 +58,6 @@ export default function AddTalent({
 
   return (
     <div>
-      {currentClass} {currentSpec} {currentHeroTalent}
-      {currentImage}
       <TalentDialogForm
         open={dialogOpen}
         onOpenChangeAction={setDialogOpen}

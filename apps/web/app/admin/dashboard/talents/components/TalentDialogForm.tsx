@@ -22,7 +22,7 @@ import { Form, FormControl, FormField, FormItem, FormLabel, FormMessage } from "
 import { Input } from "@repo/ui/components/input";
 import { Select, SelectContent, SelectGroup, SelectItem, SelectTrigger, SelectValue } from "@repo/ui/components/select";
 import { Textarea } from "@repo/ui/components/textarea";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { UseFormReturn } from "react-hook-form";
 
 type TalentDialogFormProps = {
@@ -66,6 +66,16 @@ export default function TalentDialogForm({
   const [selectedSpec, setSelectedSpec] = useState<number | null>(null);
   const [selectedHeroTalent, setSelectedHeroTalent] = useState<number | null>(null);
 
+  const formValues = form.getValues();
+
+  useEffect(() => {
+    if (open) {
+      setSelectedClass(formValues.class);
+      setSelectedSpec(formValues.spec);
+      setSelectedHeroTalent(formValues.hero_talent);
+    }
+  }, [open, form]);
+
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
@@ -92,6 +102,9 @@ export default function TalentDialogForm({
             >
               <DialogHeader>
                 <DialogTitle>{title}</DialogTitle>
+                {selectedClass}
+                {selectedSpec}
+                {selectedHeroTalent}
                 <VisuallyHidden asChild>
                   <DialogDescription>Formulaire de talent</DialogDescription>
                 </VisuallyHidden>

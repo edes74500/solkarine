@@ -45,4 +45,9 @@ export const NEXT_API_TAGS = {
       GET_LATEST: "youtube-getYoutubeLatest",
     },
   },
+  TALENTS: {
+    GET: {
+      GET_ALL: "talents-getAllTalents",
+    },
+  },
 };

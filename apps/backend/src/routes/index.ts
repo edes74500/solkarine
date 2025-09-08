@@ -8,6 +8,7 @@ import changeSeasonRoutes from "./changeSeason.route";
 import characterRoutes from "./character.route";
 import dungeonRoutes from "./dungeon.route";
 import routesRoutes from "./dungeonRoute.route";
+import talentsRoutes from "./talents.route";
 import weakAuraRoutes from "./weakAuras.route";
 import youtubeRoutes from "./youtube.route";
 
@@ -28,5 +29,6 @@ router.use("/cdn", cdnRoutes);
 router.use("/routes", routesRoutes);
 router.use("/analytics", analyticsRoutes);
 router.use("/youtube", youtubeRoutes);
+router.use("/talents", talentsRoutes);
 
 export default router;
