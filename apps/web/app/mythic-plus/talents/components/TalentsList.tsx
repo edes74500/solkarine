@@ -24,7 +24,7 @@ export default function TalentsList({ talents }: { talents: TalentClientWithDung
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="!w-2xs min-h-40 !min-w-2xs !max-w-2xs"
+              // className="!w-2xs min-h-40 !min-w-2xs !max-w-2xs"
             >
               <TalentsCard talent={talent} />
             </motion.div>
