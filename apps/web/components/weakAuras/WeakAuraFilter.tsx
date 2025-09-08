@@ -37,6 +37,8 @@ export function WeakAuraFilter({ weakAuras, onFilterChange }: WeakAuraFilterProp
     <div className="flex flex-wrap gap-2">
       {WEAK_AURA_TAGS.map((tag) => {
         const tagCount = weakAuras.filter((weakAura) => weakAura.tags?.includes(tag)).length;
+        if (tagCount === 0) return null;
+
         return (
           <Badge
             key={tag}
@@ -58,7 +60,11 @@ export function WeakAuraFilter({ weakAuras, onFilterChange }: WeakAuraFilterProp
             </Avatar>
             <div className="uppercase flex items-center gap-2">
               {tag.replace("_", " ")}{" "}
-              <span className={`text-xs ${tagFilter !== tag ? "text-muted-foreground" : ""}`}>{tagCount}</span>
+              <span
+                className={`text-xs ml-2 ${tagFilter !== tag ? (tagCount > 0 ? "text-foreground font-bold" : "text-muted-foreground") : ""}`}
+              >
+                <span className={tagFilter === tag ? "text-primary-foreground" : ""}>{tagCount}</span>
+              </span>
             </div>
             {tagFilter === tag ? (
               <X

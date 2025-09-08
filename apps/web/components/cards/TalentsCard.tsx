@@ -92,18 +92,27 @@ export default function TalentsCard({ talent }: TalentsCardProps) {
               />
             </div>
             {heroTalentData?.icon_url && (
-              <div
-                className="absolute bottom-0 right-0 h-12 w-12 rounded-full overflow-hidden border-5 z-10 border-card"
-                // style={{ borderColor: classColor }}
-              >
-                <Image
-                  src={heroTalentData.icon_url}
-                  alt={heroTalentData.name}
-                  fill
-                  sizes="32px"
-                  className="object-cover"
-                />
-              </div>
+              <TooltipProvider>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <div
+                      className="absolute bottom-0 right-0 h-12 w-12 rounded-full overflow-hidden border-5 z-10 border-card"
+                      // style={{ borderColor: classColor }}
+                    >
+                      <Image
+                        src={heroTalentData.icon_url}
+                        alt={heroTalentData.name}
+                        fill
+                        sizes="32px"
+                        className="object-cover"
+                      />
+                    </div>
+                  </TooltipTrigger>
+                  <TooltipContent>
+                    <p>{heroTalentData.name}</p>
+                  </TooltipContent>
+                </Tooltip>
+              </TooltipProvider>
             )}
           </div>
         )}
@@ -122,7 +131,7 @@ export default function TalentsCard({ talent }: TalentsCardProps) {
             <CardTitle className="text-xl font-bold mb-3 line-clamp-2">{talent.name}</CardTitle>
             <TooltipProvider>
               <Tooltip>
-                <TooltipTrigger asChild>
+                <TooltipTrigger asChild className="shrink-0">
                   <Button variant="outline" size="icon" className="h-7 w-7 mb-3" onClick={copyToClipboard}>
                     {copied ? <Check className="h-3.5 w-3.5" /> : <Copy className="h-3.5 w-3.5" />}
                   </Button>
@@ -154,7 +163,7 @@ export default function TalentsCard({ talent }: TalentsCardProps) {
                 <span>{specName}</span>
               </div>
             )}
-            {heroTalentData && (
+            {/* {heroTalentData && (
               <div className="flex items-center gap-2 justify-center">
                 {heroTalentData.icon_url && (
                   <div className="relative h-5 w-5 rounded-md overflow-hidden">
@@ -169,13 +178,13 @@ export default function TalentsCard({ talent }: TalentsCardProps) {
                 )}
                 <span>{heroTalentData.name}</span>
               </div>
-            )}
+            )} */}
           </div>
         </div>
       </CardHeader>
 
-      <CardContent>
-        <div className="flex flex-wrap gap-2 justify-center">
+      <CardContent className="!p-0">
+        <div className="flex flex-wrap gap-2 justify-center py-2 !px-0">
           {talent.dungeon_ids.map((dungeon) => (
             <Badge
               key={dungeon._id}
