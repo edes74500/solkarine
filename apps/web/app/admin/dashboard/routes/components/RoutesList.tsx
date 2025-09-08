@@ -40,6 +40,12 @@ export default function RoutesList() {
   };
 
   const handleDungeonClick = (dungeonId: string) => {
+    // Faire défiler la page vers le haut
+    console.log("Faire défiler la page vers le haut");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
     setSelectedDungeon(selectedDungeon === dungeonId ? null : dungeonId);
   };
 

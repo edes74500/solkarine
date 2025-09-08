@@ -21,9 +21,9 @@ export default function TalentsList() {
 
       <AddTalent dungeons={dungeons?.data || []} isDungeonsLoading={isLoadingDungeons} />
 
-      <div className="grid grid-cols-1 gap-4">
+      <div className="flex flex-wrap gap-4">
         {talents?.data?.map((talent) => (
-          <div key={talent._id} className="relative w-fit min-h-40">
+          <div key={talent._id} className="relative w-2xs min-h-40">
             <TalentsCard talent={talent} />
             <div className="absolute top-2 -right-4 flex flex-col gap-2">
               <Button

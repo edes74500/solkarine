@@ -102,9 +102,7 @@ export default function TalentDialogForm({
             >
               <DialogHeader>
                 <DialogTitle>{title}</DialogTitle>
-                {selectedClass}
-                {selectedSpec}
-                {selectedHeroTalent}
+
                 <VisuallyHidden asChild>
                   <DialogDescription>Formulaire de talent</DialogDescription>
                 </VisuallyHidden>

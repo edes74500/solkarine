@@ -21,6 +21,15 @@ export function RouteDisplay({ routes }: { routes: RouteDBWithDungeonPopulated[]
       }
     }
   }, [selectedDungeon, routes]);
+  const handleDungeonClick = (dungeonId: string) => {
+    // Faire défiler la page vers le haut
+    console.log("Faire défiler la page vers le haut");
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth",
+    });
+    setSelectedDungeon(selectedDungeon === dungeonId ? null : dungeonId);
+  };
 
   // Extraire les donjons uniques
   const uniqueDungeons = routes
@@ -37,7 +46,11 @@ export function RouteDisplay({ routes }: { routes: RouteDBWithDungeonPopulated[]
           .map(
             (dungeon) =>
               dungeon && (
-                <div key={dungeon._id} className="cursor-pointer md:min-w-[150px]">
+                <div
+                  key={dungeon._id}
+                  onClick={() => handleDungeonClick(dungeon._id)}
+                  className="cursor-pointer md:min-w-[150px]"
+                >
                   <RouteBadge
                     // showFullName={true}
                     dungeon={dungeon}

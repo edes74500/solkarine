@@ -74,7 +74,7 @@ export default function AddTalent({
             Ajouter des talents
           </Button>
         }
-        isSubmitting={false}
+        isSubmitting={isSubmitting}
       />
     </div>
   );
