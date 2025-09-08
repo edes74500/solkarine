@@ -59,7 +59,7 @@ export default function TalentsCard({ talent }: TalentsCardProps) {
   );
 
   return (
-    <Card className="max-w-2xs w-full hover:shadow-lg transition-shadow duration-300 relative">
+    <Card className="!w-full hover:shadow-lg transition-shadow duration-300 relative h-full">
       {talent.info && (
         <TooltipProvider>
           <Tooltip>

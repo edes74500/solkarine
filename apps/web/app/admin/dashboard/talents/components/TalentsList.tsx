@@ -31,7 +31,7 @@ export default function TalentsList() {
       <TalentsFilter talents={talents?.data || []} onFilterChange={setFilteredTalents} />
       <div className="flex flex-wrap gap-4">
         {filteredTalents?.map((talent) => (
-          <div key={talent._id} className="relative w-2xs min-h-40">
+          <div key={talent._id} className="relative !w-2xs min-h-40 !min-w-2xs !max-w-2xs">
             <TalentsCard talent={talent} />
             <div className="absolute top-2 -right-4 flex flex-col gap-2">
               <Button
