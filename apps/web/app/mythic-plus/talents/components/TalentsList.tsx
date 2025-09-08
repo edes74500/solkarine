@@ -14,7 +14,12 @@ export default function TalentsList({ talents }: { talents: TalentClientWithDung
     <div className="flex flex-col gap-6">
       <TalentsFilter talents={talents} onFilterChange={setFilteredTalents} />
 
-      <motion.div className="flex flex-wrap gap-4" variants={containerVariants} initial="hidden" animate="visible">
+      <motion.div
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-fit gap-6"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
         <AnimatePresence mode="popLayout">
           {filteredTalents.map((talent) => (
             <motion.div
@@ -24,7 +29,7 @@ export default function TalentsList({ talents }: { talents: TalentClientWithDung
               initial="hidden"
               animate="visible"
               exit="exit"
-              className="!w-2xs min-h-40 !min-w-2xs !max-w-2xs"
+              // className="!w-2xs min-h-40 !min-w-2xs !max-w-2xs"
             >
               <TalentsCard talent={talent} />
             </motion.div>

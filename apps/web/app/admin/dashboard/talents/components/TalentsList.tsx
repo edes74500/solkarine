@@ -29,7 +29,7 @@ export default function TalentsList() {
       <AddTalent dungeons={dungeons?.data || []} isDungeonsLoading={isLoadingDungeons} />
 
       <TalentsFilter talents={talents?.data || []} onFilterChange={setFilteredTalents} />
-      <div className="flex flex-wrap gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 w-fit">
         {filteredTalents?.map((talent) => (
           <div key={talent._id} className="relative !w-2xs min-h-40 !min-w-2xs !max-w-2xs">
             <TalentsCard talent={talent} />
