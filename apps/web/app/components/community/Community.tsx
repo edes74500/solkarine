@@ -26,9 +26,8 @@ export default function Community() {
         </h2>
 
         <p className="text-white text-center mb-8 max-w-2xl drop-shadow-md backdrop-blur-sm bg-black/40 p-4 rounded-lg border border-primary/30">
-          Raz le bol d&apos;être stuck à Dornogal ? Marre des Pugs qui passent plus de temps à s&apos;énerver dans le
-          chat qu&apos;à jouer ? Rejoins ma communauté pour trouver des partenaires de Mythic+, et jouer ensemble dans
-          un environnement convivial.
+          Ras-le-bol d&apos;être stuck à Dornogal ? Rejoins ma communauté pour trouver des partenaires de Mythic+, et
+          jouer ensemble dans un environnement convivial.
         </p>
         {/* 
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6 w-full max-w-2xl mb-8">

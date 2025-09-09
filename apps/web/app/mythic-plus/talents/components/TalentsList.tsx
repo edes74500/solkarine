@@ -15,7 +15,7 @@ export default function TalentsList({ talents }: { talents: TalentClientWithDung
       <TalentsFilter talents={talents} onFilterChange={setFilteredTalents} />
 
       <motion.div
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-fit gap-6"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 w-fit gap-4"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
