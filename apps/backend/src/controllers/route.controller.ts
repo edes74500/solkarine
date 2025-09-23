@@ -59,25 +59,24 @@ export const updateRouteController = async (req: Request, res: Response) => {
   const { id } = req.params;
   const body = updateRouteSchema.parse(req.body.route);
   const previousImage = req.body.previousImage;
-  // let newUrl = body.image;
+  let newImageUrl = body.image;
   if (previousImage && previousImage !== body.image) {
-    let imageUrl = await setImageToFolderInR2({
+    newImageUrl = await setImageToFolderInR2({
       imageUrl: body.image,
       folder: "routes",
       imageName: body.name.toLowerCase(),
     });
 
-    if (Array.isArray(imageUrl)) {
-      imageUrl = imageUrl[0];
-    } else {
-      imageUrl = body.image;
+    if (Array.isArray(newImageUrl)) {
+      newImageUrl = newImageUrl[0];
     }
 
     console.info("delete previousImage", previousImage);
+    console.info("new imageUrl", newImageUrl);
     await deleteImageFromR2(previousImage);
   }
 
-  const success = await updateRoute(id, body, previousImage);
+  const success = await updateRoute(id, body, newImageUrl);
 
   if (!success) {
     return res.status(400).json({ success: false, message: "Erreur lors de la modification de la route" });

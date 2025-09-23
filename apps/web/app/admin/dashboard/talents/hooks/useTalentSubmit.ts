@@ -41,7 +41,7 @@ export function useTalentEditSubmit({
 
   const onSubmitAction = async (values: EditTalentForm, id: string, initialScreenshot: string) => {
     try {
-      await updateTalent({ id, body: values, initialScreenshot }).unwrap();
+      await updateTalent({ id, talent: values, initialScreenshot }).unwrap();
       toast.success("Talent modifié");
       form.reset();
       onSuccessAction?.();

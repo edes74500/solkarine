@@ -30,8 +30,8 @@ export const deleteRouteById = async (id: string): Promise<boolean> => {
   return route ? true : false;
 };
 
-export const updateRoute = async (id: string, route: UpdateRouteForm, previousImage: string): Promise<boolean> => {
-  const updatedRoute = await Route.findByIdAndUpdate(id, route, { new: true });
+export const updateRoute = async (id: string, route: UpdateRouteForm, newImageUrl: string): Promise<boolean> => {
+  const updatedRoute = await Route.findByIdAndUpdate(id, { ...route, image: newImageUrl }, { new: true });
 
   return updatedRoute ? true : false;
 };

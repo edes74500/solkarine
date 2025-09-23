@@ -25,11 +25,11 @@ export const deleteTalentController = async (req: Request, res: Response) => {
 };
 
 export const updateTalentController = async (req: Request, res: Response) => {
-  const parsedBody = createTalentSchema.parse(req.body);
+  const parsedBody = createTalentSchema.parse(req.body.talent);
   const talent = await updateTalentService({
     id: req.params.id,
     talent: parsedBody,
-    initialScreenshot: req.body.screenshot,
+    initialScreenshot: req.body.initialScreenshot,
   });
   console.log("talent", talent);
   console.log("talent", talent);

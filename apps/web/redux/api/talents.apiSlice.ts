@@ -32,12 +32,15 @@ export const talentsApi = apiSlice.injectEndpoints({
     }),
     updateTalent: builder.mutation<
       { success: boolean; data: TalentsDBWithDungeonPopulated },
-      { id: string; body: EditTalentForm; initialScreenshot: string }
+      { id: string; talent: EditTalentForm; initialScreenshot: string }
     >({
       query: (body) => ({
         url: `/talents/update/${body.id}`,
         method: "PUT",
-        body: body.body,
+        body: {
+          talent: body.talent,
+          initialScreenshot: body.initialScreenshot,
+        },
       }),
       invalidatesTags: ["Talents"],
     }),

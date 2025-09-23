@@ -66,11 +66,12 @@ export const updateTalentService = async ({
     let finalScreenshot = talent.screenshot;
 
     if (talent.screenshot && talent.screenshot !== initialScreenshot) {
+      console.info("talent.screenshot is different from initialScreenshot");
       // Uploader la nouvelle image
       finalScreenshot = await setImageToFolderInR2({
         imageUrl: talent.screenshot,
         folder: "talents",
-        imageName: talent.name || "talent" + uuidv4(),
+        imageName: talent.name + uuidv4() || "talent" + uuidv4(),
       });
 
       // Supprimer l'ancienne image
@@ -78,6 +79,7 @@ export const updateTalentService = async ({
         await deleteImageFromR2(initialScreenshot);
       }
     }
+    console.info("finalScreenshot", finalScreenshot);
 
     // Mettre à jour en DB
     const updatedTalent = await Talents.findByIdAndUpdate(
