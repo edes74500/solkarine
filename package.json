@@ -1,38 +1,38 @@
 {
-  "name": "solkarine",
-  "private": true,
-  "scripts": {
-    "build": "turbo run build",
-    "start": "turbo run start",
-    "dev": "turbo run dev",
-    "dev:p": "turbo run dev  --parallel --filter=@repo/types --filter=@repo/ui --filter=@repo/utils --filter=@repo/constants",
-    "lint": "turbo run lint",
-    "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "check-types": "turbo run check-types",
-    "test": "turbo run test",
-    "test:spec": "turbo run test:spec --filter=./apps/*",
-    "test:int": "turbo run test:int --filter=./apps/*",
-    "test:e2e": "turbo run test:e2e --filter=./apps/*"
-  },
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
-  "devDependencies": {
-    "@typescript-eslint/eslint-plugin": "^8.42.0",
-    "@typescript-eslint/parser": "^8.42.0",
-    "eslint": "^9.35.0",
-    "prettier": "^3.6.2",
-    "turbo": "^2.5.5",
-    "typescript": "5.8.3"
-  },
-  "packageManager": "pnpm@9.0.0",
-  "engines": {
-    "node": ">=18"
-  },
-  "pnpm": {
-    "overrides": {
-      "react-hook-form": "^7.62.0"
-    }
-  }
+	"name": "solkarine",
+	"private": true,
+	"scripts": {
+		"build": "turbo run build",
+		"start": "turbo run start",
+		"dev": "turbo run dev",
+		"dev:p": "turbo run dev --filter=@repo/types --filter=@repo/ui --filter=@repo/utils --filter=@repo/constants",
+		"lint": "turbo run lint",
+		"format": "prettier --write \"**/*.{ts,tsx,md}\"",
+		"check-types": "turbo run check-types",
+		"test": "turbo run test",
+		"test:spec": "turbo run test:spec --filter=./apps/*",
+		"test:int": "turbo run test:int --filter=./apps/*",
+		"test:e2e": "turbo run test:e2e --filter=./apps/*"
+	},
+	"workspaces": [
+		"apps/*",
+		"packages/*"
+	],
+	"devDependencies": {
+		"@typescript-eslint/eslint-plugin": "^8.42.0",
+		"@typescript-eslint/parser": "^8.42.0",
+		"eslint": "^9.35.0",
+		"prettier": "^3.6.2",
+		"turbo": "^2.5.5",
+		"typescript": "5.8.3"
+	},
+	"packageManager": "pnpm@9.0.0",
+	"engines": {
+		"node": ">=18"
+	},
+	"pnpm": {
+		"overrides": {
+			"react-hook-form": "^7.62.0"
+		}
+	}
 }
